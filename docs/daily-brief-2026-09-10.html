@@ -1,0 +1,932 @@
+<!doctype html><html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Brief — 2026-09-10</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--line:#262b36;--tx:#e7eaf0;--mut:#8b93a5;--acc:#5b8cff;
+--eco:#f5a623;--soc:#4fd1c5;--ent:#ff6b9d;--wrk:#9d7bff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Pretendard','Malgun Gothic',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 18px 60px}
+header h1{font-size:26px;margin:0 0 4px;letter-spacing:-.5px}
+header .sub{color:var(--mut);font-size:14px}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0 22px;font-size:13px;color:var(--mut)}
+.meta b{color:var(--tx)}
+.search{width:100%;padding:11px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:15px;margin-bottom:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:var(--card);border:1px solid var(--line);color:var(--mut);padding:8px 14px;border-radius:20px;cursor:pointer;font-size:13px;transition:.15s}
+.tab:hover{color:var(--tx)}
+.tab.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.flows{margin-bottom:22px;display:grid;gap:12px}
+.flow{background:linear-gradient(180deg,rgba(91,140,255,.08),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:14px 16px}
+.flow-h{font-weight:700;font-size:14px;margin-bottom:6px}
+.flow p{margin:0;font-size:13px;color:var(--tx);white-space:pre-line}
+.ai-tag{background:var(--acc);color:#fff;font-size:10px;padding:1px 7px;border-radius:8px;margin-left:6px;vertical-align:middle}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card.hot{border-color:rgba(91,140,255,.5);box-shadow:0 0 0 1px rgba(91,140,255,.2)}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.badge{font-size:11px;padding:3px 9px;border-radius:12px;font-weight:600}
+.b-경제{background:rgba(245,166,35,.15);color:var(--eco)}
+.b-사회{background:rgba(79,209,197,.15);color:var(--soc)}
+.b-연예{background:rgba(255,107,157,.15);color:var(--ent)}
+.b-실무{background:rgba(157,123,255,.15);color:var(--wrk)}
+.src{font-size:11px;color:var(--mut)}
+.card h3{margin:0 0 6px;font-size:15px;line-height:1.35}
+.card h3 a{color:var(--tx);text-decoration:none}
+.card h3 a:hover{color:var(--acc)}
+.pick{background:rgba(91,140,255,.18);color:#9db8ff;font-size:10px;padding:2px 7px;border-radius:8px;margin-left:6px;white-space:nowrap}
+.why{margin-top:8px;font-size:12px;color:#9db8ff;background:rgba(91,140,255,.08);padding:6px 9px;border-radius:8px}
+.card p{margin:0;font-size:13px;color:var(--mut)}
+.nosum{font-style:italic;opacity:.6}
+footer{margin-top:30px;font-size:12px;color:var(--mut);text-align:center}
+.cost{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--mut);margin-top:20px}
+.cost b{color:var(--tx)}
+</style></head><body><div class="wrap">
+<header>
+  <h1>📰 Daily Brief</h1>
+  <div class="sub">규칙 필터(홍보·중복 제거) + <b>AI 흐름 요약·읽을 가치 판정</b>을 거친 오늘의 브리핑</div>
+</header>
+<div class="meta">
+  <span>📅 <b>2026-09-10 17:45 KST</b></span>
+  <span>🗂️ 수집 <b>137건</b></span>
+  <span>🧠 판정 모드 <b>AI 보조 · OAuth (claude-haiku-4-5)</b></span>
+  <span>⭐ 읽을 가치 <b>12건</b></span>
+</div>
+
+<input class="search" id="q" placeholder="🔍 제목·요약 검색…">
+<div class="tabs"><button class="tab active" data-f="all">전체 (137)</button><button class="tab" data-f="경제">💹 경제 (36)</button><button class="tab" data-f="사회">🏛️ 사회 (35)</button><button class="tab" data-f="연예">🎬 연예 (24)</button><button class="tab" data-f="실무">🛠️ 실무 (42)</button></div>
+<div class="flows" id="flows">
+        <div class="flow" data-cat="경제">
+          <div class="flow-h">💹 경제 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>오늘 경제 뉴스는 다층적 변화를 반영합니다. 부동산 시장에서는 강남 고가 지역 하락과 생애 최초 구매자 급증으로 양극화가 심화되고 있고, 국제유가가 100달러를 돌파하며 호르무즈 해협 긴장으로 물류비 상승 우려가 커지고 있습니다. 국제 무역 환경도 재편되는 중으로 EU의 중국산 부품 관세 카드가 강화되면서 K-부품 산업의 기회가 열리고 있습니다. 한편 한은의 금융 리스크 경고와 각 산업의 ESG·녹색전환 추진이 거시경제 구조 변화를 견인하고 있습니다.</p>
+        </div>
+        <div class="flow" data-cat="사회">
+          <div class="flow-h">🏛️ 사회 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>오늘 사회뉴스는 지방정부와 국가 기관의 역할 확대에 중점을 두고 있습니다. 의료(1.3조 특별회계), 노동감독(12월부터 지자체 담당), 발달장애인 돌봄 등 사회 안전망을 강화하는 정책들이 발표되었습니다. 동시에 외국인보호소 아동 구금, 불법 금융 적폐 같은 제도 사각지대 문제들이 드러나며, 사회적 보호 체계의 보완이 시급함을 보여줍니다.</p>
+        </div>
+        <div class="flow" data-cat="연예">
+          <div class="flow-h">🎬 연예 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>K-팝의 글로벌 성과가 이어지는 한편, 방송과 영화 제작에 AI 기술 도입이 가속화되고 있습니다. 창작 플랫폼이 숏폼과 온라인으로 전환되는 가운데, 공연 암표와 사이버 범죄 같은 산업의 어두운 면도 부각되고 있습니다.</p>
+        </div>
+        <div class="flow" data-cat="실무">
+          <div class="flow-h">🛠️ 실무 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>개발 조직들이 AI 에이전트와 LLM을 핵심 업무에 활용하는 추세가 뚜렷합니다. 아키텍처 규칙과 코딩 컨벤션을 테스트와 AI로 자동 강제하고, 배포 전 코드 리뷰와 장애 분석을 AI가 주도하며, 프론트엔드부터 데이터 파이프라인까지 개발 생산성을 AI로 끌어올리는 중입니다. 동시에 음성 생성, 검색 정확도, 종단간 암호화 같은 기술적 도전과제도 실시간으로 해결 중이며, 이 모든 것이 대규모 시스템의 안정성과 성능을 지키는 기반이 되고 있습니다.</p>
+        </div></div>
+<div class="grid" id="grid">
+        <article class="card" data-cat="경제" data-text="hd현대오일뱅크, 에이치앤엘어드밴스드 주식 6천억원에 추가취득 (서울=연합뉴스) 코스피 상장사 hd현대[267250]는 자회사인 hd현대오일뱅크가 석유화학제품 계열사 에이치앤엘어드밴스드의 주식 1천200만주...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:32</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910154500008" target="_blank" rel="noopener">HD현대오일뱅크, 에이치앤엘어드밴스드 주식 6천억원에 추가취득</a></h3>
+          <p>(서울=연합뉴스) 코스피 상장사 HD현대[267250]는 자회사인 HD현대오일뱅크가 석유화학제품 계열사 에이치앤엘어드밴스드의 주식 1천200만주...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="부산 의료·교육 현장 찾은 박홍근 &quot;거점병원 확대가 균형발전&quot; (세종=연합뉴스) 송정은 기자 = 박홍근 기획예산처 장관은 10일 부산 지역 필수 의료, 고등교육 현장을 찾아 간담회를 하고 내년도 예산안 사업...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:30</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910147700002" target="_blank" rel="noopener">부산 의료·교육 현장 찾은 박홍근 &quot;거점병원 확대가 균형발전&quot;</a></h3>
+          <p>(세종=연합뉴스) 송정은 기자 = 박홍근 기획예산처 장관은 10일 부산 지역 필수 의료, 고등교육 현장을 찾아 간담회를 하고 내년도 예산안 사업...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="재경차관, 아프리카 진출 모색 韓기업 간담회…&quot;지원책 구체화&quot; (세종=연합뉴스) 안채원 기자 = 허장 재정경제부 2차관은 10일 아프리카 진출을 모색하는 국내 기관·기업들을 만나 &quot;다양한 개발협력 수단을 연...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:22</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910148700002" target="_blank" rel="noopener">재경차관, 아프리카 진출 모색 韓기업 간담회…&quot;지원책 구체화&quot;</a></h3>
+          <p>(세종=연합뉴스) 안채원 기자 = 허장 재정경제부 2차관은 10일 아프리카 진출을 모색하는 국내 기관·기업들을 만나 &quot;다양한 개발협력 수단을 연...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="춘천 기업혁신파크, &#x27;의료데이터 신뢰 생태계&#x27; 구축 모색 (춘천=연합뉴스) 이상학 기자 = 강원 춘천에 추진 중인 기업혁신파크가 인공지능(ai)·바이오산업의 핵심 자원인 의료데이터를 안전하게 활용하기 ...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:20</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910151800062" target="_blank" rel="noopener">춘천 기업혁신파크, &#x27;의료데이터 신뢰 생태계&#x27; 구축 모색</a></h3>
+          <p>(춘천=연합뉴스) 이상학 기자 = 강원 춘천에 추진 중인 기업혁신파크가 인공지능(AI)·바이오산업의 핵심 자원인 의료데이터를 안전하게 활용하기 ...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="검찰, &#x27;전쟁 틈타 수조원 담합&#x27; 석화업체 경영진 줄소환(종합) (서울=연합뉴스) 최원정 기자 = 검찰이 수조원 규모의 담합 의혹을 받는 국내 석유화학업체 전·현직 경영진을 줄소환하며 수사에 속도를 내고 있다...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:10</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910085651004" target="_blank" rel="noopener">검찰, &#x27;전쟁 틈타 수조원 담합&#x27; 석화업체 경영진 줄소환(종합)</a></h3>
+          <p>(서울=연합뉴스) 최원정 기자 = 검찰이 수조원 규모의 담합 의혹을 받는 국내 석유화학업체 전·현직 경영진을 줄소환하며 수사에 속도를 내고 있다...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="노란봉투법에 공공기관 이전도 영향…노동부 &quot;노사 협의 필요&quot; (서울=연합뉴스) 한혜원 기자 = 노동조합이 쟁의행위에 나설 수 있는 범위를 확대한 노란봉투법 시행으로 정부가 추진 중인 2차 행정·공공기관 이...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:08</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910145200530" target="_blank" rel="noopener">노란봉투법에 공공기관 이전도 영향…노동부 &quot;노사 협의 필요&quot;</a></h3>
+          <p>(서울=연합뉴스) 한혜원 기자 = 노동조합이 쟁의행위에 나설 수 있는 범위를 확대한 노란봉투법 시행으로 정부가 추진 중인 2차 행정·공공기관 이...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="국고채 금리, 유가 100달러 돌파·美금리 여파에 상승(종합) (서울=연합뉴스) 강수지 기자 = 10일 국고채 금리가 대체로 상승했다.">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:05</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910143851008" target="_blank" rel="noopener">국고채 금리, 유가 100달러 돌파·美금리 여파에 상승(종합)</a></h3>
+          <p>(서울=연합뉴스) 강수지 기자 = 10일 국고채 금리가 대체로 상승했다.</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="제이앤티씨 &quot;종속회사 jntc에 539억원 출자&quot; (서울=연합뉴스) 코스닥 상장사 제이앤티씨[204270]는 강화유리 제조 등 종속회사(jntc vina)에 약 539억원을 출자한다고 10일 공...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:03</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910148100008" target="_blank" rel="noopener">제이앤티씨 &quot;종속회사 JNTC에 539억원 출자&quot;</a></h3>
+          <p>(서울=연합뉴스) 코스닥 상장사 제이앤티씨[204270]는 강화유리 제조 등 종속회사(JNTC VINA)에 약 539억원을 출자한다고 10일 공...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="&quot;ai 메모리 호황에도 &#x27;자금조달 병목&#x27;이 새로운 리스크&quot; (서울=연합뉴스) 정회인 기자 = 인공지능(ai) 투자 확대가 메모리반도체 호황을 이끌고 있지만, ai 인프라의 외부자금 의존도가 커지면서 금리...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:02</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910146900008" target="_blank" rel="noopener">&quot;AI 메모리 호황에도 &#x27;자금조달 병목&#x27;이 새로운 리스크&quot;</a></h3>
+          <p>(서울=연합뉴스) 정회인 기자 = 인공지능(AI) 투자 확대가 메모리반도체 호황을 이끌고 있지만, AI 인프라의 외부자금 의존도가 커지면서 금리...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="진주 원도심 살릴 &#x27;남강하모 유스호스텔&#x27; 이달 말 완공 (진주=연합뉴스) 박정헌 기자 = 경남 진주시는 성북지구 도시재생사업의 핵심 시설인 본성동 &#x27;청년허브하우스&#x27;의 새 명칭을 &#x27;진주남강하모 유스호스...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 17:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910147800052" target="_blank" rel="noopener">진주 원도심 살릴 &#x27;남강하모 유스호스텔&#x27; 이달 말 완공</a></h3>
+          <p>(진주=연합뉴스) 박정헌 기자 = 경남 진주시는 성북지구 도시재생사업의 핵심 시설인 본성동 &#x27;청년허브하우스&#x27;의 새 명칭을 &#x27;진주남강하모 유스호스...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="단일 레버리지 &#x27;음의 괴리율&#x27; 기준 초과 후 72일만에 규정 정비(종합) (서울=연합뉴스) 김유향 기자 = 단일종목 레버리지 상장지수펀드(etf)에서 음(-)의 괴리율이 관리기준을 넘어선 사례가 상장 직후부터 발생했음...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 16:55</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260909184451008" target="_blank" rel="noopener">단일 레버리지 &#x27;음의 괴리율&#x27; 기준 초과 후 72일만에 규정 정비(종합)</a></h3>
+          <p>(서울=연합뉴스) 김유향 기자 = 단일종목 레버리지 상장지수펀드(ETF)에서 음(-)의 괴리율이 관리기준을 넘어선 사례가 상장 직후부터 발생했음...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="기획차관 &quot;재정운용 정상화, 국민 체감할 때까지 추진&quot; (세종=연합뉴스) 안채원 기자 = 조용범 기획예산처 차관은 10일 &quot;재정운용 분야 정상화를 중단없이 추진하고 기획처의 정상화 의지를 국민들께서 ...">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 09-10 16:53</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910144400002" target="_blank" rel="noopener">기획차관 &quot;재정운용 정상화, 국민 체감할 때까지 추진&quot;</a></h3>
+          <p>(세종=연합뉴스) 안채원 기자 = 조용범 기획예산처 차관은 10일 &quot;재정운용 분야 정상화를 중단없이 추진하고 기획처의 정상화 의지를 국민들께서 ...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="동덕여대, 2026학년도 하계 교수연수회 개최 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/biznews/1277225.html" target="_blank" rel="noopener">동덕여대, 2026학년도 하계 교수연수회 개최</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="성결대학교, ‘2026 영암축전’·‘성결 fair’ 성료…학생 참여로 채운 가을 캠퍼스 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/biznews/1277223.html" target="_blank" rel="noopener">성결대학교, ‘2026 영암축전’·‘성결 FAIR’ 성료…학생 참여로 채운 가을 캠퍼스</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="상반기 유럽 ‘소형 전기 밴’ 판매 1/3이 기아 pv5…출시 1년 안돼 ‘1위’ ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/car/1277221.html" target="_blank" rel="noopener">상반기 유럽 ‘소형 전기 밴’ 판매 1/3이 기아 PV5…출시 1년 안돼 ‘1위’</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="다음달 발표 ‘청년 고용률’ 10%p 급등한다, 왜? ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1277210.html" target="_blank" rel="noopener">다음달 발표 ‘청년 고용률’ 10%p 급등한다, 왜?</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="미 정부 재정적자에 계속 오르는 장기국채 금리…‘ai발 경제성장’ 분석도 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/finance/1277208.html" target="_blank" rel="noopener">미 정부 재정적자에 계속 오르는 장기국채 금리…‘AI발 경제성장’ 분석도</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="“정책금융, ‘돈 갚았나’ 대신 ‘다시 일어섰나’ 따져야” ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/finance/1277206.html" target="_blank" rel="noopener">“정책금융, ‘돈 갚았나’ 대신 ‘다시 일어섰나’ 따져야”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="호반프라퍼티, 주한프랑스상공회의소와 손잡고 ‘2026 메종 프랑스 페스티벌’ 연다 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/property/1277204.html" target="_blank" rel="noopener">호반프라퍼티, 주한프랑스상공회의소와 손잡고 ‘2026 메종 프랑스 페스티벌’ 연다</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="삼전, ‘아이폰 듀오’에 “내가 먹다 남긴 음식 데워지면 알려줘 :)” ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/it/1277189.html" target="_blank" rel="noopener">삼전, ‘아이폰 듀오’에 “내가 먹다 남긴 음식 데워지면 알려줘 :)”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="제2회 전문건설의 날 기념 행사…업계 유공자 39명 포상 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1277188.html" target="_blank" rel="noopener">제2회 전문건설의 날 기념 행사…업계 유공자 39명 포상</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card hot" data-cat="경제" data-text="‘우주떡집 흑임자인절미’ 어디 없나요…디저트 새 강자는 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1277187.html" target="_blank" rel="noopener">‘우주떡집 흑임자인절미’ 어디 없나요…디저트 새 강자는</a><span class="pick">★ 읽을 가치</span></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          <div class="why">💡 한은의 금융 리스크 평가는 향후 금리·투자 정책 방향을 예측하는 거시경제 선행지표</div>
+        </article>
+        <article class="card" data-cat="경제" data-text="강남3구 아파트 매매가격 모두 하락…송파구 매물 20% 급증 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/property/1277185.html" target="_blank" rel="noopener">강남3구 아파트 매매가격 모두 하락…송파구 매물 20% 급증</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="“골든타임은 도장 찍기 전”…‘공익 공인중개사’가 필요한 이유 ">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1277184.html" target="_blank" rel="noopener">“골든타임은 도장 찍기 전”…‘공익 공인중개사’가 필요한 이유</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card hot" data-cat="경제" data-text="인천시, 버스 준공영제에 5년간 1조2672억 지원…사모펀드 9개 업체에도 3821억 10일 열린 인천시의회 임시회에서 환경교통위원회 소속 더불어민주당 전재운 의원이 시정질문을 하고 있다. 인천시의회 제공인천시가 시내버스 운송업체의 적자액을 지원하는 준공영제 재정지원금으로 최근 5년간 1조2672억원을 지원한 것으로 나타났다. 이 가운데 사모펀드가 소유한 9개 업체에 지급된 금액도 3821억원에 달하는 것…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101717001" target="_blank" rel="noopener">인천시, 버스 준공영제에 5년간 1조2672억 지원…사모펀드 9개 업체에도 3821억</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>10일 열린 인천시의회 임시회에서 환경교통위원회 소속 더불어민주당 전재운 의원이 시정질문을 하고 있다. 인천시의회 제공인천시가 시내버스 운송업체의 적자액을 지원하는 준공영제 재정지원금으로 최근 5년간 1조2672억원을 지원한 것으로 나타났다. 이 가운데 사모펀드가 소유한 9개 업체에 지급된 금액도 3821억원에 달하는 것…</p>
+          <div class="why">💡 국제유가 100달러 돌파로 물류·원자재 가격 급등이 전 산업에 미칠 실질적 영향을 직시할 필요</div>
+        </article>
+        <article class="card hot" data-cat="경제" data-text="청소년 ‘인스타·페북 이용시간’ 제한되나···메타 “한국과 최적 솔루션 논의” 10일 서울 강남구 메타코리아 사무실에서 열린 ‘스크린 스마트’ 라운드테이블에서 필립 추아 메타 아시아태평양(apac) 정책총괄이 발표를 하고 있다. 메타 제공인스타그램과 페이스북을 운영하는 메타가 청소년의 sns 이용 시간 제한 등 보호조치를 한국 정부와 논의할 예정이라고 밝혔다. 다만 청소년의 sns 이용 자체를 금지…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101705001" target="_blank" rel="noopener">청소년 ‘인스타·페북 이용시간’ 제한되나···메타 “한국과 최적 솔루션 논의”</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>10일 서울 강남구 메타코리아 사무실에서 열린 ‘스크린 스마트’ 라운드테이블에서 필립 추아 메타 아시아태평양(APAC) 정책총괄이 발표를 하고 있다. 메타 제공인스타그램과 페이스북을 운영하는 메타가 청소년의 SNS 이용 시간 제한 등 보호조치를 한국 정부와 논의할 예정이라고 밝혔다. 다만 청소년의 SNS 이용 자체를 금지…</p>
+          <div class="why">💡 EU 부품 관세 강화로 국제 무역 환경이 재편되는 가운데 K-기업의 수출 기회와 경쟁 구도를 파악할 전략적 정보</div>
+        </article>
+        <article class="card" data-cat="경제" data-text="kb금융, 블룸버그와 글로벌 사업 협업 강화 지난 9일 서울 여의도 kb국민은행 신관에서 진행된 kb금융과 블룸버그의 ‘전략적 협력 확대를 위한 업무협약식’에서 김성현 kb금융지주 cib마켓부문장(왼쪽)과 빙 리(bing li) 블룸버그 아시아태평양 회장이 기념 촬영을 하고 있다. kb금융지주 제공kb금융지주가 글로벌 금융정보 기업 블룸버그와 자본시장 등 해외 사업…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101645001" target="_blank" rel="noopener">KB금융, 블룸버그와 글로벌 사업 협업 강화</a></h3>
+          <p>지난 9일 서울 여의도 KB국민은행 신관에서 진행된 KB금융과 블룸버그의 ‘전략적 협력 확대를 위한 업무협약식’에서 김성현 KB금융지주 CIB마켓부문장(왼쪽)과 빙 리(Bing Li) 블룸버그 아시아태평양 회장이 기념 촬영을 하고 있다. KB금융지주 제공KB금융지주가 글로벌 금융정보 기업 블룸버그와 자본시장 등 해외 사업…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="hd현대중공업, 육상용 발전엔진·smr에 1조원대 투자…“ai 데이터센터 전력 수요 대응” 총 1조722억원 투자 “ai 인프라 시장 선점” ‘힘센엔진’ 생산기지· smr 주기기 제작 공장hd현대중공업 육상발전용 힘센 가스엔진 h54gv 모델. hd현대중공업 제공hd현대중공업이 육상용 발전엔진과 소형모듈원자로(smr) 분야에 1조원 이상 투자하기로 했다. 인공지능(ai) 데이터센터 전력 수요에 대응해 미래 경쟁…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101642011" target="_blank" rel="noopener">HD현대중공업, 육상용 발전엔진·SMR에 1조원대 투자…“AI 데이터센터 전력 수요 대응”</a></h3>
+          <p>총 1조722억원 투자 “AI 인프라 시장 선점” ‘힘센엔진’ 생산기지· SMR 주기기 제작 공장HD현대중공업 육상발전용 힘센 가스엔진 H54GV 모델. HD현대중공업 제공HD현대중공업이 육상용 발전엔진과 소형모듈원자로(SMR) 분야에 1조원 이상 투자하기로 했다. 인공지능(AI) 데이터센터 전력 수요에 대응해 미래 경쟁…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="침체된 스마트폰 시장, ‘폴더블’이 살릴까…한·미·중 3파전 본격화 애플이 9일(현지시간) 미국 캘리포니아 쿠퍼티노 애플파크에서 공개한 첫 폴더블 스마트폰 ‘아이폰 듀오’. 애플 제공화면을 접었다 폈다 할 수 있는 ‘폴더블 스마트폰’을 두고 한·미·중 3파전이 본격화됐다. 애플이 9일(현지시간) 첫 폴더블폰인 ‘아이폰 듀오’를 공개하면서 삼성전자, 화웨이·샤오미와 경쟁하게 된 것이다. 삼…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101641001" target="_blank" rel="noopener">침체된 스마트폰 시장, ‘폴더블’이 살릴까…한·미·중 3파전 본격화</a></h3>
+          <p>애플이 9일(현지시간) 미국 캘리포니아 쿠퍼티노 애플파크에서 공개한 첫 폴더블 스마트폰 ‘아이폰 듀오’. 애플 제공화면을 접었다 폈다 할 수 있는 ‘폴더블 스마트폰’을 두고 한·미·중 3파전이 본격화됐다. 애플이 9일(현지시간) 첫 폴더블폰인 ‘아이폰 듀오’를 공개하면서 삼성전자, 화웨이·샤오미와 경쟁하게 된 것이다. 삼…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="2분기 ‘불장’에 증권사 순익 5조 돌파···지난해 1년치 벌어 상반기 9조5000억…지난해 1년치 벌어서울 여의도 증권가. 연합뉴스국내 증권사들이 증시 활황 속에 지난 2분기 5조원이 넘는 순이익을 냈다. 한 분기 만에 역대 최대 실적을 갈아치우며 상반기에만 지난해 1년치 순이익을 거뒀다.금융감독원이 10일 발표한 ‘2분기 증권·선물회사 영업실적(잠정)’을 보면, 국내 증권사 61곳…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101638001" target="_blank" rel="noopener">2분기 ‘불장’에 증권사 순익 5조 돌파···지난해 1년치 벌어</a></h3>
+          <p>상반기 9조5000억…지난해 1년치 벌어서울 여의도 증권가. 연합뉴스국내 증권사들이 증시 활황 속에 지난 2분기 5조원이 넘는 순이익을 냈다. 한 분기 만에 역대 최대 실적을 갈아치우며 상반기에만 지난해 1년치 순이익을 거뒀다.금융감독원이 10일 발표한 ‘2분기 증권·선물회사 영업실적(잠정)’을 보면, 국내 증권사 61곳…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="공정위 사무처, 대한항공·아시아나 “의무 좌석 줄여달라” 요청에 ‘기각’ 의견 지난 8일 김포공항 계류장에서 이동하는 대한항공과 아시아나 항공기 모습. 연합뉴스공정거래위원회 사무처가 대한항공과 아시아나항공 등 5개 항공사가 요청한 공급좌석 유지 의무 완화 요청 2건을 거절해야 한다는 의견을 위원회에 제출했다.공정위 사무처는 10일 대한항공·진에어·아시아나항공·에어부산·에어서울 등 5개 항공운송사업자…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101633001" target="_blank" rel="noopener">공정위 사무처, 대한항공·아시아나 “의무 좌석 줄여달라” 요청에 ‘기각’ 의견</a></h3>
+          <p>지난 8일 김포공항 계류장에서 이동하는 대한항공과 아시아나 항공기 모습. 연합뉴스공정거래위원회 사무처가 대한항공과 아시아나항공 등 5개 항공사가 요청한 공급좌석 유지 의무 완화 요청 2건을 거절해야 한다는 의견을 위원회에 제출했다.공정위 사무처는 10일 대한항공·진에어·아시아나항공·에어부산·에어서울 등 5개 항공운송사업자…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="한은이 꼽은 올해 상반기 코스피 변동성 주범 1위는? 10일 서울 중구 하나은행 본점에서 직원들이 증시와 환율을 살피고 있다. 연합뉴스올해 상반기 국내 증시의 변동성이 유례없는 수준으로 확대되며 일명 ‘롤러코스피’ 장세를 보인 원인 중 하나로 한국은행이 삼성전자·sk하이닉스 레버리지 상장지수펀드(etf)를 지목했다. 한은은 그러나 롤러코스피의 가장 큰 원인은 ‘코스피 지수의…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101629011" target="_blank" rel="noopener">한은이 꼽은 올해 상반기 코스피 변동성 주범 1위는?</a></h3>
+          <p>10일 서울 중구 하나은행 본점에서 직원들이 증시와 환율을 살피고 있다. 연합뉴스올해 상반기 국내 증시의 변동성이 유례없는 수준으로 확대되며 일명 ‘롤러코스피’ 장세를 보인 원인 중 하나로 한국은행이 삼성전자·SK하이닉스 레버리지 상장지수펀드(ETF)를 지목했다. 한은은 그러나 롤러코스피의 가장 큰 원인은 ‘코스피 지수의…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="경제는 빠르게 성장한다지만, 한은 “양극화, 집값·가계빚 다시 커질 수 있다” 한은 ‘통화신용정책 보고서’남산에서 바라본 성동구 지역. 2026.07.27. 김정근기자올 들어 한국 경제가 유례없는 성장세를 기록하고 있지만 한편으론 ‘성장의 그늘’이 짙어질 수 있다는 한국은행의 경고음이 나왔다. 성장의 온기가 퍼지지 않으면서 대·중소기업, 고소득·저소득층 가계의 격차가 더 벌어질 수 있고 소비와 임금…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101613001" target="_blank" rel="noopener">경제는 빠르게 성장한다지만, 한은 “양극화, 집값·가계빚 다시 커질 수 있다”</a></h3>
+          <p>한은 ‘통화신용정책 보고서’남산에서 바라본 성동구 지역. 2026.07.27. 김정근기자올 들어 한국 경제가 유례없는 성장세를 기록하고 있지만 한편으론 ‘성장의 그늘’이 짙어질 수 있다는 한국은행의 경고음이 나왔다. 성장의 온기가 퍼지지 않으면서 대·중소기업, 고소득·저소득층 가계의 격차가 더 벌어질 수 있고 소비와 임금…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="국제유가 100달러 돌파…물류 요충지 병목에 더 오를 일만 남았다 브렌트유 101.21달러 거래…4개월 만에 최고치“브렌트유 100달러 돌파는 심리적 중요 이정표”호르무즈 해협 이어 바브엘만데브 해협 통항 제한파나마운하는 가뭄, 흑해는 러·우 전쟁으로 몸살미국 뉴욕에서 지난달 24일(현지시간) 대형 유조선이 출항하고 있다. 신화연합뉴스국제유가가 미국과 이란의 긴장 고조로 배럴당 100달…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101543001" target="_blank" rel="noopener">국제유가 100달러 돌파…물류 요충지 병목에 더 오를 일만 남았다</a></h3>
+          <p>브렌트유 101.21달러 거래…4개월 만에 최고치“브렌트유 100달러 돌파는 심리적 중요 이정표”호르무즈 해협 이어 바브엘만데브 해협 통항 제한파나마운하는 가뭄, 흑해는 러·우 전쟁으로 몸살미국 뉴욕에서 지난달 24일(현지시간) 대형 유조선이 출항하고 있다. 신화연합뉴스국제유가가 미국과 이란의 긴장 고조로 배럴당 100달…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="“중국차 넘어 부품까지?” eu, ‘80% 관세’ 카드 꺼내나…국내 기업에 기회 될까 이탈리아 단체 “중국산 부품 최대 80% 관세” 촉구‘완성차’ 넘어 ‘부품 원산지 규정’ 확전 조짐中 공세 주춤하면 k-하이브리드·ev ‘반사이익’ 열려관세 보호주의 역풍은 ‘양날의 검’ 될 수도중국 비야디(byd)의 프리미엄 브랜드 ‘덴자’의 z 모델 차량이 지난 4월 24일 베이징 오토쇼에서 전시되고 있다. afp/연…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101537001" target="_blank" rel="noopener">“중국차 넘어 부품까지?” EU, ‘80% 관세’ 카드 꺼내나…국내 기업에 기회 될까</a></h3>
+          <p>이탈리아 단체 “중국산 부품 최대 80% 관세” 촉구‘완성차’ 넘어 ‘부품 원산지 규정’ 확전 조짐中 공세 주춤하면 K-하이브리드·EV ‘반사이익’ 열려관세 보호주의 역풍은 ‘양날의 검’ 될 수도중국 비야디(BYD)의 프리미엄 브랜드 ‘덴자’의 Z 모델 차량이 지난 4월 24일 베이징 오토쇼에서 전시되고 있다. AFP/연…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="신나게 뽑았는데, 어쩌나···“인형뽑기점 인형 10개중 6개에서 납·카드뮴 발암물질” 소비자원 제공최근 인형과 키링 등 경품을 직접 뽑을 수 있는 ‘무인 인형뽑기점’이 인기를 끌고 있다. 하지만 무인 인형뽑기점에서 유통되는 인형 등 경품 10개 중 6개에서 기준치를 크게 초과하는 유해화학물질이 검출돼 주의가 요구된다.한국소비자원은 지난 4∼7월 국내 무인 인형뽑기점에서 유통되는 제품 20종과 업체 16개를…">
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101529011" target="_blank" rel="noopener">신나게 뽑았는데, 어쩌나···“인형뽑기점 인형 10개중 6개에서 납·카드뮴 발암물질”</a></h3>
+          <p>소비자원 제공최근 인형과 키링 등 경품을 직접 뽑을 수 있는 ‘무인 인형뽑기점’이 인기를 끌고 있다. 하지만 무인 인형뽑기점에서 유통되는 인형 등 경품 10개 중 6개에서 기준치를 크게 초과하는 유해화학물질이 검출돼 주의가 요구된다.한국소비자원은 지난 4∼7월 국내 무인 인형뽑기점에서 유통되는 제품 20종과 업체 16개를…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="교육시민단체 &quot;전남광주 통합 학생인권조례 제정해야&quot; (전남광주=연합뉴스) 장아름 기자 = 교육 시민단체인 학벌없는사회를위한 시민모임은 10일 &quot;교육청은 통합된 전남·광주 전체를 아우르는 학생인권조...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:37</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910154800054" target="_blank" rel="noopener">교육시민단체 &quot;전남광주 통합 학생인권조례 제정해야&quot;</a></h3>
+          <p>(전남광주=연합뉴스) 장아름 기자 = 교육 시민단체인 학벌없는사회를위한 시민모임은 10일 &quot;교육청은 통합된 전남·광주 전체를 아우르는 학생인권조...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="청주 아파트 분리수거장서 38구경 권총 실탄 1발 발견 (청주=연합뉴스) 박건영 기자 = 청주의 한 아파트 분리수거장에서 38구경 권총 실탄이 발견돼 경찰이 경위를 조사하고 있다.">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:36</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910155300064" target="_blank" rel="noopener">청주 아파트 분리수거장서 38구경 권총 실탄 1발 발견</a></h3>
+          <p>(청주=연합뉴스) 박건영 기자 = 청주의 한 아파트 분리수거장에서 38구경 권총 실탄이 발견돼 경찰이 경위를 조사하고 있다.</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[부고] 김흥성(전 강원정보문화산업진흥원장)씨 장모상 ▲ 최희순(향년 86세)씨 별세, 민병두(전 한국마사회근무)·민병준(전 한수원홍천양수건설소장)·민금숙(전 화천 상서중교사)·민은숙·민인숙씨 모친...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:34</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910154400062" target="_blank" rel="noopener">[부고] 김흥성(전 강원정보문화산업진흥원장)씨 장모상</a></h3>
+          <p>▲ 최희순(향년 86세)씨 별세, 민병두(전 한국마사회근무)·민병준(전 한수원홍천양수건설소장)·민금숙(전 화천 상서중교사)·민은숙·민인숙씨 모친...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="금요일 아침 최저 10도·낮 최고 30도…큰 일교차 (서울=연합뉴스) 이재영 기자 = 금요일인 11일 아침 최저기온은 10∼20도로 내려가고, 낮 최고기온은 24∼30도까지 올라 내륙을 중심으로 ...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:33</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910150100530" target="_blank" rel="noopener">금요일 아침 최저 10도·낮 최고 30도…큰 일교차</a></h3>
+          <p>(서울=연합뉴스) 이재영 기자 = 금요일인 11일 아침 최저기온은 10∼20도로 내려가고, 낮 최고기온은 24∼30도까지 올라 내륙을 중심으로 ...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[부고] 이미령(연합뉴스 사회부 기자)씨 조부상 ▲ 이철주(향년 85세)씨 별세, 이미령(연합뉴스 사회부 기자)씨 조부상 = 10일 오후 3시, 대구 상례원 전문장례식장 202호, 발인 12일...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:32</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910155000004" target="_blank" rel="noopener">[부고] 이미령(연합뉴스 사회부 기자)씨 조부상</a></h3>
+          <p>▲ 이철주(향년 85세)씨 별세, 이미령(연합뉴스 사회부 기자)씨 조부상 = 10일 오후 3시, 대구 상례원 전문장례식장 202호, 발인 12일...</p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="인천 청천동 플라스틱 사출 공장서 화재…1명 2도 화상 (인천=연합뉴스) 황정환 기자 = 10일 오후 3시 29분께 인천시 부평구 청천동 플라스틱 사출 공장에서 불이 났다.">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:31</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910154700065" target="_blank" rel="noopener">인천 청천동 플라스틱 사출 공장서 화재…1명 2도 화상</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>(인천=연합뉴스) 황정환 기자 = 10일 오후 3시 29분께 인천시 부평구 청천동 플라스틱 사출 공장에서 불이 났다.</p>
+          <div class="why">💡 1.3조 필수의료 특별회계 신설로 지자체 의료정책 자율성 확대의 핵심 정책 변화</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="&#x27;재력가에 불법 자금 수수&#x27; 김영선 전 의원, 징역 1년·집유 2년(종합) (창원=연합뉴스) 정종호 기자 = 재력가로부터 수천만원대 불법 정치자금을 받은 혐의 등으로 기소된 국민의힘 김영선 전 국회의원이 징역형의 집행유...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:28</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910139051052" target="_blank" rel="noopener">&#x27;재력가에 불법 자금 수수&#x27; 김영선 전 의원, 징역 1년·집유 2년(종합)</a></h3>
+          <p>(창원=연합뉴스) 정종호 기자 = 재력가로부터 수천만원대 불법 정치자금을 받은 혐의 등으로 기소된 국민의힘 김영선 전 국회의원이 징역형의 집행유...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="與, &#x27;선관위 특검 파견검사 수사권 삭제&#x27; 법안냈다가 철회 (서울=연합뉴스) 최주성 이율립 기자 = 여야 합의로 처리한 선거관리위 특검법에 따라 특검이 출범한 직후에 국회 법제사법위원회 소속 더불어민주당...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:27</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910140900001" target="_blank" rel="noopener">與, &#x27;선관위 특검 파견검사 수사권 삭제&#x27; 법안냈다가 철회</a></h3>
+          <p>(서울=연합뉴스) 최주성 이율립 기자 = 여야 합의로 처리한 선거관리위 특검법에 따라 특검이 출범한 직후에 국회 법제사법위원회 소속 더불어민주당...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="목포시의회, &#x27;의대 후보대학 선정&#x27; 공익감사 청구 (목포=연합뉴스) 형민우 기자 = 전남광주 목포시의회는 10일 전남광주통합특별시의 국립의대 신설 후보대학 선정 심사 과정에 대해 감사원에 공익감...">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:24</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910153200054" target="_blank" rel="noopener">목포시의회, &#x27;의대 후보대학 선정&#x27; 공익감사 청구</a></h3>
+          <p>(목포=연합뉴스) 형민우 기자 = 전남광주 목포시의회는 10일 전남광주통합특별시의 국립의대 신설 후보대학 선정 심사 과정에 대해 감사원에 공익감...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="청주 폐기물 재활용 업체서 불…15시간째 진화 중(종합) (청주=연합뉴스) 천경환 박건영 기자 = 10일 오전 1시 51분께 청주시 흥덕구 옥산면의 한 폐기물 재활용 업체에서 불이 났다.">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:24</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910010251064" target="_blank" rel="noopener">청주 폐기물 재활용 업체서 불…15시간째 진화 중(종합)</a></h3>
+          <p>(청주=연합뉴스) 천경환 박건영 기자 = 10일 오전 1시 51분께 청주시 흥덕구 옥산면의 한 폐기물 재활용 업체에서 불이 났다.</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="유니세프 보고서 &quot;한국 아동 웰빙순위 선진국 37개국 중 27위&quot; (서울=연합뉴스) 정아란 기자 = 우리나라 아동의 학업역량 순위는 꾸준히 상승했지만 마음건강과 신체건강 순위는 하락한 것으로 나타났다.">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 09-10 17:23</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910151900371" target="_blank" rel="noopener">유니세프 보고서 &quot;한국 아동 웰빙순위 선진국 37개국 중 27위&quot;</a></h3>
+          <p>(서울=연합뉴스) 정아란 기자 = 우리나라 아동의 학업역량 순위는 꾸준히 상승했지만 마음건강과 신체건강 순위는 하락한 것으로 나타났다.</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="정부, 자살 고위험군 선제 발굴 강화…자살예방정책 ‘신청주의’ 손질 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/rights/1277226.html" target="_blank" rel="noopener">정부, 자살 고위험군 선제 발굴 강화…자살예방정책 ‘신청주의’ 손질</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독] 이진숙 옆 앉았던 허화평 “5공이 민주화 토대 닦아” 궤변 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277212.html" target="_blank" rel="noopener">[단독] 이진숙 옆 앉았던 허화평 “5공이 민주화 토대 닦아” 궤변</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="‘화상·피폭·차별’ 넘은 타격왕 장훈 별세…3085안타 기록 안 깨져 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277199.html" target="_blank" rel="noopener">‘화상·피폭·차별’ 넘은 타격왕 장훈 별세…3085안타 기록 안 깨져</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독] 범죄 피해 신속구제 배상명령 인용률, 5년 새 41%→17% ‘뚝’ ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277198.html" target="_blank" rel="noopener">[단독] 범죄 피해 신속구제 배상명령 인용률, 5년 새 41%→17% ‘뚝’</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="한국 현대사 사료 전문가 방선주 박사 별세 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/obituary/1277191.html" target="_blank" rel="noopener">한국 현대사 사료 전문가 방선주 박사 별세</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="장윤정 모친, 가수 딸 내세워 3천만원 사기…징역 10개월 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277177.html" target="_blank" rel="noopener">장윤정 모친, 가수 딸 내세워 3천만원 사기…징역 10개월</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="불법 대부업 총책·변호사 ‘꼬리자르기’ 검찰 보완수사로 덜미 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277176.html" target="_blank" rel="noopener">불법 대부업 총책·변호사 ‘꼬리자르기’ 검찰 보완수사로 덜미</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="‘지방 노동감독관’ 12월부터 투입…서울 출판업, 대구 섬유업 집중감독 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/labor/1277167.html" target="_blank" rel="noopener">‘지방 노동감독관’ 12월부터 투입…서울 출판업, 대구 섬유업 집중감독</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="전교조 이름서 ‘교직원’ 빼지 않기로…37년 만의 명칭 변경 무산 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/schooling/1277164.html" target="_blank" rel="noopener">전교조 이름서 ‘교직원’ 빼지 않기로…37년 만의 명칭 변경 무산</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독] 검찰, 헌재에 “정윤석 감독, 서부지법 출입허가 못 받아 처벌 필요” ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1277163.html" target="_blank" rel="noopener">[단독] 검찰, 헌재에 “정윤석 감독, 서부지법 출입허가 못 받아 처벌 필요”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="시민 63% “메가 사업에 재생에너지 의무화 찬성” ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/environment/1277160.html" target="_blank" rel="noopener">시민 63% “메가 사업에 재생에너지 의무화 찬성”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="흩어진 물 산업 기관 5곳 뭉친다…‘한국물산업진흥원’으로 통합 ">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/environment/1277155.html" target="_blank" rel="noopener">흩어진 물 산업 기관 5곳 뭉친다…‘한국물산업진흥원’으로 통합</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="김승원 “한동훈 녹취는 짜깁기”라며 ‘원본’ 공개…한동훈 “자폭성 입장” 김승원 법무부 장관 후보자. 연합뉴스김승원 법무부 장관 후보자 측이 10일 ‘코로나19 신약 임상시험 승인 청탁’ 의혹과 관련해 한동훈 무소속 의원이 공개한 녹취록이 왜곡·조작됐다며 녹취록 원문을 공개했다. 다만 원문에는 김 후보자가 청탁에 적극 나섰거나 위법성을 인식했다고 의심할 수 있는 정황도 담겨 논란은 쉽게 정리되…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101710001" target="_blank" rel="noopener">김승원 “한동훈 녹취는 짜깁기”라며 ‘원본’ 공개…한동훈 “자폭성 입장”</a></h3>
+          <p>김승원 법무부 장관 후보자. 연합뉴스김승원 법무부 장관 후보자 측이 10일 ‘코로나19 신약 임상시험 승인 청탁’ 의혹과 관련해 한동훈 무소속 의원이 공개한 녹취록이 왜곡·조작됐다며 녹취록 원문을 공개했다. 다만 원문에는 김 후보자가 청탁에 적극 나섰거나 위법성을 인식했다고 의심할 수 있는 정황도 담겨 논란은 쉽게 정리되…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="깜쪽같은 ai 위조 경찰신분증···“압수수색 왔다” 집안에서 금품 훔친 30대 집유 법원 마크. 경향신문 자료사진제주에서 인공지능(ai) 기술로 위조한 경찰 신분증을 제시하며 금품을 훔친 30대에게 징역형 집행유예가 선고됐다.제주지법 형사2부(재판장 서범욱 부장판사)는 10일 강도 등 혐의로 구속기소 된 30대 a씨에 대해 징역 2년에 집행유예 4년을 선고했다. 이와 함께 80시간의 사회봉사를 명했다.a…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101657001" target="_blank" rel="noopener">깜쪽같은 AI 위조 경찰신분증···“압수수색 왔다” 집안에서 금품 훔친 30대 집유</a></h3>
+          <p>법원 마크. 경향신문 자료사진제주에서 인공지능(AI) 기술로 위조한 경찰 신분증을 제시하며 금품을 훔친 30대에게 징역형 집행유예가 선고됐다.제주지법 형사2부(재판장 서범욱 부장판사)는 10일 강도 등 혐의로 구속기소 된 30대 A씨에 대해 징역 2년에 집행유예 4년을 선고했다. 이와 함께 80시간의 사회봉사를 명했다.A…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[속보]‘정치자금법 위반’ 김영선 전 의원, 집행유예 선고 김영선 전 국회의원이 1일 서울 서초구 서울중앙지법에서 열린 오세훈 서울시장의 여론조사 대납 의혹 사건 1심 속행 공판에 증인으로 출석하며 취재진 질문에 답하고 있다. 2026.04.01 권도현 기자1심 재판부 징역 1년에 집행유예 2년 선고.">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101642001" target="_blank" rel="noopener">[속보]‘정치자금법 위반’ 김영선 전 의원, 집행유예 선고</a></h3>
+          <p>김영선 전 국회의원이 1일 서울 서초구 서울중앙지법에서 열린 오세훈 서울시장의 여론조사 대납 의혹 사건 1심 속행 공판에 증인으로 출석하며 취재진 질문에 답하고 있다. 2026.04.01 권도현 기자1심 재판부 징역 1년에 집행유예 2년 선고.</p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="중단된 부산 북항 복합환승센터 공사···협력업체 “지하 공사라도 하게 해달라” 부산 북항복합환승센터 협력업체 관계자들이 10일 오후 부산지방검찰청 앞에서 공사 재개를 촉구하는 집회를 열고 있다. 독자 제공지난달부터 공사가 중단된 부산 북항 복합환승센터의 공사 재개를 촉구하는 집회가 열렸다.북항 복합환승센터 협력업체 관계자 30여 명은 10일 오후 부산지방검찰청 인근에서 집회를 열고 “문제가 있다면 …">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101609001" target="_blank" rel="noopener">중단된 부산 북항 복합환승센터 공사···협력업체 “지하 공사라도 하게 해달라”</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>부산 북항복합환승센터 협력업체 관계자들이 10일 오후 부산지방검찰청 앞에서 공사 재개를 촉구하는 집회를 열고 있다. 독자 제공지난달부터 공사가 중단된 부산 북항 복합환승센터의 공사 재개를 촉구하는 집회가 열렸다.북항 복합환승센터 협력업체 관계자 30여 명은 10일 오후 부산지방검찰청 인근에서 집회를 열고 “문제가 있다면 …</p>
+          <div class="why">💡 73년 만의 지방정부 노동감독 권한 이양이 12월부터 시행되며 노동정책 구조 개편</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="국민 63% “3대 메가 공급 전력, 재생에너지 의무화 찬성” 전남광주 신안군 자라도 태양광 발전소. 신안군 제공.국민 10명 중 6명은 정부의 ‘3대 메가프로젝트’ 전력의 일정 비율을 재생에너지로 공급하도록 의무화하는 데 찬성하는 것으로 나타났다.10일 기후미디어허브가 여론조사기관 엠브레인에 의뢰해 전국 만 20~69세 남녀 5000명을 대상으로 실시한 여론 조사 결과를 보면, 응…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101604001" target="_blank" rel="noopener">국민 63% “3대 메가 공급 전력, 재생에너지 의무화 찬성”</a></h3>
+          <p>전남광주 신안군 자라도 태양광 발전소. 신안군 제공.국민 10명 중 6명은 정부의 ‘3대 메가프로젝트’ 전력의 일정 비율을 재생에너지로 공급하도록 의무화하는 데 찬성하는 것으로 나타났다.10일 기후미디어허브가 여론조사기관 엠브레인에 의뢰해 전국 만 20~69세 남녀 5000명을 대상으로 실시한 여론 조사 결과를 보면, 응…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="‘피터팬 아빠’ 비극 더 이상 반복 안 되게···발달장애인 국가 돌봄 늘린다 정은경 보건복지부 장관이 10일 서울 종로구 정부서울청사에 발달장애인 돌봄 국가 책임제 추진방안을 브리핑하고 있다. 연합뉴스중증 자폐 아들을 27년간 홀로 키우다 최근 간암으로 세상을 떠난 ‘피터팬 아빠’ 전경철씨가 마지막까지 걱정한 것은 자신이 떠난 뒤 남겨질 아들의 삶이었다.정부가 가족에게 집중된 발달장애인 돌봄 부담…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101519001" target="_blank" rel="noopener">‘피터팬 아빠’ 비극 더 이상 반복 안 되게···발달장애인 국가 돌봄 늘린다</a></h3>
+          <p>정은경 보건복지부 장관이 10일 서울 종로구 정부서울청사에 발달장애인 돌봄 국가 책임제 추진방안을 브리핑하고 있다. 연합뉴스중증 자폐 아들을 27년간 홀로 키우다 최근 간암으로 세상을 떠난 ‘피터팬 아빠’ 전경철씨가 마지막까지 걱정한 것은 자신이 떠난 뒤 남겨질 아들의 삶이었다.정부가 가족에게 집중된 발달장애인 돌봄 부담…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="병든 노모 방치해 숨지자 암매장, 이유는 “연금 타먹으려고”···60대 아들 구속기소 1년 넘게 900여 만원 부정 수급검찰. 경향신문 자료사진병든 노모를 방치해 숨지게 한 뒤 시신을 야산에 암매장하고 1년 넘게 연금을 받아 챙긴 60대 남성이 재판에 넘겨졌다.대구지검 김천지청 형사1부는 존속유기치사·시체유기 등의 혐의로 a씨(60대)를 구속기소 했다고 10일 밝혔다.a씨는 2025년 4월 경북 구미 자신…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101518001" target="_blank" rel="noopener">병든 노모 방치해 숨지자 암매장, 이유는 “연금 타먹으려고”···60대 아들 구속기소</a></h3>
+          <p>1년 넘게 900여 만원 부정 수급검찰. 경향신문 자료사진병든 노모를 방치해 숨지게 한 뒤 시신을 야산에 암매장하고 1년 넘게 연금을 받아 챙긴 60대 남성이 재판에 넘겨졌다.대구지검 김천지청 형사1부는 존속유기치사·시체유기 등의 혐의로 A씨(60대)를 구속기소 했다고 10일 밝혔다.A씨는 2025년 4월 경북 구미 자신…</p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="“냉동창고 사람 넣으면 어떻게 되나” ai에  물었다···팔수록 엽기적인 파주 카페 살인 경찰 “피의자 계속 말 바꿔···포렌식 등 할 것”피해자, 저체온증과 산소부족 등으로 사망 추정사건이 발생한 카페. 지난 7일 내부 사정으로 인해 휴무한다는 안내가 붙어 있다. 연합뉴스경기 파주 ‘대형카페 냉동창고 살인사건’ 피의자가 사전에 범행을 계획한 정황이 드러나고 있다. 피의자는 피해 여성을 냉동창고에 가둔 직후 …">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101503001" target="_blank" rel="noopener">“냉동창고 사람 넣으면 어떻게 되나” AI에  물었다···팔수록 엽기적인 파주 카페 살인</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>경찰 “피의자 계속 말 바꿔···포렌식 등 할 것”피해자, 저체온증과 산소부족 등으로 사망 추정사건이 발생한 카페. 지난 7일 내부 사정으로 인해 휴무한다는 안내가 붙어 있다. 연합뉴스경기 파주 ‘대형카페 냉동창고 살인사건’ 피의자가 사전에 범행을 계획한 정황이 드러나고 있다. 피의자는 피해 여성을 냉동창고에 가둔 직후 …</p>
+          <div class="why">💡 노란봉투법 시행 후 첫 성공사례로 산업현장의 실질적 변화를 보여주는 사례</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="73년 만에 지방정부도 노동감독…전문성 우려에 베테랑 감독관 파견 30인 미만 사업장 지자체가 수사수사 전문성·외압 차단은 과제제1회 전국노동감독협의회. 고용노동부 제공.오는 12월 지방정부의 노동감독 시행을 앞두고 정부가 각 시·도에 베테랑 중앙노동감독관을 파견한다. 수사 경험이 없는 지방공무원의 전문성을 보완하고 지방자치단체의 부당한 개입을 막기 위한 조치다.고용노동부는 10일 제1…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101454001" target="_blank" rel="noopener">73년 만에 지방정부도 노동감독…전문성 우려에 베테랑 감독관 파견</a></h3>
+          <p>30인 미만 사업장 지자체가 수사수사 전문성·외압 차단은 과제제1회 전국노동감독협의회. 고용노동부 제공.오는 12월 지방정부의 노동감독 시행을 앞두고 정부가 각 시·도에 베테랑 중앙노동감독관을 파견한다. 수사 경험이 없는 지방공무원의 전문성을 보완하고 지방자치단체의 부당한 개입을 막기 위한 조치다.고용노동부는 10일 제1…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="대구시민 절반 “경제·산업 집중 투자해야”···미래산업·일자리 지원 목소리 커 대구시 산격청사 전경. 대구시 제공대구시민의 절반가량이 내년도 경제와 산업 분야에 예산을 집중 투자해야 한다고 응답했다.대구시는 2027년도 예산편성 방향 시민 설문조사 결과를 10일 공개했다. 대구시가 내년에 가장 힘써 추진해야 할 분야로 ‘경제·산업’을 꼽은 응답자는 46.5%로 가장 많았다. 이어 ‘보건·복지’(22…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101453001" target="_blank" rel="noopener">대구시민 절반 “경제·산업 집중 투자해야”···미래산업·일자리 지원 목소리 커</a></h3>
+          <p>대구시 산격청사 전경. 대구시 제공대구시민의 절반가량이 내년도 경제와 산업 분야에 예산을 집중 투자해야 한다고 응답했다.대구시는 2027년도 예산편성 방향 시민 설문조사 결과를 10일 공개했다. 대구시가 내년에 가장 힘써 추진해야 할 분야로 ‘경제·산업’을 꼽은 응답자는 46.5%로 가장 많았다. 이어 ‘보건·복지’(22…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="경남서 농기계 작업하던 60대 숨져···경찰 “추락사 추정” 경찰 마크. 경향신문 자료사진경남 남해군에서 농사일을 하던 60대 남성이 숨졌다.경찰 등에 따르면 지난 9일 오후 5시37분쯤에 남해군 창선면의 한 도랑에서 a씨가 쓰러져 채 발견됐다. 소방당국은 a씨를 인근 병원으로 옮겼으나 숨졌다.경찰은 a씨가 논에서 농기계로 흙을 고르던 중 약 2m 깊이의 도랑 아래로 떨어진 것으로…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101445001" target="_blank" rel="noopener">경남서 농기계 작업하던 60대 숨져···경찰 “추락사 추정”</a></h3>
+          <p>경찰 마크. 경향신문 자료사진경남 남해군에서 농사일을 하던 60대 남성이 숨졌다.경찰 등에 따르면 지난 9일 오후 5시37분쯤에 남해군 창선면의 한 도랑에서 A씨가 쓰러져 채 발견됐다. 소방당국은 A씨를 인근 병원으로 옮겼으나 숨졌다.경찰은 A씨가 논에서 농기계로 흙을 고르던 중 약 2m 깊이의 도랑 아래로 떨어진 것으로…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="저출산고령사회위&amp;#8594;인구전략위로 확대 개편해 공식 출범 10일 오전 정부서울청사 8층 사무실에서 김진오 인구전략위원회 부위원장(오른쪽에서 네 번째)과 정은경 보건복지부 장관(왼쪽에서 네 번째) 등이 참석한 가운데 인구전략위가 현판식을 개최하고 본격적인 업무를 시작했다. 인구전략위원회 제공저출생·고령화 정책을 총괄해온 대통령 직속 저출산고령사회위원회가 10일 ‘인구전략위원회’로…">
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101439001" target="_blank" rel="noopener">저출산고령사회위&amp;#8594;인구전략위로 확대 개편해 공식 출범</a></h3>
+          <p>10일 오전 정부서울청사 8층 사무실에서 김진오 인구전략위원회 부위원장(오른쪽에서 네 번째)과 정은경 보건복지부 장관(왼쪽에서 네 번째) 등이 참석한 가운데 인구전략위가 현판식을 개최하고 본격적인 업무를 시작했다. 인구전략위원회 제공저출생·고령화 정책을 총괄해온 대통령 직속 저출산고령사회위원회가 10일 ‘인구전략위원회’로…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="bts, 美 대형 스타디움 4곳서 역대 최고 흥행 기록 (서울=연합뉴스) 이태수 기자 = 그룹 방탄소년단(bts)이 미국 주요 대형 스타디움에서 잇달아 역대 최고 흥행 콘서트 기록을 세우며 티켓 파워...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 17:21</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910151700005" target="_blank" rel="noopener">BTS, 美 대형 스타디움 4곳서 역대 최고 흥행 기록</a></h3>
+          <p>(서울=연합뉴스) 이태수 기자 = 그룹 방탄소년단(BTS)이 미국 주요 대형 스타디움에서 잇달아 역대 최고 흥행 콘서트 기록을 세우며 티켓 파워...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[게시판] 음공협, &#x27;달라진 공연법, 주요 변화와 과제&#x27; 포럼 ▲ 한국대중음악공연산업협회(음공협)는 오는 17일 서울 ckl기업지원센터에서 &#x27;달라진 공연법, 주요변화와 향후 과제&#x27; 포럼을 개최한다. 개정된 ...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 17:05</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910146100005" target="_blank" rel="noopener">[게시판] 음공협, &#x27;달라진 공연법, 주요 변화와 과제&#x27; 포럼</a></h3>
+          <p>▲ 한국대중음악공연산업협회(음공협)는 오는 17일 서울 CKL기업지원센터에서 &#x27;달라진 공연법, 주요변화와 향후 과제&#x27; 포럼을 개최한다. 개정된 ...</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="허진호 &quot;폭력이 지배했던 시대, 진실에 대한 질문 던졌죠&quot; (서울=연합뉴스) 정래원 기자 = &quot;(육영수 여사 저격 사건은) 제가 국민학교(초등학교) 5학년 때 일어난 일인데, 당시 부모님도 그렇고 다 같...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 17:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910144000005" target="_blank" rel="noopener">허진호 &quot;폭력이 지배했던 시대, 진실에 대한 질문 던졌죠&quot;</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>(서울=연합뉴스) 정래원 기자 = &quot;(육영수 여사 저격 사건은) 제가 국민학교(초등학교) 5학년 때 일어난 일인데, 당시 부모님도 그렇고 다 같...</p>
+          <div class="why">💡 방송가에서 AI 기술이 본격 활용되는 추세를 보여주는 핵심 산업 뉴스</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="박해일 &quot;기자라는 직종 설득력 있게 전달하는 게 과제였죠&quot; (서울=연합뉴스) 정래원 기자 = 1974년 8월 15일 한 신문사 편집국 텔레비전에 광복절 기념식 중계가 틀어져 있다. 조용하던 회사는 느닷없...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 16:36</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910135300005" target="_blank" rel="noopener">박해일 &quot;기자라는 직종 설득력 있게 전달하는 게 과제였죠&quot;</a></h3>
+          <p>(서울=연합뉴스) 정래원 기자 = 1974년 8월 15일 한 신문사 편집국 텔레비전에 광복절 기념식 중계가 틀어져 있다. 조용하던 회사는 느닷없...</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="[방송소식] 르세라핌 출신 김가람, 배우 활동 시작 (서울=연합뉴스) 장진리 기자 = ▲ 르세라핌 출신 김가람 배우 전향 = 그룹 르세라핌 출신 김가람이 배우로 활동을 시작한다고 소속사 매니지먼트...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 15:57</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910132800005" target="_blank" rel="noopener">[방송소식] 르세라핌 출신 김가람, 배우 활동 시작</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>(서울=연합뉴스) 장진리 기자 = ▲ 르세라핌 출신 김가람 배우 전향 = 그룹 르세라핌 출신 김가람이 배우로 활동을 시작한다고 소속사 매니지먼트...</p>
+          <div class="why">💡 공연산업의 불법거래 심각성을 보여주는 구체적 통계로, 업계 정책 수립의 근거 자료</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="광주여성영화제 11월 11일 개막…&#x27;아시아 여성 이야기&#x27; (전남광주=연합뉴스) 장아름 기자 = 17회 광주여성영화제가 오는 11월 11일부터 15일까지 광주극장과 광주금남로 영화관에서 열린다.">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 15:41</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910129200054" target="_blank" rel="noopener">광주여성영화제 11월 11일 개막…&#x27;아시아 여성 이야기&#x27;</a></h3>
+          <p>(전남광주=연합뉴스) 장아름 기자 = 17회 광주여성영화제가 오는 11월 11일부터 15일까지 광주극장과 광주금남로 영화관에서 열린다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="황정민·추영우 첫 더빙 도전…애니 &#x27;스티치 헤드&#x27; 30일 개봉 (서울=연합뉴스) 박원희 기자 = 사랑스러운 몬스터, 기억이 사라지는 섬이 등장하는 판타지 애니메이션 두 편이 이달 관객을 만난다.">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 15:21</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910122400005" target="_blank" rel="noopener">황정민·추영우 첫 더빙 도전…애니 &#x27;스티치 헤드&#x27; 30일 개봉</a></h3>
+          <p>(서울=연합뉴스) 박원희 기자 = 사랑스러운 몬스터, 기억이 사라지는 섬이 등장하는 판타지 애니메이션 두 편이 이달 관객을 만난다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="드라마 &#x27;김부장&#x27;도 ai로 액션 제작…방송가 ai 활용 확산 (서울=연합뉴스) 한상용 기자 = 방송미디어통신위원회는 10일 서울에서 한국전파진흥협회와 &#x27;2026 방송미디어 인공지능(ai) 혁신인재 양성 세...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 15:05</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910117500017" target="_blank" rel="noopener">드라마 &#x27;김부장&#x27;도 AI로 액션 제작…방송가 AI 활용 확산</a></h3>
+          <p>(서울=연합뉴스) 한상용 기자 = 방송미디어통신위원회는 10일 서울에서 한국전파진흥협회와 &#x27;2026 방송미디어 인공지능(AI) 혁신인재 양성 세...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="nct 위시, 日 레코드협회 첫 더블 플래티넘 인증 (서울=연합뉴스) 김선우 기자 = 그룹 nct 위시가 데뷔 후 처음으로 일본레코드협회의 골드 디스크 더블 플래티넘 인증을 받았다.">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 11:53</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910086400005" target="_blank" rel="noopener">NCT 위시, 日 레코드협회 첫 더블 플래티넘 인증</a></h3>
+          <p>(서울=연합뉴스) 김선우 기자 = 그룹 NCT 위시가 데뷔 후 처음으로 일본레코드협회의 골드 디스크 더블 플래티넘 인증을 받았다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="&quot;최근 1년간 암표 최다 신고 공연은 bts &#x27;아리랑&#x27;&quot; (서울=연합뉴스) 이태수 기자 = 최근 1년 동안 암표 신고가 가장 많이 이뤄진 공연은 그룹 방탄소년단(bts)의 월드투어 &#x27;아리랑&#x27;(arira...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 11:34</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910074300005" target="_blank" rel="noopener">&quot;최근 1년간 암표 최다 신고 공연은 BTS &#x27;아리랑&#x27;&quot;</a></h3>
+          <p>(서울=연합뉴스) 이태수 기자 = 최근 1년 동안 암표 신고가 가장 많이 이뤄진 공연은 그룹 방탄소년단(BTS)의 월드투어 &#x27;아리랑&#x27;(ARIRA...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[방송소식] 김영광·채수빈 주연 &#x27;나를 충전해줘&#x27; 내달 공개 (서울=연합뉴스) 고가혜 기자 = ▲ 넷플릭스 &#x27;나를 충전해줘&#x27; 내달 첫선 = 넷플릭스는 배우 김영광, 채수빈이 주연한 시리즈 &#x27;나를 충전해줘&#x27;...">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 11:06</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910053700005" target="_blank" rel="noopener">[방송소식] 김영광·채수빈 주연 &#x27;나를 충전해줘&#x27; 내달 공개</a></h3>
+          <p>(서울=연합뉴스) 고가혜 기자 = ▲ 넷플릭스 &#x27;나를 충전해줘&#x27; 내달 첫선 = 넷플릭스는 배우 김영광, 채수빈이 주연한 시리즈 &#x27;나를 충전해줘&#x27;...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="단편선 순간들, 내달 정규 2집 &#x27;연인들&#x27;…오늘 선공개 싱글 (서울=연합뉴스) 이태수 기자 = 밴드 단편선 순간들이 다음 달 15일 정규 2집 &#x27;연인들&#x27;을 발표한다고 소속사 오소리웍스가 10일 밝혔다.">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 09-10 11:02</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20260910054400005" target="_blank" rel="noopener">단편선 순간들, 내달 정규 2집 &#x27;연인들&#x27;…오늘 선공개 싱글</a></h3>
+          <p>(서울=연합뉴스) 이태수 기자 = 밴드 단편선 순간들이 다음 달 15일 정규 2집 &#x27;연인들&#x27;을 발표한다고 소속사 오소리웍스가 10일 밝혔다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="싸이 흠뻑쇼? 임영웅 투어? ‘암표 신고’ 최다 공연은···bts 월드투어 ‘아리랑’ bts ‘아리랑’ 최근 1년 암표 신고 102건 최다싸이 ‘흠뻑쇼’·빅뱅 20주년 콘서트 뒤이어방탄소년단(bts)이 지난 4월 고양종합운동장에서 개최한 월드투어 콘서트 ‘아리랑(arirang)’의 무대. 빅히트 뮤직 제공최근 1년 동안 암표 신고가 가장 많이 이뤄진 공연은 그룹 방탄소년단(bts)의 월드투어 ‘아리랑’(a…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609101430001" target="_blank" rel="noopener">싸이 흠뻑쇼? 임영웅 투어? ‘암표 신고’ 최다 공연은···BTS 월드투어 ‘아리랑’</a></h3>
+          <p>BTS ‘아리랑’ 최근 1년 암표 신고 102건 최다싸이 ‘흠뻑쇼’·빅뱅 20주년 콘서트 뒤이어방탄소년단(BTS)이 지난 4월 고양종합운동장에서 개최한 월드투어 콘서트 ‘아리랑(ARIRANG)’의 무대. 빅히트 뮤직 제공최근 1년 동안 암표 신고가 가장 많이 이뤄진 공연은 그룹 방탄소년단(BTS)의 월드투어 ‘아리랑’(A…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="바이올린 거장은 ‘의심하는 법’을 알려주었다 이화경향음악콩쿠르 수상자, 바이올리니스트 카바코스와 마스터클래스레오니다스 카바코스가 지난 5일 서울 송파구 롯데콘서트홀 리허설룸에서 경향신문과 롯데문화재단 공동 주최로 열린 ‘2026 클래식 레볼루션 x 이화경향음악콩쿠르 수상자 마스터클래스’에서 지도하고 있다. 제74회 이화경향음악콩쿠르 중등부 바이올린 1위 김민하양, …">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092038005" target="_blank" rel="noopener">바이올린 거장은 ‘의심하는 법’을 알려주었다</a></h3>
+          <p>이화경향음악콩쿠르 수상자, 바이올리니스트 카바코스와 마스터클래스레오니다스 카바코스가 지난 5일 서울 송파구 롯데콘서트홀 리허설룸에서 경향신문과 롯데문화재단 공동 주최로 열린 ‘2026 클래식 레볼루션 X 이화경향음악콩쿠르 수상자 마스터클래스’에서 지도하고 있다. 제74회 이화경향음악콩쿠르 중등부 바이올린 1위 김민하양, …</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="여주 고달사지 쌍사자 석등 ‘68년 만의 귀가’ 웅크린 쌍사자…고려시대 독창적 조형미예식장 뜰·경복궁 거쳐 2003년 국중박에국중박 석조유산 ‘제자리 찾기’ 일환으로두 마리 사자가 앞발을 내민 채 몸을 낮춰 웅크리고 앉았다. 사찰에서 ‘진리의 빛’을 밝히던 석등이 68년 전 떠난 자리로 돌아간다.국가유산청과 국립중앙박물관, 여주시는 보물 ‘여주 고달사지 쌍사자 석등’(…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092034015" target="_blank" rel="noopener">여주 고달사지 쌍사자 석등 ‘68년 만의 귀가’</a></h3>
+          <p>웅크린 쌍사자…고려시대 독창적 조형미예식장 뜰·경복궁 거쳐 2003년 국중박에국중박 석조유산 ‘제자리 찾기’ 일환으로두 마리 사자가 앞발을 내민 채 몸을 낮춰 웅크리고 앉았다. 사찰에서 ‘진리의 빛’을 밝히던 석등이 68년 전 떠난 자리로 돌아간다.국가유산청과 국립중앙박물관, 여주시는 보물 ‘여주 고달사지 쌍사자 석등’(…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="‘지나쳐버린 작품’, ‘지나침 없는’ 경험 리움미술관 ‘구정아: 우스모스’전서울 용산구 리움미술관 ‘구정아: 우스모스’에서는 곳곳에 숨은 작품을 볼 수도, 지나칠 수도 있다. 연합뉴스·리움미술관창밖 옹벽 돌 틈과 천장 모서리까지… 30여년 망라한 35점 중력·자성·인광·향 형태 갖지 않아도 작용하는 존재 탐구 정해진 동선 없이 관람자의 발견 통해 완성되는 관람리움…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092034005" target="_blank" rel="noopener">‘지나쳐버린 작품’, ‘지나침 없는’ 경험</a></h3>
+          <p>리움미술관 ‘구정아: 우스모스’전서울 용산구 리움미술관 ‘구정아: 우스모스’에서는 곳곳에 숨은 작품을 볼 수도, 지나칠 수도 있다. 연합뉴스·리움미술관창밖 옹벽 돌 틈과 천장 모서리까지… 30여년 망라한 35점 중력·자성·인광·향 형태 갖지 않아도 작용하는 존재 탐구 정해진 동선 없이 관람자의 발견 통해 완성되는 관람리움…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="‘천만 감독’ 이준익 “세로 화면은 배경 아닌 인물에 집중하게 해…모두가 주인공” 숏폼 드라마 ‘아버지의 집밥’으로 새 도전21년 전 영화 &lt;왕의 남자&gt;로 ‘천만 감독’ 반열에 올랐던 이준익 감독(사진)은 올해 쇼트(숏)폼 드라마에 도전장을 내밀었다. 한국 영화계의 거장이 기존 장편영화의 반대편에 있는 매체에 도전한다는 것 자체가 화제였다.세로로 긴 휴대전화 액정에 맞춘 화면 비율, 약 2분 안에 기승…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092032005" target="_blank" rel="noopener">‘천만 감독’ 이준익 “세로 화면은 배경 아닌 인물에 집중하게 해…모두가 주인공”</a></h3>
+          <p>숏폼 드라마 ‘아버지의 집밥’으로 새 도전21년 전 영화 &lt;왕의 남자&gt;로 ‘천만 감독’ 반열에 올랐던 이준익 감독(사진)은 올해 쇼트(숏)폼 드라마에 도전장을 내밀었다. 한국 영화계의 거장이 기존 장편영화의 반대편에 있는 매체에 도전한다는 것 자체가 화제였다.세로로 긴 휴대전화 액정에 맞춘 화면 비율, 약 2분 안에 기승…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="국가폭력·학살의 고통…시로 이어지는 한국·팔레스타인·베트남 국내 시인들, 연대의 시집 2권&lt;응답의 시&gt;엔 팔레스타인이 겪는 고통에 응답하고 연대하는 47인의 신작 시가 실렸다. 김혜순, 나희덕, 김소연 시인, 가자지구로 가는 배에 탔던 활동가 해초, 송경동 시인(위부터)의 시가 수록됐다. 나희덕·송경동 시인은 한국군의 베트남 민간인 학살을 기록한 시집 &lt;살았으니, 말해야 해요&gt;에…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092031005" target="_blank" rel="noopener">국가폭력·학살의 고통…시로 이어지는 한국·팔레스타인·베트남</a></h3>
+          <p>국내 시인들, 연대의 시집 2권&lt;응답의 시&gt;엔 팔레스타인이 겪는 고통에 응답하고 연대하는 47인의 신작 시가 실렸다. 김혜순, 나희덕, 김소연 시인, 가자지구로 가는 배에 탔던 활동가 해초, 송경동 시인(위부터)의 시가 수록됐다. 나희덕·송경동 시인은 한국군의 베트남 민간인 학살을 기록한 시집 &lt;살았으니, 말해야 해요&gt;에…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="피아니스트 박진형, 루빈스타인 콩쿠르 2위…손열음·조성진 뒤이었다 피아니스트 박진형(30·사진)이 8일(현지시간) 이스라엘 텔아비브에서 폐막한 아르투르 루빈스타인 국제 피아노 마스터 콩쿠르에서 공동 2위를 차지했다고 금호문화재단이 9일 밝혔다.박진형은 이 콩쿠르 결선에서 실내악과 협주곡 경연을 치른 뒤 벨라루스의 울라지슬라우 칸도히와 공동으로 2위에 올랐다. 1위는 러시아의 드미트리 유…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092015045" target="_blank" rel="noopener">피아니스트 박진형, 루빈스타인 콩쿠르 2위…손열음·조성진 뒤이었다</a></h3>
+          <p>피아니스트 박진형(30·사진)이 8일(현지시간) 이스라엘 텔아비브에서 폐막한 아르투르 루빈스타인 국제 피아노 마스터 콩쿠르에서 공동 2위를 차지했다고 금호문화재단이 9일 밝혔다.박진형은 이 콩쿠르 결선에서 실내악과 협주곡 경연을 치른 뒤 벨라루스의 울라지슬라우 칸도히와 공동으로 2위에 올랐다. 1위는 러시아의 드미트리 유…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="신사임당·율곡 화폐 영정 그린 이종상 화백 별세 ‘한국 미술의 자생성’ 평생 화두로역사 인물 국가표준영정 등 남겨5만원권의 신사임당, 5000원권의 율곡 이이 화폐 영정을 그린 일랑(一浪) 이종상 화백이 8일 별세했다. 향년 88세.1938년 충남 예산에서 태어난 고인은 대전고에 재학하며 미술부 활동을 시작한 뒤 ‘루불’ 미술동인을 결성했으며, 서울대에서 동양화를 전공…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609092015025" target="_blank" rel="noopener">신사임당·율곡 화폐 영정 그린 이종상 화백 별세</a></h3>
+          <p>‘한국 미술의 자생성’ 평생 화두로역사 인물 국가표준영정 등 남겨5만원권의 신사임당, 5000원권의 율곡 이이 화폐 영정을 그린 일랑(一浪) 이종상 화백이 8일 별세했다. 향년 88세.1938년 충남 예산에서 태어난 고인은 대전고에 재학하며 미술부 활동을 시작한 뒤 ‘루불’ 미술동인을 결성했으며, 서울대에서 동양화를 전공…</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="장원영 허위 영상 올렸다가 ‘실형’···스타쉽 “사이버 레커 등 추가 고소” 그룹 아이브의 장원영. 연합뉴스걸그룹 아이브 멤버 장원영에 대한 허위 영상을 유포한 누리꾼에게 법원에서 징역형의 실형이 선고됐다.소속사 스타쉽엔터테인먼트는 9일 아이브 공식 sns를 통해 “당사가 법률대리인 김앤장법률사무소를 통해 대응해 온 사건 중, 소속 아티스트(장원영)를 대상으로 한 허위영상물반포 등의 범죄사실로 기…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609091837001" target="_blank" rel="noopener">장원영 허위 영상 올렸다가 ‘실형’···스타쉽 “사이버 레커 등 추가 고소”</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>그룹 아이브의 장원영. 연합뉴스걸그룹 아이브 멤버 장원영에 대한 허위 영상을 유포한 누리꾼에게 법원에서 징역형의 실형이 선고됐다.소속사 스타쉽엔터테인먼트는 9일 아이브 공식 SNS를 통해 “당사가 법률대리인 김앤장법률사무소를 통해 대응해 온 사건 중, 소속 아티스트(장원영)를 대상으로 한 허위영상물반포 등의 범죄사실로 기…</p>
+          <div class="why">💡 허위영상 유포 관련 강경한 판결로, 사이버 범죄 대응의 중요한 선례 제시</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="“‘라디오스타’ 같은 시나리오, 이젠 투자받기 어려워”···‘천만 감독’ 이준익이 숏드라마에 도전한 이유 ‘왕의 남자’ 이준익 감독, 숏드라마 ‘집밥 이야기’ “침체된 영화계에 돌파구 마련 위해 도전처음엔 두렵고 불편했다”세로 화면, 오히려 인물 내면 깊게 조명집밥 먹는 잔잔한 이야기, 오히려 ‘숏폼 경쟁력’“자극의 시대, 뻔함의 미학이 소중하다”숏드라마 &lt;아버지의 집밥&gt;을 연출한 이준익 감독. 레진스낵 제공21년 전 영화 …">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609091654001" target="_blank" rel="noopener">“‘라디오스타’ 같은 시나리오, 이젠 투자받기 어려워”···‘천만 감독’ 이준익이 숏드라마에 도전한 이유</a></h3>
+          <p>‘왕의 남자’ 이준익 감독, 숏드라마 ‘집밥 이야기’ “침체된 영화계에 돌파구 마련 위해 도전처음엔 두렵고 불편했다”세로 화면, 오히려 인물 내면 깊게 조명집밥 먹는 잔잔한 이야기, 오히려 ‘숏폼 경쟁력’“자극의 시대, 뻔함의 미학이 소중하다”숏드라마 &lt;아버지의 집밥&gt;을 연출한 이준익 감독. 레진스낵 제공21년 전 영화 …</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="“내가 죽어야 한다면, 이야기로 남기를”···가자에 응답하고 베트남전 학살 기억하는 시인들 김혜순·진은영·김소연·나희덕 등 47인 팔레스타인에 연대하는 신작 시 ‘응답의 시’ 베트남전에서 9000여명 민간인 학살한 한국군기록하고 증언하는 시집 ‘살았으니, 말해야 해요’ 가자지구·베트남 민간인 학살의 기억한국 역사 속 폭력의 기억과 만나 연결김혜순 시인(왼쪽부터), 진은영 시인, 김소연 시인이 팔레스타인에 연대하…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609091624001" target="_blank" rel="noopener">“내가 죽어야 한다면, 이야기로 남기를”···가자에 응답하고 베트남전 학살 기억하는 시인들</a></h3>
+          <p>김혜순·진은영·김소연·나희덕 등 47인 팔레스타인에 연대하는 신작 시 ‘응답의 시’ 베트남전에서 9000여명 민간인 학살한 한국군기록하고 증언하는 시집 ‘살았으니, 말해야 해요’ 가자지구·베트남 민간인 학살의 기억한국 역사 속 폭력의 기억과 만나 연결김혜순 시인(왼쪽부터), 진은영 시인, 김소연 시인이 팔레스타인에 연대하…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="“못 봐도 본 것이나 다름없다?”···구정아의 아리송한 ‘우스모스’ 리움미술관 ‘구정아: 우스모스’돌 틈 크리스털부터 천장 모서리까지곳곳에 숨어 있는 35점자석·중력·향·인광…보이지 않는 힘으로 이어지는 30년 작업정해진 동선 대신 발견·놓침 자체가 관람 경험‘구정아: 우스모스’ 전시장에서 구정아 작가. 리움미술관 제공구정아 개인전 ‘구정아: 우스모스’의 전시 모습. 연합뉴스리움미술관에서…">
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202609091544001" target="_blank" rel="noopener">“못 봐도 본 것이나 다름없다?”···구정아의 아리송한 ‘우스모스’</a></h3>
+          <p>리움미술관 ‘구정아: 우스모스’돌 틈 크리스털부터 천장 모서리까지곳곳에 숨어 있는 35점자석·중력·향·인광…보이지 않는 힘으로 이어지는 30년 작업정해진 동선 대신 발견·놓침 자체가 관람 경험‘구정아: 우스모스’ 전시장에서 구정아 작가. 리움미술관 제공구정아 개인전 ‘구정아: 우스모스’의 전시 모습. 연합뉴스리움미술관에서…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="한꺼번에 짊어지던 배치를 내려놓고, 하나씩 흘려보내는 워크플로로 temporal 도입은 부담스러웠고, 그렇다고 배치를 그대로 둘 순 없었습니다 – 입맛대로 골라 claude로 뚝딱 만든 워크플로 엔진 개발기 ℹ️ 이 글에 등장하는 수치와 설정값(대기 시간, 타임아웃, 재시도 횟수 등)은 이해를 돕기 위한 예시이며, 실제 운영 설정과는 다릅니다. 들어가는 말 배달의민족 사장님이 사용하는…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 09-08 13:50</span></div>
+          <h3><a href="https://techblog.woowahan.com/26832" target="_blank" rel="noopener">한꺼번에 짊어지던 배치를 내려놓고, 하나씩 흘려보내는 워크플로로</a></h3>
+          <p>Temporal 도입은 부담스러웠고, 그렇다고 배치를 그대로 둘 순 없었습니다 – 입맛대로 골라 Claude로 뚝딱 만든 워크플로 엔진 개발기 ℹ️ 이 글에 등장하는 수치와 설정값(대기 시간, 타임아웃, 재시도 횟수 등)은 이해를 돕기 위한 예시이며, 실제 운영 설정과는 다릅니다. 들어가는 말 배달의민족 사장님이 사용하는…</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="문서로만 지키던 아키텍처 규칙, 테스트 코드로 강제하기 들어가며 제가 속한 파트너셀프서비스팀은 코딩 컨벤션을 사내 위키 문서와 ai 에이전트가 참조할 수 있는 규칙 문서에 정의해놓고 개발하고 있습니다. 하지만 그 규칙을 잘 지키고 있는지 확인하는 방법이 코드 리뷰뿐이었다는 점이 문제였습니다. 문서에 있는 규칙은 팀원들이 의식적으로 인지해서 코드를 작성하거나 리뷰를 받는 과정에…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 09-07 13:46</span></div>
+          <h3><a href="https://techblog.woowahan.com/26835" target="_blank" rel="noopener">문서로만 지키던 아키텍처 규칙, 테스트 코드로 강제하기</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>들어가며 제가 속한 파트너셀프서비스팀은 코딩 컨벤션을 사내 위키 문서와 AI 에이전트가 참조할 수 있는 규칙 문서에 정의해놓고 개발하고 있습니다. 하지만 그 규칙을 잘 지키고 있는지 확인하는 방법이 코드 리뷰뿐이었다는 점이 문제였습니다. 문서에 있는 규칙은 팀원들이 의식적으로 인지해서 코드를 작성하거나 리뷰를 받는 과정에…</p>
+          <div class="why">💡 아키텍처 규칙을 문서에서 테스트 코드로 옮겨 자동 강제하는 실질적 방법론, 조직 코드 품질의 기초</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="ai가 분석한 리서치 결과, 어떻게 만들고 전달할까요? 1. 들어가며 사용자경험분석팀에서는 리서치 업무를 지원하는 사내 서비스인 리서치 ai 도우미를 만들고 있어요. “배민클럽을 선택한 이유는 무엇인가요?”처럼 수천 명이 자유롭게 답한 설문응답을 이해하기 쉬운 카테고리로 분류해 보고서를 만들고, 사용성 테스트(ut, usability test) 녹취록을 요약해 분석 리포트를 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 08-31 16:02</span></div>
+          <h3><a href="https://techblog.woowahan.com/27381" target="_blank" rel="noopener">AI가 분석한 리서치 결과, 어떻게 만들고 전달할까요?</a></h3>
+          <p>1. 들어가며 사용자경험분석팀에서는 리서치 업무를 지원하는 사내 서비스인 리서치 AI 도우미를 만들고 있어요. “배민클럽을 선택한 이유는 무엇인가요?”처럼 수천 명이 자유롭게 답한 설문응답을 이해하기 쉬운 카테고리로 분류해 보고서를 만들고, 사용성 테스트(UT, usability test) 녹취록을 요약해 분석 리포트를 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai에게 만드는 법 대신 실패하는 법을 묻다: 포토그래퍼의 수천 명 동시 접속 게임 만들기 들어가며 우아한형제들은 매년 우아콘부터 창립 기념 전사 행사, 외식업 종사자나 배달 라이더를 위한 콘퍼런스까지 다양한 행사를 주최합니다. 저는 포토팀으로서 그 행사들을 사진으로 남기는 일을 오랜 기간 해왔는데요. 행사를 다니다 보면 화면에 뜬 qr코드로 질의응답을 받거나, 퀴즈를 풀거나, 다 같이 게임을 하는 코너를 자주…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 08-28 15:46</span></div>
+          <h3><a href="https://techblog.woowahan.com/27268" target="_blank" rel="noopener">AI에게 만드는 법 대신 실패하는 법을 묻다: 포토그래퍼의 수천 명 동시 접속 게임 만들기</a></h3>
+          <p>들어가며 우아한형제들은 매년 우아콘부터 창립 기념 전사 행사, 외식업 종사자나 배달 라이더를 위한 콘퍼런스까지 다양한 행사를 주최합니다. 저는 포토팀으로서 그 행사들을 사진으로 남기는 일을 오랜 기간 해왔는데요. 행사를 다니다 보면 화면에 뜬 QR코드로 질의응답을 받거나, 퀴즈를 풀거나, 다 같이 게임을 하는 코너를 자주…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="옆 팀은 ai를 어떻게 쓸까? 첫 사내 기술 콘퍼런스 우아한테크데이 들어가며 우아한형제들에는 개발자가 더 잘 일할 수 있는 환경을 만드는 테크devex팀이 있습니다. 이제는 개발자를 넘어 모든 직군으로 넓혀가고 있어요. 일하는 방식과 성장을 돕는 일을 기획하고, 직접 운영합니다. 2026년 7월 9일, 판교에 자리한 스타트업 육성 공간 배민스타트업스퀘어에서 첫 번째 우아한테크데이를 열었습…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 08-20 15:00</span></div>
+          <h3><a href="https://techblog.woowahan.com/26876" target="_blank" rel="noopener">옆 팀은 AI를 어떻게 쓸까? 첫 사내 기술 콘퍼런스 우아한테크데이</a></h3>
+          <p>들어가며 우아한형제들에는 개발자가 더 잘 일할 수 있는 환경을 만드는 테크DevEX팀이 있습니다. 이제는 개발자를 넘어 모든 직군으로 넓혀가고 있어요. 일하는 방식과 성장을 돕는 일을 기획하고, 직접 운영합니다. 2026년 7월 9일, 판교에 자리한 스타트업 육성 공간 배민스타트업스퀘어에서 첫 번째 우아한테크데이를 열었습…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="기술블로그 세 번째 책 《요즘 우아한 백엔드 개발》 출간 우아한형제들의 기술블로그 글을 엮은 책, 《요즘 우아한 백엔드 개발》을 소개합니다. 《요즘 우아한 개발》(2023)과 《요즘 우아한 ai 개발》(2025)에 이어 백엔드 분야 이야기를 담은 세 번째 책을 출간했습니다. 🎉 우아한형제들이 실제 서비스에서 마주한 아키텍처 고민과 대규모 트래픽 대응 노하우, 데이터 실무 경험은…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 08-06 14:13</span></div>
+          <h3><a href="https://techblog.woowahan.com/26777" target="_blank" rel="noopener">기술블로그 세 번째 책 《요즘 우아한 백엔드 개발》 출간</a></h3>
+          <p>우아한형제들의 기술블로그 글을 엮은 책, 《요즘 우아한 백엔드 개발》을 소개합니다. 《요즘 우아한 개발》(2023)과 《요즘 우아한 AI 개발》(2025)에 이어 백엔드 분야 이야기를 담은 세 번째 책을 출간했습니다. 🎉 우아한형제들이 실제 서비스에서 마주한 아키텍처 고민과 대규모 트래픽 대응 노하우, 데이터 실무 경험은…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="배포 없이 앱과 로컬 웹을 잇다 들어가며 배달의민족은 네이티브 앱과 웹으로 구성된 하이브리드 앱입니다. 배달의민족 앱을 열면 상단 탑바와 하단 탭바가 빠르게 반응하며 자연스럽게 전환되는 모습을 쉽게 확인할 수 있습니다. os와 직접 상호작용하고 사용자의 입력에 즉각적으로 반응해야 하는 영역은 네이티브 앱이 맡습니다. 앱의 모든 화면을 네이티브로 구현할 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 08-04 15:17</span></div>
+          <h3><a href="https://techblog.woowahan.com/26729" target="_blank" rel="noopener">배포 없이 앱과 로컬 웹을 잇다</a></h3>
+          <p>들어가며 배달의민족은 네이티브 앱과 웹으로 구성된 하이브리드 앱입니다. 배달의민족 앱을 열면 상단 탑바와 하단 탭바가 빠르게 반응하며 자연스럽게 전환되는 모습을 쉽게 확인할 수 있습니다. OS와 직접 상호작용하고 사용자의 입력에 즉각적으로 반응해야 하는 영역은 네이티브 앱이 맡습니다. 앱의 모든 화면을 네이티브로 구현할 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="bff 서버에 sse를 도입한 이유: 전시 서버의 통신 구조 재설계 들어가며 배달의민족에서 음식을 주문할 때 카테고리를 누르면 만나는 화면, 바로 가게목록입니다. 사용자가 가게를 탐색하는 첫 관문이자, 가장 트래픽이 많은 지면 중 하나입니다. 이 글은 그 가게목록 지면의 통신 구조를 재설계한 이야기입니다. 클라이언트가 여러 서버에 각각 요청을 보내던 구조를 하나의 api로 통합하고(1지면…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 07-28 11:00</span></div>
+          <h3><a href="https://techblog.woowahan.com/26507" target="_blank" rel="noopener">BFF 서버에 SSE를 도입한 이유: 전시 서버의 통신 구조 재설계</a></h3>
+          <p>들어가며 배달의민족에서 음식을 주문할 때 카테고리를 누르면 만나는 화면, 바로 가게목록입니다. 사용자가 가게를 탐색하는 첫 관문이자, 가장 트래픽이 많은 지면 중 하나입니다. 이 글은 그 가게목록 지면의 통신 구조를 재설계한 이야기입니다. 클라이언트가 여러 서버에 각각 요청을 보내던 구조를 하나의 API로 통합하고(1지면…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="기술이 없던 곳에 기술 더하기: 사내 해커톤 플랫폼 만들기 그 어느 때보다 시스템이 필요해진 순간 우아한형제들에는 ‘우아톤’이라는 사내 해커톤이 있습니다. 구성원들이 무박 2일 동안 밤을 새워 가며 저마다 품어 온 아이디어를 마음껏 펼쳐 보는 무대입니다. 2019년 처음 열려 올해 7회를 맞았고, 어느새 사내 문화로 자리 잡았습니다. 올해는 회사 전체가 ai 활용을 넓혀 가자는 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 07-21 16:46</span></div>
+          <h3><a href="https://techblog.woowahan.com/26624" target="_blank" rel="noopener">기술이 없던 곳에 기술 더하기: 사내 해커톤 플랫폼 만들기</a></h3>
+          <p>그 어느 때보다 시스템이 필요해진 순간 우아한형제들에는 ‘우아톤’이라는 사내 해커톤이 있습니다. 구성원들이 무박 2일 동안 밤을 새워 가며 저마다 품어 온 아이디어를 마음껏 펼쳐 보는 무대입니다. 2019년 처음 열려 올해 7회를 맞았고, 어느새 사내 문화로 자리 잡았습니다. 올해는 회사 전체가 AI 활용을 넓혀 가자는 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="멀티 어카운트 nacl 차단 자동화 도구 운영 및 개선 경험 0x00 들어가며 보안팀의 중요한 일 중 하나는 공격 ip를 지금 당장 막는 일 입니다. soc에서 수상한 트래픽이 잡혔을 때, soar가 자동으로 차단 액션을 트리거할 때, 분석가가 직접 손으로 차단 요청을 넣을 때. 단일 aws 계정 환경이라면 nacl이나 security group에 룰 하나 추가하면 끝나는 단순한 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">우아한형제들 기술블로그 · 07-16 11:00</span></div>
+          <h3><a href="https://techblog.woowahan.com/26492" target="_blank" rel="noopener">멀티 어카운트 NACL 차단 자동화 도구 운영 및 개선 경험</a></h3>
+          <p>0x00 들어가며 보안팀의 중요한 일 중 하나는 공격 IP를 지금 당장 막는 일 입니다. SOC에서 수상한 트래픽이 잡혔을 때, SOAR가 자동으로 차단 액션을 트리거할 때, 분석가가 직접 손으로 차단 요청을 넣을 때. 단일 AWS 계정 환경이라면 NACL이나 Security Group에 룰 하나 추가하면 끝나는 단순한 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="app router의 장점은 우리에게도 장점일까요? app router가 토스뱅크에도 좋은 선택일지, 직접 측정한 결과와 도입 여부를 판단한 기준을 공유해요.">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-09 15:45</span></div>
+          <h3><a href="https://toss.tech/article/52999" target="_blank" rel="noopener">App Router의 장점은 우리에게도 장점일까요?</a></h3>
+          <p>App Router가 토스뱅크에도 좋은 선택일지, 직접 측정한 결과와 도입 여부를 판단한 기준을 공유해요.</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="ai가 팀 규칙을 지키도록 하는 방법 coding agent를 위한 stylepack">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-08 11:43</span></div>
+          <h3><a href="https://toss.tech/article/52631" target="_blank" rel="noopener">AI가 팀 규칙을 지키도록 하는 방법</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>Coding Agent를 위한 Stylepack</p>
+          <div class="why">💡 AI 에이전트가 팀 코딩 스타일을 실시간 검증하는 Stylepack 사례, 자동화된 규칙 준수의 실제 구현</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="2. beyond our expertise this is the story of how we turned technical writers’ challenges and expertise into a product called &quot;todoc&quot;, and how the process helped us take that expertise even further.">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-07 15:47</span></div>
+          <h3><a href="https://toss.tech/article/technical-writing-2-eng" target="_blank" rel="noopener">2. Beyond Our Expertise</a></h3>
+          <p>This is the story of how we turned Technical Writers’ challenges and expertise into a product called &quot;todoc&quot;, and how the process helped us take that expertise even further.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="1. creating a role that didn’t exist before learn how toss’s technical writers have expanded their role from writing documentation to designing knowledge systems for the organization.">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-07 15:44</span></div>
+          <h3><a href="https://toss.tech/article/technical-writing-1-eng" target="_blank" rel="noopener">1. Creating a Role That Didn’t Exist Before</a></h3>
+          <p>Learn how Toss’s Technical Writers have expanded their role from writing documentation to designing knowledge systems for the organization.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="how documents find developers at toss the toss frontend team no longer has to dig through documents to find what they need. we’re building an environment where developers can get immediate answers to their questions th…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-07 15:27</span></div>
+          <h3><a href="https://toss.tech/article/toss-frontend-ai-docs-eng" target="_blank" rel="noopener">How Documents Find Developers at Toss</a></h3>
+          <p>The Toss Frontend team no longer has to dig through documents to find what they need. We’re building an environment where developers can get immediate answers to their questions th…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai가 만든 코드가 어드민이 되기까지 실시간으로 생성되는 코드를 어드민 화면으로 보여 주기 위해, 개발 환경을 브라우저 안으로 옮긴 이야기를 소개해요.">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-04 17:47</span></div>
+          <h3><a href="https://toss.tech/article/52885" target="_blank" rel="noopener">AI가 만든 코드가 어드민이 되기까지</a></h3>
+          <p>실시간으로 생성되는 코드를 어드민 화면으로 보여 주기 위해, 개발 환경을 브라우저 안으로 옮긴 이야기를 소개해요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="1%가 겪은 버그 고쳐야할까요? 점진 배포와 핫픽스의 모순 속에서, 판단을 만든 이야기">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 08-28 17:46</span></div>
+          <h3><a href="https://toss.tech/article/qa_hotfix" target="_blank" rel="noopener">1%가 겪은 버그 고쳐야할까요?</a></h3>
+          <p>점진 배포와 핫픽스의 모순 속에서, 판단을 만든 이야기</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="토스증권 추천과 검색은 어떻게 진화하고 있을까? 추천, rag, 그래프 검색을 만들며 마주한 문제와 선택">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 08-26 10:00</span></div>
+          <h3><a href="https://toss.tech/article/tech_talk_talk_3" target="_blank" rel="noopener">토스증권 추천과 검색은 어떻게 진화하고 있을까?</a></h3>
+          <p>추천, RAG, 그래프 검색을 만들며 마주한 문제와 선택</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="llm 서빙, 띄우는 것과 잘 띄우는 것 사이 비어 있는 캐시, 완벽한 알리바이, 사라진 처리량">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 08-21 10:00</span></div>
+          <h3><a href="https://toss.tech/article/tech_talk_talk_2" target="_blank" rel="noopener">LLM 서빙, 띄우는 것과 잘 띄우는 것 사이</a></h3>
+          <p>비어 있는 캐시, 완벽한 알리바이, 사라진 처리량</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai에게 투자정보를 말하게 하기까지 근거를 고르고, 절차를 통제하고, 실패를 다시 쓰는 세 개의 관문">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 08-13 10:00</span></div>
+          <h3><a href="https://toss.tech/article/tech_talk_talk_1" target="_blank" rel="noopener">AI에게 투자정보를 말하게 하기까지</a></h3>
+          <p>근거를 고르고, 절차를 통제하고, 실패를 다시 쓰는 세 개의 관문</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="if(kakao)2026 둘째 날, 기술 세션 소개 if(kakao)2026 둘째 날은 안정성과 인프라, 거버넌스, ai-dlc, model &amp; agent에 대해 이야기합니다. 키노트를 제외한 총 30개의 기술 세션들이 아래와 같이 진행됩니다. [안전성과 인프라] 1. 유휴 서버를 찾다가 hybrid cloud까지 갔습니다: 비용 가시화에서 unit economics를 향…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-08 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/835" target="_blank" rel="noopener">if(kakao)2026 둘째 날, 기술 세션 소개</a></h3>
+          <p>if(kakao)2026 둘째 날은 안정성과 인프라, 거버넌스, AI-DLC, Model &amp; Agent에 대해 이야기합니다. 키노트를 제외한 총 30개의 기술 세션들이 아래와 같이 진행됩니다. [안전성과 인프라] 1. 유휴 서버를 찾다가 Hybrid Cloud까지 갔습니다: 비용 가시화에서 Unit Economics를 향…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="if(kakao)2026 첫째 날, 기술 세션 소개 if(kakao)2026 첫째 날은 ai 방향성, 신뢰와 안전, model &amp; agent, 상생과 성장에 대해 이야기합니다. 키노트를 제외한 총 23개의 기술 세션들이 아래와 같이 진행됩니다. [ai 방향성] 1. you only train once: 더 효율적으로 kanana slm 개발하기 (류민호, 한규빈) 단 한 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-08 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/833" target="_blank" rel="noopener">if(kakao)2026 첫째 날, 기술 세션 소개</a></h3>
+          <p>if(kakao)2026 첫째 날은 AI 방향성, 신뢰와 안전, Model &amp; Agent, 상생과 성장에 대해 이야기합니다. 키노트를 제외한 총 23개의 기술 세션들이 아래와 같이 진행됩니다. [AI 방향성] 1. You Only Train Once: 더 효율적으로 Kanana SLM 개발하기 (류민호, 한규빈) 단 한 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="카카오, if(kakao)26 컨퍼런스 개최... 모든 연결에 지능을 🔗 if(kakao)26 바로가기 - 10월 13일부터 14일까지 이틀간 카카오 ai 캠퍼스에서 온·오프라인 진행 -올해 슬로건 ‘모든 연결에 지능을’… ai가 확장할 연결의 경험과 신뢰할 수 있는 기술 기준 제시 - 50여개 기술 세션서 ai 적용 성과와 개발 경험 공유…파이어사이드 챗·네트워킹 프로그램도 운영 [202…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-07 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/834" target="_blank" rel="noopener">카카오, if(kakao)26 컨퍼런스 개최... 모든 연결에 지능을</a></h3>
+          <p>🔗 if(kakao)26 바로가기 - 10월 13일부터 14일까지 이틀간 카카오 AI 캠퍼스에서 온·오프라인 진행 -올해 슬로건 ‘모든 연결에 지능을’… AI가 확장할 연결의 경험과 신뢰할 수 있는 기술 기준 제시 - 50여개 기술 세션서 AI 적용 성과와 개발 경험 공유…파이어사이드 챗·네트워킹 프로그램도 운영 [202…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="곧, if(kakao)26의 이야기가 시작됩니다. “모든 연결에 지능을” if(kakao)26은 이 한 문장에서 시작합니다. 카카오가 기술을 만들며 마주한 고민과 질문, 그 과정에서 얻은 경험과 발견을 나누는 if(kakao)26! 어떤 이야기들이 기다리고 있을지 궁금하신가요? 앞으로 카카오테크 블로그를 통해 if(kakao)26의 다양한 이야기를 하나씩 소개해 드릴 예…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-31 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/832" target="_blank" rel="noopener">곧, if(kakao)26의 이야기가 시작됩니다.</a></h3>
+          <p>“모든 연결에 지능을” if(kakao)26은 이 한 문장에서 시작합니다. 카카오가 기술을 만들며 마주한 고민과 질문, 그 과정에서 얻은 경험과 발견을 나누는 if(kakao)26! 어떤 이야기들이 기다리고 있을지 궁금하신가요? 앞으로 카카오테크 블로그를 통해 if(kakao)26의 다양한 이야기를 하나씩 소개해 드릴 예…</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="같은 장애를 두 번 겪지 않기 위해, 배포 전에 리뷰합니다 — kris 개발기 들어가며 지난 글 llm as a judge를 활용한 codebuddy 성능 평가에서는 사내 ai 코드 리뷰 서비스 코드버디(codebuddy)의 응답 품질을 어떻게 측정할 것인지를 다뤘습니다. 평가 체계를 세우고 나니 다음 질문이 따라왔습니다. &quot;그래서 이 리뷰가 실제로 무엇을 막아주고 있는가?&quot; 코드버디는 pr을 요약…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-31 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/831" target="_blank" rel="noopener">같은 장애를 두 번 겪지 않기 위해, 배포 전에 리뷰합니다 — KRIS 개발기</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>들어가며 지난 글 LLM as a Judge를 활용한 CodeBuddy 성능 평가에서는 사내 AI 코드 리뷰 서비스 코드버디(CodeBuddy)의 응답 품질을 어떻게 측정할 것인지를 다뤘습니다. 평가 체계를 세우고 나니 다음 질문이 따라왔습니다. &quot;그래서 이 리뷰가 실제로 무엇을 막아주고 있는가?&quot; 코드버디는 PR을 요약…</p>
+          <div class="why">💡 배포 전 AI 코드 리뷰(KRIS)로 장애 재발 방지, 운영 안정성을 높이는 검증 프로세스의 핵심</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="지역 ai 생태계의 새로운 가능성, 카카오 ai 돛 summit 26을 개최합니다! 대한민국 ai 생태계의 새로운 바람이 시작됩니다! ⛵ 카카오가 부산광역시, 카카오임팩트와 함께 지역 ai 생태계 조성과 기술 교류를 위한 &#x27;카카오 ai 돛 summit 26’을 개최합니다! 이번 서밋은 카카오가 4대 과학기술원(kaist, gist, dgist, unist)과 협력하여 비수도권의 인재 양성 및 창업을 지원…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-27 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/830" target="_blank" rel="noopener">지역 AI 생태계의 새로운 가능성, 카카오 AI 돛 Summit 26을 개최합니다!</a></h3>
+          <p>대한민국 AI 생태계의 새로운 바람이 시작됩니다! ⛵ 카카오가 부산광역시, 카카오임팩트와 함께 지역 AI 생태계 조성과 기술 교류를 위한 &#x27;카카오 AI 돛 Summit 26’을 개최합니다! 이번 서밋은 카카오가 4대 과학기술원(KAIST, GIST, DGIST, UNIST)과 협력하여 비수도권의 인재 양성 및 창업을 지원…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="개인화된 airflow 테스트 환경 구축 및 운영 경험 안녕하세요! 데이터서비스 조직의 비오, 소나, 테라입니다. 데이터서비스 조직은 다양한 기술로 데이터 생태계를 만들어 가며 모든 크루가 데이터로 문제를 해결할 수 있도록 돕고 있습니다. 그 과정에서 수많은 데이터 파이프라인을 다루고 있으며 이를 위해 수천 개의 airflow dag를 여러 하둡별 에어플로우 클러스터 위에서 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-07 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/829" target="_blank" rel="noopener">개인화된 Airflow 테스트 환경 구축 및 운영 경험</a></h3>
+          <p>안녕하세요! 데이터서비스 조직의 비오, 소나, 테라입니다. 데이터서비스 조직은 다양한 기술로 데이터 생태계를 만들어 가며 모든 크루가 데이터로 문제를 해결할 수 있도록 돕고 있습니다. 그 과정에서 수많은 데이터 파이프라인을 다루고 있으며 이를 위해 수천 개의 Airflow DAG를 여러 하둡별 에어플로우 클러스터 위에서 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="beyond ai that speaks well: making kanana-o speak the way users want hello, we are martin (daejin jo), abigail (heayoung park), and edwin (wooyoung kang) from kanana, the team responsible for developing ai models at kakao. our team focuses on buildi…">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-04 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/828" target="_blank" rel="noopener">Beyond AI That Speaks Well: Making Kanana-o Speak the Way Users Want</a></h3>
+          <p>Hello, we are Martin (Daejin Jo), Abigail (Heayoung Park), and Edwin (Wooyoung Kang) from Kanana, the team responsible for developing AI models at Kakao. Our team focuses on buildi…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="잘 말하는 ai를 넘어, 원하는 대로 말하는 ai로: kanana-o 음성 생성 고도화 과정 intro 안녕하세요, 카카오의 ai 모델 개발을 담당하는 카나나(kanana) 조직의 martin(조대진), abigail(박혜영), edwin(강우영)입니다. 저희 팀에서는 사람처럼 보고, 듣고, 말하는 통합 멀티모달(multimodal) 언어모델을 중점적으로 개발하고 있습니다. 지난 5월, 국내 최초로 공개한 통합 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-04 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/827" target="_blank" rel="noopener">잘 말하는 AI를 넘어, 원하는 대로 말하는 AI로: Kanana-o 음성 생성 고도화 과정</a></h3>
+          <p>Intro 안녕하세요, 카카오의 AI 모델 개발을 담당하는 카나나(Kanana) 조직의 Martin(조대진), Abigail(박혜영), Edwin(강우영)입니다. 저희 팀에서는 사람처럼 보고, 듣고, 말하는 통합 멀티모달(Multimodal) 언어모델을 중점적으로 개발하고 있습니다. 지난 5월, 국내 최초로 공개한 통합 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="더 작고 강해진 kanana slm 개발 안녕하세요. 카카오의 ai 모델 개발을 담당하는 카나나 llm 조직에서 언어모델을 개발하고 있는 kaya, ryan, wavy 입니다. 지난 “작지만 강한 kanana nano 효율적으로 개발하기”에서 비용 효율적으로 slm(small language model)을 개발하는 방법에 대해서 소개드렸었는데요, 이번 글에서는 …">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 07-28 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/826" target="_blank" rel="noopener">더 작고 강해진 Kanana SLM 개발</a></h3>
+          <p>안녕하세요. 카카오의 AI 모델 개발을 담당하는 카나나 LLM 조직에서 언어모델을 개발하고 있는 Kaya, Ryan, Wavy 입니다. 지난 “작지만 강한 Kanana Nano 효율적으로 개발하기”에서 비용 효율적으로 SLM(Small Language Model)을 개발하는 방법에 대해서 소개드렸었는데요, 이번 글에서는 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="장애 alert의 원인을 스스로 찾다: sre observer 개발기 들어가며안녕하세요. line plus에서 home 서비스의 안정성을 책임지고 있는 home sre(site reliability engineering) 팀입니다.sre observ...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 09-04 10:50</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/building-sre-observer-for-alert-root-cause-analysis" target="_blank" rel="noopener">장애 Alert의 원인을 스스로 찾다: SRE Observer 개발기</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reliability Engineering) 팀입니다.SRE Observ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="llm wiki: 코드 기준으로 자동 최신화되는 도메인 지식 ssot 만들기 들어가며안녕하세요. line plus에서 global e-commerce platform 개발을 맡고 있는 윤석범입니다.ai로 개발할 때 결과물의 품질은 ai의 코드 생성 능력보다...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-28 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/llm-wiki-code-driven-knowledge-ssot" target="_blank" rel="noopener">LLM Wiki: 코드 기준으로 자동 최신화되는 도메인 지식 SSOT 만들기</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 Global E-Commerce Platform 개발을 맡고 있는 윤석범입니다.AI로 개발할 때 결과물의 품질은 AI의 코드 생성 능력보다...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="일본어 상품 검색 정확도 높이기: elasticsearch + kuromoji에서 opensearch + sudachi로 들어가며안녕하세요. line plus에서 통합 커머스 개발을 맡고 있는 김진성입니다.2025년 초, 통합 커머스 프로젝트가 시작되었습니다.서비스가 안정되어 가던 중, 일본 담당자로...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-21 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/japanese-search-kuromoji-to-sudachi" target="_blank" rel="noopener">일본어 상품 검색 정확도 높이기: Elasticsearch + Kuromoji에서 OpenSearch + Sudachi로</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 통합 커머스 개발을 맡고 있는 김진성입니다.2025년 초, 통합 커머스 프로젝트가 시작되었습니다.서비스가 안정되어 가던 중, 일본 담당자로...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="보안 업무를 위한 ai 에이전트 플랫폼 「sage」 개발기 1편: 판단은 사람에게 남기는 설계 참고: 이 글을 최초 발행한 시점에는 보안 상담 어시스턴트가 파일럿 운영 중이었으나 2026년 9월 1일 정식 릴리스해 실 운영 중입니다. 이에 맞춰 2026년 9월 2일에 본문을...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-18 14:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/ai-agent-platform-sage-dev-log-part-1" target="_blank" rel="noopener">보안 업무를 위한 AI 에이전트 플랫폼 「SAGE」 개발기 1편: 판단은 사람에게 남기는 설계</a></h3>
+          <p>참고: 이 글을 최초 발행한 시점에는 보안 상담 어시스턴트가 파일럿 운영 중이었으나 2026년 9월 1일 정식 릴리스해 실 운영 중입니다. 이에 맞춰 2026년 9월 2일에 본문을...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="개인 ai 활용의 다음 단계는 무엇인가 - ly corporation에서 aidd 워크숍을 통해 살펴본 aidd 조직 도입의 조건 ly corporation에서는 지금까지 ai 활용 역량 향상 워크숍인 orchestration development workshop (odw)를 통해, 개인이 ai를 활용해 개발...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-07 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/conditions-for-organizational-aidd-adoption" target="_blank" rel="noopener">개인 AI 활용의 다음 단계는 무엇인가 - LY Corporation에서 AIDD 워크숍을 통해 살펴본 AIDD 조직 도입의 조건</a></h3>
+          <p>LY Corporation에서는 지금까지 AI 활용 역량 향상 워크숍인 Orchestration Development Workshop (ODW)를 통해, 개인이 AI를 활용해 개발...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="grafana에서 자연어로 장애 원인을 분석하기: llm 에이전트 기반 srelens 개발기 들어가며: 관측성 데이터는 많아졌지만, 분석은 여전히 어렵습니다안녕하세요. ly corporation에서 home 서비스의 안정성을 책임지고 있는 home sre(site reli...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-31 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/analyzing-incident-root-causes-in-grafana-using-natural-language-with-llm-agent" target="_blank" rel="noopener">Grafana에서 자연어로 장애 원인을 분석하기: LLM 에이전트 기반 SRELens 개발기</a></h3>
+          <p>들어가며: 관측성 데이터는 많아졌지만, 분석은 여전히 어렵습니다안녕하세요. LY Corporation에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reli...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai 에이전트를 위한 android cli: 대규모 모바일 개발 환경에 적용하기 line android 앱은 수백 명의 개발자가 하나의 git 저장소에서 함께 만들어 가는, 수백 개의 gradle 모듈로 구성된 대규모 android 앱입니다. line andr...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-30 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/android-cli-for-ai-agents-at-scale" target="_blank" rel="noopener">AI 에이전트를 위한 Android CLI: 대규모 모바일 개발 환경에 적용하기</a></h3>
+          <p>LINE Android 앱은 수백 명의 개발자가 하나의 Git 저장소에서 함께 만들어 가는, 수백 개의 Gradle 모듈로 구성된 대규모 Android 앱입니다. LINE Andr...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="오픈챗 이름 및 설명 글로 유해성 판단하는 모델 개발하기 들어가며안녕하세요. ai services lab 팀의 ml 엔지니어 이여운입니다. 저희 팀에서는 사용자에게 유해한 오픈챗이 노출되지 않도록 다양한 모델을 개발하고 있습니다. 이번 ...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-16 17:50</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/developing-harmfulness-detection-model-for-open-chat-metadata" target="_blank" rel="noopener">오픈챗 이름 및 설명 글로 유해성 판단하는 모델 개발하기</a></h3>
+          <p>들어가며안녕하세요. AI Services Lab 팀의 ML 엔지니어 이여운입니다. 저희 팀에서는 사용자에게 유해한 오픈챗이 노출되지 않도록 다양한 모델을 개발하고 있습니다. 이번 ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="초당 100만 건, line 앱에 apache kafka 종단 간 암호화 적용기 들어가며: 왜 kafka 종단 간 암호화인가?line 메신저에서는 매일 수십억 건의 메시지가 오갑니다. 이 방대한 데이터는 다양한 시스템으로 전달되며, 그중에는 개인 정보와 같이 ...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-10 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/applying-e2ee-to-apache-kafka-in-line-app" target="_blank" rel="noopener">초당 100만 건, LINE 앱에 Apache Kafka 종단 간 암호화 적용기</a></h3>
+          <p>들어가며: 왜 Kafka 종단 간 암호화인가?LINE 메신저에서는 매일 수십억 건의 메시지가 오갑니다. 이 방대한 데이터는 다양한 시스템으로 전달되며, 그중에는 개인 정보와 같이 ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai로 웹 엔지니어 없이 line 앱 안에서 그룹 영상 통화 서비스 만들기 들어가며line developers를 통해 이용할 수 있는 liff(line front-end framework)를 활용하면, line 앱 사용자를 대상으로 나만의 서비스 공간을 ...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-02 17:45</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/building-group-video-calls-inside-line-app-with-ai-and-line-planet" target="_blank" rel="noopener">AI로 웹 엔지니어 없이 LINE 앱 안에서 그룹 영상 통화 서비스 만들기</a></h3>
+          <p>들어가며LINE Developers를 통해 이용할 수 있는 LIFF(LINE Front-end Framework)를 활용하면, LINE 앱 사용자를 대상으로 나만의 서비스 공간을 ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="프롬프팅에서 워크플로로, ai로 프런트엔드 개발 생산성 끌어올리기 ly corporation의 기술 컨퍼런스인 tech-verse 2026의 공식 기사입니다.ai 생성 이미지코딩 속도는 더 이상 가장 큰 병목이 아닙니다. 이제 병목은 입력이 여러...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 06-26 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/techverse2026-10" target="_blank" rel="noopener">프롬프팅에서 워크플로로, AI로 프런트엔드 개발 생산성 끌어올리기</a></h3>
+          <p>LY Corporation의 기술 컨퍼런스인 Tech-Verse 2026의 공식 기사입니다.AI 생성 이미지코딩 속도는 더 이상 가장 큰 병목이 아닙니다. 이제 병목은 입력이 여러...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="임베딩 안정화로 검색 리랭킹의 콜드 스타트 문제를 해결하다: line part time jobs 적용 사례 ly corporation의 기술 컨퍼런스인 tech-verse 2026의 공식 기사입니다.안녕하세요. ly corporation에서 머신러닝 플랫폼을 개발하고 있는 kenta k...">
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 06-26 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/techverse2026-62" target="_blank" rel="noopener">임베딩 안정화로 검색 리랭킹의 콜드 스타트 문제를 해결하다: LINE Part Time Jobs 적용 사례</a></h3>
+          <p>LY Corporation의 기술 컨퍼런스인 Tech-Verse 2026의 공식 기사입니다.안녕하세요. LY Corporation에서 머신러닝 플랫폼을 개발하고 있는 Kenta K...</p>
+          
+        </article></div>
+
+<div class="cost">
+  🧠 AI 비용 로그 (V3 6번) · 모델 <b>claude-haiku-4-5</b> ·
+  호출 <b>0회</b> · 입력 <b>0 tok</b> · 출력 <b>0 tok</b> ·
+  추정 비용 <b>$0.00000</b>
+  <br>규칙 필터가 137건을 먼저 정제했기에 AI 호출은 카테고리당 1회로 묶여 비용이 최소화됩니다 (항목별 호출 대비 약 1/34).
+</div>
+
+<footer>
+  Daily Brief 자동화 파이프라인 · 규칙 우선 필터(기계) + AI 보조 판정 · 데이터 분석가 포트폴리오
+</footer>
+</div>
+<script>
+const q=document.getElementById('q'), grid=document.getElementById('grid'), flows=document.getElementById('flows');
+let curF='all';
+function apply(){
+  const t=q.value.trim().toLowerCase();
+  grid.querySelectorAll('.card').forEach(c=>{
+    const okCat = curF==='all' || c.dataset.cat===curF;
+    const okTxt = !t || c.dataset.text.includes(t);
+    c.style.display=(okCat&&okTxt)?'':'none';
+  });
+  flows.querySelectorAll('.flow').forEach(f=>{
+    if(!f.dataset.cat) return;
+    f.style.display=(curF==='all'||f.dataset.cat===curF)?'':'none';
+  });
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelector('.tab.active').classList.remove('active');
+  b.classList.add('active'); curF=b.dataset.f; apply();
+});
+q.oninput=apply;
+</script>
+</body></html>

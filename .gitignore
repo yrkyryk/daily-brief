@@ -1,0 +1,20 @@
+# 시크릿 (계획서 A13 교훈: .env 커밋 금지)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 수집 원본/캐시 (증거용 일부만 별도 보관)
+data/*.jsonl
+
+# 개인 워크북 (공개 제외)
+*.xlsx
+
+# 픽 내보내기 (재생성 가능)
+data/picks_*.json
+
+# Notion 선택 발행 임시 파일
+selected.json

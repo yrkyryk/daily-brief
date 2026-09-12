@@ -1,0 +1,42 @@
+name: weekly-trend
+
+# 매주 월요일 08:40 KST(=일 23:40 UTC). 매일 쌓인 통계 스냅샷을 집계한다(수집 없음).
+on:
+  schedule:
+    - cron: "40 23 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-trend
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Claude Code CLI
+        run: curl -fsSL https://claude.ai/install.sh | bash
+      - name: Build weekly trend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          python src/weekly.py
+      - name: Commit weekly report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/weekly.html
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+          else
+            git commit -m "chore: weekly trend $(date -u +%F)"
+            git push
+          fi

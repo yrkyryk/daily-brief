@@ -1,0 +1,29 @@
+name: notion-publish
+
+# 수동 실행 전용: 리포트에서 고른 카드(JSON)를 Notion에 발행한다.
+# (평소 daily 워크플로우는 Notion에 자동 저장하지 않는다)
+on:
+  workflow_dispatch:
+    inputs:
+      cards_json:
+        description: "리포트의 '선택한 카드 내보내기'로 복사한 JSON 배열을 붙여넣으세요"
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Write selection file
+        env:
+          CARDS: ${{ inputs.cards_json }}
+        run: printf '%s' "$CARDS" > selected.json
+      - name: Publish selected cards to Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+        run: python src/notion_publish.py --from selected.json

@@ -1,0 +1,145 @@
+# -*- coding: utf-8 -*-
+"""
+fetch_article.py — 사용자 커스텀 소스(블로그 홈/개별 글) 수집.
+
+discover_and_fetch(url):
+  1) feedparser 로 파싱 시도(URL 자체가 RSS/Atom) → 최근 글 목록
+  2) 없으면 HTML 에서 <link rel="alternate" type="application/rss+xml"> 피드 탐지 → 재시도
+  3) 그래도 없으면 그 페이지를 '단일 글'로 취급 (og:title + 본문 발췌)
+
+실패해도 예외를 밖으로 던지지 않고 빈 목록/None 을 돌려 파이프라인이 계속 진행되게 한다.
+표준 라이브러리 + feedparser(기존 의존성)만 사용.
+"""
+import re, html, urllib.request, urllib.error, urllib.parse, time
+import feedparser
+
+UA = "Mozilla/5.0 (compatible; DailyBriefBot/1.0; +https://github.com/yrkyryk/daily-brief)"
+PER_SOURCE = 5          # 피드/홈에서 가져올 최근 글 수
+BODY_CAP = 1500         # 본문 발췌 최대 길이
+
+
+def _fetch_html(url: str, attempts: int = 3) -> str | None:
+    """HTML 원문. 일시 오류는 지수 백오프로 재시도. 실패 시 None."""
+    for attempt in range(1, attempts + 1):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                charset = resp.headers.get_content_charset() or "utf-8"
+                raw = resp.read(1_000_000)
+                return raw.decode(charset, "replace")
+        except (urllib.error.URLError, urllib.error.HTTPError, ValueError):
+            if attempt < attempts:
+                time.sleep(min(2 ** attempt, 8))
+                continue
+            return None
+    return None
+
+
+def _meta(page: str, prop: str) -> str:
+    """<meta property/name="prop" content="..."> 추출."""
+    pat = re.compile(
+        r'<meta[^>]+(?:property|name)=["\']' + re.escape(prop) + r'["\'][^>]*>', re.I)
+    m = pat.search(page)
+    if not m:
+        return ""
+    c = re.search(r'content=["\']([^"\']*)["\']', m.group(0), re.I)
+    return html.unescape(c.group(1)).strip() if c else ""
+
+
+def _strip(text: str, limit: int) -> str:
+    text = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", text, flags=re.I | re.S)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = html.unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text[:limit]
+
+
+def fetch_text(url: str, page: str | None = None) -> str | None:
+    """기사 본문 발췌. <article>/<p> 우선, 없으면 og:description. 실패 시 None."""
+    page = page if page is not None else _fetch_html(url)
+    if not page:
+        return None
+    m = re.search(r"<article[^>]*>(.*?)</article>", page, re.I | re.S)
+    if m and _strip(m.group(1), BODY_CAP):
+        return _strip(m.group(1), BODY_CAP)
+    paras = re.findall(r"<p[^>]*>(.*?)</p>", page, re.I | re.S)
+    joined = _strip(" ".join(paras), BODY_CAP)
+    if len(joined) >= 80:
+        return joined
+    desc = _meta(page, "og:description") or _meta(page, "description")
+    return desc or (joined or None)
+
+
+def _domain(url: str) -> str:
+    try:
+        return urllib.parse.urlsplit(url).netloc.replace("www.", "")
+    except Exception:
+        return url
+
+
+def _from_feed(feed, source_hint: str) -> list[dict]:
+    src = (feed.feed.get("title") if getattr(feed, "feed", None) else "") or source_hint
+    items = []
+    for e in (feed.entries or [])[:PER_SOURCE]:
+        title = (e.get("title") or "").strip()
+        link = (e.get("link") or "").strip()
+        if not title or not link:
+            continue
+        items.append({
+            "title": title, "link": link,
+            "summary": e.get("summary") or e.get("description") or "",
+            "pub": "", "source": src,
+        })
+    return items
+
+
+def discover_and_fetch(url: str) -> list[dict]:
+    """URL 형태를 자동 판별해 글 목록 반환(홈/피드→여러 개, 아티클→1개)."""
+    url = url.strip()
+    if not url or url.startswith("#"):
+        return []
+
+    # 1) URL 자체가 피드인지
+    feed = feedparser.parse(url)
+    if feed.entries:
+        return _from_feed(feed, _domain(url))
+
+    # 1.5) 네이버 블로그: JS 렌더라 목록 URL은 안 되므로 RSS로 우회
+    if "blog.naver.com" in url:
+        m = re.search(r"blogId=([A-Za-z0-9_-]+)", url) or re.search(r"blog\.naver\.com/([A-Za-z0-9_-]+)", url)
+        if m:
+            nf = feedparser.parse(f"https://rss.blog.naver.com/{m.group(1)}.xml")
+            if nf.entries:
+                return _from_feed(nf, m.group(1))
+
+    # 1.7) 홈 URL이면 흔한 피드 경로 시도 (티스토리 /rss, 워드프레스 /feed 등)
+    parts = urllib.parse.urlsplit(url)
+    if parts.path in ("", "/"):
+        origin = f"{parts.scheme}://{parts.netloc}"
+        for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
+            cf = feedparser.parse(origin + suffix)
+            if cf.entries:
+                return _from_feed(cf, _domain(url))
+
+    # 2) HTML 에서 피드 자동탐지
+    page = _fetch_html(url)
+    if page:
+        m = re.search(
+            r'<link[^>]+type=["\']application/(?:rss|atom)\+xml["\'][^>]*>', page, re.I)
+        if m:
+            href = re.search(r'href=["\']([^"\']+)["\']', m.group(0), re.I)
+            if href:
+                feed_url = urllib.parse.urljoin(url, href.group(1))
+                feed = feedparser.parse(feed_url)
+                if feed.entries:
+                    return _from_feed(feed, _domain(url))
+
+        # 3) 단일 글 폴백
+        title = _meta(page, "og:title")
+        if not title:
+            t = re.search(r"<title[^>]*>(.*?)</title>", page, re.I | re.S)
+            title = html.unescape(t.group(1)).strip() if t else _domain(url)
+        body = fetch_text(url, page=page)
+        return [{"title": title[:200], "link": url,
+                 "summary": body or "", "pub": "", "source": _domain(url)}]
+    return []
