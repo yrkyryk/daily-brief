@@ -54,13 +54,13 @@
     <header class="header">
       <p class="eyebrow">Data flow · Daily Brief 자동화</p>
       <h1>Daily Brief 자동화 파이프라인</h1>
-      <p class="subtitle">매일 08:30 자동 실행되는 무인 데이터 파이프라인. 뉴스+커스텀 소스를 수집·필터·검증하고, 뉴스는 규칙 통과분만 Claude가 요약·판정한다. GitHub Pages로 자동 발행하고, 사람이 고른 카드만 원클릭으로 Notion에 저장한다.</p>
+      <p class="subtitle">매일 3회(07:00·12:30·18:00 KST) 자동 실행되는 무인 데이터 파이프라인. 뉴스+커스텀 소스를 수집·필터·검증하고(뉴스는 최근 24시간분만), 규칙 통과분만 Claude가 요약·판정한다. GitHub Pages로 발행하고 텔레그램으로 증분 발송(아침=전체 브리핑, 이후=새 소식만)하며, 사람이 고른 카드는 원클릭 Notion 저장.</p>
     </header>
 
     <div class="diagram-container">
     <svg viewBox="0 0 840 456" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pl-title pl-desc">
       <title id="pl-title">Daily Brief 자동화 파이프라인 데이터 흐름</title>
-      <desc id="pl-desc">Cron이 트리거하면 Python 파이프라인이 RSS를 수집·적재·필터하고, 규칙을 통과한 항목을 Claude가 요약·판정한 뒤, 품질 게이트를 거쳐 Notion과 HTML 리포트로 발행하며 사람이 최종적으로 읽는다.</desc>
+      <desc id="pl-desc">Cron이 하루 3회 트리거하면 Python 파이프라인이 RSS를 수집·적재·필터하고(뉴스는 24시간분만), 규칙 통과 항목을 Claude가 요약·판정한 뒤 품질 게이트를 거쳐 HTML 리포트로 발행하고 텔레그램으로 증분 발송하며, 사람이 읽고 Notion에 저장한다.</desc>
       <defs>
         <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="0.8" fill="rgba(45,49,66,0.10)"/></pattern>
         <marker id="arr-muted" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#4f5d75"/></marker>
@@ -95,7 +95,7 @@
         <text x="70" y="72" class="lane-label">CRON</text><text x="70" y="84" class="lane-label">TRIGGER</text>
         <text x="70" y="152" class="lane-label">PYTHON</text><text x="70" y="164" class="lane-label">PIPELINE</text>
         <text x="70" y="232" class="lane-label">CLAUDE</text><text x="70" y="244" class="lane-label">HAIKU</text>
-        <text x="70" y="312" class="lane-label">HUMAN</text><text x="70" y="324" class="lane-label">ANALYST</text>
+        <text x="70" y="312" class="lane-label">DELIVER</text><text x="70" y="324" class="lane-label">&amp; READ</text>
       </g>
 
       <!-- Connectors (drawn before node rects) -->
@@ -119,7 +119,7 @@
       <!-- Node: Cron trigger (CRON lane, step 01) -->
       <rect x="146" y="44" width="100" height="64" rx="6" fill="#f5f5f5" stroke="rgba(45,49,66,0.25)"/>
       <rect x="150" y="48" width="18" height="10" rx="3" fill="rgba(45,49,66,0.12)"/><text x="159" y="53" class="role-text">SCH</text>
-      <text x="196" y="67" class="node-title">Cron 08:30</text><text x="196" y="79" class="node-sub">daily · 23:30 UTC</text><text x="196" y="91" class="node-tool">GitHub Actions</text>
+      <text x="196" y="67" class="node-title">Cron 3x/일</text><text x="196" y="79" class="node-sub">07·12:30·18 KST</text><text x="196" y="91" class="node-tool">GitHub Actions</text>
 
       <!-- Node: Collect (PYTHON, step 01) -->
       <rect x="146" y="124" width="100" height="64" rx="6" fill="#f5f5f5" stroke="rgba(45,49,66,0.25)"/>
@@ -138,7 +138,7 @@
       <!-- Node: Filter (PYTHON, step 03) -->
       <rect x="370" y="124" width="100" height="64" rx="6" fill="#f5f5f5" stroke="rgba(45,49,66,0.25)"/>
       <rect x="374" y="128" width="18" height="10" rx="3" fill="rgba(45,49,66,0.12)"/><text x="383" y="133" class="role-text">PY</text>
-      <text x="420" y="147" class="node-title">Filter</text><text x="420" y="159" class="node-sub">promo·dup·category</text><text x="420" y="171" class="node-tool">filter_rules</text>
+      <text x="420" y="147" class="node-title">Filter</text><text x="420" y="159" class="node-sub">promo·dup·24h·cat</text><text x="420" y="171" class="node-tool">filter_rules</text>
       <rect x="374" y="178" width="16" height="8" rx="3" fill="#b8915a"/><text x="382" y="184" class="chip-text">TB</text>
       <rect x="450" y="178" width="16" height="8" rx="3" fill="#b8915a"/><text x="458" y="184" class="chip-text">TB</text>
 
@@ -162,6 +162,15 @@
       <text x="756" y="147" class="node-title">Publish</text><text x="756" y="159" class="node-sub">GitHub Pages</text><text x="756" y="171" class="node-tool">report + weekly</text>
       <rect x="710" y="178" width="16" height="8" rx="3" fill="#9c6b50"/><text x="718" y="184" class="chip-text">FL</text>
       <rect x="786" y="178" width="16" height="8" rx="3" fill="#9c6b50"/><text x="794" y="184" class="chip-text">FL</text>
+
+      <!-- Publish -> Telegram delivery (push) -->
+      <path d="M740 188 V236 H644 V280" fill="none" stroke="#2e5aa8" marker-end="url(#arr-link)"/>
+
+      <!-- Node: Telegram delivery (DELIVER lane, step 06) -->
+      <rect x="594" y="284" width="100" height="64" rx="6" fill="#f5f5f5" stroke="rgba(45,49,66,0.25)"/>
+      <rect x="598" y="288" width="18" height="10" rx="3" fill="rgba(45,49,66,0.12)"/><text x="607" y="293" class="role-text">PY</text>
+      <text x="644" y="307" class="node-title">Telegram</text><text x="644" y="319" class="node-sub">증분 발송 · 3x/일</text><text x="644" y="331" class="node-tool">brief + headlines</text>
+      <rect x="598" y="338" width="16" height="8" rx="3" fill="#9c6b50"/><text x="606" y="344" class="chip-text">FL</text>
 
       <!-- Node: Human read (HUMAN, step 06) -->
       <rect x="706" y="284" width="100" height="64" rx="6" fill="#f5f5f5" stroke="rgba(45,49,66,0.25)"/>
@@ -208,7 +217,7 @@
       </article>
       <article class="card">
         <div class="card-header"><span class="card-dot ink"></span><h2>사람·기계·AI 경계</h2></div>
-        <ul><li>Cron이 매일 08:30 트리거</li><li>Python이 뉴스+내소스 수집·필터·검증·발행</li><li>Claude는 뉴스만 요약·판정</li><li>사람이 고른 카드만 원클릭 Notion</li></ul>
+        <ul><li>Cron이 하루 3회 트리거 (07·12:30·18시)</li><li>Python이 뉴스+내소스 수집·필터·검증·발행</li><li>Claude는 뉴스만 요약·판정 (아침 1회)</li><li>텔레그램 증분 발송 · 사람이 고른 카드는 Notion</li></ul>
       </article>
       <article class="card">
         <div class="card-header"><span class="card-dot slate"></span><h2>검증과 페이로드</h2></div>
