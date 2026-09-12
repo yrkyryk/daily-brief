@@ -139,7 +139,7 @@ stats = {
     "date": TODAY, "total": total,
     "by_cat": {c: len(by_cat.get(c, [])) for c in CAT_ORDER},
     "pick_count": len(pick_map),
-    "keywords": _kw_freq(items),
+    "keywords_by_cat": {c: _kw_freq(by_cat.get(c, [])) for c in CAT_ORDER},
 }
 stats_dir = ROOT / "data" / "stats"
 stats_dir.mkdir(parents=True, exist_ok=True)

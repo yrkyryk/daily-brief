@@ -43,6 +43,9 @@ table{width:100%;border-collapse:collapse;font-size:13px}
 th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right}
 th:first-child,td:first-child{text-align:left}
 th{color:var(--mut);font-weight:600}
+.kwcats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.kwcats{grid-template-columns:1fr}}
+.kwcat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
 .bars{display:grid;gap:7px}
 .barrow{display:grid;grid-template-columns:120px 1fr 40px;align-items:center;gap:10px;font-size:13px}
 .bar{height:14px;background:var(--acc);border-radius:4px;min-width:2px}
@@ -55,20 +58,36 @@ footer{margin-top:34px;font-size:12px;color:var(--mut);text-align:center}
 def render(days):
     total_all = sum(d.get("total", 0) for d in days)
     picks_all = sum(d.get("pick_count", 0) for d in days)
-    kw = defaultdict(int)
-    for d in days:
-        for k, v in (d.get("keywords") or {}).items():
-            kw[k] += v
-    top_kw = sorted(kw.items(), key=lambda x: -x[1])[:15]
     cat_tot = {c: sum(d.get("by_cat", {}).get(c, 0) for d in days) for c in CAT_ORDER}
 
-    # 급상승 키워드 막대
-    maxv = top_kw[0][1] if top_kw else 1
-    kw_rows = "".join(
-        f'<div class="barrow"><span>{esc(k)}</span>'
-        f'<span class="bar" style="width:{max(2, round(v / maxv * 100))}%"></span>'
-        f'<span class="n">{v}</span></div>'
-        for k, v in top_kw) or '<p class="empty">아직 키워드 데이터가 부족합니다.</p>'
+    # 분야별 키워드 집계 (신형 keywords_by_cat 우선, 구형 keywords는 '전체'로 폴백)
+    kw_by_cat = {}
+    for d in days:
+        kbc = d.get("keywords_by_cat")
+        if kbc:
+            for cat, kws in kbc.items():
+                acc = kw_by_cat.setdefault(cat, defaultdict(int))
+                for k, v in kws.items():
+                    acc[k] += v
+        elif d.get("keywords"):
+            acc = kw_by_cat.setdefault("전체", defaultdict(int))
+            for k, v in d["keywords"].items():
+                acc[k] += v
+
+    def _kwblock(cat, freq):
+        top = sorted(freq.items(), key=lambda x: -x[1])[:10]
+        if not top:
+            return ""
+        mx = top[0][1]
+        rows = "".join(
+            f'<div class="barrow"><span>{esc(k)}</span>'
+            f'<span class="bar" style="width:{max(2, round(v / mx * 100))}%"></span>'
+            f'<span class="n">{v}</span></div>' for k, v in top)
+        return f'<div class="kwcat"><div class="synth-h">{CAT_EMOJI.get(cat, "")} {cat}</div><div class="bars">{rows}</div></div>'
+
+    kw_cats_html = "".join(
+        _kwblock(c, kw_by_cat[c]) for c in (CAT_ORDER + ["전체"]) if kw_by_cat.get(c)
+    ) or '<p class="empty">아직 키워드 데이터가 부족합니다.</p>'
 
     # 카테고리 주간 합계 막대
     cmax = max(cat_tot.values()) if any(cat_tot.values()) else 1
@@ -127,8 +146,8 @@ def render(days):
 <div class="sub">최근 {len(days)}일({esc(span)}) 누적 데이터 분석 · 생성 {NOW.strftime('%Y-%m-%d %H:%M')} KST</div>
 <div class="meta"><span>🗂️ 총 수집 <b>{total_all}건</b></span><span>⭐ 총 읽을가치 <b>{picks_all}건</b></span><span>📅 집계일 <b>{len(days)}일</b></span></div>
 {synth_html}
-<h2>🔺 급상승 키워드 (주간 빈도)</h2>
-<div class="bars">{kw_rows}</div>
+<h2>🔺 분야별 급상승 키워드 (주간 빈도)</h2>
+<div class="kwcats">{kw_cats_html}</div>
 <h2>🗂️ 카테고리별 주간 볼륨</h2>
 <div class="bars">{cat_rows}</div>
 <h2>📆 일자별 추이</h2>
