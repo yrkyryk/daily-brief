@@ -1,9 +1,12 @@
 name: daily-brief
 
-# 매일 08:30 KST = 23:30 UTC. 수동 실행(workflow_dispatch)도 지원.
+# 하루 3회 (KST). 첫 발송=전체 브리핑, 이후=새로 뜬 소식만(증분).
+# GitHub Actions cron 은 UTC 기준이며 부하 시 몇 분 지연될 수 있다(알림용이라 무방).
 on:
   schedule:
-    - cron: "30 23 * * *"
+    - cron: "0 22 * * *"    # 07:00 KST (전날 22:00 UTC)
+    - cron: "30 3 * * *"    # 12:30 KST (03:30 UTC)
+    - cron: "0 9 * * *"     # 18:00 KST (09:00 UTC)
   workflow_dispatch:
 
 permissions:

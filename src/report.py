@@ -8,7 +8,7 @@ report.py — AI 요약을 얹은 Daily Brief HTML 리포트 생성 (5단계)
 
 OAuth(claude CLI / CLAUDE_CODE_OAUTH_TOKEN) 없으면 규칙 전용 모드로 폴백하고 리포트에 명시한다.
 """
-import json, html, datetime, sys, pathlib, re
+import json, html, datetime, sys, pathlib, re, hashlib
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import judge_ai
@@ -57,6 +57,17 @@ if cache_path.exists():
     except Exception:
         cache = {}
 
+def _cat_sig(cat_items):
+    """카테고리 기사 집합의 콘텐츠 서명. 기사가 바뀌면 값이 달라진다.
+
+    같은 날 재수집(하루 여러 번 실행)해서 새 기사가 들어오면 서명이 바뀌어
+    캐시를 무효화하고 재판정한다. 이는 픽의 위치 인덱스(n) 드리프트도 막는다
+    (재사용은 기사 집합이 완전히 동일할 때만 → 인덱스가 항상 유효).
+    """
+    hs = sorted(it.get("hash", "") for it in cat_items)
+    return hashlib.sha1("|".join(hs).encode()).hexdigest()[:16]
+
+
 if claude_bin:
     try:
         print(f"AI 요약 시작 (OAuth · {claude_bin} · model={judge_ai.MODEL}) …")
@@ -66,11 +77,13 @@ if claude_bin:
             cat_items = by_cat.get(cat, [])
             if not cat_items:
                 continue
-            if cat in cache:  # 캐시 재사용 (호출·비용 없음)
+            sig = _cat_sig(cat_items)
+            if cat in cache and cache[cat].get("_sig") == sig:  # 동일 기사 → 재사용(비용 0)
                 ai_summaries[cat] = cache[cat]
                 print(f"  [{cat}] 캐시 재사용 (picks={len(cache[cat].get('picks', []))})")
                 continue
             res = judge_ai.summarize_category(claude_bin, cat, cat_items, budget)
+            res["_sig"] = sig
             ai_summaries[cat] = res
             cache[cat] = res
             cache_path.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
