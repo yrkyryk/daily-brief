@@ -35,7 +35,10 @@ a.back{color:var(--acc);text-decoration:none;font-size:13px}
 .meta{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0 22px;font-size:13px;color:var(--mut)}
 .meta b{color:var(--tx)}
 h2{font-size:16px;margin:26px 0 12px}
-.synth{background:linear-gradient(180deg,rgba(91,140,255,.08),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:14px 16px;white-space:pre-line;font-size:14px}
+.synths{display:grid;gap:10px}
+.synth{background:linear-gradient(180deg,rgba(91,140,255,.08),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:14px 16px;font-size:14px}
+.synth-h{font-weight:700;font-size:14px;margin-bottom:6px}
+.synth p{margin:0;color:var(--tx);white-space:pre-line}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right}
 th:first-child,td:first-child{text-align:left}
@@ -84,30 +87,35 @@ def render(days):
         + f"<td>{d.get('pick_count',0)}</td></tr>"
         for d in days)
 
-    # 주간 흐름 요약 (OAuth, 선택)
-    synth = ""
+    # 카테고리별 주간 흐름 요약 (OAuth, 선택) — 내소스 제외
+    cats_ai = [c for c in CAT_ORDER if c != "내소스"]
+    synth_by_cat = {}
     claude = judge_ai.find_claude()
     budget = {"in": 0, "out": 0, "calls": 0, "cost": 0.0}
     if claude:
-        blobs = []
+        cat_blobs = {c: [] for c in cats_ai}
         for d in days:
             cache = ROOT / "data" / f"ai_cache_{d['date']}.json"
             if cache.exists():
                 try:
                     c = json.loads(cache.read_text(encoding="utf-8"))
                     for cat, res in c.items():
-                        s = res.get("summary") if isinstance(res, dict) else ""
-                        if s:
-                            blobs.append(f"[{d['date']} {cat}] {s}")
+                        if cat in cat_blobs and isinstance(res, dict) and res.get("summary"):
+                            cat_blobs[cat].append(f"[{d['date']}] {res['summary']}")
                 except Exception:
                     pass
-        if blobs:
-            try:
-                synth = judge_ai.weekly_synthesis(claude, "\n".join(blobs), budget)
-            except Exception as e:
-                print("주간 요약 실패:", e)
-    synth_html = (f'<h2>🧠 이번 주 흐름 <span style="color:var(--acc)">AI</span></h2>'
-                  f'<div class="synth">{esc(synth)}</div>') if synth else ""
+        for cat in cats_ai:
+            if cat_blobs[cat]:
+                try:
+                    synth_by_cat[cat] = judge_ai.weekly_category(claude, cat, "\n".join(cat_blobs[cat]), budget)
+                except Exception as e:
+                    print(f"주간 요약 실패 [{cat}]:", e)
+    synth_blocks = "".join(
+        f'<div class="synth"><div class="synth-h">{CAT_EMOJI.get(c, "")} {c} · 이번 주 흐름</div>'
+        f'<p>{esc(synth_by_cat[c])}</p></div>'
+        for c in cats_ai if synth_by_cat.get(c))
+    synth_html = (f'<h2>🧠 분야별 주간 흐름 <span style="color:var(--acc)">AI</span></h2>'
+                  f'<div class="synths">{synth_blocks}</div>') if synth_blocks else ""
 
     span = f"{days[0]['date']} ~ {days[-1]['date']}" if days else "데이터 없음"
     return f"""<!doctype html><html lang="ko"><head>

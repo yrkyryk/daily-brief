@@ -88,6 +88,33 @@ WEEKLY_PROMPT = """당신은 데이터 분석가의 주간 브리핑 편집자�
 번호 목록(1. 2. 3.) 형식의 텍스트로만 출력하세요."""
 
 
+WEEKLY_CAT_PROMPT = """당신은 데이터 분석가의 주간 브리핑 편집자입니다.
+아래는 최근 며칠간 '{cat}' 분야의 일별 '오늘의 흐름' 요약입니다.
+
+{blob}
+
+이 '{cat}' 분야에서 이번 주를 관통하는 흐름을 한국어로 3~4줄로 요약하세요.
+개별 날짜 나열이 아니라 주간 관점의 변화·반복·신호 위주로. 엠대시(—)는 쓰지 마세요. 문장 텍스트로만 출력하세요."""
+
+
+def weekly_category(claude_bin, cat: str, blob: str, budget_state) -> str:
+    """한 카테고리의 최근 일별 요약을 받아 그 분야의 '이번 주 흐름' 생성."""
+    proc = subprocess.run(
+        [claude_bin, "-p", "--output-format", "json", "--model", MODEL],
+        input=WEEKLY_CAT_PROMPT.format(cat=cat, blob=blob),
+        capture_output=True, text=True, encoding="utf-8", timeout=120,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(f"claude CLI 실패 (rc={proc.returncode}): {proc.stderr.strip()[:300]}")
+    envelope = json.loads(proc.stdout)
+    usage = envelope.get("usage", {}) or {}
+    budget_state["in"] += usage.get("input_tokens", 0)
+    budget_state["out"] += usage.get("output_tokens", 0)
+    budget_state["calls"] += 1
+    budget_state["cost"] += float(envelope.get("total_cost_usd", 0) or 0)
+    return (envelope.get("result", "") or "").strip()
+
+
 def weekly_synthesis(claude_bin, daily_summaries: str, budget_state) -> str:
     """7일치 요약 모음(텍스트)을 받아 '이번 주 흐름 3가지' 생성. 실패 시 예외."""
     proc = subprocess.run(
