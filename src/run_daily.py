@@ -22,6 +22,14 @@ def step(name: str, script: str) -> None:
         print(f"\n[중단] {script} 가 exit {rc} 로 실패 → 파이프라인 정지")
         sys.exit(rc)
 
+
+def soft_step(name: str, script: str) -> None:
+    """부가 기능(전달 등) — 실패해도 파이프라인을 멈추지 않는다."""
+    print(f"\n{'='*48}\n▶ {name}\n{'='*48}")
+    rc = subprocess.run([sys.executable, str(SRC / script)], cwd=str(ROOT)).returncode
+    if rc != 0:
+        print(f"[경고] {script} 가 exit {rc} — 계속 진행(부가 기능)")
+
 if __name__ == "__main__":
     # 로컬에서 node(세션종료 훅) 경로 보강 — 있으면 추가, 없으면 무시
     node_dir = r"C:\Program Files\nodejs"
@@ -29,6 +37,7 @@ if __name__ == "__main__":
         os.environ["PATH"] = os.environ["PATH"] + os.pathsep + node_dir
     step("1) 수집 + 규칙 필터", "collect.py")
     step("2) AI 요약 + 리포트 생성", "report.py")
+    soft_step("3) 텔레그램 발송 (토큰 있을 때만)", "telegram_notify.py")
     print("\n✅ 완료: docs/ 에 오늘자 리포트가 생성되었습니다.")
     print("   Notion 카드는 리포트에서 원하는 카드를 골라 선택 발행하세요:")
     print("   1) docs/index.html 에서 카드 [선택] 체크 → '선택한 카드 내보내기' → selected.json 저장")

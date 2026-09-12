@@ -34,6 +34,8 @@ collect.py   RSS 12소스 수집 + 홍보/중복 규칙 필터 → data/raw_YYYY
 report.py    카테고리별 AI 흐름요약·읽을가치 판정(Claude, OAuth) + 인터랙티브 HTML
    │           결과는 data/ai_cache 에 저장 → 재실행 시 재호출 없음(비용 0)
 docs/        daily-brief-*.html + index.html (GitHub Pages)
+   │
+telegram_notify.py  (선택) 오늘자 브리핑을 텔레그램으로 발송 — 산출물 재활용, 재수집 없음
 ```
 
 데이터 페이로드 변형: `WB`(웹) → `DB`(원본 JSONL) → `TB`(정제 테이블) → `FL`(리포트)
@@ -68,7 +70,7 @@ python src/run_daily.py
 
 ## 스택
 
-Python 3.11+ · feedparser · Claude(claude-haiku-4-5, OAuth CLI) · GitHub Actions · GitHub Pages
+Python 3.11+ · feedparser · Claude(claude-haiku-4-5, OAuth CLI) · GitHub Actions · GitHub Pages · Telegram Bot API(선택, stdlib만)
 다이어그램: `diagram-design` 스킬(Data flow)
 
 ## 직접 내 것으로 쓰기 (Fork & Setup)
@@ -95,6 +97,15 @@ Python 3.11+ · feedparser · Claude(claude-haiku-4-5, OAuth CLI) · GitHub Acti
 4. 리포트 상단 **[연결 설정]** 에 함수 URL + `APP_KEY` 입력(브라우저에만 저장) → 카드 ☁️ 저장, 📌 소스 추가 사용
 
 > 보안: Notion/GitHub 토큰은 **Vercel 환경변수와 내 브라우저에만** 있고 공개 레포·페이지엔 없다. 함수는 `APP_KEY` 없으면 401로 막힌다.
+
+### 3. 텔레그램으로 매일 받아보기 — 선택
+매일 만든 브리핑을 텔레그램으로 자동 발송한다(수집·AI 재호출 없이 산출물만 재활용).
+1. `@BotFather` 로 봇 생성 → 토큰 발급
+2. 봇과 대화 후 `https://api.telegram.org/bot<토큰>/getUpdates` 에서 `chat.id` 확인
+3. `Settings → Secrets → Actions` 에 `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` 등록 (선택: `Settings → Variables` 에 `SITE_URL`)
+4. 미리보기: `python src/telegram_notify.py --dry-run` (발송 없이 메시지 확인)
+
+> 시크릿이 없으면 발송만 조용히 스킵되고 리포트 생성은 그대로 동작한다.
 
 ## 한계 (명시)
 
