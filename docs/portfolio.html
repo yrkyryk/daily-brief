@@ -76,7 +76,7 @@
   <main class="wrap">
     <p class="eyebrow">Data Pipeline · Portfolio<span class="badge-live">Live</span></p>
     <h1>Daily Brief 자동화 파이프라인</h1>
-    <p class="lede">매일 08:30, 뉴스·블로그 12개 소스를 자동 수집·정제해 <b>AI 요약 리포트</b>와 <b>Notion 카드뉴스</b>로 내보내는 무인 데이터 파이프라인. 수집·필터·검증은 스크립트가, 요약·판정은 규칙을 통과한 항목에 한해 Claude(OAuth)가, 최종 판단은 사람이 맡는다. GitHub Actions cron으로 사람 개입 없이 매일 갱신된다.</p>
+    <p class="lede">매일 08:30, 뉴스·기술블로그와 내가 지정한 커스텀 소스를 자동 수집·정제해 <b>AI 요약 리포트</b>로 내보내는 무인 데이터 파이프라인이자, 브라우저에서 키워드로 걸러 보고 고른 기사만 <b>원클릭으로 Notion에 저장</b>하는 개인 뉴스 리더. 수집·필터·검증은 스크립트가, 요약·판정은 규칙을 통과한 뉴스에 한해 Claude(OAuth)가, 최종 선택은 사람이 맡는다. GitHub Actions cron으로 매일 무인 갱신되며, <b>오픈소스 템플릿</b>으로 누구나 포크해 자기 것으로 쓸 수 있다.</p>
 
     <div class="links">
       <a class="lk" href="https://yrkyryk.github.io/daily-brief/" target="_blank" rel="noopener">
@@ -99,13 +99,13 @@
       </a>
       <div class="lk static">
         <div class="k">Delivery</div>
-        <div class="t">🗂️ Notion 카드뉴스</div>
-        <div class="d">매일 ★ 읽을 가치 픽 12장을 OG 썸네일 커버가 달린 카드로 자동 적재 (개인 워크스페이스)</div>
+        <div class="t">🗂️ Notion 원클릭 저장</div>
+        <div class="d">리포트에서 고른 카드만 버튼 한 번으로 Notion에 저장(OG 썸네일 커버). 토큰은 서버리스 함수에만.</div>
       </div>
       <div class="lk static">
-        <div class="k">Quality</div>
-        <div class="t">🛡️ V3 품질 게이트</div>
-        <div class="d">매 실행 6개 항목 점검, 이상 시 exit 1로 중단 + GitHub Issue 자동 생성</div>
+        <div class="k">Open Source</div>
+        <div class="t">🧩 Public Template</div>
+        <div class="d">Use this template → 포크해서 자기 계정·키로 독립 인스턴스 구동. 개인값은 전부 환경변수.</div>
       </div>
     </div>
 
@@ -244,7 +244,7 @@
         <div class="card">
           <h3><span class="dot" style="background:var(--ink)"></span>기계 · Python</h3>
           <ul>
-            <li>RSS 12소스 수집(feedparser)</li>
+            <li>RSS 12소스 + 내 커스텀 소스 수집</li>
             <li>홍보·중복 규칙 필터 + 분류</li>
             <li>멱등 적재, 중복 차단</li>
             <li>V3 품질 게이트, 이상 시 exit 1</li>
@@ -252,11 +252,30 @@
         </div>
         <div class="card">
           <h3><span class="dot" style="background:var(--accent)"></span>AI 보조 · Claude</h3>
-          <p>규칙으로 애매한 항목만 위임. 카테고리당 1회 호출로 흐름 요약과 읽을 가치를 판정해 토큰 비용을 최소화(일 ~$0.14). Claude Code OAuth로 구독 재사용, API 키 불필요.</p>
+          <p>규칙으로 애매한 <b>뉴스만</b> 위임(내소스 제외). 카테고리당 1회 호출로 흐름 요약과 읽을 가치를 판정해 비용 최소화(일 ~$0.14). Claude Code OAuth로 구독 재사용, API 키 불필요.</p>
         </div>
         <div class="card">
           <h3><span class="dot" style="background:var(--slate)"></span>운영 · 무인</h3>
-          <p>GitHub Actions cron이 매일 08:30 실행. 실패하면 이슈를 자동 생성하고, 산출물은 GitHub Pages 리포트와 Notion 카드뉴스로 발행된다.</p>
+          <p>GitHub Actions cron이 매일 08:30 실행, 실패 시 이슈 자동 생성. 산출물은 GitHub Pages 리포트 + 주간 트렌드. Notion 저장은 사람이 고른 카드만 원클릭(Vercel 서버리스 함수, 토큰은 서버에만).</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>브라우저에서 바로 (개인 도구)</h2>
+      <p class="sec-sub">읽기 전용 리포트가 아니라, 사용자가 화면에서 직접 조작하는 개인 뉴스 리더. 설정은 각자 브라우저에 저장돼 사람마다 다르게 동작한다.</p>
+      <div class="grid3">
+        <div class="card">
+          <h3><span class="dot" style="background:var(--accent)"></span>🔖 관심 키워드</h3>
+          <p>페이지에서 키워드를 추가·삭제하면 관련 기사만 즉시 필터. 파일 편집·커밋 없이 브라우저(localStorage)에 저장.</p>
+        </div>
+        <div class="card">
+          <h3><span class="dot" style="background:var(--ink)"></span>📌 내 소스</h3>
+          <p>블로그·사이트 주소를 화면에서 추가/삭제하고 즉시 수집. 네이버 블로그·티스토리·워드프레스는 홈 주소만 넣어도 자동 RSS 변환.</p>
+        </div>
+        <div class="card">
+          <h3><span class="dot" style="background:var(--slate)"></span>☁️ 원클릭 Notion</h3>
+          <p>고른 카드를 버튼 한 번으로 Notion에 저장. Notion·GitHub 토큰은 서버리스 함수 환경변수에만, 페이지엔 없음(APP_KEY로 보호).</p>
         </div>
       </div>
     </section>
@@ -270,6 +289,7 @@
         <span class="chip">Claude Code OAuth</span>
         <span class="chip">GitHub Actions</span>
         <span class="chip">GitHub Pages</span>
+        <span class="chip">Vercel Functions</span>
         <span class="chip">Notion API</span>
         <span class="chip">diagram-design</span>
       </div>
