@@ -77,10 +77,17 @@ jobs:
           git add docs/ data/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
-          else
-            git commit -m "chore: daily brief $(date -u +%F)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: daily brief $(date -u +%F)"
+          # 하루 여러 번 실행되므로 원격이 앞서 있을 수 있다. rebase 후 재시도.
+          for i in 1 2 3; do
+            if git pull --rebase --autostash origin main && git push origin main; then
+              echo "push 성공 (시도 $i)"; exit 0
+            fi
+            echo "push 경쟁 감지 — 재시도 $i/3"; sleep 5
+          done
+          echo "push 3회 실패"; exit 1
 
       # 실패 시 GitHub Issue 자동 생성 (계획서 V3 실패 처리)
       - name: Open failure issue
