@@ -8,12 +8,14 @@ collect.py(수집+필터) → report.py(AI 요약+HTML) 를 순서대로 실행�
 사용:
   python src/run_daily.py
 """
-import subprocess, sys, pathlib, os
+import subprocess, sys, pathlib, os, datetime
 
 sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
+KST = datetime.timezone(datetime.timedelta(hours=9))
+TODAY = datetime.datetime.now(KST).strftime("%Y-%m-%d")
 
 def step(name: str, script: str) -> None:
     print(f"\n{'='*48}\n▶ {name}\n{'='*48}")
@@ -35,8 +37,13 @@ if __name__ == "__main__":
     node_dir = r"C:\Program Files\nodejs"
     if os.path.isdir(node_dir) and node_dir not in os.environ.get("PATH", ""):
         os.environ["PATH"] = os.environ["PATH"] + os.pathsep + node_dir
+    # 그날 첫 실행이면 AI 전체 브리핑, 아니면 AI 생략(증분 헤드라인만) → 비용 0
+    first_run = not (ROOT / "data" / f"seen_{TODAY}.json").exists()
     step("1) 수집 + 규칙 필터", "collect.py")
-    step("2) AI 요약 + 리포트 생성", "report.py")
+    if first_run:
+        step("2) AI 요약 + 리포트 생성 (아침 전체 브리핑)", "report.py")
+    else:
+        print("\n[안내] 오늘 이미 브리핑을 보냈음 → AI 재판정 생략, 새 헤드라인만 발송(비용 0)")
     soft_step("3) 텔레그램 발송 (토큰 있을 때만)", "telegram_notify.py")
     print("\n✅ 완료: docs/ 에 오늘자 리포트가 생성되었습니다.")
     print("   Notion 카드는 리포트에서 원하는 카드를 골라 선택 발행하세요:")

@@ -42,6 +42,13 @@ PROMO_KEYWORDS = [
 
 PER_SOURCE = 12  # 소스당 상위 N건
 
+# 뉴스 카테고리는 "최근 24시간" 것만 남긴다(밤사이 뉴스 위주).
+# 기술블로그(실무)·내소스는 드물게 발행되므로 시간 필터를 걸지 않는다.
+# 발행시각(published_parsed)이 있는 경우에만 필터하고, 없으면 유지한다
+# (한겨레·경향 등 일부 RSS는 파싱 가능한 날짜를 안 주므로 과도한 누락 방지).
+NEWS_CATS = {"경제", "사회", "연예"}
+FRESH_HOURS = 24
+
 
 def norm_url(u: str) -> str:
     """UTM 등 트래킹 파라미터 제거 + 정규화."""
@@ -80,6 +87,8 @@ def collect() -> int:
     source_stats: list[tuple[str, str, str, int]] = []
     promo_removed = 0
     dup_removed = 0
+    old_removed = 0
+    cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=FRESH_HOURS)
 
     for src in SOURCES:
         try:
@@ -100,10 +109,14 @@ def collect() -> int:
                 if is_promo(title, summary):
                     promo_removed += 1
                     continue
-                pub = ""
+                pub_dt = None
                 if e.get("published_parsed"):
-                    pub = datetime.datetime(*e.published_parsed[:6], tzinfo=datetime.timezone.utc)\
-                        .astimezone(KST).strftime("%m-%d %H:%M")
+                    pub_dt = datetime.datetime(*e.published_parsed[:6], tzinfo=datetime.timezone.utc)
+                # 뉴스 카테고리는 발행시각이 있고 24시간보다 오래된 기사면 제외
+                if src["cat"] in NEWS_CATS and pub_dt is not None and pub_dt < cutoff:
+                    old_removed += 1
+                    continue
+                pub = pub_dt.astimezone(KST).strftime("%m-%d %H:%M") if pub_dt else ""
                 raw_items.append({
                     "title": title, "link": link, "summary": summary,
                     "source": src["name"], "cat": src["cat"], "pub": pub, "hash": h,
@@ -172,6 +185,7 @@ def collect() -> int:
         "총_수집건수": total,
         "홍보_제거건수": promo_removed,
         "중복_제거건수": dup_removed,
+        "오래된뉴스_제외건수": old_removed,
         "카테고리_분포": by_cat,
     }, ensure_ascii=False, indent=2))
     print(f"저장: {out_path}")

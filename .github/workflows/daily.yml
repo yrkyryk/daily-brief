@@ -30,13 +30,29 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
+      # 그날 첫 실행이면 전체 브리핑(AI), 아니면 증분 헤드라인(AI 생략).
+      # 판정 기준: data/seen_{날짜}.json 존재 여부(첫 발송 시 telegram 이 생성·커밋).
+      - name: Detect first run of day (KST)
+        id: slot
+        run: |
+          DAY=$(TZ=Asia/Seoul date +%F)
+          if [ -f "data/seen_${DAY}.json" ]; then
+            echo "first=false" >> "$GITHUB_OUTPUT"
+            echo "오늘 이미 브리핑 발송됨 → 증분(헤드라인) 모드, AI 생략"
+          else
+            echo "first=true" >> "$GITHUB_OUTPUT"
+            echo "오늘 첫 실행 → 전체 브리핑 모드(AI)"
+          fi
+
       - name: Collect + rule filter
         run: python src/collect.py
 
       - name: Install Claude Code CLI
+        if: steps.slot.outputs.first == 'true'
         run: curl -fsSL https://claude.ai/install.sh | bash
 
       - name: Generate report (AI summary via OAuth)
+        if: steps.slot.outputs.first == 'true'
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
@@ -44,7 +60,8 @@ jobs:
           python src/report.py
 
       # 텔레그램 발송(선택) — 시크릿 없으면 스크립트가 스스로 스킵한다.
-      # 발송 실패가 리포트 배포를 막지 않도록 continue-on-error.
+      # 첫 실행=전체 브리핑, 이후=새 헤드라인만(스크립트가 seen 으로 자동 판단).
+      # 발송 실패가 배포를 막지 않도록 continue-on-error.
       - name: Notify via Telegram
         continue-on-error: true
         env:

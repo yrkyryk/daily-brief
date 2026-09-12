@@ -1,28 +1,27 @@
 # -*- coding: utf-8 -*-
 """
-telegram_notify.py — 오늘자 Daily Brief를 텔레그램으로 발송한다(증분 방식).
+telegram_notify.py — Daily Brief를 텔레그램으로 발송한다(하루 여러 번, 증분).
 
-수집/AI 호출을 다시 하지 않는다. report.py 가 이미 남긴 산출물만 재활용한다:
-  - data/picks_{날짜}.json    : 선별 기사(제목·링크·why·hash)
-  - data/ai_cache_{날짜}.json : 카테고리별 흐름 요약
-  - data/stats/{날짜}.json    : 수집/선별 건수
+수집은 collect.py 가 이미 해두었다. 이 스크립트는 재수집하지 않는다.
 
-증분 발송(하루 여러 번 실행 대비):
-  - data/sent_{날짜}.json 에 이미 발송한 기사 hash 를 기록한다.
-  - 다음 실행 땐 아직 안 보낸 픽만 발송한다(같은 기사 중복 방지).
-  - 그날 첫 발송(아침) = 전체 브리핑, 이후(점심/저녁) = 새로 뜬 소식만.
-  - sent 파일은 날짜별이라 다음날이면 자동 리셋 → 다시 전체 브리핑.
+두 가지 모드 (그날 첫 실행인지로 자동 판단):
+  - brief   : 그날 첫 발송(아침). report.py 의 AI 픽/요약을 전체 발송.
+              입력 data/picks_{날짜}.json, data/ai_cache_{날짜}.json
+  - headlines: 이후 발송(점심/저녁). AI 없이, 새로 수집된 기사 헤드라인만 발송.
+              입력 data/raw_{날짜}.jsonl (collect.py 산출물)
 
-인증(환경변수):
-  TELEGRAM_BOT_TOKEN  : @BotFather 로 발급
-  TELEGRAM_CHAT_ID    : 봇과 대화 후 getUpdates 로 확인
-  SITE_URL (선택)     : 전체 리포트 링크
+증분 추적:
+  - data/seen_{날짜}.json 에 그날 수집·노출한 기사 hash 를 누적 기록한다.
+  - "첫 실행" = seen 파일이 아직 없는 상태 → brief 모드.
+  - 이후엔 seen 에 없는(=새로 뜬) 기사만 headlines 로 발송.
+  - 날짜별 파일이라 다음날이면 자동 리셋 → 다시 아침 brief.
 
-토큰이 없으면 조용히 스킵(exit 0). 발송 실패도 파이프라인을 막지 않는다.
+인증(환경변수): TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, SITE_URL(선택)
+토큰 없으면 조용히 스킵(exit 0). 발송 실패도 파이프라인을 막지 않는다.
 
 사용:
-  python src/telegram_notify.py            # 실제 발송(+ sent 기록)
-  python src/telegram_notify.py --dry-run  # 발송·기록 없이 메시지만 출력
+  python src/telegram_notify.py            # 자동 모드 발송(+ seen 기록)
+  python src/telegram_notify.py --dry-run  # 발송·기록 없이 미리보기
   python src/telegram_notify.py --date 2026-09-12
 """
 import argparse
@@ -42,10 +41,10 @@ KST = datetime.timezone(datetime.timedelta(hours=9))
 CAT_ORDER = ["경제", "사회", "연예", "실무", "내소스"]
 CAT_EMOJI = {"경제": "💹", "사회": "🏛️", "연예": "🎬", "실무": "🛠️", "내소스": "📌"}
 
-TG_LIMIT = 4096
-CHUNK_SOFT = 3800          # 안전 여유를 둔 분할 기준
+CHUNK_SOFT = 3800          # 텔레그램 4096자 한도에 여유를 둔 분할 기준
 SUMMARY_MAX = 500          # 카테고리 흐름 요약 상한(보통 150~300자라 사실상 통째)
 WHY_MAX = 100              # 기사별 why 자르는 길이
+HEADLINES_PER_CAT = 15     # 헤드라인 모드: 카테고리당 최대 표시 수
 
 
 def esc(s: object) -> str:
@@ -65,54 +64,52 @@ def load_json(path: pathlib.Path, default: object) -> object:
         return default
 
 
-def sent_path(date: str) -> pathlib.Path:
-    return ROOT / "data" / f"sent_{date}.json"
+def load_raw(date: str) -> list[dict]:
+    path = ROOT / "data" / f"raw_{date}.jsonl"
+    try:
+        return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+    except Exception:
+        return []
 
 
-def load_sent(date: str) -> set[str]:
-    data = load_json(sent_path(date), {})
-    if isinstance(data, dict):
-        return set(data.get("sent", []))
-    return set()
+def seen_path(date: str) -> pathlib.Path:
+    return ROOT / "data" / f"seen_{date}.json"
 
 
-def save_sent(date: str, hashes: list[str]) -> None:
-    have = load_sent(date)
+def load_seen(date: str) -> set[str]:
+    data = load_json(seen_path(date), {})
+    return set(data.get("seen", [])) if isinstance(data, dict) else set()
+
+
+def save_seen(date: str, hashes: list[str]) -> None:
+    have = load_seen(date)
     merged = list(have) + [h for h in hashes if h not in have]
-    payload = {"sent": merged, "updated": datetime.datetime.now(KST).isoformat()}
-    sent_path(date).write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    payload = {"seen": merged, "updated": datetime.datetime.now(KST).isoformat()}
+    seen_path(date).write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
 
-def build(date: str) -> tuple[list[str], list[str]]:
-    """(발송 메시지 블록들, 이번에 새로 보내는 hash 목록) 반환.
+def _footer_blocks() -> list[str]:
+    site = os.environ.get("SITE_URL", "").strip()
+    return [f"🔗 <a href=\"{esc(site)}\">전체 리포트 보기</a>"] if site else []
 
-    이미 보낸 기사는 제외한다. 보낼 새 픽이 없으면 ([], []).
-    """
+
+def build_brief(date: str) -> list[str]:
+    """아침 전체 브리핑(AI 픽 + 흐름 요약)."""
     picks = load_json(ROOT / "data" / f"picks_{date}.json", [])
     cache = load_json(ROOT / "data" / f"ai_cache_{date}.json", {})
     stats = load_json(ROOT / "data" / "stats" / f"{date}.json", {})
-    sent = load_sent(date)
-    is_first = len(sent) == 0
-
-    new_picks = [p for p in picks if p.get("hash") and p["hash"] not in sent]
-    if not new_picks:
-        return [], []
-    new_hashes = [p["hash"] for p in new_picks]
+    if not picks:
+        return []
 
     blocks: list[str] = []
-    if is_first:
-        head = f"📰 <b>Daily Brief</b> · {esc(date)}"
-        total = stats.get("total")
-        if total is not None:
-            pick_n = stats.get("pick_count", len(picks))
-            head += f"\n🗂️ 수집 <b>{total}건</b> → ⭐ 핵심 <b>{pick_n}건</b>"
-    else:
-        now = datetime.datetime.now(KST).strftime("%H:%M")
-        head = f"🆕 <b>새로 뜬 소식</b> · {esc(date)} {now} · {len(new_picks)}건"
+    head = f"📰 <b>Daily Brief</b> · {esc(date)}"
+    total = stats.get("total")
+    if total is not None:
+        head += f"\n🗂️ 수집 <b>{total}건</b> → ⭐ 핵심 <b>{stats.get('pick_count', len(picks))}건</b>"
     blocks.append(head)
 
     by_cat: dict[str, list[dict]] = {}
-    for it in new_picks:
+    for it in picks:
         by_cat.setdefault(it.get("cat", ""), []).append(it)
 
     for cat in CAT_ORDER:
@@ -120,12 +117,10 @@ def build(date: str) -> tuple[list[str], list[str]]:
         if not items:
             continue
         lines = [f"{CAT_EMOJI.get(cat, '')} <b>{esc(cat)}</b>"]
-        # 흐름 요약은 첫(전체) 발송에만 붙인다. 증분 발송은 새 기사 위주로 간결하게.
-        if is_first:
-            c = cache.get(cat)
-            summary = c.get("summary", "") if isinstance(c, dict) else ""
-            if summary:
-                lines.append(f"<i>{esc(clip(summary, SUMMARY_MAX))}</i>")
+        c = cache.get(cat)
+        summary = c.get("summary", "") if isinstance(c, dict) else ""
+        if summary:
+            lines.append(f"<i>{esc(clip(summary, SUMMARY_MAX))}</i>")
         for it in items:
             title = esc(clip(it.get("title", ""), 90))
             link = esc(it.get("link", ""))
@@ -136,11 +131,36 @@ def build(date: str) -> tuple[list[str], list[str]]:
             lines.append(row)
         blocks.append("\n".join(lines))
 
-    site = os.environ.get("SITE_URL", "").strip()
-    if site:
-        blocks.append(f"🔗 <a href=\"{esc(site)}\">전체 리포트 보기</a>")
+    return blocks + _footer_blocks()
 
-    return blocks, new_hashes
+
+def build_headlines(date: str, seen: set[str]) -> list[str]:
+    """점심/저녁: 새로 수집된 기사 헤드라인만(AI 없음)."""
+    raw = load_raw(date)
+    new = [it for it in raw if it.get("hash") and it["hash"] not in seen]
+    if not new:
+        return []
+
+    by_cat: dict[str, list[dict]] = {}
+    for it in new:
+        by_cat.setdefault(it.get("cat", ""), []).append(it)
+
+    now = datetime.datetime.now(KST).strftime("%H:%M")
+    blocks = [f"🆕 <b>새로 뜬 소식</b> · {esc(date)} {now} · {len(new)}건"]
+    for cat in CAT_ORDER:
+        items = by_cat.get(cat, [])
+        if not items:
+            continue
+        lines = [f"{CAT_EMOJI.get(cat, '')} <b>{esc(cat)}</b> ({len(items)})"]
+        for it in items[:HEADLINES_PER_CAT]:
+            title = esc(clip(it.get("title", ""), 90))
+            link = esc(it.get("link", ""))
+            lines.append(f"• <a href=\"{link}\">{title}</a>" if link else f"• {title}")
+        if len(items) > HEADLINES_PER_CAT:
+            lines.append(f"   …외 {len(items) - HEADLINES_PER_CAT}건")
+        blocks.append("\n".join(lines))
+
+    return blocks + _footer_blocks()
 
 
 def pack_messages(blocks: list[str]) -> list[str]:
@@ -190,19 +210,26 @@ def send_message(token: str, chat_id: str, text: str) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dry-run", action="store_true", help="발송·기록 없이 메시지만 출력")
+    ap.add_argument("--dry-run", action="store_true", help="발송·기록 없이 미리보기")
     ap.add_argument("--date", default=datetime.datetime.now(KST).strftime("%Y-%m-%d"))
     args = ap.parse_args()
 
-    blocks, new_hashes = build(args.date)
+    date = args.date
+    seen = load_seen(date)
+    is_first = not seen_path(date).exists()
+    mode = "brief" if is_first else "headlines"
+
+    blocks = build_brief(date) if is_first else build_headlines(date, seen)
     if not blocks:
-        print(f"[telegram] {args.date} 발송할 새 소식이 없습니다 — 스킵")
+        print(f"[telegram] {date} ({mode}) 발송할 내용이 없습니다 — 스킵")
         return 0
 
     messages = pack_messages(blocks)
+    # 이번 실행에서 seen 에 추가할 hash: 그날 수집한 모든 기사(중복 방지 기준선)
+    all_hashes = [it["hash"] for it in load_raw(date) if it.get("hash")]
 
     if args.dry_run:
-        print(f"[telegram] --dry-run: 메시지 {len(messages)}개, 새 픽 {len(new_hashes)}건 (발송·기록 안 함)\n")
+        print(f"[telegram] --dry-run ({mode}): 메시지 {len(messages)}개 (발송·기록 안 함)\n")
         for i, m in enumerate(messages, 1):
             print(f"----- 메시지 {i}/{len(messages)} ({len(m)}자) -----")
             print(m)
@@ -223,18 +250,17 @@ def main() -> int:
             sent_ok += 1
         except urllib.error.HTTPError as e:
             fails += 1
-            body = e.read().decode("utf-8", "replace")
-            print(f"[telegram] 발송 실패 {i}/{len(messages)} (HTTP {e.code}): {body}")
+            print(f"[telegram] 발송 실패 {i}/{len(messages)} (HTTP {e.code}): {e.read().decode('utf-8', 'replace')}")
         except Exception as e:  # 네트워크 등 — 파이프라인은 막지 않는다
             fails += 1
             print(f"[telegram] 발송 실패 {i}/{len(messages)}: {e}")
 
-    # 전부 성공했을 때만 발송 기록(부분 실패 시 다음 실행에서 재시도되게 남겨둔다)
+    # 전부 성공했을 때만 seen 기록(부분 실패 시 다음 실행에서 재시도되게 남겨둔다)
     if fails == 0:
-        save_sent(args.date, new_hashes)
-        print(f"[telegram] 발송 완료 {sent_ok}개 · 새 기사 {len(new_hashes)}건 기록")
+        save_seen(date, all_hashes)
+        print(f"[telegram] ({mode}) 발송 완료 {sent_ok}개 · seen {len(all_hashes)}건 기록")
     else:
-        print(f"[telegram] 발송 {sent_ok}/{len(messages)}개 (실패 {fails}) — 기록 보류(다음 실행 재시도)")
+        print(f"[telegram] ({mode}) 발송 {sent_ok}/{len(messages)}개 (실패 {fails}) — 기록 보류")
     return 0
 
 
