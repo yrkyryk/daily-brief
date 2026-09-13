@@ -67,7 +67,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          # vars.SITE_URL 이 있으면 그걸, 없으면 이 레포의 GitHub Pages 주소를 자동 사용
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}
         run: python src/telegram_notify.py
 
       - name: Commit report (docs/ → GitHub Pages)
