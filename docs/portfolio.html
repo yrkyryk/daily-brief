@@ -266,7 +266,7 @@
         </div>
         <div class="card">
           <h3><span class="dot" style="background:var(--slate)"></span>운영 · 무인</h3>
-          <p>GitHub Actions cron이 하루 3회(08:30·13:07·18:07 KST) 실행, 실패 시 이슈 자동 생성. cron은 best-effort라 지연·누락이 있을 수 있는데, 실행 로그와 품질 기록으로 원인을 결정론적으로 진단할 수 있게 설계했다. 아침엔 전체 브리핑, 점심·저녁엔 새로 뜬 소식만 텔레그램으로 증분 발송(AI는 아침 1회만). 산출물은 GitHub Pages 리포트 + 주간 트렌드. Notion 저장은 사람이 고른 카드만 원클릭(Vercel 서버리스 함수, 토큰은 서버에만).</p>
+          <p>GitHub Actions cron이 하루 3회(08:30·13:07·18:07 KST) 실행, 실패 시 이슈 자동 생성. cron은 best-effort라 지연·누락이 있을 수 있는데, 실행 로그와 품질 기록으로 원인을 결정론적으로 진단할 수 있게 설계했고, 그 진단 절차 자체를 재사용 가능한 <b>Claude Code 스킬(diagnose-brief-send)</b>로 코드화했다(cron→KST 환산·gh run 조회·발송 모드·텔레그램 스텝 확인). 아침엔 전체 브리핑, 점심·저녁엔 새로 뜬 소식만 텔레그램으로 증분 발송(AI는 아침 1회만). 산출물은 GitHub Pages 리포트 + 주간 트렌드. Notion 저장은 사람이 고른 카드만 원클릭(Vercel 서버리스 함수, 토큰은 서버에만).</p>
         </div>
       </div>
     </section>
@@ -302,6 +302,7 @@
         <span class="chip">Telegram Bot API</span>
         <span class="chip">Vercel Functions</span>
         <span class="chip">Notion API</span>
+        <span class="chip">Claude Code Skill</span>
         <span class="chip">diagram-design</span>
       </div>
     </section>
