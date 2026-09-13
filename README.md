@@ -2,7 +2,7 @@
 
 매일 아침 뉴스·블로그를 자동 수집·정제해 **AI 요약이 붙은 Daily Brief**로 내보내는 무인 데이터 파이프라인. 데이터 분석가 지원 포트폴리오.
 
-> 트렌드 수집기가 매일 08:30(KST)에 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 준다.
+> 트렌드 수집기가 하루 3회(08:30·13:00·18:00 KST) 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 주고 텔레그램으로 전달한다.
 
 ![pipeline](docs/pipeline-diagram.html) <!-- 데이터 흐름 다이어그램: docs/pipeline-diagram.html -->
 
@@ -52,7 +52,7 @@ python src/run_daily.py
 
 ## 무인 운영 (GitHub Actions)
 
-`.github/workflows/daily.yml` — 매일 23:30 UTC(=08:30 KST) 실행.
+`.github/workflows/daily.yml` — 하루 3회(08:30·13:00·18:00 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만.
 
 1. GitHub 레포에 이 프로젝트 push
 2. `claude setup-token` 으로 OAuth 토큰 발급 → 레포 **Settings → Secrets → Actions** 에 `CLAUDE_CODE_OAUTH_TOKEN` 등록
