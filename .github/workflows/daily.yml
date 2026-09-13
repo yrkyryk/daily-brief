@@ -5,8 +5,8 @@ name: daily-brief
 on:
   schedule:
     - cron: "30 23 * * *"   # 08:30 KST (전날 23:30 UTC)
-    - cron: "0 4 * * *"     # 13:00 KST (04:00 UTC)
-    - cron: "0 9 * * *"     # 18:00 KST (09:00 UTC)
+    - cron: "7 4 * * *"     # 13:07 KST (04:07 UTC) — 정각 혼잡 회피
+    - cron: "7 9 * * *"     # 18:07 KST (09:07 UTC) — 정각 혼잡 회피
   workflow_dispatch:
 
 permissions:
