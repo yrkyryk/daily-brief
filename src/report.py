@@ -202,6 +202,34 @@ for cat in CAT_ORDER:
     if n:
         tabs.append(f'<button class="tab" data-f="{cat}">{CAT_EMOJI[cat]} {cat} ({n})</button>')
 
+# --- V3 품질 검증 기록 렌더 (collect.py가 저장한 스냅샷을 페이지에 노출) ---
+quality_html = ""
+q_path = ROOT / "data" / f"quality_{TODAY}.json"
+if q_path.exists():
+    try:
+        _snaps = json.loads(q_path.read_text(encoding="utf-8"))
+        snap = _snaps[-1] if isinstance(_snaps, list) and _snaps else (_snaps if isinstance(_snaps, dict) else None)
+    except Exception:
+        snap = None
+    if snap:
+        cat_dist = " · ".join(f"{k} {v}" for k, v in (snap.get("카테고리_분포") or {}).items())
+        _rows = [
+            ("① 수집 소스", snap.get("수집_소스", "-")),
+            ("② 총 수집 건수", f"{snap.get('총_수집건수', '-')}건"),
+            ("③ 홍보 제거", f"{snap.get('홍보_제거건수', '-')}건"),
+            ("④ 중복 제거", f"{snap.get('중복_제거건수', '-')}건"),
+            ("⑤ 오래된 뉴스 제외", f"{snap.get('오래된뉴스_제외건수', '-')}건"),
+            ("카테고리 분포", cat_dist or "-"),
+            ("품질 게이트", snap.get("품질_게이트", "-")),
+        ]
+        _items = "".join(f"<li><b>{esc(k)}</b> · {esc(str(v))}</li>" for k, v in _rows)
+        quality_html = f"""
+<details class="cost" style="cursor:pointer">
+  <summary style="font-weight:600">✅ 품질 검증 기록 (V3 결정론적 체크리스트) · 수집 {esc(snap.get('실행시각_KST', ''))}</summary>
+  <ul style="margin:10px 0 0;padding-left:20px;line-height:1.9;text-align:left">{_items}</ul>
+  <div style="margin-top:8px;opacity:.75">규칙 기반 결정론적 지표라 같은 입력이면 실행마다 같은 결과가 재현됩니다. 6번(AI 호출·비용)은 아래 로그 참고. 전체 이력은 <code>data/quality_{TODAY}.json</code> 에 커밋됩니다.</div>
+</details>"""
+
 HTML = f"""<!doctype html><html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Daily Brief — {TODAY}</title>
@@ -314,6 +342,7 @@ footer{{margin-top:30px;font-size:12px;color:var(--mut);text-align:center}}
 <div class="flows" id="flows">{''.join(flow_blocks) or '<div class="flow"><p>AI 요약 미적용 (규칙 전용 모드). GitHub Actions에 CLAUDE_CODE_OAUTH_TOKEN 시크릿을 등록하거나, 로컬에서 `claude` 로그인 후 다시 실행하면 카테고리별 흐름 요약이 채워집니다.</p></div>'}</div>
 <div class="grid" id="grid">{''.join(cards_html)}</div>
 
+{quality_html}
 <div class="cost">
   🧠 AI 비용 로그 (V3 6번) · 모델 <b>{esc(judge_ai.MODEL)}</b> ·
   호출 <b>{budget['calls']}회</b> · 입력 <b>{budget['in']:,} tok</b> · 출력 <b>{budget['out']:,} tok</b> ·

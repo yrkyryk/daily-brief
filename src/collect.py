@@ -179,19 +179,41 @@ def collect() -> int:
     for it in raw_items:
         by_cat[it["cat"]] = by_cat.get(it["cat"], 0) + 1
 
-    print("\n=== V3 품질 체크리스트 (수집 단계) ===")
-    print(json.dumps({
+    checklist = {
         "수집_소스": f"{ok_sources}/{len(SOURCES)} 성공",
         "총_수집건수": total,
         "홍보_제거건수": promo_removed,
         "중복_제거건수": dup_removed,
         "오래된뉴스_제외건수": old_removed,
         "카테고리_분포": by_cat,
-    }, ensure_ascii=False, indent=2))
+    }
+    gate_pass = not (total == 0 or ok_sources == 0)
+
+    print("\n=== V3 품질 체크리스트 (수집 단계) ===")
+    print(json.dumps(checklist, ensure_ascii=False, indent=2))
     print(f"저장: {out_path}")
 
+    # V3 품질 기록을 영구 파일로 남긴다(커밋 대상). Actions 로그는 수십 일 뒤 삭제되므로,
+    # 재현·추적 가능한 검증 근거를 git 히스토리에 보존한다. 하루 여러 번 실행되므로 배열로 누적.
+    snapshot = {
+        "실행시각_KST": datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S"),
+        **checklist,
+        "품질_게이트": "PASS" if gate_pass else "FAIL",
+    }
+    q_path = out_dir / f"quality_{TODAY}.json"
+    history: list = []
+    if q_path.exists():
+        try:
+            loaded = json.loads(q_path.read_text(encoding="utf-8"))
+            history = loaded if isinstance(loaded, list) else [loaded]
+        except Exception:
+            history = []
+    history.append(snapshot)
+    q_path.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"품질 기록: data/{q_path.name} ({len(history)}번째 스냅샷)")
+
     # 자동 점검 게이트: 전부 실패하거나 0건이면 중단
-    if total == 0 or ok_sources == 0:
+    if not gate_pass:
         print("품질 게이트: FAIL (수집 0건 또는 전 소스 실패) → exit 1")
         return 1
     print("품질 게이트: PASS")
