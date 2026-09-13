@@ -2,7 +2,7 @@
 
 매일 아침 뉴스·블로그를 자동 수집·정제해 **AI 요약이 붙은 Daily Brief**로 내보내는 무인 데이터 파이프라인. 데이터 분석가 지원 포트폴리오.
 
-> 트렌드 수집기가 하루 3회(08:30·13:00·18:00 KST) 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 주고 텔레그램으로 전달한다.
+> 트렌드 수집기가 하루 3회(08:30·13:07·18:07 KST) 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 주고 텔레그램으로 전달한다.
 
 ![pipeline](docs/pipeline-diagram.html) <!-- 데이터 흐름 다이어그램: docs/pipeline-diagram.html -->
 
@@ -14,8 +14,9 @@
 
 - **데이터 파이프라인 설계**: 수집 → 적재 → 필터 → 판정 → 검증 → 발행
 - **사람/기계/AI 경계 설계**: 결정론적 규칙으로 노이즈를 먼저 걷어내고, 애매한 판단만 AI에 위임 (토큰 비용 통제)
-- **결정론적 품질 검증**: 매 실행 V3 체크리스트, 이상 시 스스로 중단(exit 1) + 이슈 자동 생성
+- **결정론적 품질 검증**: 매 실행 V3 체크리스트를 `data/quality_*.json`으로 커밋·보존하고 리포트에 노출, 이상 시 스스로 중단(exit 1) + 이슈 자동 생성
 - **스케줄 운영 / 실패 복구**: GitHub Actions cron, 다음 실행 시 빠진 구간 재수집
+- **운영 관측성**: cron best-effort로 인한 발송 지연·누락 원인을 로그·품질기록으로 진단하는 절차를 Claude Code 스킬(`diagnose-brief-send`)로 코드화
 - **AI 연동**: Claude(OAuth) 보조 요약, 카테고리당 1회 호출로 비용 최소화
 
 ## 사람 / 기계 / AI 경계 (설계 핵심)
@@ -31,6 +32,7 @@
 ```
 collect.py   RSS 12소스 수집 + 홍보/중복 규칙 필터 → data/raw_YYYY-MM-DD.jsonl
    │           (전 소스 실패 또는 0건이면 exit 1)
+   │           V3 품질 지표 → data/quality_YYYY-MM-DD.json (커밋·보존)
 report.py    카테고리별 AI 흐름요약·읽을가치 판정(Claude, OAuth) + 인터랙티브 HTML
    │           결과는 data/ai_cache 에 저장 → 재실행 시 재호출 없음(비용 0)
 docs/        daily-brief-*.html + index.html (GitHub Pages)
@@ -52,14 +54,14 @@ python src/run_daily.py
 
 ## 무인 운영 (GitHub Actions)
 
-`.github/workflows/daily.yml` — 하루 3회(08:30·13:00·18:00 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만.
+`.github/workflows/daily.yml` — 하루 3회(08:30·13:07·18:07 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만. cron은 best-effort라 지연·누락이 가능하며, 원인은 실행 로그(`gh run`)와 품질 기록으로 진단한다(`diagnose-brief-send` 스킬).
 
 1. GitHub 레포에 이 프로젝트 push
 2. `claude setup-token` 으로 OAuth 토큰 발급 → 레포 **Settings → Secrets → Actions** 에 `CLAUDE_CODE_OAUTH_TOKEN` 등록
 3. **Settings → Pages** 에서 소스를 `main` 브랜치 `/docs` 로 지정
 4. 매일 자동 실행 → `docs/index.html` 이 최신 Daily Brief로 갱신 (실패 시 Issue 자동 생성)
 
-## 품질 체크리스트 (V3, 매 실행 출력)
+## 품질 체크리스트 (V3, 매 실행 기록·노출)
 
 1. 소스별 수집 건수 (0건이면 차단 의심)
 2. 홍보 필터 제거 건수/율
@@ -68,10 +70,12 @@ python src/run_daily.py
 5. 카테고리 분포
 6. AI 판정 호출 건수·토큰·추정 비용
 
+> 이 지표는 `data/quality_{날짜}.json`으로 커밋돼 재현·추적 가능하고, 리포트 하단 '품질 검증 기록' 섹션에도 노출된다(기존엔 실행 로그에만 출력돼 수십 일 뒤 휘발).
+
 ## 스택
 
 Python 3.11+ · feedparser · Claude(claude-haiku-4-5, OAuth CLI) · GitHub Actions · GitHub Pages · Telegram Bot API(선택, stdlib만)
-다이어그램: `diagram-design` 스킬(Data flow)
+다이어그램: `diagram-design` 스킬(Data flow) · 운영 진단: `diagnose-brief-send` 스킬(발송 지연·누락 원인 추적)
 
 ## 직접 내 것으로 쓰기 (Fork & Setup)
 
