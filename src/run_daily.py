@@ -37,13 +37,15 @@ if __name__ == "__main__":
     node_dir = r"C:\Program Files\nodejs"
     if os.path.isdir(node_dir) and node_dir not in os.environ.get("PATH", ""):
         os.environ["PATH"] = os.environ["PATH"] + os.pathsep + node_dir
-    # 그날 첫 실행이면 AI 전체 브리핑, 아니면 AI 생략(증분 헤드라인만) → 비용 0
-    first_run = not (ROOT / "data" / f"seen_{TODAY}.json").exists()
+    # 발송 모드는 slot.py 가 단일 판정(아침 이후 첫 요약=brief, 새벽/발송후=headlines).
+    sys.path.insert(0, str(SRC))
+    import slot
+    is_brief = slot.decide_mode(TODAY) == "brief"
     step("1) 수집 + 규칙 필터", "collect.py")
-    if first_run:
+    if is_brief:
         step("2) AI 요약 + 리포트 생성 (아침 전체 브리핑)", "report.py")
     else:
-        print("\n[안내] 오늘 이미 브리핑을 보냈음 → AI 재판정 생략, 새 헤드라인만 발송(비용 0)")
+        print("\n[안내] 오늘 요약은 이미 보냈거나 새벽 구간 → AI 생략, 새 헤드라인만 발송(비용 0)")
     soft_step("3) 텔레그램 발송 (토큰 있을 때만)", "telegram_notify.py")
     print("\n✅ 완료: docs/ 에 오늘자 리포트가 생성되었습니다.")
     print("   Notion 카드는 리포트에서 원하는 카드를 골라 선택 발행하세요:")

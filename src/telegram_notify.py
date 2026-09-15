@@ -4,16 +4,16 @@ telegram_notify.py — Daily Brief를 텔레그램으로 발송한다(하루 여
 
 수집은 collect.py 가 이미 해두었다. 이 스크립트는 재수집하지 않는다.
 
-두 가지 모드 (그날 첫 실행인지로 자동 판단):
-  - brief   : 그날 첫 발송(아침). report.py 의 AI 픽/요약을 전체 발송.
+두 가지 모드 (slot.decide_mode 가 시각 기준으로 판정 — slot.py 참조):
+  - brief   : 아침(KST 08시~) + 그날 요약 미발송. report.py 의 AI 픽/요약을 전체 발송.
               입력 data/picks_{날짜}.json, data/ai_cache_{날짜}.json
-  - headlines: 이후 발송(점심/저녁). AI 없이, 새로 수집된 기사 헤드라인만 발송.
+  - headlines: 그 외(요약 이미 발송 / 자정~새벽). AI 없이 새로 수집된 헤드라인만 발송.
               입력 data/raw_{날짜}.jsonl (collect.py 산출물)
 
 증분 추적:
   - data/seen_{날짜}.json 에 그날 수집·노출한 기사 hash 를 누적 기록한다.
-  - "첫 실행" = seen 파일이 아직 없는 상태 → brief 모드.
-  - 이후엔 seen 에 없는(=새로 뜬) 기사만 headlines 로 발송.
+  - headlines 는 seen 에 없는(=새로 뜬) 기사만 발송한다.
+  - 요약 발송 여부는 data/brief_{날짜}.json 마커로 따로 관리한다(slot.py).
   - 날짜별 파일이라 다음날이면 자동 리셋 → 다시 아침 brief.
 
 인증(환경변수): TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, SITE_URL(선택)
@@ -37,6 +37,8 @@ import urllib.request
 sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "src"))
+import slot  # noqa: E402  발송 모드(brief|headlines) 단일 판정
 KST = datetime.timezone(datetime.timedelta(hours=9))
 CAT_ORDER = ["경제", "사회", "연예", "실무", "내소스"]
 CAT_EMOJI = {"경제": "💹", "사회": "🏛️", "연예": "🎬", "실무": "🛠️", "내소스": "📌"}
@@ -216,10 +218,10 @@ def main() -> int:
 
     date = args.date
     seen = load_seen(date)
-    is_first = not seen_path(date).exists()
-    mode = "brief" if is_first else "headlines"
+    mode = slot.decide_mode(date)
+    is_brief = mode == "brief"
 
-    blocks = build_brief(date) if is_first else build_headlines(date, seen)
+    blocks = build_brief(date) if is_brief else build_headlines(date, seen)
     if not blocks:
         print(f"[telegram] {date} ({mode}) 발송할 내용이 없습니다 — 스킵")
         return 0
@@ -258,6 +260,8 @@ def main() -> int:
     # 전부 성공했을 때만 seen 기록(부분 실패 시 다음 실행에서 재시도되게 남겨둔다)
     if fails == 0:
         save_seen(date, all_hashes)
+        if is_brief:
+            slot.mark_brief_sent(date)  # 그날 요약 완료 표시 → 이후 실행은 headlines
         print(f"[telegram] ({mode}) 발송 완료 {sent_ok}개 · seen {len(all_hashes)}건 기록")
     else:
         print(f"[telegram] ({mode}) 발송 {sent_ok}/{len(messages)}개 (실패 {fails}) — 기록 보류")

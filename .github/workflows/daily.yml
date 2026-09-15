@@ -30,29 +30,26 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
-      # 그날 첫 실행이면 전체 브리핑(AI), 아니면 증분 헤드라인(AI 생략).
-      # 판정 기준: data/seen_{날짜}.json 존재 여부(첫 발송 시 telegram 이 생성·커밋).
-      - name: Detect first run of day (KST)
+      # 발송 모드 판정을 slot.py 단일 지점에 위임(시각 기준).
+      #   brief    = 아침(KST 08시~) + 그날 요약 미발송 → 전체 브리핑(AI)
+      #   headlines= 그 외(요약 이미 발송 / 자정~새벽 구간) → 증분 헤드라인(AI 생략)
+      # cron 지연으로 저녁 슬롯이 자정을 넘겨도 새벽 요약이 나가지 않게 하는 장치.
+      - name: Decide send mode (KST)
         id: slot
         run: |
-          DAY=$(TZ=Asia/Seoul date +%F)
-          if [ -f "data/seen_${DAY}.json" ]; then
-            echo "first=false" >> "$GITHUB_OUTPUT"
-            echo "오늘 이미 브리핑 발송됨 → 증분(헤드라인) 모드, AI 생략"
-          else
-            echo "first=true" >> "$GITHUB_OUTPUT"
-            echo "오늘 첫 실행 → 전체 브리핑 모드(AI)"
-          fi
+          MODE=$(python src/slot.py)
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "발송 모드: $MODE"
 
       - name: Collect + rule filter
         run: python src/collect.py
 
       - name: Install Claude Code CLI
-        if: steps.slot.outputs.first == 'true'
+        if: steps.slot.outputs.mode == 'brief'
         run: curl -fsSL https://claude.ai/install.sh | bash
 
       - name: Generate report (AI summary via OAuth)
-        if: steps.slot.outputs.first == 'true'
+        if: steps.slot.outputs.mode == 'brief'
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
