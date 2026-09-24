@@ -316,13 +316,37 @@ def test_malformed_url() -> None:
     except Exception as ex:
         check(False, f"discover_and_fetch 가 {type(ex).__name__} 을 던짐: {ex}")
 
-    # _parse_feed 도 스스로 막아야 한다. 3단계의 urljoin 은 페이지 HTML 의
-    # href 로 주소를 만들므로, 진입부 검증을 통과한 URL 이어도 기형이 될 수 있다.
+    # _parse_feed 도 기형 주소를 스스로 막아야 한다.
     try:
         r = fetch_article._parse_feed(MALFORMED_URLS[0])
         check(r.entries == [], "_parse_feed 가 기형 URL 에서 빈 entries 를 안 돌려줌")
     except Exception as ex:
         check(False, f"_parse_feed 가 {type(ex).__name__} 을 던짐: {ex}")
+
+
+def test_malformed_href_in_page() -> None:
+    """3단계 자동탐지가 페이지의 기형 href 를 만나도 예외를 안 던진다.
+
+    href 는 남의 사이트 HTML 에서 온다. 진입부 URL 검증을 통과한 정상 주소라도
+    그 페이지가 깨진 링크를 선언하고 있으면 urljoin 이 거기서 ValueError 를 낸다.
+    _parse_feed 안에 가드를 두는 것으로는 못 막는다. urljoin 은 인자 평가
+    시점에 터지므로 _parse_feed 는 호출되지도 않기 때문이다.
+    네트워크를 타지 않는다(_fetch_html 을 가짜로 바꾼다).
+    """
+    page = ('<link rel="alternate" type="application/rss+xml" '
+            'href="http://[2001:db8::1/feed">')
+    real_fetch = fetch_article._fetch_html
+    fetch_article._fetch_html = lambda u, attempts=2: page
+    try:
+        try:
+            items, how = fetch_article.discover("https://example.com/page")
+        except Exception as ex:
+            check(False, f"기형 href 페이지에서 discover 가 {type(ex).__name__} 을 던짐: {ex}")
+            return
+        check(items == [], f"기형 href 페이지에서 빈 목록이 아님: {items}")
+        check(how in fetch_article.RESOLVE_LABELS, f"라벨이 계약 밖: {how!r}")
+    finally:
+        fetch_article._fetch_html = real_fetch
 
 
 def run() -> None:
@@ -332,6 +356,7 @@ def run() -> None:
     test_discover_contract()
     test_discover_order()
     test_malformed_url()
+    test_malformed_href_in_page()
     if "--network" in sys.argv:
         print("네트워크 통합 테스트 (실제 사이트 접속):")
         test_network()

@@ -13,7 +13,7 @@ discover(url) -> (글 목록, 해석경로) 가 5단계 체인으로 URL 을 해
 실패해도 예외를 밖으로 던지지 않고 빈 목록/라벨을 돌려 파이프라인이 계속 진행되게 한다.
 표준 라이브러리 + feedparser(기존 의존성)만 사용.
 """
-import contextlib, re, html, socket, urllib.request, urllib.error, urllib.parse, time
+import contextlib, re, html, socket, urllib.request, urllib.parse, time
 import feedparser
 
 UA = "Mozilla/5.0 (compatible; DailyBriefBot/1.0; +https://github.com/yrkyryk/daily-brief)"
@@ -58,7 +58,9 @@ def _fetch_html(url: str, attempts: int = 2) -> str | None:
                 charset = resp.headers.get_content_charset() or "utf-8"
                 raw = resp.read(1_000_000)
                 return raw.decode(charset, "replace")
-        except (urllib.error.URLError, urllib.error.HTTPError, ValueError):
+        # OSError 가 URLError·HTTPError·socket.timeout 을 전부 포함한다(셋 다 서브클래스).
+        # LookupError 는 서버가 없는 charset 을 알려줄 때 decode 가 내는 것이라 별도다.
+        except (OSError, ValueError, LookupError):
             if attempt < attempts:
                 time.sleep(min(2 ** attempt, 8))
                 continue
@@ -174,7 +176,7 @@ def _from_feed(feed, source_hint: str) -> list[dict]:
     return items
 
 
-# discover() 가 돌려줄 수 있는 해석경로 라벨 8개. collect.py 가 집계 키로 쓰는데,
+# discover() 가 돌려줄 수 있는 해석경로 라벨 9개. collect.py 가 집계 키로 쓰는데,
 # collect.py 는 자체 예외 처리 경로에서 열 번째 키 "에러" 를 따로 더 쓴다.
 RESOLVE_LABELS = (
     "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
@@ -231,9 +233,16 @@ def discover(url: str) -> tuple[list[dict], str]:
         if m:
             href = re.search(r'href=["\']([^"\']+)["\']', m.group(0), re.I)
             if href:
-                df = _parse_feed(urllib.parse.urljoin(url, href.group(1)))
-                if df.entries:
-                    return _from_feed(df, _domain(url)), "자동탐지"
+                # href 는 남의 사이트 HTML 에서 온다. 깨진 링크면 urljoin 이
+                # 여기서 터지므로, _parse_feed 안의 가드로는 못 막는다.
+                try:
+                    feed_url = urllib.parse.urljoin(url, href.group(1))
+                except ValueError:
+                    feed_url = None
+                if feed_url:
+                    df = _parse_feed(feed_url)
+                    if df.entries:
+                        return _from_feed(df, _domain(url)), "자동탐지"
 
     # ④ 단일 글 폴백. 경로 추측(⑤)보다 먼저 본다: 개별 글 URL 인데 그 페이지에
     # <link rel=alternate> 가 없는 경우, ⑤ 가 먼저 돌면 블로그 루트 피드를 찾아내
