@@ -331,11 +331,16 @@ def test_malformed_href_in_page() -> None:
     그 페이지가 깨진 링크를 선언하고 있으면 urljoin 이 거기서 ValueError 를 낸다.
     _parse_feed 안에 가드를 두는 것으로는 못 막는다. urljoin 은 인자 평가
     시점에 터지므로 _parse_feed 는 호출되지도 않기 때문이다.
-    네트워크를 타지 않는다(_fetch_html 을 가짜로 바꾼다).
+
+    네트워크를 전혀 타지 않도록 _parse_feed 와 _fetch_html 을 둘 다 바꾼다.
+    _fetch_html 만 바꾸면 ① 단계가 진짜 주소로 _parse_feed 를 불러 실제로
+    접속하러 나간다(feedparser 는 자체 HTTP 를 쓴다).
     """
     page = ('<link rel="alternate" type="application/rss+xml" '
             'href="http://[2001:db8::1/feed">')
-    real_fetch = fetch_article._fetch_html
+    orig_parse_feed = fetch_article._parse_feed
+    orig_fetch_html = fetch_article._fetch_html
+    fetch_article._parse_feed = lambda u: _FakeFeed([])
     fetch_article._fetch_html = lambda u, attempts=2: page
     try:
         try:
@@ -346,8 +351,8 @@ def test_malformed_href_in_page() -> None:
         check(items == [], f"기형 href 페이지에서 빈 목록이 아님: {items}")
         check(how in fetch_article.RESOLVE_LABELS, f"라벨이 계약 밖: {how!r}")
     finally:
-        fetch_article._fetch_html = real_fetch
-
+        fetch_article._parse_feed = orig_parse_feed
+        fetch_article._fetch_html = orig_fetch_html
 
 def run() -> None:
     test_resolve_feed()
