@@ -114,9 +114,32 @@ def test_accept_as_article() -> None:
     check(fetch_article.MIN_ARTICLE_CHARS == 200, "MIN_ARTICLE_CHARS 가 200 이 아님")
 
 
+def test_socket_timeout_restores() -> None:
+    """타임아웃 컨텍스트는 전역 상태를 건드리므로 반드시 복원돼야 한다.
+
+    복원에 실패하면 같은 프로세스의 collect.py 뉴스 수집까지 영향을 받는다.
+    """
+    import socket
+    before = socket.getdefaulttimeout()
+    with fetch_article._socket_timeout(3):
+        check(socket.getdefaulttimeout() == 3, "컨텍스트 안에서 타임아웃이 안 걸림")
+    check(socket.getdefaulttimeout() == before, "컨텍스트를 빠져나온 뒤 복원 안 됨")
+
+    # 예외가 나도 복원돼야 한다.
+    try:
+        with fetch_article._socket_timeout(3):
+            raise RuntimeError("의도된 예외")
+    except RuntimeError:
+        pass
+    check(socket.getdefaulttimeout() == before, "예외 발생 시 복원 안 됨")
+
+    check(fetch_article.SOURCE_BUDGET > 0, "SOURCE_BUDGET 이 설정 안 됨")
+
+
 def run() -> None:
     test_resolve_feed()
     test_accept_as_article()
+    test_socket_timeout_restores()
     if FAILURES:
         print(f"FAIL: {len(FAILURES)}/{CHECKED} 실패")
         for f in FAILURES:

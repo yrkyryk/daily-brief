@@ -10,12 +10,15 @@ discover_and_fetch(url):
 실패해도 예외를 밖으로 던지지 않고 빈 목록/None 을 돌려 파이프라인이 계속 진행되게 한다.
 표준 라이브러리 + feedparser(기존 의존성)만 사용.
 """
-import re, html, urllib.request, urllib.error, urllib.parse, time
+import contextlib, re, html, socket, urllib.request, urllib.error, urllib.parse, time
 import feedparser
 
 UA = "Mozilla/5.0 (compatible; DailyBriefBot/1.0; +https://github.com/yrkyryk/daily-brief)"
 PER_SOURCE = 5          # 피드/홈에서 가져올 최근 글 수
 BODY_CAP = 1500         # 본문 발췌 최대 길이
+FETCH_TIMEOUT = 8       # HTML 한 번 받는 데 쓰는 상한(초)
+FEED_TIMEOUT = 8        # feedparser 한 번에 쓰는 상한(초)
+SOURCE_BUDGET = 20      # 소스 하나에 쓰는 총 상한(초). 경로 추측 단계를 끊는 데 쓴다
 
 # 피드를 스스로 선언하지 않는 블로그 플랫폼의 피드 주소 규칙.
 # 네이버 블로그용 하드코딩 특례를 일반화한 것이다(Task 4 에서 특례를 제거한다).
@@ -39,12 +42,12 @@ def resolve_feed(url: str) -> str | None:
     return None
 
 
-def _fetch_html(url: str, attempts: int = 3) -> str | None:
+def _fetch_html(url: str, attempts: int = 2) -> str | None:
     """HTML 원문. 일시 오류는 지수 백오프로 재시도. 실패 시 None."""
     for attempt in range(1, attempts + 1):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=15) as resp:
+            with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
                 charset = resp.headers.get_content_charset() or "utf-8"
                 raw = resp.read(1_000_000)
                 return raw.decode(charset, "replace")
@@ -110,6 +113,27 @@ def accept_as_article(url: str, page: str) -> bool:
     if _meta(page, "og:type").lower() == "article":
         return True                                    # 사이트가 직접 선언
     return len(fetch_text(url, page=page) or "") >= MIN_ARTICLE_CHARS
+
+
+@contextlib.contextmanager
+def _socket_timeout(sec: float):
+    """소켓 기본 타임아웃을 한시적으로 건다.
+
+    feedparser.parse() 에는 타임아웃 인자가 없어 전역 기본값을 쓸 수밖에 없다.
+    전역 상태라 같은 프로세스의 다른 호출에도 영향을 주므로 반드시 복원한다.
+    """
+    old = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(sec)
+    try:
+        yield
+    finally:
+        socket.setdefaulttimeout(old)
+
+
+def _parse_feed(url: str):
+    """타임아웃을 건 feedparser.parse."""
+    with _socket_timeout(FEED_TIMEOUT):
+        return feedparser.parse(url)
 
 
 def _domain(url: str) -> str:
