@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-fetch_article.py — 사용자 커스텀 소스(블로그 홈/개별 글) 수집.
+fetch_article.py: 사용자 커스텀 소스(블로그 홈/개별 글) 수집.
 
-discover_and_fetch(url):
-  1) feedparser 로 파싱 시도(URL 자체가 RSS/Atom) → 최근 글 목록
-  2) 없으면 HTML 에서 <link rel="alternate" type="application/rss+xml"> 피드 탐지 → 재시도
-  3) 그래도 없으면 그 페이지를 '단일 글'로 취급 (og:title + 본문 발췌)
+discover(url) -> (글 목록, 해석경로) 가 5단계 체인으로 URL 을 해석한다.
+  1) URL 자체가 피드인지 시도
+  2) 안 되면 플랫폼 규칙표(resolve_feed)로 피드 주소를 추정해 재시도
+  3) 안 되면 HTML 에서 <link rel="alternate" type="application/rss+xml"> 자동탐지해 재시도
+  4) 안 되면 그 페이지를 '단일 글'로 취급 (가드: accept_as_article)
+  5) 마지막으로 흔한 피드 경로(/rss, /feed 등)를 추측
 
-실패해도 예외를 밖으로 던지지 않고 빈 목록/None 을 돌려 파이프라인이 계속 진행되게 한다.
+해석경로는 RESOLVE_LABELS 여덟 값 중 하나로 돌아와 품질 기록에 집계된다.
+실패해도 예외를 밖으로 던지지 않고 빈 목록/라벨을 돌려 파이프라인이 계속 진행되게 한다.
 표준 라이브러리 + feedparser(기존 의존성)만 사용.
 """
 import contextlib, re, html, socket, urllib.request, urllib.error, urllib.parse, time

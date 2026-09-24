@@ -158,11 +158,49 @@ def test_discover_contract() -> None:
         f"라벨 집합이 바뀜: {fetch_article.RESOLVE_LABELS}")
 
 
+# 스펙 1절 실측 대상. (URL, 목록 수집을 기대하는가)
+NETWORK_CASES = [
+    ("https://blog.naver.com/adcsk",         True),
+    ("https://jojoldu.tistory.com/",         True),
+    ("https://brunch.co.kr/@svillustrated",  True),
+    ("https://velog.io/@teo",                True),   # 이전: 쓰레기 1건
+    ("https://medium.com/daangn",            True),   # 이전: 0건
+    ("https://d2.naver.com/home",            True),   # 이전: 쓰레기 1건
+    ("https://www.oopy.io",                  False),  # 피드가 실제로 없다. 0건이 정답
+]
+
+
+def test_network() -> None:
+    """실제 사이트로 완료 기준을 증명한다. --network 플래그로만 돈다."""
+    import time as _t
+    for url, expect_list in NETWORK_CASES:
+        t0 = _t.monotonic()
+        items, how = fetch_article.discover(url)
+        dt = _t.monotonic() - t0
+        print(f"  {url[:40]:42s} {len(items):2d}건 ({how}, {dt:.1f}s)")
+
+        # 완료 기준 3: 소스당 10초 이내
+        check(dt < 10, f"{url} 가 {dt:.1f}초 소요 (10초 초과)")
+
+        if expect_list:
+            check(len(items) >= 2, f"{url} 가 목록을 못 가져옴 ({len(items)}건, {how})")
+            # 완료 기준 2: 목록 페이지 자신이 글로 둔갑하면 안 된다
+            check(all(it["link"].rstrip("/") != url.rstrip("/") for it in items),
+                  f"{url} 가 자기 자신을 글로 반환 (쓰레기 단일글)")
+        else:
+            check(items == [], f"{url} 는 0건이어야 하는데 {len(items)}건 ({how})")
+            check(how in ("피드없음·목록페이지", "접속실패"),
+                  f"{url} 라벨이 {how!r}")
+
+
 def run() -> None:
     test_resolve_feed()
     test_accept_as_article()
     test_socket_timeout_restores()
     test_discover_contract()
+    if "--network" in sys.argv:
+        print("네트워크 통합 테스트 (실제 사이트 접속):")
+        test_network()
     if FAILURES:
         print(f"FAIL: {len(FAILURES)}/{CHECKED} 실패")
         for f in FAILURES:
