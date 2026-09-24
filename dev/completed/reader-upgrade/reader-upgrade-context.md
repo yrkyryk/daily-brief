@@ -1,5 +1,17 @@
 # reader-upgrade · Context
 
+> ## 완료 기록 (2026-09-25)
+>
+> 3개 Phase 의 산출물이 모두 코드에 존재하는 것을 확인했다.
+> 체크박스는 당시에 채우지 않았으나 실물로 검증했다.
+>
+> - Phase 1: `my_sources.txt`, `src/fetch_article.py`, `collect.py` 의 내소스 병합
+> - Phase 2: `interests.txt`, `src/interests.py`(`load()`/`match()`), `report.py` 관심 섹션
+> - Phase 3: `notion_publish.py --from`, `daily.yml` 에서 Notion 단계 제거됨
+>
+> 이후 `fetch_article.py` 는 blog-crawl 태스크에서 크게 개편됐다.
+> 이 문서의 파일 설명은 2026-09-11 시점 기준이므로 현재 코드와 다르다.
+
 Last Updated: 2026-09-11
 
 ## 목표

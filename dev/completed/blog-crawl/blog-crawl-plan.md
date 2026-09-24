@@ -8,7 +8,7 @@
 
 **Tech Stack:** Python 3.11+ · 표준 라이브러리 · feedparser (기존 의존성). **새 의존성 추가 없음**
 
-**Spec:** `dev/active/blog-crawl/blog-crawl-design.md`
+**Spec:** `dev/completed/blog-crawl/blog-crawl-design.md`
 
 ## Global Constraints
 

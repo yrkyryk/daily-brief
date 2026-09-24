@@ -1,5 +1,23 @@
 # 블로그 글 수집 개선 컨텍스트
 
+> ## 완료 기록 (2026-09-25)
+>
+> 계획대로 끝났다. Task 1~6 전부 수행, main 에 병합·푸시 완료.
+> 커밋: `d5527e8`(규칙표) `8de7c57`(가드) `34b59dc`(타임아웃)
+> `b477184`(체인) `0df540b`(수정) `6753feb`(집계) `ada2a48`(검증·문서)
+> `bdec738`(최종리뷰 반영) `8bb788e` `fffe152` `1ad5189`(기형 URL 후속)
+>
+> 완료기준 5개 모두 충족. 최악 소요 17.0초 → 4.8초.
+> 벨로그·미디엄·D2 가 쓰레기 1건/0건에서 각 5건 수집으로 바뀌었다.
+>
+> **남은 후속 과제 2건** (병합 시점에 의도적으로 안 고침):
+> 1. `PLATFORM_FEEDS` 정규식이 도메인 경계에 앵커되지 않아, 벨로그·미디엄·
+>    D2·네이버의 **개별 글 URL** 을 넣으면 그 블로그 최신 목록이 온다.
+>    고치려면 실사이트 재검증이 필요해 이 병합에 안 태웠다.
+>    현재 동작은 `my_sources.txt` 주석에 사실대로 적혀 있다.
+> 2. `collect.py` 의 `내소스_해석경로` 키가 내소스 0개일 때 아예 빠진다.
+>    품질기록만 보고 "미설정"과 "집계 회귀"를 구분할 수 없다.
+
 **Last Updated:** 2026-09-24
 
 ## 한 줄 요약
@@ -19,9 +37,9 @@ RSS 를 스스로 선언하지 않는 곳에서 조용히 무너지는 것을 �
 
 ## 문서
 
-- 설계 스펙: `dev/active/blog-crawl/blog-crawl-design.md`
-- 구현 계획: `dev/active/blog-crawl/blog-crawl-plan.md`
-- 체크리스트: `dev/active/blog-crawl/blog-crawl-tasks.md`
+- 설계 스펙: `dev/completed/blog-crawl/blog-crawl-design.md`
+- 구현 계획: `dev/completed/blog-crawl/blog-crawl-plan.md`
+- 체크리스트: `dev/completed/blog-crawl/blog-crawl-tasks.md`
 
 ## 의사결정 기록
 

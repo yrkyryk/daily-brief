@@ -62,7 +62,7 @@
 - [ ] `/daily-brief` 커스텀 커맨드 + `brief-qa` 스킬 문서화
 - [ ] README: 문제 → 설계 → 사람/기계 경계 → 검증 → 운영 기록
 - [ ] before/after 시간, 실패→복구 사례 정리
-- [ ] `dev/active/` → `dev/completed/` 이동
+- [x] `dev/active/` → `dev/completed/` 이동
 
 ## 직접 만들 스킬 (하이라이트)
 

@@ -1,5 +1,25 @@
 # Daily Brief 프로젝트 컨텍스트
 
+> ## 완료 기록 (2026-09-25)
+>
+> **목표는 달성됐으나 계획과 갈라졌다.** 파이프라인은 무인으로 돌고 있고
+> GitHub Pages 에 리포트가 나가지만, 이 계획서가 지시한 구조는 안 만들어졌다.
+>
+> 계획에 있었으나 **존재하지 않는 것**:
+>
+> | 계획 | 실제 |
+> |---|---|
+> | `sources.yaml` | `collect.py` 의 `SOURCES` 리스트로 인라인 |
+> | `src/load.py` (DuckDB 적재) | 없음. `data/raw_*.jsonl` 로 끝 |
+> | `src/filter_rules.py` | `collect.py` 의 `is_promo`/`PROMO_AXES` 로 흡수 |
+> | `src/quality_check.py` | `collect.py` 의 체크리스트·`quality_*.json` 로 흡수 |
+> | DuckDB 의존성 | `requirements.txt` 는 `feedparser>=6.0` 한 줄 |
+>
+> 멱등성은 DuckDB 유니크 제약 대신 `seen_*.json` 과 해시 dedup 으로 처리했다.
+>
+> 이 문서를 현실에 맞게 고치지 않고 그대로 둔다. 무엇을 계획했고 무엇이
+> 실제로 만들어졌는지의 차이 자체가 기록이다.
+
 **Last Updated: 2026-09-10**
 
 ## 프로젝트 한 줄
