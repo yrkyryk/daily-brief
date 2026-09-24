@@ -136,10 +136,33 @@ def test_socket_timeout_restores() -> None:
     check(fetch_article.SOURCE_BUDGET > 0, "SOURCE_BUDGET 이 설정 안 됨")
 
 
+def test_discover_contract() -> None:
+    """discover() 의 계약: 항상 (목록, 라벨) 쌍을 돌려준다.
+
+    라벨 문자열은 collect.py 가 집계 키로 쓰므로 오타가 나면 통계가 조용히 갈라진다.
+    """
+    # 빈 입력·주석은 네트워크를 타지 않고 즉시 돌아와야 한다.
+    for bad in ("", "   ", "# 주석입니다"):
+        items, how = fetch_article.discover(bad)
+        check(items == [], f"discover({bad!r}) 가 빈 목록이 아님")
+        check(how == "빈입력", f"discover({bad!r}) 라벨이 {how!r}")
+
+    # 하위 호환 래퍼가 목록만 돌려주는지
+    check(fetch_article.discover_and_fetch("") == [],
+          "discover_and_fetch 하위 호환이 깨짐")
+
+    # 라벨 집합이 문서화된 8개와 일치하는지(collect.py 와의 계약)
+    check(fetch_article.RESOLVE_LABELS == (
+        "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
+        "단일글", "피드없음·목록페이지", "접속실패", "빈입력"),
+        f"라벨 집합이 바뀜: {fetch_article.RESOLVE_LABELS}")
+
+
 def run() -> None:
     test_resolve_feed()
     test_accept_as_article()
     test_socket_timeout_restores()
+    test_discover_contract()
     if FAILURES:
         print(f"FAIL: {len(FAILURES)}/{CHECKED} 실패")
         for f in FAILURES:

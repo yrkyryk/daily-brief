@@ -159,53 +159,79 @@ def _from_feed(feed, source_hint: str) -> list[dict]:
     return items
 
 
-def discover_and_fetch(url: str) -> list[dict]:
-    """URL 형태를 자동 판별해 글 목록 반환(홈/피드→여러 개, 아티클→1개)."""
+# discover() 가 돌려줄 수 있는 해석경로 라벨. collect.py 가 집계 키로 쓴다.
+RESOLVE_LABELS = (
+    "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
+    "단일글", "피드없음·목록페이지", "접속실패", "빈입력",
+)
+
+
+def discover(url: str) -> tuple[list[dict], str]:
+    """URL 형태를 자동 판별해 (글 목록, 해석경로) 를 돌려준다.
+
+    실패해도 예외를 밖으로 던지지 않는다. 소스 하나가 죽어도 파이프라인은 계속 간다.
+    """
     url = url.strip()
     if not url or url.startswith("#"):
-        return []
+        return [], "빈입력"
 
-    # 1) URL 자체가 피드인지
-    feed = feedparser.parse(url)
+    started = time.monotonic()
+
+    # ① URL 자체가 피드인가.
+    #    반드시 규칙표(②)보다 먼저다. 사용자가 피드 주소를 그대로 넣었을 때
+    #    규칙표가 거기에 피드 경로를 또 덧붙이는 것(medium.com/feed/feed)을 막는다.
+    feed = _parse_feed(url)
     if feed.entries:
-        return _from_feed(feed, _domain(url))
+        return _from_feed(feed, _domain(url)), "피드직접"
 
-    # 1.5) 네이버 블로그: JS 렌더라 목록 URL은 안 되므로 RSS로 우회
-    if "blog.naver.com" in url:
-        m = re.search(r"blogId=([A-Za-z0-9_-]+)", url) or re.search(r"blog\.naver\.com/([A-Za-z0-9_-]+)", url)
-        if m:
-            nf = feedparser.parse(f"https://rss.blog.naver.com/{m.group(1)}.xml")
-            if nf.entries:
-                return _from_feed(nf, m.group(1))
+    # ② 플랫폼 규칙표. 피드를 스스로 선언하지 않는 곳(벨로그·미디엄 등).
+    guess = resolve_feed(url)
+    if guess:
+        pf = _parse_feed(guess)
+        if pf.entries:
+            return _from_feed(pf, _domain(url)), "플랫폼규칙"
 
-    # 1.7) 홈 URL이면 흔한 피드 경로 시도 (티스토리 /rss, 워드프레스 /feed 등)
-    parts = urllib.parse.urlsplit(url)
-    if parts.path in ("", "/"):
-        origin = f"{parts.scheme}://{parts.netloc}"
-        for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
-            cf = feedparser.parse(origin + suffix)
-            if cf.entries:
-                return _from_feed(cf, _domain(url))
-
-    # 2) HTML 에서 피드 자동탐지
+    # ⑤ 를 위해 어차피 HTML 이 필요하므로 여기서 한 번만 받는다.
     page = _fetch_html(url)
+
+    # ③ 사이트가 스스로 선언한 피드. 추측(④)보다 정확하므로 먼저 본다.
     if page:
         m = re.search(
             r'<link[^>]+type=["\']application/(?:rss|atom)\+xml["\'][^>]*>', page, re.I)
         if m:
             href = re.search(r'href=["\']([^"\']+)["\']', m.group(0), re.I)
             if href:
-                feed_url = urllib.parse.urljoin(url, href.group(1))
-                feed = feedparser.parse(feed_url)
-                if feed.entries:
-                    return _from_feed(feed, _domain(url))
+                df = _parse_feed(urllib.parse.urljoin(url, href.group(1)))
+                if df.entries:
+                    return _from_feed(df, _domain(url)), "자동탐지"
 
-        # 3) 단일 글 폴백
+    # ④ 흔한 피드 경로 추측. 예전엔 루트 URL 에만 돌았는데, 그 조건 때문에
+    #    d2.naver.com/home 같은 주소가 통째로 건너뛰어졌다. 이제 경로가 있어도 시도한다.
+    #    다만 모든 URL 에 대해 5번을 두드리게 되므로 총 시간 예산으로 끊는다.
+    parts = urllib.parse.urlsplit(url)
+    origin = f"{parts.scheme}://{parts.netloc}"
+    for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
+        if time.monotonic() - started > SOURCE_BUDGET:
+            break
+        cf = _parse_feed(origin + suffix)
+        if cf.entries:
+            return _from_feed(cf, _domain(url)), "경로추측"
+
+    # ⑤ 단일 글 폴백. 가드를 통과할 때만이다.
+    if page and accept_as_article(url, page):
         title = _meta(page, "og:title")
         if not title:
             t = re.search(r"<title[^>]*>(.*?)</title>", page, re.I | re.S)
             title = html.unescape(t.group(1)).strip() if t else _domain(url)
         body = fetch_text(url, page=page)
         return [{"title": title[:200], "link": url,
-                 "summary": body or "", "pub": "", "source": _domain(url)}]
-    return []
+                 "summary": body or "", "pub": "", "source": _domain(url)}], "단일글"
+
+    if page:
+        return [], "피드없음·목록페이지"
+    return [], "접속실패"
+
+
+def discover_and_fetch(url: str) -> list[dict]:
+    """하위 호환 래퍼. 해석경로가 필요 없는 호출부를 위해 목록만 돌려준다."""
+    return discover(url)[0]
