@@ -193,11 +193,104 @@ def test_network() -> None:
                   f"{url} 라벨이 {how!r}")
 
 
+class _FakeFeed:
+    """feedparser.parse() 가 돌려주는 결과의 최소 흉내.
+
+    _from_feed() 가 실제로 건드리는 것만 갖춘다: entries 리스트와,
+    feed.get("title") 를 호출할 수 있는 dict 형태의 feed 속성.
+    """
+
+    def __init__(self, entries: list[dict]) -> None:
+        self.entries = entries
+        self.feed = {"title": ""}
+
+
+def _fake_entry(link: str = "https://example.com/x") -> list[dict]:
+    return [{"title": "제목", "link": link, "summary": "요약"}]
+
+
+def test_discover_order() -> None:
+    """discover() 의 5단계 체인 순서를 고정한다.
+
+    ①→②→③→④→⑤ 순서가 뒤바뀌면(예: ④·⑤ 가 스왑되면) 여기서 잡힌다.
+    네트워크를 전혀 타지 않도록 _parse_feed 와 _fetch_html 을 가짜로 바꾼다.
+    example.com 은 PLATFORM_FEEDS 어느 규칙과도 안 맞으므로 ② 에서 오검출되지
+    않는다. d2.naver.com·velog.io·medium.com·blog.naver.com 은 반대로 쓴다.
+    """
+    orig_parse_feed = fetch_article._parse_feed
+    orig_fetch_html = fetch_article._fetch_html
+
+    feed_map: dict[str, list] = {}
+    html_map: dict[str, str] = {}
+
+    def fake_parse_feed(url: str):
+        return _FakeFeed(feed_map.get(url, []))
+
+    def fake_fetch_html(url: str, attempts: int = 2):
+        return html_map.get(url)
+
+    fetch_article._parse_feed = fake_parse_feed
+    fetch_article._fetch_html = fake_fetch_html
+
+    try:
+        # ① URL 자체가 피드.
+        feed_map.clear(); html_map.clear()
+        feed_map["https://example.com/direct-feed"] = _fake_entry()
+        items, how = fetch_article.discover("https://example.com/direct-feed")
+        check(how == "피드직접", f"①이 {how!r} (기대: 피드직접)")
+        check(len(items) == 1, f"①의 항목 수가 {len(items)} (기대: 1)")
+
+        # ② 플랫폼 규칙표. 직접 파싱은 0건, 규칙이 가리키는 피드만 항목이 있다.
+        feed_map.clear(); html_map.clear()
+        feed_map["https://v2.velog.io/rss/@teo"] = _fake_entry()
+        items, how = fetch_article.discover("https://velog.io/@teo")
+        check(how == "플랫폼규칙", f"②가 {how!r} (기대: 플랫폼규칙)")
+
+        # ③ 페이지가 선언한 피드(<link rel=alternate>). 선언된 URL만 항목이 있다.
+        feed_map.clear(); html_map.clear()
+        html_map["https://example.com/page"] = (
+            '<html><head><link rel="alternate" type="application/rss+xml" '
+            'href="https://example.com/declared.xml"></head><body></body></html>'
+        )
+        feed_map["https://example.com/declared.xml"] = _fake_entry()
+        items, how = fetch_article.discover("https://example.com/page")
+        check(how == "자동탐지", f"③이 {how!r} (기대: 자동탐지)")
+
+        # ④ 단일 글: accept_as_article 을 통과하는 페이지.
+        # origin 의 /rss 도 항목을 내주도록 심어 둔다. 그래도 ④가 이겨야 한다
+        # (④가 ⑤보다 먼저 검사된다는 것을 고정하는 핵심 단언).
+        feed_map.clear(); html_map.clear()
+        html_map["https://example.com/post/1"] = (
+            '<html><head><meta property="og:type" content="article"></head>'
+            f'<body><article>{"가" * 300}</article></body></html>'
+        )
+        feed_map["https://example.com/rss"] = _fake_entry()
+        items, how = fetch_article.discover("https://example.com/post/1")
+        check(how == "단일글", f"④가 {how!r} (기대: 단일글, ④는 ⑤보다 먼저여야 함)")
+
+        # ⑤ 경로 추측: accept_as_article 은 실패, origin 의 /rss 가 항목을 낸다.
+        feed_map.clear(); html_map.clear()
+        html_map["https://example.com/list"] = "<html><body>목록</body></html>"
+        feed_map["https://example.com/rss"] = _fake_entry()
+        items, how = fetch_article.discover("https://example.com/list")
+        check(how == "경로추측", f"⑤가 {how!r} (기대: 경로추측)")
+
+        # 아무 단계도 안 걸리고 HTML 요청마저 실패하면 접속실패.
+        feed_map.clear(); html_map.clear()
+        items, how = fetch_article.discover("https://example.com/dead")
+        check(items == [] and how == "접속실패",
+              f"실패 케이스가 ({items!r}, {how!r}) (기대: ([], 접속실패))")
+    finally:
+        fetch_article._parse_feed = orig_parse_feed
+        fetch_article._fetch_html = orig_fetch_html
+
+
 def run() -> None:
     test_resolve_feed()
     test_accept_as_article()
     test_socket_timeout_restores()
     test_discover_contract()
+    test_discover_order()
     if "--network" in sys.argv:
         print("네트워크 통합 테스트 (실제 사이트 접속):")
         test_network()

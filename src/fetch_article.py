@@ -21,7 +21,11 @@ PER_SOURCE = 5          # 피드/홈에서 가져올 최근 글 수
 BODY_CAP = 1500         # 본문 발췌 최대 길이
 FETCH_TIMEOUT = 8       # HTML 한 번 받는 데 쓰는 상한(초)
 FEED_TIMEOUT = 8        # feedparser 한 번에 쓰는 상한(초)
-SOURCE_BUDGET = 20      # 소스 하나에 쓰는 시간 예산(초). 단계 경계에서만 검사하므로 진행 중인 요청 하나는 못 끊는다
+# SOURCE_BUDGET 은 ③ 자동탐지·⑤ 경로 추측 단계를 돌릴지만 결정하는 예산이다.
+# ①·② 의 _parse_feed(각 최대 8초), HTML 요청 _fetch_html(재시도 포함 최대 18초)은
+# 이 예산에 걸리지 않는다. 예산을 처음 검사하는 시점에는 이미 이 셋이 다 끝난
+# 뒤라, 최악의 경우 셋만으로 약 34초(8+8+18)가 먼저 든다.
+SOURCE_BUDGET = 20      # 소스 하나당 예산(초). ③·⑤ 단계 실행 여부만 결정한다
 
 # 피드를 스스로 선언하지 않는 블로그 플랫폼의 피드 주소 규칙.
 # 네이버 블로그용 하드코딩 특례를 일반화한 것이다(Task 4 에서 특례를 제거한다).
@@ -162,7 +166,8 @@ def _from_feed(feed, source_hint: str) -> list[dict]:
     return items
 
 
-# discover() 가 돌려줄 수 있는 해석경로 라벨. collect.py 가 집계 키로 쓴다.
+# discover() 가 돌려줄 수 있는 해석경로 라벨 8개. collect.py 가 집계 키로 쓰는데,
+# collect.py 는 자체 예외 처리 경로에서 아홉 번째 키 "에러" 를 따로 더 쓴다.
 RESOLVE_LABELS = (
     "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
     "단일글", "피드없음·목록페이지", "접속실패", "빈입력",
@@ -197,9 +202,10 @@ def discover(url: str) -> tuple[list[dict], str]:
     # ③·④ 를 위해 어차피 HTML 이 필요하므로 여기서 한 번만 받는다.
     page = _fetch_html(url)
 
-    # 여기까지 오는 데 이미 예산을 다 썼으면(①·②·HTML 요청이 느렸다면) 뒤에 남은
-    # 네트워크 단계(③ 자동탐지, ⑤ 경로 추측)는 건너뛰고 바로 ④ 단일 글 판정으로
-    # 간다. 단계 경계에서만 검사하므로 진행 중인 요청 하나를 끊지는 못한다.
+    # SOURCE_BUDGET 을 처음 검사하는 지점이 여기다. ①·② 의 _parse_feed 두 번과
+    # HTML 요청 한 번이 이미 다 끝난 뒤라, 이 시점까지 최악의 경우 약 34초
+    # (8+8+18)가 예산과 무관하게 먼저 흐른다. 여기서부터는 ③ 자동탐지·⑤ 경로
+    # 추측만 예산으로 건너뛰고, 남으면 바로 ④ 단일 글 판정으로 간다.
     budget_left = time.monotonic() - started <= SOURCE_BUDGET
 
     # ③ 사이트가 스스로 선언한 피드. 추측(⑤)보다 정확하므로 먼저 본다.
@@ -230,14 +236,18 @@ def discover(url: str) -> tuple[list[dict], str]:
     #    d2.naver.com/home 같은 주소가 통째로 건너뛰어졌다. 이제 경로가 있어도 시도한다.
     #    다만 모든 URL 에 대해 5번을 두드리게 되므로 총 시간 예산으로 끊는다.
     if budget_left:
-        parts = urllib.parse.urlsplit(url)
-        origin = f"{parts.scheme}://{parts.netloc}"
-        for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
-            if time.monotonic() - started > SOURCE_BUDGET:
-                break
-            cf = _parse_feed(origin + suffix)
-            if cf.entries:
-                return _from_feed(cf, _domain(url)), "경로추측"
+        try:
+            parts = urllib.parse.urlsplit(url)
+        except ValueError:
+            parts = None  # 기형 URL(예: 닫히지 않은 IPv6 주소). 이 단계만 건너뛴다.
+        if parts is not None:
+            origin = f"{parts.scheme}://{parts.netloc}"
+            for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
+                if time.monotonic() - started > SOURCE_BUDGET:
+                    break
+                cf = _parse_feed(origin + suffix)
+                if cf.entries:
+                    return _from_feed(cf, _domain(url)), "경로추측"
 
     if page:
         return [], "피드없음·목록페이지"
