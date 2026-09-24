@@ -195,7 +195,7 @@ git commit -m "feat: 블로그 플랫폼 피드 주소 규칙표 resolve_feed �
 ### Task 2: 단일글 폴백 가드 `accept_as_article()`
 
 **Files:**
-- Modify: `src/fetch_article.py` (`resolve_feed()` 아래)
+- Modify: `src/fetch_article.py` (`fetch_text()` 정의 뒤. Step 3 참조)
 - Test: `tests/test_fetch_blog.py`
 
 **Interfaces:**
@@ -468,7 +468,7 @@ git commit -m "feat: 커스텀 소스 수집에 네트워크 시간 상한 도�
 ### Task 4: 해석 체인 재구성 `discover()`
 
 **Files:**
-- Modify: `src/fetch_article.py:96-150` (`discover_and_fetch` 함수 전체 교체)
+- Modify: `src/fetch_article.py` (`discover_and_fetch` **함수 전체** 교체. Task 1~3 이 위쪽에 코드를 넣으므로 줄 번호로 찾지 말고 함수 이름으로 찾을 것)
 
 **Interfaces:**
 - Consumes: `resolve_feed()` (Task 1), `accept_as_article()` (Task 2), `_parse_feed()` · `SOURCE_BUDGET` (Task 3), 기존 `_from_feed()` (80행) · `_fetch_html()` · `_meta()` · `fetch_text()` · `_domain()`
@@ -515,7 +515,7 @@ python tests/test_fetch_blog.py
 
 - [ ] **Step 3: 최소 구현을 넣는다**
 
-`src/fetch_article.py:96-150` 의 `discover_and_fetch` 함수 **전체**를 아래로 교체한다.
+`discover_and_fetch` 함수 **전체**를 아래로 교체한다. Task 1~3 의 삽입으로 줄 번호가 밀렸으므로 함수 이름으로 찾는다.
 기존 1.5절 네이버 특례는 Task 1 의 규칙표가 대체하므로 함께 사라진다.
 
 ```python
@@ -645,7 +645,7 @@ README 의 V3 품질 철학, `diagnose-brief-send` 스킬과 같은 방향이다
 
 - [ ] **Step 2: 호출을 `discover()` 로 바꾼다**
 
-`src/collect.py:173-174` 를 바꾼다. 바꾸기 전 형태는 다음과 같다.
+`src/collect.py` 의 `discover_and_fetch` 호출부(176행 부근)를 바꾼다. 바꾸기 전 형태는 다음과 같다.
 
 ```python
             try:
@@ -664,7 +664,7 @@ README 의 V3 품질 철학, `diagnose-brief-send` 스킬과 같은 방향이다
 
 - [ ] **Step 3: 로그와 집계에 라벨을 넣는다**
 
-`src/collect.py:196-199` 를 바꾼다. 바꾸기 전 형태는 다음과 같다.
+`src/collect.py` 의 내소스 로그 출력부(197행 부근)를 바꾼다. 바꾸기 전 형태는 다음과 같다.
 
 ```python
                 custom_kept += kept
