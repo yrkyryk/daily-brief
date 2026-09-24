@@ -75,7 +75,7 @@ def load_raw(date: str) -> list[dict]:
 
 
 def seen_path(date: str) -> pathlib.Path:
-    return ROOT / "data" / f"seen_{date}.json"
+    return slot.seen_path(date)   # 경로 정의는 slot.py 단일 지점
 
 
 def load_seen(date: str) -> set[str]:

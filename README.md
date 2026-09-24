@@ -54,12 +54,17 @@ python src/run_daily.py
 
 ## 무인 운영 (GitHub Actions)
 
-`.github/workflows/daily.yml` — 하루 3회(08:30·13:07·18:07 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만. cron은 best-effort라 지연·누락이 가능하며, 원인은 실행 로그(`gh run`)와 품질 기록으로 진단한다(`diagnose-brief-send` 스킬).
+`.github/workflows/daily.yml` — 하루 3회(08:30·13:00·18:00 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만.
+
+발송 시각은 **외부 스케줄러가 `workflow_dispatch` 를 호출해** 결정한다. GitHub 의 cron 은 이 레포에서 상시 2~5시간 지연돼(러너 대기는 0초, 트리거 생성 자체가 늦음) 발송 시각으로 쓸 수 없기 때문이다. 설정 방법과 측정 근거는 [SCHEDULING.md](SCHEDULING.md) 참조. 워크플로우에 남은 cron 2개는 외부 스케줄러가 멈춘 날에만 도는 안전망이다(그날은 10:30 전체 브리핑·18:15 헤드라인 2회). `gate` 잡이 마지막 발송 시각을 보고 중복을 막는다.
+
+발송이 이상할 때의 진단 절차는 `diagnose-brief-send` 스킬에 있다.
 
 1. GitHub 레포에 이 프로젝트 push
 2. `claude setup-token` 으로 OAuth 토큰 발급 → 레포 **Settings → Secrets → Actions** 에 `CLAUDE_CODE_OAUTH_TOKEN` 등록
 3. **Settings → Pages** 에서 소스를 `main` 브랜치 `/docs` 로 지정
-4. 매일 자동 실행 → `docs/index.html` 이 최신 Daily Brief로 갱신 (실패 시 Issue 자동 생성)
+4. [SCHEDULING.md](SCHEDULING.md) 대로 외부 스케줄러(cron-job.org) 등록 — 정시 발송의 핵심
+5. 매일 자동 실행 → `docs/index.html` 이 최신 Daily Brief로 갱신 (실패 시 Issue 자동 생성)
 
 ## 품질 체크리스트 (V3, 매 실행 기록·노출)
 

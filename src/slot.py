@@ -18,12 +18,14 @@ seen 파일과 분리하는 이유: seen 은 헤드라인 증분 추적용이라
 매번 갱신하므로 "요약을 보냈는가"의 신호로 쓸 수 없다.
 """
 import datetime
+import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"           # 테스트에서 재지정 가능
 KST = datetime.timezone(datetime.timedelta(hours=9))
 MORNING_HOUR = 8                   # 이 시각(KST) 이전 실행은 요약 금지(새벽 차단)
+SEND_GAP_HOURS = 6                 # 이 시간 안에 발송이 있었으면 안전망 cron 은 불필요
 
 
 def now_kst() -> datetime.datetime:
@@ -56,7 +58,46 @@ def decide_mode(date: str, now: datetime.datetime | None = None) -> str:
     return "brief"                             # 아침 이후 첫 요약(또는 과거 백필)
 
 
+def seen_path(date: str) -> pathlib.Path:
+    return DATA_DIR / f"seen_{date}.json"
+
+
+def last_send_at(date: str) -> datetime.datetime | None:
+    """그날 마지막 '실제 발송' 시각. 발송 이력이 없으면 None.
+
+    telegram_notify 는 메시지를 전량 발송 성공했을 때만 seen 을 기록한다.
+    따라서 seen 파일의 updated 가 곧 마지막 발송 시각이다.
+    """
+    try:
+        raw = json.loads(seen_path(date).read_text(encoding="utf-8"))
+        return datetime.datetime.fromisoformat(raw["updated"]).astimezone(KST)
+    except Exception:
+        return None
+
+
+def safety_net_suppressed(date: str, now: datetime.datetime | None = None) -> bool:
+    """안전망 cron(schedule 트리거)을 건너뛸지 판정.
+
+    발송 시각은 외부 스케줄러(workflow_dispatch)가 정한다. 그게 살아 있으면
+    최근에 발송이 있었을 테니 안전망은 불필요하다 → 중단해서 중복을 0으로 만든다.
+    외부 스케줄러가 죽은 날에만 안전망이 실제로 발송한다.
+
+    안전망 cron 은 10:30 / 18:15 KST 전후에 도착하므로 자정 경계는 고려하지 않는다.
+    """
+    last = last_send_at(date)
+    if last is None:
+        return False                           # 그날 발송 이력 없음 → 안전망 필요
+    now = (now or now_kst()).astimezone(KST)
+    return (now - last) < datetime.timedelta(hours=SEND_GAP_HOURS)
+
+
 if __name__ == "__main__":
+    # python src/slot.py [날짜]                 → brief | headlines
+    # python src/slot.py [날짜] --safety-check   → ok | suppress (안전망 cron 진행 여부)
     import sys
-    d = sys.argv[1] if len(sys.argv) > 1 else now_kst().strftime("%Y-%m-%d")
-    print(decide_mode(d))
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    d = args[0] if args else now_kst().strftime("%Y-%m-%d")
+    if "--safety-check" in sys.argv:
+        print("suppress" if safety_net_suppressed(d) else "ok")
+    else:
+        print(decide_mode(d))

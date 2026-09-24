@@ -1,12 +1,20 @@
 name: daily-brief
 
-# 하루 3회 (KST). 첫 발송=전체 브리핑, 이후=새로 뜬 소식만(증분).
-# GitHub Actions cron 은 UTC 기준이며 부하 시 몇 분~수십 분 지연될 수 있다(알림용이라 무방).
+# 발송 시각은 "외부 스케줄러"가 workflow_dispatch 로 호출해 결정한다.
+#   08:30 / 13:00 / 18:00 KST — 설정 방법은 SCHEDULING.md 참조.
+#
+# GitHub 의 schedule(cron) 을 발송 시각으로 쓰지 않는 이유:
+#   이 레포 실행 이력 65건에서 러너 대기는 전부 0초인데도 트리거 생성 자체가
+#   상시 지연된다(아침 +2h, 점심/저녁 +5h). 레포 안에서 고칠 수 없는 GitHub 쪽 특성이다.
+#   반면 workflow_dispatch 는 테스트한 24건 전부 대기 0초로 즉시 실행됐다.
+#
+# 아래 schedule 2개는 "안전망"이다. 외부 스케줄러가 죽은 날에만 동작하도록
+# gate 잡이 막는다(정상 운영 중엔 조용히 스킵 → 중복 발송 0).
+# 실제 도착 시각 기준으로 골랐다(측정값: 23:30 UTC→10:30 KST, 04:07 UTC→18:15 KST).
 on:
   schedule:
-    - cron: "30 23 * * *"   # 08:30 KST (전날 23:30 UTC)
-    - cron: "7 4 * * *"     # 13:07 KST (04:07 UTC) — 정각 혼잡 회피
-    - cron: "7 9 * * *"     # 18:07 KST (09:07 UTC) — 정각 혼잡 회피
+    - cron: "30 23 * * *"   # 실제 10:30 KST 전후 — 안전망 1회차(전체 브리핑)
+    - cron: "7 4 * * *"     # 실제 18:15 KST 전후 — 안전망 2회차(새 헤드라인)
   workflow_dispatch:
 
 permissions:
@@ -18,7 +26,42 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # 발송 모드 판정 + 안전망 cron 의 중복 발송 차단.
+  # slot.py 는 표준 라이브러리만 쓰므로 여기선 requirements 설치가 필요 없다.
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.slot.outputs.mode }}
+      proceed: ${{ steps.slot.outputs.proceed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 모드 판정은 slot.py 단일 지점에 위임(시각 기준).
+      #   brief    = 아침(KST 08시~) + 그날 요약 미발송 → 전체 브리핑(AI)
+      #   headlines= 그 외(요약 이미 발송 / 자정~새벽 구간) → 증분 헤드라인(AI 생략)
+      - name: Decide send mode (KST)
+        id: slot
+        run: |
+          MODE=$(python src/slot.py)
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          # 안전망 cron(schedule)은 "최근 발송이 없을 때"만 진행한다.
+          # 외부 스케줄러가 살아 있으면 방금 발송했을 테니 여기서 끝낸다(중복 0).
+          # 판정 기준은 slot.py 단일 지점(마지막 발송 이후 SEND_GAP_HOURS).
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$(python src/slot.py --safety-check)" = "suppress" ]; then
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "안전망 cron — 최근 발송이 있어 중단(외부 스케줄러 정상)."
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+            echo "발송 진행 — 모드: $MODE (트리거: $GITHUB_EVENT_NAME)"
+          fi
+
   build:
+    needs: gate
+    if: needs.gate.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,26 +73,15 @@ jobs:
       - name: Install Python deps
         run: pip install -r requirements.txt
 
-      # 발송 모드 판정을 slot.py 단일 지점에 위임(시각 기준).
-      #   brief    = 아침(KST 08시~) + 그날 요약 미발송 → 전체 브리핑(AI)
-      #   headlines= 그 외(요약 이미 발송 / 자정~새벽 구간) → 증분 헤드라인(AI 생략)
-      # cron 지연으로 저녁 슬롯이 자정을 넘겨도 새벽 요약이 나가지 않게 하는 장치.
-      - name: Decide send mode (KST)
-        id: slot
-        run: |
-          MODE=$(python src/slot.py)
-          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
-          echo "발송 모드: $MODE"
-
       - name: Collect + rule filter
         run: python src/collect.py
 
       - name: Install Claude Code CLI
-        if: steps.slot.outputs.mode == 'brief'
+        if: needs.gate.outputs.mode == 'brief'
         run: curl -fsSL https://claude.ai/install.sh | bash
 
       - name: Generate report (AI summary via OAuth)
-        if: steps.slot.outputs.mode == 'brief'
+        if: needs.gate.outputs.mode == 'brief'
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
@@ -57,7 +89,7 @@ jobs:
           python src/report.py
 
       # 텔레그램 발송(선택) — 시크릿 없으면 스크립트가 스스로 스킵한다.
-      # 첫 실행=전체 브리핑, 이후=새 헤드라인만(스크립트가 seen 으로 자동 판단).
+      # 모드는 telegram_notify.py 가 slot.py 로 다시 판정한다(gate 와 동일 결과).
       # 발송 실패가 배포를 막지 않도록 continue-on-error.
       - name: Notify via Telegram
         continue-on-error: true
@@ -103,6 +135,7 @@ jobs:
                 ``,
                 `- 워크플로우 실행: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
                 `- 흔한 원인: RSS 소스 차단/구조 변경(수집 게이트 exit 1), OAuth 토큰 만료(\`claude setup-token\` 재발급 후 시크릿 갱신).`,
+                `- 외부 스케줄러가 멈췄는지도 확인: SCHEDULING.md`,
                 `- 다음 실행은 빠진 날짜부터 다시 수집합니다.`,
               ].join("\n"),
               labels: ["daily-brief", "automation-failure"],
