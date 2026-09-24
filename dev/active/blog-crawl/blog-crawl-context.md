@@ -1,0 +1,87 @@
+# 블로그 글 수집 개선 컨텍스트
+
+**Last Updated:** 2026-09-24
+
+## 한 줄 요약
+
+`my_sources.txt` 에 넣은 블로그가 매일 브리핑에 합류하는 기능은 이미 있다.
+RSS 를 스스로 선언하지 않는 곳에서 조용히 무너지는 것을 고친다.
+
+## 핵심 파일
+
+| 파일 | 역할 |
+|---|---|
+| `src/fetch_article.py` | 커스텀 소스 URL → 글 목록. **이번 변경의 중심** |
+| `src/collect.py:167-201` | `my_sources.txt` 를 읽어 `fetch_article` 을 호출하는 곳 |
+| `my_sources.txt` | 사용자가 블로그 URL 을 한 줄씩 넣는 파일 |
+| `tests/test_promo.py` | 테스트 형식의 본보기 (pytest 아님, 단독 스크립트) |
+| `data/quality_*.json` | 실행마다 커밋되는 품질기록. 해석경로를 여기 남긴다 |
+
+## 문서
+
+- 설계 스펙: `dev/active/blog-crawl/blog-crawl-design.md`
+- 구현 계획: `dev/active/blog-crawl/blog-crawl-plan.md`
+- 체크리스트: `dev/active/blog-crawl/blog-crawl-tasks.md`
+
+## 의사결정 기록
+
+| 결정 | 이유 |
+|---|---|
+| 키워드 검색 수집을 **안 한다** | 사용자가 "내가 원하는 블로그 넣으면 그걸 가져오는 것으로" 로 범위를 좁힘 |
+| 온디맨드 CLI 를 **안 만든다** | 결과물은 "데일리 브리핑에 합류" 하나로 확정 |
+| 본문 전체 수집을 **안 한다** | RSS 요약 180자 유지. 이번 범위 밖 |
+| 헤드리스 브라우저를 **안 쓴다** | 실측 실패 4건이 전부 브라우저 없이 해결됨 |
+| 범용 HTML 목록 파서를 **안 쓴다** | 정확도가 낮아 육안 검수가 필요해지고, 무인 운영 취지에 어긋남 |
+| 브런치를 규칙표에 **안 넣는다** | `rss/@필명` 이 0건(실측). 내부 ID 형태라야 하는데 URL 로는 알 수 없고, HTML 자동탐지로 이미 해결됨 |
+| 판단 로직을 순수 함수로 분리 | 네트워크 없이 테스트하기 위해서. 테스트 전략 전체가 여기 의존 |
+| 품질 게이트 조건을 **안 바꾼다** | 내소스는 선택 기능이고 0건이 곧 장애는 아님 |
+
+## 실측 기록 (2026-09-24, 변경 전)
+
+| 대상 | 결과 | 소요 |
+|---|---|---|
+| `blog.naver.com/adcsk` | 목록 5건 | 0.8s |
+| `jojoldu.tistory.com/` | 목록 5건 | 3.9s |
+| `brunch.co.kr/@svillustrated` | 목록 5건 | 1.1s |
+| `velog.io/@teo` | 쓰레기 1건 (27자) | 0.9s |
+| `medium.com/daangn` | 0건 | 6.6s |
+| `d2.naver.com/home` | 쓰레기 1건 (44자) | 0.8s |
+| `www.oopy.io` | 쓰레기 1건 (62자) | 17.0s |
+
+검증된 피드 주소:
+
+```
+velog.io/@teo      -> v2.velog.io/rss/@teo      20건
+medium.com/daangn  -> medium.com/feed/daangn    10건
+medium.com/@user   -> medium.com/feed/@user     10건
+d2.naver.com/home  -> d2.naver.com/d2.atom      20건
+brunch.co.kr/rss/@svillustrated                  0건  (그래서 규칙표에서 제외)
+```
+
+타임아웃 실측 (도달 불가 호스트):
+
+```
+feedparser 기본값            21.2s
+socket.setdefaulttimeout(3)   3.4s
+복원 후 기본값                None  (복원 정상)
+```
+
+## 제약
+
+- 새 의존성 추가 금지 (`requirements.txt` 는 `feedparser>=6.0` 한 줄)
+- 테스트는 pytest 가 아니라 단독 실행 스크립트 (`python tests/test_promo.py`)
+- CI 에 테스트 단계가 없음
+- 기본 테스트는 네트워크를 타지 않음. 네트워크는 `--network` 플래그로만
+- 주석·커밋 메시지는 한국어, 식별자는 영어
+- 엠대시 사용 금지
+
+## 알려진 위험
+
+- **`v2.velog.io` 는 비공식 경로다.** 끊기면 해당 소스가 체인 뒷단계로 흘러 0건이 된다.
+  해석경로 기록(`내소스_해석경로`)으로 조기에 발견할 수 있다.
+- **`socket.setdefaulttimeout` 은 전역이다.** 컨텍스트 매니저로 범위를 좁히고 반드시 복원한다.
+  복원 실패 시 같은 프로세스의 뉴스 수집까지 영향을 받는다.
+- **200자 임계값.** 아주 짧은 글이 차단될 수 있다. 현재 소스에는 해당 사례가 없고,
+  차단되면 사유가 라벨로 남으므로 발견 가능하다.
+- **④ 경로 추측이 모든 URL 로 확대된다.** 스펙 4.4 가 이 비용을 계산하지 않았다.
+  `SOURCE_BUDGET = 20` 으로 끊고, 완료 기준 10초를 통합 테스트가 강제한다.
