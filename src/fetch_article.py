@@ -18,7 +18,7 @@ PER_SOURCE = 5          # 피드/홈에서 가져올 최근 글 수
 BODY_CAP = 1500         # 본문 발췌 최대 길이
 FETCH_TIMEOUT = 8       # HTML 한 번 받는 데 쓰는 상한(초)
 FEED_TIMEOUT = 8        # feedparser 한 번에 쓰는 상한(초)
-SOURCE_BUDGET = 20      # 소스 하나에 쓰는 총 상한(초). 경로 추측 단계를 끊는 데 쓴다
+SOURCE_BUDGET = 20      # 소스 하나에 쓰는 시간 예산(초). 단계 경계에서만 검사하므로 진행 중인 요청 하나는 못 끊는다
 
 # 피드를 스스로 선언하지 않는 블로그 플랫폼의 피드 주소 규칙.
 # 네이버 블로그용 하드코딩 특례를 일반화한 것이다(Task 4 에서 특례를 제거한다).
@@ -191,11 +191,16 @@ def discover(url: str) -> tuple[list[dict], str]:
         if pf.entries:
             return _from_feed(pf, _domain(url)), "플랫폼규칙"
 
-    # ⑤ 를 위해 어차피 HTML 이 필요하므로 여기서 한 번만 받는다.
+    # ③·④ 를 위해 어차피 HTML 이 필요하므로 여기서 한 번만 받는다.
     page = _fetch_html(url)
 
-    # ③ 사이트가 스스로 선언한 피드. 추측(④)보다 정확하므로 먼저 본다.
-    if page:
+    # 여기까지 오는 데 이미 예산을 다 썼으면(①·②·HTML 요청이 느렸다면) 뒤에 남은
+    # 네트워크 단계(③ 자동탐지, ⑤ 경로 추측)는 건너뛰고 바로 ④ 단일 글 판정으로
+    # 간다. 단계 경계에서만 검사하므로 진행 중인 요청 하나를 끊지는 못한다.
+    budget_left = time.monotonic() - started <= SOURCE_BUDGET
+
+    # ③ 사이트가 스스로 선언한 피드. 추측(⑤)보다 정확하므로 먼저 본다.
+    if page and budget_left:
         m = re.search(
             r'<link[^>]+type=["\']application/(?:rss|atom)\+xml["\'][^>]*>', page, re.I)
         if m:
@@ -205,19 +210,10 @@ def discover(url: str) -> tuple[list[dict], str]:
                 if df.entries:
                     return _from_feed(df, _domain(url)), "자동탐지"
 
-    # ④ 흔한 피드 경로 추측. 예전엔 루트 URL 에만 돌았는데, 그 조건 때문에
-    #    d2.naver.com/home 같은 주소가 통째로 건너뛰어졌다. 이제 경로가 있어도 시도한다.
-    #    다만 모든 URL 에 대해 5번을 두드리게 되므로 총 시간 예산으로 끊는다.
-    parts = urllib.parse.urlsplit(url)
-    origin = f"{parts.scheme}://{parts.netloc}"
-    for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
-        if time.monotonic() - started > SOURCE_BUDGET:
-            break
-        cf = _parse_feed(origin + suffix)
-        if cf.entries:
-            return _from_feed(cf, _domain(url)), "경로추측"
-
-    # ⑤ 단일 글 폴백. 가드를 통과할 때만이다.
+    # ④ 단일 글 폴백. 경로 추측(⑤)보다 먼저 본다: 개별 글 URL 인데 그 페이지에
+    # <link rel=alternate> 가 없는 경우, ⑤ 가 먼저 돌면 블로그 루트 피드를 찾아내
+    # 사용자가 요청한 글 하나 대신 블로그 최근 글 목록을 돌려주는 오작동이 난다.
+    # 가드(accept_as_article)를 통과할 때만 단일 글로 취급한다.
     if page and accept_as_article(url, page):
         title = _meta(page, "og:title")
         if not title:
@@ -226,6 +222,19 @@ def discover(url: str) -> tuple[list[dict], str]:
         body = fetch_text(url, page=page)
         return [{"title": title[:200], "link": url,
                  "summary": body or "", "pub": "", "source": _domain(url)}], "단일글"
+
+    # ⑤ 흔한 피드 경로 추측. 예전엔 루트 URL 에만 돌았는데, 그 조건 때문에
+    #    d2.naver.com/home 같은 주소가 통째로 건너뛰어졌다. 이제 경로가 있어도 시도한다.
+    #    다만 모든 URL 에 대해 5번을 두드리게 되므로 총 시간 예산으로 끊는다.
+    if budget_left:
+        parts = urllib.parse.urlsplit(url)
+        origin = f"{parts.scheme}://{parts.netloc}"
+        for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
+            if time.monotonic() - started > SOURCE_BUDGET:
+                break
+            cf = _parse_feed(origin + suffix)
+            if cf.entries:
+                return _from_feed(cf, _domain(url)), "경로추측"
 
     if page:
         return [], "피드없음·목록페이지"
