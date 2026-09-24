@@ -61,8 +61,62 @@ def test_resolve_feed() -> None:
         check(got is None, f"resolve_feed({url}) 가 {got!r}, None 이어야 함")
 
 
+def _page(og_type: str = "", body: str = "") -> str:
+    """가드 테스트용 최소 HTML. 실측한 실패 사례의 본문 길이를 재현한다."""
+    meta = f'<meta property="og:type" content="{og_type}">' if og_type else ""
+    return f"<html><head>{meta}</head><body><article>{body}</article></body></html>"
+
+
+def test_accept_as_article() -> None:
+    """가드: 목록·프로필 페이지를 '글 하나'로 오인하지 않는다.
+
+    실측(2026-09-24)한 쓰레기 유입 3건이 전부 차단돼야 한다.
+    """
+    # 루트 = 블로그 홈. 본문이 길어도 글이 아니다.
+    check(not fetch_article.accept_as_article(
+        "https://www.oopy.io", _page(body="가" * 500)),
+        "루트 URL 이 글로 인정됨")
+    check(not fetch_article.accept_as_article(
+        "https://www.oopy.io/", _page(body="가" * 500)),
+        "슬래시로 끝나는 루트가 글로 인정됨")
+
+    # 프로필 페이지(@). 벨로그 목록이 여기 해당한다.
+    check(not fetch_article.accept_as_article(
+        "https://velog.io/@teo", _page(body="가" * 500)),
+        "@프로필 URL 이 글로 인정됨")
+
+    # 본문이 짧으면 글이 아니다. 실측: 벨로그 27자, D2 44자, 우피 62자.
+    for n in (27, 44, 62, 199):
+        check(not fetch_article.accept_as_article(
+            "https://d2.naver.com/home", _page(body="가" * n)),
+            f"본문 {n}자가 글로 인정됨")
+
+    # 임계값 경계: 200자부터 통과한다.
+    check(fetch_article.accept_as_article(
+        "https://d2.naver.com/home", _page(body="가" * 200)),
+        "본문 200자가 글로 거부됨")
+
+    # 실측: 티스토리 개별 글 2130자.
+    check(fetch_article.accept_as_article(
+        "https://jojoldu.tistory.com/885", _page(body="가" * 2130)),
+        "티스토리 개별 글이 거부됨")
+
+    # og:type=article 이면 본문이 짧아도 글로 인정한다(사이트가 직접 선언한 것).
+    check(fetch_article.accept_as_article(
+        "https://example.com/post/1", _page(og_type="article", body="짧음")),
+        "og:type=article 이 거부됨")
+
+    # 단, 선언이 있어도 루트·프로필이면 거부한다(선언은 경로 판정을 못 이긴다).
+    check(not fetch_article.accept_as_article(
+        "https://velog.io/@teo", _page(og_type="article", body="가" * 500)),
+        "og:type=article 이 @프로필 판정을 덮어씀")
+
+    check(fetch_article.MIN_ARTICLE_CHARS == 200, "MIN_ARTICLE_CHARS 가 200 이 아님")
+
+
 def run() -> None:
     test_resolve_feed()
+    test_accept_as_article()
     if FAILURES:
         print(f"FAIL: {len(FAILURES)}/{CHECKED} 실패")
         for f in FAILURES:

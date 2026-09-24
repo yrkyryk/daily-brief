@@ -91,6 +91,27 @@ def fetch_text(url: str, page: str | None = None) -> str | None:
     return desc or (joined or None)
 
 
+# 단일글 폴백 임계값. 실측 쓰레기 3건이 27~62자, 정상 글이 2130자로
+# 한 자릿수 이상 벌어지므로 경계 사례가 없다. 정밀 튜닝은 불필요하다.
+MIN_ARTICLE_CHARS = 200
+
+
+def accept_as_article(url: str, page: str) -> bool:
+    """이 페이지를 '글 하나'로 받아도 되는지. 네트워크를 타지 않는 순수 함수.
+
+    폴백이 무조건 1건을 만들면 목록·프로필 페이지가 브리핑 카드로 둔갑한다.
+    0건보다 나쁘다. 조용히 빠지는 게 아니라 품질 게이트를 통과한 채 리포트를 더럽힌다.
+    """
+    path = urllib.parse.urlsplit(url).path.rstrip("/")
+    if not path:
+        return False                                   # 루트 = 블로그 홈
+    if path.rsplit("/", 1)[-1].startswith("@"):
+        return False                                   # 프로필 페이지
+    if _meta(page, "og:type").lower() == "article":
+        return True                                    # 사이트가 직접 선언
+    return len(fetch_text(url, page=page) or "") >= MIN_ARTICLE_CHARS
+
+
 def _domain(url: str) -> str:
     try:
         return urllib.parse.urlsplit(url).netloc.replace("www.", "")
