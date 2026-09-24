@@ -167,13 +167,15 @@ def collect() -> int:
     # 커스텀 소스 (my_sources.txt): 사용자가 넣은 블로그 홈/피드/개별 글
     custom_path = ROOT / "my_sources.txt"
     custom_kept = 0
+    custom_paths: dict[str, int] = {}
     if custom_path.exists():
         urls = [ln.strip() for ln in custom_path.read_text(encoding="utf-8").splitlines()
                 if ln.strip() and not ln.strip().startswith("#")]
         for url in urls:
             try:
                 kept = 0
-                for a in fetch_article.discover_and_fetch(url):
+                items, how = fetch_article.discover(url)
+                for a in items:
                     title = (a.get("title") or "").strip()
                     link = norm_url(a.get("link") or "")
                     summary = clean_summary(a.get("summary") or "")
@@ -194,8 +196,10 @@ def collect() -> int:
                     })
                     kept += 1
                 custom_kept += kept
-                print(f"[내소스] {url[:38]:38s} 수집 {kept}건")
+                custom_paths[how] = custom_paths.get(how, 0) + 1
+                print(f"[내소스] {url[:38]:38s} 수집 {kept}건 ({how})")
             except Exception as ex:
+                custom_paths["에러"] = custom_paths.get("에러", 0) + 1
                 print(f"[내소스 에러] {url[:38]} {ex}")
     if custom_kept:
         print(f"커스텀 소스 총 {custom_kept}건")
@@ -221,6 +225,7 @@ def collect() -> int:
         "중복_제거건수": dup_removed,
         "오래된뉴스_제외건수": old_removed,
         "카테고리_분포": by_cat,
+        **({"내소스_해석경로": custom_paths} if custom_paths else {}),
     }
     gate_pass = not (total == 0 or ok_sources == 0)
 
