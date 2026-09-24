@@ -17,6 +17,27 @@ UA = "Mozilla/5.0 (compatible; DailyBriefBot/1.0; +https://github.com/yrkyryk/da
 PER_SOURCE = 5          # 피드/홈에서 가져올 최근 글 수
 BODY_CAP = 1500         # 본문 발췌 최대 길이
 
+# 피드를 스스로 선언하지 않는 블로그 플랫폼의 피드 주소 규칙.
+# 네이버 블로그용 하드코딩 특례를 일반화한 것이다(Task 4 에서 특례를 제거한다).
+# 규칙은 실측으로 확인한 것만 넣는다. 새 플랫폼은 한 줄 추가하면 된다.
+#   브런치는 넣지 않는다: rss/@필명 은 0건이고(내부 ID 형태라야 한다),
+#   HTML 자동탐지로 이미 해결된다.
+PLATFORM_FEEDS = [
+    (re.compile(r"blog\.naver\.com/(?:.*blogId=)?([\w-]+)"), "https://rss.blog.naver.com/{0}.xml"),
+    (re.compile(r"velog\.io/@([\w.-]+)"),                    "https://v2.velog.io/rss/@{0}"),
+    (re.compile(r"medium\.com/(@?[\w.-]+)"),                 "https://medium.com/feed/{0}"),
+    (re.compile(r"d2\.naver\.com"),                          "https://d2.naver.com/d2.atom"),
+]
+
+
+def resolve_feed(url: str) -> str | None:
+    """플랫폼 규칙표로 피드 URL 을 만든다. 네트워크를 타지 않는 순수 함수."""
+    for pat, template in PLATFORM_FEEDS:
+        m = pat.search(url)
+        if m:
+            return template.format(*m.groups())
+    return None
+
 
 def _fetch_html(url: str, attempts: int = 3) -> str | None:
     """HTML 원문. 일시 오류는 지수 백오프로 재시도. 실패 시 None."""
