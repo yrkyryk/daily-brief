@@ -9,7 +9,7 @@ discover(url) -> (글 목록, 해석경로) 가 5단계 체인으로 URL 을 해
   4) 안 되면 그 페이지를 '단일 글'로 취급 (가드: accept_as_article)
   5) 마지막으로 흔한 피드 경로(/rss, /feed 등)를 추측
 
-해석경로는 RESOLVE_LABELS 여덟 값 중 하나로 돌아와 품질 기록에 집계된다.
+해석경로는 RESOLVE_LABELS 아홉 값 중 하나로 돌아와 품질 기록에 집계된다.
 실패해도 예외를 밖으로 던지지 않고 빈 목록/라벨을 돌려 파이프라인이 계속 진행되게 한다.
 표준 라이브러리 + feedparser(기존 의존성)만 사용.
 """
@@ -138,9 +138,17 @@ def _socket_timeout(sec: float):
 
 
 def _parse_feed(url: str):
-    """타임아웃을 건 feedparser.parse."""
-    with _socket_timeout(FEED_TIMEOUT):
-        return feedparser.parse(url)
+    """타임아웃을 건 feedparser.parse. 기형 주소면 빈 결과를 돌려준다.
+
+    feedparser 는 내부에서 urlparse 를 써서 기형 주소에 ValueError 를 낸다.
+    3단계의 자동탐지는 페이지 HTML 의 href 로 주소를 만들기 때문에,
+    진입부 검증을 통과한 URL 이어도 여기서 기형이 될 수 있다.
+    """
+    try:
+        with _socket_timeout(FEED_TIMEOUT):
+            return feedparser.parse(url)
+    except ValueError:
+        return feedparser.parse("")  # entries 가 빈 FeedParserDict
 
 
 def _domain(url: str) -> str:
@@ -167,10 +175,10 @@ def _from_feed(feed, source_hint: str) -> list[dict]:
 
 
 # discover() 가 돌려줄 수 있는 해석경로 라벨 8개. collect.py 가 집계 키로 쓰는데,
-# collect.py 는 자체 예외 처리 경로에서 아홉 번째 키 "에러" 를 따로 더 쓴다.
+# collect.py 는 자체 예외 처리 경로에서 열 번째 키 "에러" 를 따로 더 쓴다.
 RESOLVE_LABELS = (
     "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
-    "단일글", "피드없음·목록페이지", "접속실패", "빈입력",
+    "단일글", "피드없음·목록페이지", "접속실패", "빈입력", "잘못된주소",
 )
 
 
@@ -182,6 +190,14 @@ def discover(url: str) -> tuple[list[dict], str]:
     url = url.strip()
     if not url or url.startswith("#"):
         return [], "빈입력"
+
+    # 주소 형식은 여기서 한 번만 검증한다. 기형이면(예: 닫히지 않은 IPv6 대괄호)
+    # 어느 단계로 가도 파싱에서 터지므로, 뒤로 넘기지 않고 전용 라벨로 끊는다.
+    # 라벨이 있어야 "my_sources.txt 의 그 줄이 오타다" 를 품질기록만 보고 안다.
+    try:
+        parts = urllib.parse.urlsplit(url)
+    except ValueError:
+        return [], "잘못된주소"
 
     started = time.monotonic()
 
@@ -236,18 +252,13 @@ def discover(url: str) -> tuple[list[dict], str]:
     #    d2.naver.com/home 같은 주소가 통째로 건너뛰어졌다. 이제 경로가 있어도 시도한다.
     #    다만 모든 URL 에 대해 5번을 두드리게 되므로 총 시간 예산으로 끊는다.
     if budget_left:
-        try:
-            parts = urllib.parse.urlsplit(url)
-        except ValueError:
-            parts = None  # 기형 URL(예: 닫히지 않은 IPv6 주소). 이 단계만 건너뛴다.
-        if parts is not None:
-            origin = f"{parts.scheme}://{parts.netloc}"
-            for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
-                if time.monotonic() - started > SOURCE_BUDGET:
-                    break
-                cf = _parse_feed(origin + suffix)
-                if cf.entries:
-                    return _from_feed(cf, _domain(url)), "경로추측"
+        origin = f"{parts.scheme}://{parts.netloc}"
+        for suffix in ("/rss", "/feed", "/rss.xml", "/feed.xml", "/atom.xml"):
+            if time.monotonic() - started > SOURCE_BUDGET:
+                break
+            cf = _parse_feed(origin + suffix)
+            if cf.entries:
+                return _from_feed(cf, _domain(url)), "경로추측"
 
     if page:
         return [], "피드없음·목록페이지"

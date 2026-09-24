@@ -151,10 +151,10 @@ def test_discover_contract() -> None:
     check(fetch_article.discover_and_fetch("") == [],
           "discover_and_fetch 하위 호환이 깨짐")
 
-    # 라벨 집합이 문서화된 8개와 일치하는지(collect.py 와의 계약)
+    # 라벨 집합이 문서화된 9개와 일치하는지(collect.py 와의 계약)
     check(fetch_article.RESOLVE_LABELS == (
         "피드직접", "플랫폼규칙", "자동탐지", "경로추측",
-        "단일글", "피드없음·목록페이지", "접속실패", "빈입력"),
+        "단일글", "피드없음·목록페이지", "접속실패", "빈입력", "잘못된주소"),
         f"라벨 집합이 바뀜: {fetch_article.RESOLVE_LABELS}")
 
 
@@ -285,12 +285,53 @@ def test_discover_order() -> None:
         fetch_article._fetch_html = orig_fetch_html
 
 
+# 형식이 깨진 URL. urlsplit/urlparse 가 ValueError 를 내는 실제 사례다.
+MALFORMED_URLS = [
+    "http://[2001:db8::1/feed",   # 닫히지 않은 IPv6 대괄호
+    "https://[::1",
+]
+
+
+def test_malformed_url() -> None:
+    """기형 URL 을 넣어도 discover() 는 예외를 밖으로 던지지 않는다.
+
+    discover() 의 docstring 이 "실패해도 예외를 밖으로 던지지 않는다" 를 약속한다.
+    my_sources.txt 에 오타가 난 줄이 하나 있다고 수집 전체가 죽으면 안 되고,
+    사용자가 "왜 이 줄이 안 들어왔지" 를 라벨만 보고 알 수 있어야 한다.
+    네트워크를 타지 않는다(주소 파싱 단계에서 갈린다).
+    """
+    for bad in MALFORMED_URLS:
+        try:
+            items, how = fetch_article.discover(bad)
+        except Exception as ex:
+            check(False, f"discover({bad!r}) 가 {type(ex).__name__} 을 던짐: {ex}")
+            continue
+        check(items == [], f"discover({bad!r}) 가 빈 목록이 아님: {items}")
+        check(how == "잘못된주소", f"discover({bad!r}) 라벨이 {how!r}")
+
+    # 하위 호환 래퍼도 같이 안전해야 한다.
+    try:
+        check(fetch_article.discover_and_fetch(MALFORMED_URLS[0]) == [],
+              "discover_and_fetch 가 기형 URL 에서 빈 목록을 안 돌려줌")
+    except Exception as ex:
+        check(False, f"discover_and_fetch 가 {type(ex).__name__} 을 던짐: {ex}")
+
+    # _parse_feed 도 스스로 막아야 한다. 3단계의 urljoin 은 페이지 HTML 의
+    # href 로 주소를 만들므로, 진입부 검증을 통과한 URL 이어도 기형이 될 수 있다.
+    try:
+        r = fetch_article._parse_feed(MALFORMED_URLS[0])
+        check(r.entries == [], "_parse_feed 가 기형 URL 에서 빈 entries 를 안 돌려줌")
+    except Exception as ex:
+        check(False, f"_parse_feed 가 {type(ex).__name__} 을 던짐: {ex}")
+
+
 def run() -> None:
     test_resolve_feed()
     test_accept_as_article()
     test_socket_timeout_restores()
     test_discover_contract()
     test_discover_order()
+    test_malformed_url()
     if "--network" in sys.argv:
         print("네트워크 통합 테스트 (실제 사이트 접속):")
         test_network()
