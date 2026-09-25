@@ -2,7 +2,7 @@
 
 매일 아침 뉴스·블로그를 자동 수집·정제해 **AI 요약이 붙은 Daily Brief**로 내보내는 무인 데이터 파이프라인. 데이터 분석가 지원 포트폴리오.
 
-> 트렌드 수집기가 하루 3회(08:30·13:07·18:07 KST) 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 주고 텔레그램으로 전달한다.
+> 트렌드 수집기가 하루 2회(10:30·18:15 KST 전후) 스스로 돌아, 홍보가 제외된 핵심 뉴스와 실무 인사이트 글만 골라 리포트로 주고 텔레그램으로 전달한다.
 
 ![pipeline](docs/pipeline-diagram.html) <!-- 데이터 흐름 다이어그램: docs/pipeline-diagram.html -->
 
@@ -54,16 +54,18 @@ python src/run_daily.py
 
 ## 무인 운영 (GitHub Actions)
 
-`.github/workflows/daily.yml` — 하루 3회(08:30·13:00·18:00 KST) 실행. 첫 실행=전체 브리핑, 이후=새 헤드라인만.
+`.github/workflows/daily.yml` 이 하루 2회 실행한다(10:30·18:15 KST 전후). 그날 첫 실행=전체 브리핑, 이후=새 헤드라인만.
 
-발송 시각은 **외부 스케줄러가 `workflow_dispatch` 를 호출해** 결정한다. GitHub 의 cron 은 이 레포에서 상시 2~5시간 지연돼(러너 대기는 0초, 트리거 생성 자체가 늦음) 발송 시각으로 쓸 수 없기 때문이다. 설정 방법과 측정 근거는 [SCHEDULING.md](SCHEDULING.md) 참조. 워크플로우에 남은 cron 2개는 외부 스케줄러가 멈춘 날에만 도는 안전망이다(그날은 10:30 전체 브리핑·18:15 헤드라인 2회). `gate` 잡이 마지막 발송 시각을 보고 중복을 막는다.
+발송 시각은 GitHub Actions 의 cron 이 정한다. 다만 이 레포의 cron 은 상시 2~5시간 지연되므로(실행 이력 65건 전부 러너 대기 0초, 트리거 생성 자체가 늦음) **목표 시각이 아니라 실제 도착 시각을 기준으로** cron 값을 골랐다. 측정 근거는 [SCHEDULING.md](SCHEDULING.md) 참조.
+
+분 단위 정시 발송이 필요하면 외부 스케줄러가 `workflow_dispatch` 를 호출하도록 붙일 수 있다(선택). 그때 cron 2개는 `gate` 잡의 6시간 규칙에 걸려 자동으로 안전망이 되고, 중복 발송은 0이 된다.
 
 발송이 이상할 때의 진단 절차는 `diagnose-brief-send` 스킬에 있다.
 
 1. GitHub 레포에 이 프로젝트 push
 2. `claude setup-token` 으로 OAuth 토큰 발급 → 레포 **Settings → Secrets → Actions** 에 `CLAUDE_CODE_OAUTH_TOKEN` 등록
 3. **Settings → Pages** 에서 소스를 `main` 브랜치 `/docs` 로 지정
-4. [SCHEDULING.md](SCHEDULING.md) 대로 외부 스케줄러(cron-job.org) 등록 — 정시 발송의 핵심
+4. (선택) 분 단위 정시 발송이 필요하면 [SCHEDULING.md](SCHEDULING.md) 대로 외부 스케줄러 등록
 5. 매일 자동 실행 → `docs/index.html` 이 최신 Daily Brief로 갱신 (실패 시 Issue 자동 생성)
 
 ## 품질 체크리스트 (V3, 매 실행 기록·노출)
