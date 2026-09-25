@@ -6,3 +6,4 @@
 #   브런치, 벨로그, 미디엄, 네이버 D2.
 # 피드가 없는 사이트(노션 기반 등)는 0건으로 빠지고 사유가 로그에 남습니다.
 https://blog.naver.com/adcsk
+https://blog.naver.com/clef93
