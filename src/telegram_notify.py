@@ -47,6 +47,8 @@ CHUNK_SOFT = 3800          # 텔레그램 4096자 한도에 여유를 둔 분할
 SUMMARY_MAX = 500          # 카테고리 흐름 요약 상한(보통 150~300자라 사실상 통째)
 WHY_MAX = 100              # 기사별 why 자르는 길이
 HEADLINES_PER_CAT = 15     # 헤드라인 모드: 카테고리당 최대 표시 수
+MINE_CAT = "내소스"          # 커스텀 소스(my_sources.txt) 카테고리명
+MINE_MAX = 15              # brief 모드: 내소스 최대 표시 수(초과분은 건수만 안내)
 
 
 def esc(s: object) -> str:
@@ -114,6 +116,17 @@ def build_brief(date: str) -> list[str]:
     for it in picks:
         by_cat.setdefault(it.get("cat", ""), []).append(it)
 
+    # 내소스는 AI 요약·픽 대상이 아니라 picks 에 없다. 여기서 붙이지 않으면
+    # 아침 발송 경로가 아예 없고, 같은 실행이 수집 전체를 seen 에 기록하므로
+    # 저녁 헤드라인에서도 "새 글"로 잡히지 않아 끝내 전달되지 않는다.
+    # 내가 직접 고른 소스라 거르지 않고 원문 그대로 싣는다.
+    overflow: dict[str, int] = {}
+    mine = [it for it in load_raw(date) if it.get("cat") == MINE_CAT]
+    if mine:
+        by_cat[MINE_CAT] = mine[:MINE_MAX]
+        if len(mine) > MINE_MAX:
+            overflow[MINE_CAT] = len(mine) - MINE_MAX
+
     for cat in CAT_ORDER:
         items = by_cat.get(cat, [])
         if not items:
@@ -131,6 +144,9 @@ def build_brief(date: str) -> list[str]:
             if why:
                 row += f"\n   ↳ {esc(why)}"
             lines.append(row)
+        extra = overflow.get(cat)
+        if extra:
+            lines.append(f"   …외 {extra}건")
         blocks.append("\n".join(lines))
 
     return blocks + _footer_blocks()
