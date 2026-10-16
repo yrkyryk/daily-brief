@@ -1,0 +1,1182 @@
+<!doctype html><html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Brief — 2026-10-16</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--line:#262b36;--tx:#e7eaf0;--mut:#8b93a5;--acc:#5b8cff;
+--eco:#f5a623;--soc:#4fd1c5;--ent:#ff6b9d;--wrk:#9d7bff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Pretendard','Malgun Gothic',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 18px 60px}
+header h1{font-size:26px;margin:0 0 4px;letter-spacing:-.5px}
+header .sub{color:var(--mut);font-size:14px}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0 22px;font-size:13px;color:var(--mut)}
+.meta b{color:var(--tx)}
+.search{width:100%;padding:11px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:15px;margin-bottom:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:var(--card);border:1px solid var(--line);color:var(--mut);padding:8px 14px;border-radius:20px;cursor:pointer;font-size:13px;transition:.15s}
+.tab:hover{color:var(--tx)}
+.tab.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.flows{margin-bottom:22px;display:grid;gap:12px}
+.flow{background:linear-gradient(180deg,rgba(91,140,255,.08),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:14px 16px}
+.flow-h{font-weight:700;font-size:14px;margin-bottom:6px}
+.flow p{margin:0;font-size:13px;color:var(--tx);white-space:pre-line}
+.ai-tag{background:var(--acc);color:#fff;font-size:10px;padding:1px 7px;border-radius:8px;margin-left:6px;vertical-align:middle}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card.hot{border-color:rgba(91,140,255,.5);box-shadow:0 0 0 1px rgba(91,140,255,.2)}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.badge{font-size:11px;padding:3px 9px;border-radius:12px;font-weight:600}
+.b-경제{background:rgba(245,166,35,.15);color:var(--eco)}
+.b-사회{background:rgba(79,209,197,.15);color:var(--soc)}
+.b-연예{background:rgba(255,107,157,.15);color:var(--ent)}
+.b-실무{background:rgba(157,123,255,.15);color:var(--wrk)}
+.src{font-size:11px;color:var(--mut)}
+.card h3{margin:0 0 6px;font-size:15px;line-height:1.35}
+.card h3 a{color:var(--tx);text-decoration:none}
+.card h3 a:hover{color:var(--acc)}
+.pick{background:rgba(91,140,255,.18);color:#9db8ff;font-size:10px;padding:2px 7px;border-radius:8px;margin-left:6px;white-space:nowrap}
+.why{margin-top:8px;font-size:12px;color:#9db8ff;background:rgba(91,140,255,.08);padding:6px 9px;border-radius:8px}
+.card p{margin:0;font-size:13px;color:var(--mut)}
+.nosum{font-style:italic;opacity:.6}
+footer{margin-top:30px;font-size:12px;color:var(--mut);text-align:center}
+.cost{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--mut);margin-top:20px}
+.cost b{color:var(--tx)}
+.b-내소스{background:rgba(91,140,255,.15);color:#9db8ff}
+.kwbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.kwbar-label{font-size:13px;font-weight:600}
+.kwbar-hint{font-size:11px;color:var(--mut);margin-left:auto}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:rgba(91,140,255,.15);color:#9db8ff;font-size:12px;padding:3px 9px;border-radius:14px;display:inline-flex;align-items:center;gap:6px}
+.chip b{cursor:pointer;opacity:.65;font-weight:700}
+.chip b:hover{opacity:1}
+.kwadd{background:#0f1115;border:1px solid var(--line);border-radius:8px;color:var(--tx);font-size:13px;padding:6px 10px;min-width:150px}
+#tabInterest{border-color:rgba(91,140,255,.4)}
+.srcbtn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:8px;font-size:12px;padding:5px 10px;cursor:pointer}
+.srcbtn:hover{color:var(--tx);border-color:var(--acc)}
+.savecard{float:right;background:rgba(91,140,255,.15);color:#9db8ff;border:1px solid rgba(91,140,255,.35);border-radius:8px;font-size:11px;padding:3px 9px;cursor:pointer}
+.savecard:hover{background:rgba(91,140,255,.3)}
+.savecard.done{color:#7bd88f;border-color:rgba(123,216,143,.45);background:rgba(123,216,143,.12);cursor:default}
+.notioncfg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:13px}
+.notioncfg button{background:var(--acc);color:#fff;border:0;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+.notioncfg .kwbar-hint{margin-left:auto}
+.savemsg{font-size:12px;color:#9db8ff}
+</style></head><body><div class="wrap">
+<header>
+  <h1>📰 Daily Brief</h1>
+  <div class="sub">규칙 필터(홍보·중복 제거) + <b>AI 흐름 요약·읽을 가치 판정</b>을 거친 오늘의 브리핑 · <a href="./weekly.html" style="color:var(--acc);text-decoration:none">📈 주간 트렌드 →</a></div>
+</header>
+<div class="meta">
+  <span>📅 <b>2026-10-16 10:33 KST</b></span>
+  <span>🗂️ 수집 <b>136건</b></span>
+  <span>🧠 판정 모드 <b>AI 보조 · OAuth (claude-haiku-4-5)</b></span>
+  <span>⭐ 읽을 가치 <b>12건</b></span>
+</div>
+
+<div class="notioncfg">
+  <span>☁️ <b>Notion 저장</b></span>
+  <button id="cfgBtn" type="button">연결 설정</button>
+  <span id="saveMsg" class="savemsg"></span>
+  <span class="kwbar-hint">각 카드의 ☁️ Notion 저장 버튼으로 바로 보냄</span>
+</div>
+<div id="cfgModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center">
+  <div style="background:#181b22;border:1px solid #262b36;border-radius:12px;padding:20px;width:min(440px,92%)">
+    <h3 style="margin:0 0 14px;font-size:15px">☁️ Notion 연결 설정</h3>
+    <div style="font-size:12px;color:#8b93a5;margin-bottom:4px">함수 URL</div>
+    <input id="cfgUrl" autocomplete="off" placeholder="https://<내-프로젝트>.vercel.app/api/publish-notion" style="width:100%;padding:9px 11px;background:#0f1115;border:1px solid #262b36;border-radius:8px;color:#e7eaf0;font-size:13px;margin-bottom:12px">
+    <div style="font-size:12px;color:#8b93a5;margin-bottom:4px">APP_KEY</div>
+    <input id="cfgKey" type="password" autocomplete="new-password" placeholder="비밀 값 (가려짐)" style="width:100%;padding:9px 11px;background:#0f1115;border:1px solid #262b36;border-radius:8px;color:#e7eaf0;font-size:13px">
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+      <button id="cfgCancel" type="button" style="background:transparent;border:1px solid #262b36;color:#8b93a5;padding:8px 14px;border-radius:8px;cursor:pointer">취소</button>
+      <button id="cfgSave" type="button" style="background:#5b8cff;border:0;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer">저장</button>
+    </div>
+  </div>
+</div>
+<div class="kwbar">
+  <span class="kwbar-label">🔖 관심 키워드</span>
+  <span class="chips" id="kwchips"></span>
+  <input id="kwadd" class="kwadd" placeholder="키워드 추가 후 Enter">
+  <span class="kwbar-hint">브라우저에 저장 · 개인별</span>
+</div>
+<div class="kwbar">
+  <span class="kwbar-label">📌 내 소스</span>
+  <span class="chips" id="srcchips"></span>
+  <input id="srcadd" class="kwadd" placeholder="블로그/사이트 URL 추가 후 Enter">
+  <button id="srcRefresh" type="button" class="srcbtn">🔄 지금 수집</button>
+  <span id="srcMsg" class="savemsg"></span>
+</div>
+<input class="search" id="q" placeholder="🔍 제목·요약 검색…">
+<div class="tabs"><button class="tab" data-f="interest" id="tabInterest">🔖 관심 <span id="kwcount"></span></button><button class="tab active" data-f="all">전체 (136)</button><button class="tab" data-f="경제">💹 경제 (36)</button><button class="tab" data-f="사회">🏛️ 사회 (34)</button><button class="tab" data-f="연예">🎬 연예 (24)</button><button class="tab" data-f="실무">🛠️ 실무 (33)</button><button class="tab" data-f="내소스">📌 내소스 (9)</button></div>
+<div class="flows" id="flows">
+        <div class="flow" data-cat="경제">
+          <div class="flow-h">💹 경제 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>증시가 7거래일 연속 20% 이상 폭락하면서 AI 거품론과 고금리 우려가 맞물려 있는 상황. 정부는 모니터링을 강화하고 기관 매수에 나서는 등 시장 안정화에 주력 중. 한편 9월 취업자는 11만 명 증가했지만 청년고용률은 29개월 연속 하락하면서 노동 시장의 양극화가 심화되고 있다. 금리 상승과 국제유가 인상이 대출금리와 수입물가를 동시에 상승시키며 가계부채 부담이 커지는 추세.</p>
+        </div>
+        <div class="flow" data-cat="사회">
+          <div class="flow-h">🏛️ 사회 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>여성 안전 위기가 심화되면서 정부·사법부의 체계적 대응 미흡이 드러나고 있습니다. 최근 송파 장모 살해, 관계성범죄 등 여성 대상 범죄가 연쇄 발생하고 호신용품 수요가 급증하고 있으며, 전자발찌·스마트워치 등 보호조치가 있어도 피해자가 계속 살해당하는 상황입니다. 정부는 가정폭력 가해자 전자발찌 부착과 격리 조치 강화를 추진 중이나, 동시에 법관 재취업 심사 100% 통과 등 사법부의 투명성 문제가 지적되면서 제도 신뢰도가 하락하고 있습니다.</p>
+        </div>
+        <div class="flow" data-cat="연예">
+          <div class="flow-h">🎬 연예 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>연예 소식에서 가장 주목할 점은 AI의 엔터테인먼트 산업 진입이다. AI가 부른 노래가 멜론 차트 상위권에 올랐고, 주요 드라마들도 배경 생성과 표정 합성 등에 AI를 활용하며 제작 방식이 변하고 있다. 한편 부산국제영화제 폐막, 새 드라마와 영화 신작 소식, 해외 뮤지션 내한 공연 등 콘텐츠 시장의 다양한 움직임이 동시에 포착된다.</p>
+        </div>
+        <div class="flow" data-cat="실무">
+          <div class="flow-h">🛠️ 실무 · 오늘의 흐름 <span class="ai-tag">AI</span></div>
+          <p>토스의 기술 최적화(패키지, 검색, 알고리즘, 테스트)부터 카카오의 AI 컨퍼런스까지, 그리고 라인의 대규모 서비스 운영 사례까지 전반적으로 AI와 데이터 기반 최적화가 실무에 얼마나 깊이 침투했는지 보여주는 주간입니다. 단순한 도구 도입을 넘어 에이전트 기반 자동화, 대화형 분석, 자동 리뷰와 모니터링 같은 생산성 혁신이 본격화되는 모습이 두드러집니다.</p>
+        </div></div>
+<div class="grid" id="grid">
+        <article class="card" data-cat="경제" data-text="이주단체 &quot;계절노동, 외국인 인신매매 전락…전면 개혁해야&quot; (서울=연합뉴스) 정아란 기자 = 국내 이주지원단체들이 외국인 계절 이주노동 제도의 전면 개혁과 불법 브로커·고용주 엄벌을 당국에 촉구했다." data-card="{&quot;title&quot;: &quot;이주단체 \&quot;계절노동, 외국인 인신매매 전락…전면 개혁해야\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016053400371&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 정아란 기자 = 국내 이주지원단체들이 외국인 계절 이주노동 제도의 전면 개혁과 불법 브로커·고용주 엄벌을 당국에 촉구했다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;9079595bba6a2fd06c030fcd9e02e626dd382385&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:23</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016053400371" target="_blank" rel="noopener">이주단체 &quot;계절노동, 외국인 인신매매 전락…전면 개혁해야&quot;</a></h3>
+          <p>(서울=연합뉴스) 정아란 기자 = 국내 이주지원단체들이 외국인 계절 이주노동 제도의 전면 개혁과 불법 브로커·고용주 엄벌을 당국에 촉구했다.</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="코스피 급락 속 국고채는 강세…향후 기관 현물 매수가 관건 (서울=연합뉴스) 강수지 기자 = 최근 국내 증시가 외국인 매도에 급락한 반면 국고채 시장은 외국인 선물 매수와 안전자산 선호 심리에 강세를 이..." data-card="{&quot;title&quot;: &quot;코스피 급락 속 국고채는 강세…향후 기관 현물 매수가 관건&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016048400008&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 강수지 기자 = 최근 국내 증시가 외국인 매도에 급락한 반면 국고채 시장은 외국인 선물 매수와 안전자산 선호 심리에 강세를 이...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;c9d529788dbbb3c73f7ac7c4500e5ac576e3c7fa&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:21</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016048400008" target="_blank" rel="noopener">코스피 급락 속 국고채는 강세…향후 기관 현물 매수가 관건</a></h3>
+          <p>(서울=연합뉴스) 강수지 기자 = 최근 국내 증시가 외국인 매도에 급락한 반면 국고채 시장은 외국인 선물 매수와 안전자산 선호 심리에 강세를 이...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="서울시, 주택정책 20년 되짚는 백서…&quot;박원순 시정기 43만호 증발&quot; (서울=연합뉴스) 김동규 기자 = 서울시가 지난 20년간 주택공급 정책을 되짚는 백서를 내놓고 박원순 전 시장 재임기 대규모 정비구역 해제와 보..." data-card="{&quot;title&quot;: &quot;서울시, 주택정책 20년 되짚는 백서…\&quot;박원순 시정기 43만호 증발\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016037400004&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 김동규 기자 = 서울시가 지난 20년간 주택공급 정책을 되짚는 백서를 내놓고 박원순 전 시장 재임기 대규모 정비구역 해제와 보...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a78dbacaf4cf94728dc610be86dc74f1cdda9246&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:19</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016037400004" target="_blank" rel="noopener">서울시, 주택정책 20년 되짚는 백서…&quot;박원순 시정기 43만호 증발&quot;</a></h3>
+          <p>(서울=연합뉴스) 김동규 기자 = 서울시가 지난 20년간 주택공급 정책을 되짚는 백서를 내놓고 박원순 전 시장 재임기 대규모 정비구역 해제와 보...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="울주군, 에쓰오일 샤힌 프로젝트 준공 지원…전담 tf 가동 (울산=연합뉴스) 장영은 기자 = 울산 울주군은 총사업비 9조2천580억원 규모 석유화학 단일 규모 최대 투자사업인 &#x27;에쓰오일 샤힌 프로젝트&#x27; ..." data-card="{&quot;title&quot;: &quot;울주군, 에쓰오일 샤힌 프로젝트 준공 지원…전담 TF 가동&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016053000057&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(울산=연합뉴스) 장영은 기자 = 울산 울주군은 총사업비 9조2천580억원 규모 석유화학 단일 규모 최대 투자사업인 &#x27;에쓰오일 샤힌 프로젝트&#x27; ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d6691d6ef1146653cb1277fc57965123cf6bca46&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:17</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016053000057" target="_blank" rel="noopener">울주군, 에쓰오일 샤힌 프로젝트 준공 지원…전담 TF 가동</a></h3>
+          <p>(울산=연합뉴스) 장영은 기자 = 울산 울주군은 총사업비 9조2천580억원 규모 석유화학 단일 규모 최대 투자사업인 &#x27;에쓰오일 샤힌 프로젝트&#x27; ...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[테크스냅] 네이버 치지직, 2026 lol 월드 챔피언십 생중계 (서울=연합뉴스) 오지은 기자 = 네이버의 스트리밍 플랫폼 치지직이 16일부터 내달 15일까지 미국에서 열리는 2026 리그 오브 레전드 월드 ..." data-card="{&quot;title&quot;: &quot;[테크스냅] 네이버 치지직, 2026 LoL 월드 챔피언십 생중계&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016054000017&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 오지은 기자 = 네이버의 스트리밍 플랫폼 치지직이 16일부터 내달 15일까지 미국에서 열리는 2026 리그 오브 레전드 월드 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;ab9f525113c1766e6dd1c62f7bf7e792b083dd73&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:14</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016054000017" target="_blank" rel="noopener">[테크스냅] 네이버 치지직, 2026 LoL 월드 챔피언십 생중계</a></h3>
+          <p>(서울=연합뉴스) 오지은 기자 = 네이버의 스트리밍 플랫폼 치지직이 16일부터 내달 15일까지 미국에서 열리는 2026 리그 오브 레전드 월드 ...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[게시판] 롯데카드, 육아맘 혜택 모은 &#x27;아이엔 디지로카&#x27; 출시 협약 ▲ 롯데카드가 지난 14일 아이베·베베쿡·청소연구소·유한킴벌리·번개장터와 육아 혜택 특화 카드인 &#x27;아이엔 디지로카&#x27; 출시를 위한 업무 협약을 체..." data-card="{&quot;title&quot;: &quot;[게시판] 롯데카드, 육아맘 혜택 모은 &#x27;아이엔 디지로카&#x27; 출시 협약&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016046300002&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;▲ 롯데카드가 지난 14일 아이베·베베쿡·청소연구소·유한킴벌리·번개장터와 육아 혜택 특화 카드인 &#x27;아이엔 디지로카&#x27; 출시를 위한 업무 협약을 체...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e7c0ff6a7bf0167b217c0aca8aa1f47683023cb1&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:08</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016046300002" target="_blank" rel="noopener">[게시판] 롯데카드, 육아맘 혜택 모은 &#x27;아이엔 디지로카&#x27; 출시 협약</a></h3>
+          <p>▲ 롯데카드가 지난 14일 아이베·베베쿡·청소연구소·유한킴벌리·번개장터와 육아 혜택 특화 카드인 &#x27;아이엔 디지로카&#x27; 출시를 위한 업무 협약을 체...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="카카오 &quot;고용·근로조건 포괄승계&quot;…인적분할 앞두고 직원설명회 (서울=연합뉴스) 한상용 기자 = 카카오[035720]는 16일 인적 분할 준비 상황을 공유하고 직원들의 질문에 답하기 위해 전날 사내 소통 행..." data-card="{&quot;title&quot;: &quot;카카오 \&quot;고용·근로조건 포괄승계\&quot;…인적분할 앞두고 직원설명회&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016049900017&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 한상용 기자 = 카카오[035720]는 16일 인적 분할 준비 상황을 공유하고 직원들의 질문에 답하기 위해 전날 사내 소통 행...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;b78e90e07e627fc0017a7434fa49cd6213dcf30e&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:04</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016049900017" target="_blank" rel="noopener">카카오 &quot;고용·근로조건 포괄승계&quot;…인적분할 앞두고 직원설명회</a></h3>
+          <p>(서울=연합뉴스) 한상용 기자 = 카카오[035720]는 16일 인적 분할 준비 상황을 공유하고 직원들의 질문에 답하기 위해 전날 사내 소통 행...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="울산 북구, 울산숲서 일자리박람회…제조업체 현장 채용면접 (울산=연합뉴스) 장지현 기자 = 울산 북구는 오는 20일 오후 1시 30분 울산숲 옛 호계역 일원에서 일자리박람회를 연다고 16일 밝혔다." data-card="{&quot;title&quot;: &quot;울산 북구, 울산숲서 일자리박람회…제조업체 현장 채용면접&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016048200057&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(울산=연합뉴스) 장지현 기자 = 울산 북구는 오는 20일 오후 1시 30분 울산숲 옛 호계역 일원에서 일자리박람회를 연다고 16일 밝혔다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;44fab022baa22673d549a33b18f4ae75dd938cbd&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:02</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016048200057" target="_blank" rel="noopener">울산 북구, 울산숲서 일자리박람회…제조업체 현장 채용면접</a></h3>
+          <p>(울산=연합뉴스) 장지현 기자 = 울산 북구는 오는 20일 오후 1시 30분 울산숲 옛 호계역 일원에서 일자리박람회를 연다고 16일 밝혔다.</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="대치쌍용1차·잠실우성4차 재건축 탄력…서울시 통합심의 통과 (서울=연합뉴스) 김동규 기자 = 서울 강남구 대치쌍용1차아파트와 송파구 잠실우성4차아파트 재건축 사업이 서울시 통합심의를 통과하면서 속도를 낼..." data-card="{&quot;title&quot;: &quot;대치쌍용1차·잠실우성4차 재건축 탄력…서울시 통합심의 통과&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016027200004&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 김동규 기자 = 서울 강남구 대치쌍용1차아파트와 송파구 잠실우성4차아파트 재건축 사업이 서울시 통합심의를 통과하면서 속도를 낼...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7c6e604e48f0a764a7a3c53b0351c1fd52e88361&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016027200004" target="_blank" rel="noopener">대치쌍용1차·잠실우성4차 재건축 탄력…서울시 통합심의 통과</a></h3>
+          <p>(서울=연합뉴스) 김동규 기자 = 서울 강남구 대치쌍용1차아파트와 송파구 잠실우성4차아파트 재건축 사업이 서울시 통합심의를 통과하면서 속도를 낼...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="스드메 업체 17곳 &#x27;깜깜이 요금&#x27; 적발…첫 과태료 부과 조치 (세종=연합뉴스) 송정은 기자 = 이른바 &#x27;스드메&#x27;(사진 촬영 스튜디오, 웨딩드레스 예약, 신부 메이크업) 업체가 요금, 위약금과 환급 기준 등..." data-card="{&quot;title&quot;: &quot;스드메 업체 17곳 &#x27;깜깜이 요금&#x27; 적발…첫 과태료 부과 조치&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016036200002&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(세종=연합뉴스) 송정은 기자 = 이른바 &#x27;스드메&#x27;(사진 촬영 스튜디오, 웨딩드레스 예약, 신부 메이크업) 업체가 요금, 위약금과 환급 기준 등...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;5330ca89aea98b97cc09e69237e1033028400403&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016036200002" target="_blank" rel="noopener">스드메 업체 17곳 &#x27;깜깜이 요금&#x27; 적발…첫 과태료 부과 조치</a></h3>
+          <p>(세종=연합뉴스) 송정은 기자 = 이른바 &#x27;스드메&#x27;(사진 촬영 스튜디오, 웨딩드레스 예약, 신부 메이크업) 업체가 요금, 위약금과 환급 기준 등...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="정부·당국 &quot;증시 변동성 감시 강화…교란 행위 엄정 대응&quot; (세종=연합뉴스) 이세원 기자 = 정부와 관계 당국은 최근 변동성이 커진 증권시장 등의 실시간 합동 모니터링을 강화하고 시장 교란 행위가 있으면..." data-card="{&quot;title&quot;: &quot;정부·당국 \&quot;증시 변동성 감시 강화…교란 행위 엄정 대응\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016046600002&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(세종=연합뉴스) 이세원 기자 = 정부와 관계 당국은 최근 변동성이 커진 증권시장 등의 실시간 합동 모니터링을 강화하고 시장 교란 행위가 있으면...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;f598fa3cacacbb01a8cb419edd5fcc3ead15a982&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 10:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016046600002" target="_blank" rel="noopener">정부·당국 &quot;증시 변동성 감시 강화…교란 행위 엄정 대응&quot;</a></h3>
+          <p>(세종=연합뉴스) 이세원 기자 = 정부와 관계 당국은 최근 변동성이 커진 증권시장 등의 실시간 합동 모니터링을 강화하고 시장 교란 행위가 있으면...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="수원시, 싱가포르서 현지 첨단기업 대상 투자유치 설명회 (수원=연합뉴스) 이영주 기자 = 경기 수원시는 싱가포르에서 현지 첨단기업 관계자들을 대상으로 &#x27;경제자유구역 후보지 수원지구&#x27; 투자유치설명회를 ..." data-card="{&quot;title&quot;: &quot;수원시, 싱가포르서 현지 첨단기업 대상 투자유치 설명회&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016044100061&quot;, &quot;source&quot;: &quot;연합뉴스 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;(수원=연합뉴스) 이영주 기자 = 경기 수원시는 싱가포르에서 현지 첨단기업 관계자들을 대상으로 &#x27;경제자유구역 후보지 수원지구&#x27; 투자유치설명회를 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;84111b5a3dd5889ece9bfbed959757a0968631e5&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">연합뉴스 경제 · 10-16 09:55</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016044100061" target="_blank" rel="noopener">수원시, 싱가포르서 현지 첨단기업 대상 투자유치 설명회</a></h3>
+          <p>(수원=연합뉴스) 이영주 기자 = 경기 수원시는 싱가포르에서 현지 첨단기업 관계자들을 대상으로 &#x27;경제자유구역 후보지 수원지구&#x27; 투자유치설명회를 ...</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[속보] ‘전날 폭락’ 코스피, 장 초반 1%대 상승 출발 " data-card="{&quot;title&quot;: &quot;[속보] ‘전날 폭락’ 코스피, 장 초반 1%대 상승 출발&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282694.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;777c4dc49931f497146e6189ce0def10cf9a986d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282694.html" target="_blank" rel="noopener">[속보] ‘전날 폭락’ 코스피, 장 초반 1%대 상승 출발</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card hot" data-cat="경제" data-text="9월 취업자 11만3천명 늘어…청년고용률은 29개월 연속 하락 " data-card="{&quot;title&quot;: &quot;9월 취업자 11만3천명 늘어…청년고용률은 29개월 연속 하락&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282689.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;취업자 증가에도 청년고용 악화가 계속되는 &#x27;고용 미스매치&#x27; 현상을 보여주는 중요 통계&quot;, &quot;hash&quot;: &quot;5741edfe537f06ee5f75735b5f3d2e8f0d243b7d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282689.html" target="_blank" rel="noopener">9월 취업자 11만3천명 늘어…청년고용률은 29개월 연속 하락</a><span class="pick">★ 읽을 가치</span></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          <div class="why">💡 취업자 증가에도 청년고용 악화가 계속되는 &#x27;고용 미스매치&#x27; 현상을 보여주는 중요 통계</div>
+        </article>
+        <article class="card" data-cat="경제" data-text="환율 하락에도 9월 수입물가 상승 반전...국제유가 상승 탓 " data-card="{&quot;title&quot;: &quot;환율 하락에도 9월 수입물가 상승 반전...국제유가 상승 탓&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282681.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;8b151072c35280827ff3afcb9da360d15a936abd&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282681.html" target="_blank" rel="noopener">환율 하락에도 9월 수입물가 상승 반전...국제유가 상승 탓</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[단독] 자영업 중 건설업 대출 연체율 ‘최고’...뒤이어 숙박음식업 " data-card="{&quot;title&quot;: &quot;[단독] 자영업 중 건설업 대출 연체율 ‘최고’...뒤이어 숙박음식업&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282680.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d85686a5783bd704c51bd16c68ee5c6adcbbf769&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282680.html" target="_blank" rel="noopener">[단독] 자영업 중 건설업 대출 연체율 ‘최고’...뒤이어 숙박음식업</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[단독] ‘수요예측 실패’ 서금원, ‘햇살론’ 문턱 확 높여 서민 ‘발 동동’ " data-card="{&quot;title&quot;: &quot;[단독] ‘수요예측 실패’ 서금원, ‘햇살론’ 문턱 확 높여 서민 ‘발 동동’&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/finance/1282660.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;476229d3a97479ff1942bdfe201d71fb3a1c7980&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/finance/1282660.html" target="_blank" rel="noopener">[단독] ‘수요예측 실패’ 서금원, ‘햇살론’ 문턱 확 높여 서민 ‘발 동동’</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="생협의 가치 믿어달라더니…아이쿱, 조합원 차입금 611억 미상환 " data-card="{&quot;title&quot;: &quot;생협의 가치 믿어달라더니…아이쿱, 조합원 차입금 611억 미상환&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282623.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;912284b316ad2b19c6836731d381a09cb3451b5f&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282623.html" target="_blank" rel="noopener">생협의 가치 믿어달라더니…아이쿱, 조합원 차입금 611억 미상환</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="참치가 정말 ‘5분의1’이네…편의점별 김밥 재료 뜯어보니 " data-card="{&quot;title&quot;: &quot;참치가 정말 ‘5분의1’이네…편의점별 김밥 재료 뜯어보니&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282598.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;51d496dcb036b5a7274f766a23d7d96eb19a4e3f&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282598.html" target="_blank" rel="noopener">참치가 정말 ‘5분의1’이네…편의점별 김밥 재료 뜯어보니</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[단독] ‘소셜 믹스’ 겉도는 통합공공임대…70% 중산층 배정도 " data-card="{&quot;title&quot;: &quot;[단독] ‘소셜 믹스’ 겉도는 통합공공임대…70% 중산층 배정도&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282587.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;5204ae6fe6e3fb557f90dce06a448cb22f088a6c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282587.html" target="_blank" rel="noopener">[단독] ‘소셜 믹스’ 겉도는 통합공공임대…70% 중산층 배정도</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="한-일, 100억달러 통화 스와프 3년 연장 합의…“공조 상징” " data-card="{&quot;title&quot;: &quot;한-일, 100억달러 통화 스와프 3년 연장 합의…“공조 상징”&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/economy_general/1282585.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;bc4c74c6b37c941117576bf10f2420cb9c9de544&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/economy_general/1282585.html" target="_blank" rel="noopener">한-일, 100억달러 통화 스와프 3년 연장 합의…“공조 상징”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="대한항공, 3분기 매출 ‘역대 최대’ 5조…고유가에도 환승 수요 몰려 " data-card="{&quot;title&quot;: &quot;대한항공, 3분기 매출 ‘역대 최대’ 5조…고유가에도 환승 수요 몰려&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/marketing/1282576.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;80142f302383df037e44f16cc4993dc9373327c3&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/marketing/1282576.html" target="_blank" rel="noopener">대한항공, 3분기 매출 ‘역대 최대’ 5조…고유가에도 환승 수요 몰려</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card hot" data-cat="경제" data-text="ai 거품론, ‘닷컴 버블’ 재림인가…코스피, 7거래일 연속·총 20.7% 폭락 " data-card="{&quot;title&quot;: &quot;AI 거품론, ‘닷컴 버블’ 재림인가…코스피, 7거래일 연속·총 20.7% 폭락&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/finance/1282573.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;AI 거품론 논쟁 속 코스피 누적 20% 폭락의 전개 과정과 배경을 종합적으로 이해할 수 있는 핵심 기사&quot;, &quot;hash&quot;: &quot;652eb68db4bc27a5485f0aec14ce07dfcd131e55&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/finance/1282573.html" target="_blank" rel="noopener">AI 거품론, ‘닷컴 버블’ 재림인가…코스피, 7거래일 연속·총 20.7% 폭락</a><span class="pick">★ 읽을 가치</span></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          <div class="why">💡 AI 거품론 논쟁 속 코스피 누적 20% 폭락의 전개 과정과 배경을 종합적으로 이해할 수 있는 핵심 기사</div>
+        </article>
+        <article class="card" data-cat="경제" data-text="주담대 변동금리 또 오른다…신규는 최고 연 6%대로 상승 " data-card="{&quot;title&quot;: &quot;주담대 변동금리 또 오른다…신규는 최고 연 6%대로 상승&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/economy/finance/1282561.html&quot;, &quot;source&quot;: &quot;한겨레 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d8cbea8a6e3e49ffa3394b4a21273b2783a0aa6c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">한겨레 경제</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/economy/finance/1282561.html" target="_blank" rel="noopener">주담대 변동금리 또 오른다…신규는 최고 연 6%대로 상승</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="물 많이 쓰는 시설부터 잡는다···세종시, 연 2만9000&amp;#13221; 절감 나선다 세종시·정부·공공기관 등 6개 기관 협약수도요금 연 9800만원 절감 기대세종시청 전경. 강정의 기자세종시가 물을 많이 쓰는 대규모 시설의 사용량을 줄이기 위해 정부·공공기관과 손을 잡았다. 연간 물 2만9000㎥를 아끼고 수도요금 약 9800만원을 줄이는 것이 목표다.시는 16일 기후에너지환경부, 한국수자원공사, 한국환…" data-card="{&quot;title&quot;: &quot;물 많이 쓰는 시설부터 잡는다···세종시, 연 2만9000&amp;#13221; 절감 나선다&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610161031001&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;세종시·정부·공공기관 등 6개 기관 협약수도요금 연 9800만원 절감 기대세종시청 전경. 강정의 기자세종시가 물을 많이 쓰는 대규모 시설의 사용량을 줄이기 위해 정부·공공기관과 손을 잡았다. 연간 물 2만9000㎥를 아끼고 수도요금 약 9800만원을 줄이는 것이 목표다.시는 16일 기후에너지환경부, 한국수자원공사, 한국환…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;355457f4ee7fb9028c2e8e7fb65e5822ac715980&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610161031001" target="_blank" rel="noopener">물 많이 쓰는 시설부터 잡는다···세종시, 연 2만9000&amp;#13221; 절감 나선다</a></h3>
+          <p>세종시·정부·공공기관 등 6개 기관 협약수도요금 연 9800만원 절감 기대세종시청 전경. 강정의 기자세종시가 물을 많이 쓰는 대규모 시설의 사용량을 줄이기 위해 정부·공공기관과 손을 잡았다. 연간 물 2만9000㎥를 아끼고 수도요금 약 9800만원을 줄이는 것이 목표다.시는 16일 기후에너지환경부, 한국수자원공사, 한국환…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="15&amp;#13214; 가는 데 ‘51분’···천안 남부대로 ‘출퇴근 지옥’ 풀릴까 충남도·천안시, 신호 체계·교차로 개선 추진장기 대체도로 국가계획 반영 협력박수현 충남지사(가운데)가 16일 천안 남부대로를 찾아 현장을 살피고 있다. 충남도 제공충남도가 출퇴근 시간 극심한 정체를 빚는 천안 남부대로(국도 21호선)의 교통 개선에 나선다. 교차로 신호와 좌회전 차로를 정비하고 단계적으로 도로 확장과 대체…" data-card="{&quot;title&quot;: &quot;15&amp;#13214; 가는 데 ‘51분’···천안 남부대로 ‘출퇴근 지옥’ 풀릴까&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610161027001&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;충남도·천안시, 신호 체계·교차로 개선 추진장기 대체도로 국가계획 반영 협력박수현 충남지사(가운데)가 16일 천안 남부대로를 찾아 현장을 살피고 있다. 충남도 제공충남도가 출퇴근 시간 극심한 정체를 빚는 천안 남부대로(국도 21호선)의 교통 개선에 나선다. 교차로 신호와 좌회전 차로를 정비하고 단계적으로 도로 확장과 대체…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7452b9e459b728dd1a11045ed1e3b0f968a1bb16&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610161027001" target="_blank" rel="noopener">15&amp;#13214; 가는 데 ‘51분’···천안 남부대로 ‘출퇴근 지옥’ 풀릴까</a></h3>
+          <p>충남도·천안시, 신호 체계·교차로 개선 추진장기 대체도로 국가계획 반영 협력박수현 충남지사(가운데)가 16일 천안 남부대로를 찾아 현장을 살피고 있다. 충남도 제공충남도가 출퇴근 시간 극심한 정체를 빚는 천안 남부대로(국도 21호선)의 교통 개선에 나선다. 교차로 신호와 좌회전 차로를 정비하고 단계적으로 도로 확장과 대체…</p>
+          
+        </article>
+        <article class="card hot" data-cat="경제" data-text="정부 “국내 증시 변동성, 해외보다 커”…시장 모니터링 강화 권대영 재정경제부 차관이 16일 정부서울청사에서 열린 ‘시장상황점검회의’를 주재, 모두발언을 하고 있다. 재경부 제공.정부가 미국 국채금리 상승 전망과 인공지능(ai)·반도체 업황 불확실성, 중동 지역 긴장 등의 영향으로 국내 증시의 변동성이 다른 시장보다 상대적으로 크게 나타나고 있다고 진단했다. 정부는 금융시장 불확실…" data-card="{&quot;title&quot;: &quot;정부 “국내 증시 변동성, 해외보다 커”…시장 모니터링 강화&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610161000021&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;권대영 재정경제부 차관이 16일 정부서울청사에서 열린 ‘시장상황점검회의’를 주재, 모두발언을 하고 있다. 재경부 제공.정부가 미국 국채금리 상승 전망과 인공지능(AI)·반도체 업황 불확실성, 중동 지역 긴장 등의 영향으로 국내 증시의 변동성이 다른 시장보다 상대적으로 크게 나타나고 있다고 진단했다. 정부는 금융시장 불확실…&quot;, &quot;why&quot;: &quot;증시 변동성 대응 정부 정책과 시장 모니터링 강화 방안을 직접 담은 공식 발표&quot;, &quot;hash&quot;: &quot;b61c74ebf1a6d1f76cc11757dd0d2771595337f1&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610161000021" target="_blank" rel="noopener">정부 “국내 증시 변동성, 해외보다 커”…시장 모니터링 강화</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>권대영 재정경제부 차관이 16일 정부서울청사에서 열린 ‘시장상황점검회의’를 주재, 모두발언을 하고 있다. 재경부 제공.정부가 미국 국채금리 상승 전망과 인공지능(AI)·반도체 업황 불확실성, 중동 지역 긴장 등의 영향으로 국내 증시의 변동성이 다른 시장보다 상대적으로 크게 나타나고 있다고 진단했다. 정부는 금융시장 불확실…</p>
+          <div class="why">💡 증시 변동성 대응 정부 정책과 시장 모니터링 강화 방안을 직접 담은 공식 발표</div>
+        </article>
+        <article class="card" data-cat="경제" data-text="“박원순 시정 도시재생이 공급 절벽으로”···20년 주택공급 백서 낸 서울시 지난 8월4일 서울 남산타워에서 내려다본 서울 후암동 다세대 주택 밀집지역. 정효진 기자서울시가 지난 20년간 주택공급 정책의 성과와 한계를 돌아보는 백서를 마련했다. 시는 현재의 주택 공급 절벽이 박원순 전 시장 재임 기간 정비구역을 해제하고 보존형 도시재생 정책을 편 결과라고 분석했다. 앞으로는 정책 연속성을 확보하고…" data-card="{&quot;title&quot;: &quot;“박원순 시정 도시재생이 공급 절벽으로”···20년 주택공급 백서 낸 서울시&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610161000011&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;지난 8월4일 서울 남산타워에서 내려다본 서울 후암동 다세대 주택 밀집지역. 정효진 기자서울시가 지난 20년간 주택공급 정책의 성과와 한계를 돌아보는 백서를 마련했다. 시는 현재의 주택 공급 절벽이 박원순 전 시장 재임 기간 정비구역을 해제하고 보존형 도시재생 정책을 편 결과라고 분석했다. 앞으로는 정책 연속성을 확보하고…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;86fe54fc1e6e7ef9936b915d8567e949029906f7&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610161000011" target="_blank" rel="noopener">“박원순 시정 도시재생이 공급 절벽으로”···20년 주택공급 백서 낸 서울시</a></h3>
+          <p>지난 8월4일 서울 남산타워에서 내려다본 서울 후암동 다세대 주택 밀집지역. 정효진 기자서울시가 지난 20년간 주택공급 정책의 성과와 한계를 돌아보는 백서를 마련했다. 시는 현재의 주택 공급 절벽이 박원순 전 시장 재임 기간 정비구역을 해제하고 보존형 도시재생 정책을 편 결과라고 분석했다. 앞으로는 정책 연속성을 확보하고…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="ai·반도체주 4일간 시총 1조달러 증발…중국발 충격 한국에 집중되나 코스피가 7% 넘게 급락한 지난 15일 서울 여의도 한국거래소 모니터에 삼성전자와 sk하이닉스 종가가 표시되고 있다. 연합뉴스금리 인상 우려와 인공지능(ai) 투자 부담 우려, 중국 메모리 업체의 추격 전망이 한꺼번에 겹치면서 세계 ai·반도체주 급락세가 이어지고 있다.15일(현지시간) 미국 cnbc 방송에 따르면 세계 …" data-card="{&quot;title&quot;: &quot;AI·반도체주 4일간 시총 1조달러 증발…중국발 충격 한국에 집중되나&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160806001&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;코스피가 7% 넘게 급락한 지난 15일 서울 여의도 한국거래소 모니터에 삼성전자와 SK하이닉스 종가가 표시되고 있다. 연합뉴스금리 인상 우려와 인공지능(AI) 투자 부담 우려, 중국 메모리 업체의 추격 전망이 한꺼번에 겹치면서 세계 AI·반도체주 급락세가 이어지고 있다.15일(현지시간) 미국 CNBC 방송에 따르면 세계 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7e176dd3906fa7f24944d39ffcdec3b2f7db2a3a&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160806001" target="_blank" rel="noopener">AI·반도체주 4일간 시총 1조달러 증발…중국발 충격 한국에 집중되나</a></h3>
+          <p>코스피가 7% 넘게 급락한 지난 15일 서울 여의도 한국거래소 모니터에 삼성전자와 SK하이닉스 종가가 표시되고 있다. 연합뉴스금리 인상 우려와 인공지능(AI) 투자 부담 우려, 중국 메모리 업체의 추격 전망이 한꺼번에 겹치면서 세계 AI·반도체주 급락세가 이어지고 있다.15일(현지시간) 미국 CNBC 방송에 따르면 세계 …</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[속보]9월 취업자 11만명 증가…청년 고용률은 29개월째 내리막 지난달 17일 서울 양재동 at센터에서 열린 ‘서울시 시니어 일자리박람회 2026’에서 참가자들이 채용공고 게시대를 살펴보고 있다. 연합뉴스지난달 취업자 수가 11만3000명 늘었지만 증가폭은 한 달 만에 다시 둔화했다. 15~64세 고용률은 상승했지만 청년층 고용률은 29개월 연속 하락하며 연령별 고용 격차가 이어졌다.…" data-card="{&quot;title&quot;: &quot;[속보]9월 취업자 11만명 증가…청년 고용률은 29개월째 내리막&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160800011&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;지난달 17일 서울 양재동 aT센터에서 열린 ‘서울시 시니어 일자리박람회 2026’에서 참가자들이 채용공고 게시대를 살펴보고 있다. 연합뉴스지난달 취업자 수가 11만3000명 늘었지만 증가폭은 한 달 만에 다시 둔화했다. 15~64세 고용률은 상승했지만 청년층 고용률은 29개월 연속 하락하며 연령별 고용 격차가 이어졌다.…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;99fa8a15da6539bf9a5440a7ccf49f939f1b2bc5&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160800011" target="_blank" rel="noopener">[속보]9월 취업자 11만명 증가…청년 고용률은 29개월째 내리막</a></h3>
+          <p>지난달 17일 서울 양재동 aT센터에서 열린 ‘서울시 시니어 일자리박람회 2026’에서 참가자들이 채용공고 게시대를 살펴보고 있다. 연합뉴스지난달 취업자 수가 11만3000명 늘었지만 증가폭은 한 달 만에 다시 둔화했다. 15~64세 고용률은 상승했지만 청년층 고용률은 29개월 연속 하락하며 연령별 고용 격차가 이어졌다.…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="환율 내렸지만 유가 올라…수입물가 넉 달만에 상승 지난달 20일 서울 시내 한 주유소 모습. 연합뉴스지난달 원·달러 환율이 하락했지만 국제유가가 큰 폭으로 상승하면서 수입물가지수가 4개월만에 상승했다.한국은행이 16일 발표한 수출입물가지수 통계에 따르면, 올해 9월 수입물가지수(원화 기준 잠정치·2020년 수준 100)는 159.37로, 8월(156.68)보다 1.7% …" data-card="{&quot;title&quot;: &quot;환율 내렸지만 유가 올라…수입물가 넉 달만에 상승&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160737001&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;지난달 20일 서울 시내 한 주유소 모습. 연합뉴스지난달 원·달러 환율이 하락했지만 국제유가가 큰 폭으로 상승하면서 수입물가지수가 4개월만에 상승했다.한국은행이 16일 발표한 수출입물가지수 통계에 따르면, 올해 9월 수입물가지수(원화 기준 잠정치·2020년 수준 100)는 159.37로, 8월(156.68)보다 1.7% …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a43d8d1e73ef83e0a88be702a12000e6f85ecf30&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160737001" target="_blank" rel="noopener">환율 내렸지만 유가 올라…수입물가 넉 달만에 상승</a></h3>
+          <p>지난달 20일 서울 시내 한 주유소 모습. 연합뉴스지난달 원·달러 환율이 하락했지만 국제유가가 큰 폭으로 상승하면서 수입물가지수가 4개월만에 상승했다.한국은행이 16일 발표한 수출입물가지수 통계에 따르면, 올해 9월 수입물가지수(원화 기준 잠정치·2020년 수준 100)는 159.37로, 8월(156.68)보다 1.7% …</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="애플 ceo, 중국산 반도체 사용 시사…“메모리 제약 절대적 위기” 존 터너스 애플 최고경영자(ceo)가 지난달 18일(현지시간) 미국 뉴욕에서 열린 아이폰18 프로 출시 행사에서 제품을 들어보이고 있다. 로이터연합뉴스존 터너스 애플 최고경영자(ceo)가 메모리 반도체 공급난을 절대적 위기로 진단하면서 중국산 제품의 사용 검토를 시사했다.터너스 ceo는 15일(현지시간) 공개된 미 시사주…" data-card="{&quot;title&quot;: &quot;애플 CEO, 중국산 반도체 사용 시사…“메모리 제약 절대적 위기”&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160719001&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;존 터너스 애플 최고경영자(CEO)가 지난달 18일(현지시간) 미국 뉴욕에서 열린 아이폰18 프로 출시 행사에서 제품을 들어보이고 있다. 로이터연합뉴스존 터너스 애플 최고경영자(CEO)가 메모리 반도체 공급난을 절대적 위기로 진단하면서 중국산 제품의 사용 검토를 시사했다.터너스 CEO는 15일(현지시간) 공개된 미 시사주…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;221cb974c2bffefad147457544463cf4f2a1a2b7&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160719001" target="_blank" rel="noopener">애플 CEO, 중국산 반도체 사용 시사…“메모리 제약 절대적 위기”</a></h3>
+          <p>존 터너스 애플 최고경영자(CEO)가 지난달 18일(현지시간) 미국 뉴욕에서 열린 아이폰18 프로 출시 행사에서 제품을 들어보이고 있다. 로이터연합뉴스존 터너스 애플 최고경영자(CEO)가 메모리 반도체 공급난을 절대적 위기로 진단하면서 중국산 제품의 사용 검토를 시사했다.터너스 CEO는 15일(현지시간) 공개된 미 시사주…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[단독]“금융권 공격 ‘ai 해커’는 10대…동남아 거점 중국계 조직이 사주” 증언 서울 시내에 설치된 여러 은행 atm기. 연합뉴스중국어권 ai 해킹 커뮤니티 운영자 인터뷰최근 국내 금융권을 겨냥한 해킹 공격의 실제 실행자가 중국계 10대 소년이며, 동남아에 거점을 둔 국제 범죄조직의 사주를 받아 범행했다는 주장이 나왔다.15일 경향신문이 접촉한 한 중국어권 ai 침투 커뮤니티 ‘t○○○○’ 채···" data-card="{&quot;title&quot;: &quot;[단독]“금융권 공격 ‘AI 해커’는 10대…동남아 거점 중국계 조직이 사주” 증언&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600101&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;서울 시내에 설치된 여러 은행 ATM기. 연합뉴스중국어권 AI 해킹 커뮤니티 운영자 인터뷰최근 국내 금융권을 겨냥한 해킹 공격의 실제 실행자가 중국계 10대 소년이며, 동남아에 거점을 둔 국제 범죄조직의 사주를 받아 범행했다는 주장이 나왔다.15일 경향신문이 접촉한 한 중국어권 AI 침투 커뮤니티 ‘T○○○○’ 채···&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;f9ea7e580cd4329f9b3dd627d84dbefb9751f9d7&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600101" target="_blank" rel="noopener">[단독]“금융권 공격 ‘AI 해커’는 10대…동남아 거점 중국계 조직이 사주” 증언</a></h3>
+          <p>서울 시내에 설치된 여러 은행 ATM기. 연합뉴스중국어권 AI 해킹 커뮤니티 운영자 인터뷰최근 국내 금융권을 겨냥한 해킹 공격의 실제 실행자가 중국계 10대 소년이며, 동남아에 거점을 둔 국제 범죄조직의 사주를 받아 범행했다는 주장이 나왔다.15일 경향신문이 접촉한 한 중국어권 AI 침투 커뮤니티 ‘T○○○○’ 채···</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[단독]수천억 투입 국가 r&amp;amp;d 과제, 부정행위 발견돼도 연구비 환수·제재는 1% 연구개발 관련 일러스트. 김상민 기자 국가 예산이 투입되는 연구개발(r&amp;d) 과제에서 연구기관이 연구비를 잘못된 용도로 사용하거나 논문 조작, 연구결과 불량 등의 부정행위를 하더라도 그 책임을 물어 금전적 배상을 하는 비율은 낮은 것으로 나타났다.이정헌 더불어민주당 의원이 15일 한국연구재단으로부터 제출받은 자료를 보면,…" data-card="{&quot;title&quot;: &quot;[단독]수천억 투입 국가 R&amp;amp;D 과제, 부정행위 발견돼도 연구비 환수·제재는 1%&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600021&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;연구개발 관련 일러스트. 김상민 기자 국가 예산이 투입되는 연구개발(R&amp;D) 과제에서 연구기관이 연구비를 잘못된 용도로 사용하거나 논문 조작, 연구결과 불량 등의 부정행위를 하더라도 그 책임을 물어 금전적 배상을 하는 비율은 낮은 것으로 나타났다.이정헌 더불어민주당 의원이 15일 한국연구재단으로부터 제출받은 자료를 보면,…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;3ee4fb94f5472b5e4beda5baad16fac570694abb&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600021" target="_blank" rel="noopener">[단독]수천억 투입 국가 R&amp;amp;D 과제, 부정행위 발견돼도 연구비 환수·제재는 1%</a></h3>
+          <p>연구개발 관련 일러스트. 김상민 기자 국가 예산이 투입되는 연구개발(R&amp;D) 과제에서 연구기관이 연구비를 잘못된 용도로 사용하거나 논문 조작, 연구결과 불량 등의 부정행위를 하더라도 그 책임을 물어 금전적 배상을 하는 비율은 낮은 것으로 나타났다.이정헌 더불어민주당 의원이 15일 한국연구재단으로부터 제출받은 자료를 보면,…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="국내 증시 7% 넘게 ‘곤두박질’ 코스피 5500선·코스닥 760선7월 말 이후 동반 서킷브레이커고금리·ai 수익성 우려 등 여파국내 증시가 15일 7% 넘게 폭락하며 ‘검은 목요일’을 맞았다. 코스피·코스닥 시장에는 두 달 반 만에 서킷브레이커가 동반 발동됐다. 고금리 장기화 불안과 인공지능(ai) 수익성 우려, 외국인 매도세에 따른 수급 공백이 맞물리…" data-card="{&quot;title&quot;: &quot;국내 증시 7% 넘게 ‘곤두박질’&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152223025&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;코스피 5500선·코스닥 760선7월 말 이후 동반 서킷브레이커고금리·AI 수익성 우려 등 여파국내 증시가 15일 7% 넘게 폭락하며 ‘검은 목요일’을 맞았다. 코스피·코스닥 시장에는 두 달 반 만에 서킷브레이커가 동반 발동됐다. 고금리 장기화 불안과 인공지능(AI) 수익성 우려, 외국인 매도세에 따른 수급 공백이 맞물리…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;2706e1f289eaa40acef2b29440a9e7f787e331c3&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152223025" target="_blank" rel="noopener">국내 증시 7% 넘게 ‘곤두박질’</a></h3>
+          <p>코스피 5500선·코스닥 760선7월 말 이후 동반 서킷브레이커고금리·AI 수익성 우려 등 여파국내 증시가 15일 7% 넘게 폭락하며 ‘검은 목요일’을 맞았다. 코스피·코스닥 시장에는 두 달 반 만에 서킷브레이커가 동반 발동됐다. 고금리 장기화 불안과 인공지능(AI) 수익성 우려, 외국인 매도세에 따른 수급 공백이 맞물리…</p>
+          
+        </article>
+        <article class="card" data-cat="경제" data-text="[포토뉴스]지구 저궤도에서 부친 ‘첫 엽서’…누리호 군집위성, 14시간29분 만에 영상 전송 우주항공청과 카이스트는 지난 7일 한국형 발사체 누리호에 실린 초소형 군집위성 2~6호가 발사 약 14시간29분 만에 첫 지상 관측 영상을 촬영해 지상국으로 전송하는 데 성공했다고 15일 밝혔다. 사진은 위성 4호가 8일 촬영한 미국 오하이오주 클리블랜드(왼쪽, 가운데)와 6호가 12일 찍은 미국 앨라배마주 몽고메리 일대…" data-card="{&quot;title&quot;: &quot;[포토뉴스]지구 저궤도에서 부친 ‘첫 엽서’…누리호 군집위성, 14시간29분 만에 영상 전송&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152218005&quot;, &quot;source&quot;: &quot;경향신문 경제&quot;, &quot;cat&quot;: &quot;경제&quot;, &quot;summary&quot;: &quot;우주항공청과 카이스트는 지난 7일 한국형 발사체 누리호에 실린 초소형 군집위성 2~6호가 발사 약 14시간29분 만에 첫 지상 관측 영상을 촬영해 지상국으로 전송하는 데 성공했다고 15일 밝혔다. 사진은 위성 4호가 8일 촬영한 미국 오하이오주 클리블랜드(왼쪽, 가운데)와 6호가 12일 찍은 미국 앨라배마주 몽고메리 일대…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;37dad22fd6da0f5e18e9245424d9f660291b8686&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-경제">💹 경제</span><span class="src">경향신문 경제</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152218005" target="_blank" rel="noopener">[포토뉴스]지구 저궤도에서 부친 ‘첫 엽서’…누리호 군집위성, 14시간29분 만에 영상 전송</a></h3>
+          <p>우주항공청과 카이스트는 지난 7일 한국형 발사체 누리호에 실린 초소형 군집위성 2~6호가 발사 약 14시간29분 만에 첫 지상 관측 영상을 촬영해 지상국으로 전송하는 데 성공했다고 15일 밝혔다. 사진은 위성 4호가 8일 촬영한 미국 오하이오주 클리블랜드(왼쪽, 가운데)와 6호가 12일 찍은 미국 앨라배마주 몽고메리 일대…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[인사] 기후에너지환경부 ◇ 고위공무원단 승진" data-card="{&quot;title&quot;: &quot;[인사] 기후에너지환경부&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016057700530&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;◇ 고위공무원단 승진&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;0d6496370f935e057e84fb2612775834011e5c37&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:26</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016057700530" target="_blank" rel="noopener">[인사] 기후에너지환경부</a></h3>
+          <p>◇ 고위공무원단 승진</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="울주 장애인 위한 웰에이징 프로그램 운영…&#x27;다시, 봄 프로젝트&#x27; (울산=연합뉴스) 장영은 기자 = 울산 울주복지재단은 중부장애인복지관 주관으로 장애인을 대상 웰에이징 프로그램 &#x27;다시, 봄 프로젝트&#x27;를 성공적으..." data-card="{&quot;title&quot;: &quot;울주 장애인 위한 웰에이징 프로그램 운영…&#x27;다시, 봄 프로젝트&#x27;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016053800057&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(울산=연합뉴스) 장영은 기자 = 울산 울주복지재단은 중부장애인복지관 주관으로 장애인을 대상 웰에이징 프로그램 &#x27;다시, 봄 프로젝트&#x27;를 성공적으...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;604ca33a6ee9581005814c68bd55ef2574de3279&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:25</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016053800057" target="_blank" rel="noopener">울주 장애인 위한 웰에이징 프로그램 운영…&#x27;다시, 봄 프로젝트&#x27;</a></h3>
+          <p>(울산=연합뉴스) 장영은 기자 = 울산 울주복지재단은 중부장애인복지관 주관으로 장애인을 대상 웰에이징 프로그램 &#x27;다시, 봄 프로젝트&#x27;를 성공적으...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="&#x27;딸 교수 임용 의혹&#x27; 유승민 전 의원 송치…업무방해 혐의(종합) (인천=연합뉴스) 홍현기 기자 = 유승민 전 의원의 딸인 유담(32) 인천대 무역학부 교수의 특혜 임용 의혹과 관련해 유 전 의원을 포함한 4명..." data-card="{&quot;title&quot;: &quot;&#x27;딸 교수 임용 의혹&#x27; 유승민 전 의원 송치…업무방해 혐의(종합)&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016054151065&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(인천=연합뉴스) 홍현기 기자 = 유승민 전 의원의 딸인 유담(32) 인천대 무역학부 교수의 특혜 임용 의혹과 관련해 유 전 의원을 포함한 4명...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e893e0b614de7f9e323c6494776b3b1149ae3f42&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:25</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016054151065" target="_blank" rel="noopener">&#x27;딸 교수 임용 의혹&#x27; 유승민 전 의원 송치…업무방해 혐의(종합)</a></h3>
+          <p>(인천=연합뉴스) 홍현기 기자 = 유승민 전 의원의 딸인 유담(32) 인천대 무역학부 교수의 특혜 임용 의혹과 관련해 유 전 의원을 포함한 4명...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="전북연구원, 고령농 생애영농 보장 &#x27;마을단위 농업경영체&#x27; 제안 (전주=연합뉴스) 김동철 기자 = 전북연구원이 농촌 고령화에 대응해 개별 영농의 장점을 살리면서 경영을 통합하는 &#x27;마을단위 농업경영체&#x27; 도입을 ..." data-card="{&quot;title&quot;: &quot;전북연구원, 고령농 생애영농 보장 &#x27;마을단위 농업경영체&#x27; 제안&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016056700055&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(전주=연합뉴스) 김동철 기자 = 전북연구원이 농촌 고령화에 대응해 개별 영농의 장점을 살리면서 경영을 통합하는 &#x27;마을단위 농업경영체&#x27; 도입을 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;4baa63613e231715779dbad13a82b6d8c6c84fec&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:24</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016056700055" target="_blank" rel="noopener">전북연구원, 고령농 생애영농 보장 &#x27;마을단위 농업경영체&#x27; 제안</a></h3>
+          <p>(전주=연합뉴스) 김동철 기자 = 전북연구원이 농촌 고령화에 대응해 개별 영농의 장점을 살리면서 경영을 통합하는 &#x27;마을단위 농업경영체&#x27; 도입을 ...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="양경수 민주노총 위원장, 3선 도전장…&quot;사회적 대화 완수해야&quot; (서울=연합뉴스) 옥성구 기자 = 양경수 전국민주노동조합총연맹(민주노총) 위원장이 &quot;사회적 대화 과제를 완수해야 한다&quot;며 3선 출마 의사를 밝혔..." data-card="{&quot;title&quot;: &quot;양경수 민주노총 위원장, 3선 도전장…\&quot;사회적 대화 완수해야\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016056200530&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 옥성구 기자 = 양경수 전국민주노동조합총연맹(민주노총) 위원장이 \&quot;사회적 대화 과제를 완수해야 한다\&quot;며 3선 출마 의사를 밝혔...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;09a5fae3629bc1a6aa8b5f19fd07e5d773b76588&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:24</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016056200530" target="_blank" rel="noopener">양경수 민주노총 위원장, 3선 도전장…&quot;사회적 대화 완수해야&quot;</a></h3>
+          <p>(서울=연합뉴스) 옥성구 기자 = 양경수 전국민주노동조합총연맹(민주노총) 위원장이 &quot;사회적 대화 과제를 완수해야 한다&quot;며 3선 출마 의사를 밝혔...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="동아대, 외국인 유학생 전용 &#x27;k-푸드 학과&#x27; 신설 (부산=연합뉴스) 민영규 기자 = 동아대학교는 내년 3월 외국인 유학생 전용 학과인 &#x27;컬리너리&amp;amp;푸드비즈니스학과&#x27;를 신설하기로 하고 신입생..." data-card="{&quot;title&quot;: &quot;동아대, 외국인 유학생 전용 &#x27;K-푸드 학과&#x27; 신설&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016056100051&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(부산=연합뉴스) 민영규 기자 = 동아대학교는 내년 3월 외국인 유학생 전용 학과인 &#x27;컬리너리&amp;amp;푸드비즈니스학과&#x27;를 신설하기로 하고 신입생...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;86703ea9582d2b23890aab484b9aea4a8efc5cae&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:22</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016056100051" target="_blank" rel="noopener">동아대, 외국인 유학생 전용 &#x27;K-푸드 학과&#x27; 신설</a></h3>
+          <p>(부산=연합뉴스) 민영규 기자 = 동아대학교는 내년 3월 외국인 유학생 전용 학과인 &#x27;컬리너리&amp;amp;푸드비즈니스학과&#x27;를 신설하기로 하고 신입생...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="역대최대 산림 피해 낸 경북 산불…60대 실화자 2심도 집행유예 (대구=연합뉴스) 김선형 기자 = 지난해 3월 역대 최악의 피해를 낸 &#x27;경북 산불&#x27;을 유발한 혐의로 기소된 과수원 임차인이 항소심에서도 징역형의..." data-card="{&quot;title&quot;: &quot;역대최대 산림 피해 낸 경북 산불…60대 실화자 2심도 집행유예&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016055800053&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(대구=연합뉴스) 김선형 기자 = 지난해 3월 역대 최악의 피해를 낸 &#x27;경북 산불&#x27;을 유발한 혐의로 기소된 과수원 임차인이 항소심에서도 징역형의...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;4f428467d7dc73e0de5628abff1eed977b59b42d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:21</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016055800053" target="_blank" rel="noopener">역대최대 산림 피해 낸 경북 산불…60대 실화자 2심도 집행유예</a></h3>
+          <p>(대구=연합뉴스) 김선형 기자 = 지난해 3월 역대 최악의 피해를 낸 &#x27;경북 산불&#x27;을 유발한 혐의로 기소된 과수원 임차인이 항소심에서도 징역형의...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="울주군, 아동범죄 예방 위해 호신용 경보기 1만2천개 지원 (울산=연합뉴스) 장영은 기자 = 울산 울주군은 16일 아동 대상 범죄 예방과 안전한 지역사회 조성을 위해 울주군 치안협의회에 호신용 경보기 1..." data-card="{&quot;title&quot;: &quot;울주군, 아동범죄 예방 위해 호신용 경보기 1만2천개 지원&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016053200057&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(울산=연합뉴스) 장영은 기자 = 울산 울주군은 16일 아동 대상 범죄 예방과 안전한 지역사회 조성을 위해 울주군 치안협의회에 호신용 경보기 1...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d4aa0f080a08fc0eff78d0bbfce4d3c14a9cf1ed&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:19</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016053200057" target="_blank" rel="noopener">울주군, 아동범죄 예방 위해 호신용 경보기 1만2천개 지원</a></h3>
+          <p>(울산=연합뉴스) 장영은 기자 = 울산 울주군은 16일 아동 대상 범죄 예방과 안전한 지역사회 조성을 위해 울주군 치안협의회에 호신용 경보기 1...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="송파구, 17∼18일 시장·상점가 3곳서 야간 음식문화 축제 (서울=연합뉴스) 정준영 기자 = 서울 송파구(구청장 서강석)는 지역 상권에 활력을 불어넣고자 오는 17∼18일 석촌시장과 풍납시장, 문정동로데..." data-card="{&quot;title&quot;: &quot;송파구, 17∼18일 시장·상점가 3곳서 야간 음식문화 축제&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016055600004&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 정준영 기자 = 서울 송파구(구청장 서강석)는 지역 상권에 활력을 불어넣고자 오는 17∼18일 석촌시장과 풍납시장, 문정동로데...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a4b7a1c6a6a4af8d38b766b4544a61650f087f3d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:19</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016055600004" target="_blank" rel="noopener">송파구, 17∼18일 시장·상점가 3곳서 야간 음식문화 축제</a></h3>
+          <p>(서울=연합뉴스) 정준영 기자 = 서울 송파구(구청장 서강석)는 지역 상권에 활력을 불어넣고자 오는 17∼18일 석촌시장과 풍납시장, 문정동로데...</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[속보] 역대최악 &#x27;경북산불&#x27; 낸 60대 실화자 항소심도 집행유예 (" data-card="{&quot;title&quot;: &quot;[속보] 역대최악 &#x27;경북산불&#x27; 낸 60대 실화자 항소심도 집행유예&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016055000053&quot;, &quot;source&quot;: &quot;연합뉴스 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;(&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;500f0da03d522af621a25df345267682e3a52d73&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">연합뉴스 사회 · 10-16 10:17</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016055000053" target="_blank" rel="noopener">[속보] 역대최악 &#x27;경북산불&#x27; 낸 60대 실화자 항소심도 집행유예</a></h3>
+          <p>(</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="‘집 앞 극우 시위’ 유해진 신변보호 해제…“특별대우한 건 아냐” " data-card="{&quot;title&quot;: &quot;‘집 앞 극우 시위’ 유해진 신변보호 해제…“특별대우한 건 아냐”&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282701.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;119fa9833130b3df7cea6cdf9c6b8d84e53f2323&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282701.html" target="_blank" rel="noopener">‘집 앞 극우 시위’ 유해진 신변보호 해제…“특별대우한 건 아냐”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="중수·공소청장 국무회의 참석에 “공정성 훼손 우려” 목소리 " data-card="{&quot;title&quot;: &quot;중수·공소청장 국무회의 참석에 “공정성 훼손 우려” 목소리&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282697.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;884a6fd1f31a511c2fbe8ef5246e58a5e49ca45e&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282697.html" target="_blank" rel="noopener">중수·공소청장 국무회의 참석에 “공정성 훼손 우려” 목소리</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="일부러 부딪쳐 “휴대폰 파손”…38명에 수리비 2200만원 뜯어 " data-card="{&quot;title&quot;: &quot;일부러 부딪쳐 “휴대폰 파손”…38명에 수리비 2200만원 뜯어&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282687.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;713b12661f215f612299c1a9ef16e3936c6513ab&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282687.html" target="_blank" rel="noopener">일부러 부딪쳐 “휴대폰 파손”…38명에 수리비 2200만원 뜯어</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="낮 최고 26도 ‘포근한 가을’…일교차 15도 ‘감기 주의’ " data-card="{&quot;title&quot;: &quot;낮 최고 26도 ‘포근한 가을’…일교차 15도 ‘감기 주의’&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/environment/1282686.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;baa20a35ba6f0c5d50c6c0087cf6047f94104e33&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/environment/1282686.html" target="_blank" rel="noopener">낮 최고 26도 ‘포근한 가을’…일교차 15도 ‘감기 주의’</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="‘1호 친일파’ 박흥식 저택을 찾아 몰래 건넨 쪽지 [금자㉑] " data-card="{&quot;title&quot;: &quot;‘1호 친일파’ 박흥식 저택을 찾아 몰래 건넨 쪽지 [금자㉑]&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282684.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;04adf97af8626e017593078de907ce23e8299bda&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282684.html" target="_blank" rel="noopener">‘1호 친일파’ 박흥식 저택을 찾아 몰래 건넨 쪽지 [금자㉑]</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="한동훈 자녀 부실 수사 의혹에…서울경찰청장 “재점검할 것” " data-card="{&quot;title&quot;: &quot;한동훈 자녀 부실 수사 의혹에…서울경찰청장 “재점검할 것”&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282653.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;573a17a1d6fe496f6946d4bc8fe9866951673f3d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282653.html" target="_blank" rel="noopener">한동훈 자녀 부실 수사 의혹에…서울경찰청장 “재점검할 것”</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="가정폭력 가해자도 ‘전자발찌 부착’ 검토…보복 범죄 막는다 " data-card="{&quot;title&quot;: &quot;가정폭력 가해자도 ‘전자발찌 부착’ 검토…보복 범죄 막는다&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282650.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;92e3a49d6d4052eda723561b20a121923312dd3d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282650.html" target="_blank" rel="noopener">가정폭력 가해자도 ‘전자발찌 부착’ 검토…보복 범죄 막는다</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="이 대통령 위례 사건에 ‘검찰 수사 위법성 단정 어렵다’ …미래위, 보완조사 요구 " data-card="{&quot;title&quot;: &quot;이 대통령 위례 사건에 ‘검찰 수사 위법성 단정 어렵다’ …미래위, 보완조사 요구&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282646.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;80f9aede047a5de4097d580bd0dadc8591daf3ac&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282646.html" target="_blank" rel="noopener">이 대통령 위례 사건에 ‘검찰 수사 위법성 단정 어렵다’ …미래위, 보완조사 요구</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독] ‘가출팸’ 10대 남학생, 건물 계단서 동갑 여학생 불법촬영해 입건 " data-card="{&quot;title&quot;: &quot;[단독] ‘가출팸’ 10대 남학생, 건물 계단서 동갑 여학생 불법촬영해 입건&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282644.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e31267dd814124d747d29c9b646c923cd6aa8a85&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282644.html" target="_blank" rel="noopener">[단독] ‘가출팸’ 10대 남학생, 건물 계단서 동갑 여학생 불법촬영해 입건</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="연이은 여성살해, 피해자 못 지킨 국가…“고위험 가해자 격리해야” " data-card="{&quot;title&quot;: &quot;연이은 여성살해, 피해자 못 지킨 국가…“고위험 가해자 격리해야”&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/women/1282634.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;연이은 여성살해와 국가의 보호 실패를 종합적으로 다루며 고위험 가해자 격리 같은 정책 방향을 제시합니다.&quot;, &quot;hash&quot;: &quot;a10d6dc3a8633c1f6bd16148ac1a7fe759750842&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/women/1282634.html" target="_blank" rel="noopener">연이은 여성살해, 피해자 못 지킨 국가…“고위험 가해자 격리해야”</a><span class="pick">★ 읽을 가치</span></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          <div class="why">💡 연이은 여성살해와 국가의 보호 실패를 종합적으로 다루며 고위험 가해자 격리 같은 정책 방향을 제시합니다.</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="경찰, 가정폭력 가해자 ‘전자발찌 부착’ 추진…격리 조치도 강화 " data-card="{&quot;title&quot;: &quot;경찰, 가정폭력 가해자 ‘전자발찌 부착’ 추진…격리 조치도 강화&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/society_general/1282624.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;c1bbc8f96867802dcfea231d799763be0e3eaca2&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/society_general/1282624.html" target="_blank" rel="noopener">경찰, 가정폭력 가해자 ‘전자발찌 부착’ 추진…격리 조치도 강화</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="10월16일 궂긴 소식 " data-card="{&quot;title&quot;: &quot;10월16일 궂긴 소식&quot;, &quot;link&quot;: &quot;https://www.hani.co.kr/arti/society/obituary/1282616.html&quot;, &quot;source&quot;: &quot;한겨레 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;12c645ed8b2c470ff6825cf7ce66ac26d110bec5&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">한겨레 사회</span></div>
+          <h3><a href="https://www.hani.co.kr/arti/society/obituary/1282616.html" target="_blank" rel="noopener">10월16일 궂긴 소식</a></h3>
+          <p><span class=nosum>요약 없음</span></p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[속보]부천 도장공장서 대형 화재로 ‘대응 2단계’ 발령···화재 진압 소방관 중상 부천 도장공장 화재. 부천소방서 제공경기 부천의 한 도장공장에서 큰 불이 나 소방 당국이 대응 2단계 경보령을 내리고 대응에 나섰다.경기도소방재난본부는 16일 오전 8시38분쯤 부천시 오정구 내동의 한 4층짜리 금속부품 도장 공장에서 불이 났다고 밝혔다.1명은 소방 당국에 의해 구조됐으며, 공장 관계자 등 4명은 스스로 …" data-card="{&quot;title&quot;: &quot;[속보]부천 도장공장서 대형 화재로 ‘대응 2단계’ 발령···화재 진압 소방관 중상&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610161029001&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;부천 도장공장 화재. 부천소방서 제공경기 부천의 한 도장공장에서 큰 불이 나 소방 당국이 대응 2단계 경보령을 내리고 대응에 나섰다.경기도소방재난본부는 16일 오전 8시38분쯤 부천시 오정구 내동의 한 4층짜리 금속부품 도장 공장에서 불이 났다고 밝혔다.1명은 소방 당국에 의해 구조됐으며, 공장 관계자 등 4명은 스스로 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a25031cf0010a399d2a2d368115b472a28dba24c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610161029001" target="_blank" rel="noopener">[속보]부천 도장공장서 대형 화재로 ‘대응 2단계’ 발령···화재 진압 소방관 중상</a></h3>
+          <p>부천 도장공장 화재. 부천소방서 제공경기 부천의 한 도장공장에서 큰 불이 나 소방 당국이 대응 2단계 경보령을 내리고 대응에 나섰다.경기도소방재난본부는 16일 오전 8시38분쯤 부천시 오정구 내동의 한 4층짜리 금속부품 도장 공장에서 불이 났다고 밝혔다.1명은 소방 당국에 의해 구조됐으며, 공장 관계자 등 4명은 스스로 …</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="전북 부안 앞바다서 60대 선원 바다 빠져 숨져···구하려던 동료도 부상 해경 마크. 경향신문 자료사진전북 부안 앞바다에서 그물을 걷어 올리는 작업을 하던 60대 선원이 바다에 빠져 숨지는 사고가 발생했다.16일 부안해양경찰서 등에 따르면 전날 오후 9시5분쯤 부안군 상왕등도 인근 해상에서 “양망 작업 중이던 선원 2명이 물에 빠졌다”는 신고가 접수됐다.바다에 떨어진 60대 선원 a씨는 동료 …" data-card="{&quot;title&quot;: &quot;전북 부안 앞바다서 60대 선원 바다 빠져 숨져···구하려던 동료도 부상&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160944001&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;해경 마크. 경향신문 자료사진전북 부안 앞바다에서 그물을 걷어 올리는 작업을 하던 60대 선원이 바다에 빠져 숨지는 사고가 발생했다.16일 부안해양경찰서 등에 따르면 전날 오후 9시5분쯤 부안군 상왕등도 인근 해상에서 “양망 작업 중이던 선원 2명이 물에 빠졌다”는 신고가 접수됐다.바다에 떨어진 60대 선원 A씨는 동료 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;42a7d858181e7af70501d3e94661c2de13987bfb&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160944001" target="_blank" rel="noopener">전북 부안 앞바다서 60대 선원 바다 빠져 숨져···구하려던 동료도 부상</a></h3>
+          <p>해경 마크. 경향신문 자료사진전북 부안 앞바다에서 그물을 걷어 올리는 작업을 하던 60대 선원이 바다에 빠져 숨지는 사고가 발생했다.16일 부안해양경찰서 등에 따르면 전날 오후 9시5분쯤 부안군 상왕등도 인근 해상에서 “양망 작업 중이던 선원 2명이 물에 빠졌다”는 신고가 접수됐다.바다에 떨어진 60대 선원 A씨는 동료 …</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="관계성범죄 ‘둘만의 문제’ 아냐…64%는 가족 겨냥 이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 a씨가 13일 서울 송파구 서울동부지방법원에서 열린 구속 전 피의자 심문(영장실질심사)에 출석하고 있다. 연합뉴스최근 서울 송파 장모 살해 사건과 제주 부녀 사망 사건 등처럼 부부나 연인 사이에서 시작된 갈등이 가족과 지인 등 주변인의 생명과 안전 위협으로 번지는…" data-card="{&quot;title&quot;: &quot;관계성범죄 ‘둘만의 문제’ 아냐…64%는 가족 겨냥&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160807001&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 A씨가 13일 서울 송파구 서울동부지방법원에서 열린 구속 전 피의자 심문(영장실질심사)에 출석하고 있다. 연합뉴스최근 서울 송파 장모 살해 사건과 제주 부녀 사망 사건 등처럼 부부나 연인 사이에서 시작된 갈등이 가족과 지인 등 주변인의 생명과 안전 위협으로 번지는…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;ac90653073a20b37784740abb1e955eec4c75689&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160807001" target="_blank" rel="noopener">관계성범죄 ‘둘만의 문제’ 아냐…64%는 가족 겨냥</a></h3>
+          <p>이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 A씨가 13일 서울 송파구 서울동부지방법원에서 열린 구속 전 피의자 심문(영장실질심사)에 출석하고 있다. 연합뉴스최근 서울 송파 장모 살해 사건과 제주 부녀 사망 사건 등처럼 부부나 연인 사이에서 시작된 갈등이 가족과 지인 등 주변인의 생명과 안전 위협으로 번지는…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="[셸터: 서로를 구하다&amp;#9315;]최루탄 쏘고 곤봉 휘둘러도…유신정권은 국제시장 셔터 앞에 막혔다 유신정권 무너뜨린 1979년 ‘부마민주항쟁’강경 진압에서 학생들 지켜준 시장 상인들돌아선 민심 지켜본 김재규, 박정희를 쐈다지난 5월 25일 부산 중구 국제시장 골목이 시민들로 가득 차 있다. 조해람 기자땀에 젖은 대학생들이 부산 국제시장의 좁은 골목길을 헉헉대며 내달린다. 곤봉을 든 경찰들이 뒤를 쫓는다. 1979년 1…" data-card="{&quot;title&quot;: &quot;[셸터: 서로를 구하다&amp;#9315;]최루탄 쏘고 곤봉 휘둘러도…유신정권은 국제시장 셔터 앞에 막혔다&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160700011&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;유신정권 무너뜨린 1979년 ‘부마민주항쟁’강경 진압에서 학생들 지켜준 시장 상인들돌아선 민심 지켜본 김재규, 박정희를 쐈다지난 5월 25일 부산 중구 국제시장 골목이 시민들로 가득 차 있다. 조해람 기자땀에 젖은 대학생들이 부산 국제시장의 좁은 골목길을 헉헉대며 내달린다. 곤봉을 든 경찰들이 뒤를 쫓는다. 1979년 1…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;20df6caed60a3672291fae2bd56f55a3929a11aa&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160700011" target="_blank" rel="noopener">[셸터: 서로를 구하다&amp;#9315;]최루탄 쏘고 곤봉 휘둘러도…유신정권은 국제시장 셔터 앞에 막혔다</a></h3>
+          <p>유신정권 무너뜨린 1979년 ‘부마민주항쟁’강경 진압에서 학생들 지켜준 시장 상인들돌아선 민심 지켜본 김재규, 박정희를 쐈다지난 5월 25일 부산 중구 국제시장 골목이 시민들로 가득 차 있다. 조해람 기자땀에 젖은 대학생들이 부산 국제시장의 좁은 골목길을 헉헉대며 내달린다. 곤봉을 든 경찰들이 뒤를 쫓는다. 1979년 1…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="“내 몸은 내가 지킨다”…관계성 범죄·칼부림 이후 여성들 ‘호신용품’ 구매 움직임 이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 a씨가 지난 11일 서울 송파경찰서로 송치되고 있다. 연합뉴스최근 송파 장모 살해·아내 납치와 인천 흉기 난동 사건 등 강력범죄가 잇달아 발생하자 여성들 사이에서 호신용품을 구매하는 등 ‘셀프 보호’ 움직임이 나타나고 있다. 15일 네이버 데이터랩 쇼핑인사이트에 …" data-card="{&quot;title&quot;: &quot;“내 몸은 내가 지킨다”…관계성 범죄·칼부림 이후 여성들 ‘호신용품’ 구매 움직임&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600091&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 A씨가 지난 11일 서울 송파경찰서로 송치되고 있다. 연합뉴스최근 송파 장모 살해·아내 납치와 인천 흉기 난동 사건 등 강력범죄가 잇달아 발생하자 여성들 사이에서 호신용품을 구매하는 등 ‘셀프 보호’ 움직임이 나타나고 있다. 15일 네이버 데이터랩 쇼핑인사이트에 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;da3fbca86ef133c63606e1ff2ff52e219720fb04&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600091" target="_blank" rel="noopener">“내 몸은 내가 지킨다”…관계성 범죄·칼부림 이후 여성들 ‘호신용품’ 구매 움직임</a></h3>
+          <p>이혼소송 중 장모 살해 및 아내를 납치한 20대 중반 남성 A씨가 지난 11일 서울 송파경찰서로 송치되고 있다. 연합뉴스최근 송파 장모 살해·아내 납치와 인천 흉기 난동 사건 등 강력범죄가 잇달아 발생하자 여성들 사이에서 호신용품을 구매하는 등 ‘셀프 보호’ 움직임이 나타나고 있다. 15일 네이버 데이터랩 쇼핑인사이트에 …</p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="[단독]스마트워치 지급받고도 5년간 17명 살해당해···보호조치 기간에도 여성들은 죽어나갔다 일러스트 | news image관계성 범죄로 인한 살인사건이 잇따르는 가운데 최근 5년간 스마트워치를 지급받고도 살해당한 피해자가 17명에 달하는 것으로 집계됐다. 일부 피해자에게는 스마트워치에 더해 맞춤형 순찰, 가해자에 대한 임시조치 1~3호 등 추가 보호조치를 취하고도 참변을 막지 못했다. 가해자에 대한 물리적 감시…" data-card="{&quot;title&quot;: &quot;[단독]스마트워치 지급받고도 5년간 17명 살해당해···보호조치 기간에도 여성들은 죽어나갔다&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600081&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;일러스트 | NEWS IMAGE관계성 범죄로 인한 살인사건이 잇따르는 가운데 최근 5년간 스마트워치를 지급받고도 살해당한 피해자가 17명에 달하는 것으로 집계됐다. 일부 피해자에게는 스마트워치에 더해 맞춤형 순찰, 가해자에 대한 임시조치 1~3호 등 추가 보호조치를 취하고도 참변을 막지 못했다. 가해자에 대한 물리적 감시…&quot;, &quot;why&quot;: &quot;스마트워치 착용 후에도 5년간 17명이 살해당한 구체 사례로, 현재 보호체계의 근본적 한계를 드러냅니다.&quot;, &quot;hash&quot;: &quot;dcfded703d72c54c9f6fff1d96c18312305e948a&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600081" target="_blank" rel="noopener">[단독]스마트워치 지급받고도 5년간 17명 살해당해···보호조치 기간에도 여성들은 죽어나갔다</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>일러스트 | NEWS IMAGE관계성 범죄로 인한 살인사건이 잇따르는 가운데 최근 5년간 스마트워치를 지급받고도 살해당한 피해자가 17명에 달하는 것으로 집계됐다. 일부 피해자에게는 스마트워치에 더해 맞춤형 순찰, 가해자에 대한 임시조치 1~3호 등 추가 보호조치를 취하고도 참변을 막지 못했다. 가해자에 대한 물리적 감시…</p>
+          <div class="why">💡 스마트워치 착용 후에도 5년간 17명이 살해당한 구체 사례로, 현재 보호체계의 근본적 한계를 드러냅니다.</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독]‘해외입양 피해자’ 두번 울리는 정부…인권 침해 결정에도 1년 넘게 배상·사과 지지부진 해외입양 피해자 김유리씨가 지난달 21일 자택에서 자신의 입양 관련 서류를 살펴보고 있다. 김은송 기자 해외입양 과정에서 인권 침해를 겪은 피해자가 진실·화해를 위한 과거사정리위원회(진실화해위) 권고를 근거로 국가배상을 신청했지만 1년 넘게 심사 절차가 지연되고 있다. 이재명 대통령이 이 사안에 대한 인권 침해에 사과하며…" data-card="{&quot;title&quot;: &quot;[단독]‘해외입양 피해자’ 두번 울리는 정부…인권 침해 결정에도 1년 넘게 배상·사과 지지부진&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600071&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;해외입양 피해자 김유리씨가 지난달 21일 자택에서 자신의 입양 관련 서류를 살펴보고 있다. 김은송 기자 해외입양 과정에서 인권 침해를 겪은 피해자가 진실·화해를 위한 과거사정리위원회(진실화해위) 권고를 근거로 국가배상을 신청했지만 1년 넘게 심사 절차가 지연되고 있다. 이재명 대통령이 이 사안에 대한 인권 침해에 사과하며…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;f7804f1e57afb6781e26c4de9ed930a107c08abe&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600071" target="_blank" rel="noopener">[단독]‘해외입양 피해자’ 두번 울리는 정부…인권 침해 결정에도 1년 넘게 배상·사과 지지부진</a></h3>
+          <p>해외입양 피해자 김유리씨가 지난달 21일 자택에서 자신의 입양 관련 서류를 살펴보고 있다. 김은송 기자 해외입양 과정에서 인권 침해를 겪은 피해자가 진실·화해를 위한 과거사정리위원회(진실화해위) 권고를 근거로 국가배상을 신청했지만 1년 넘게 심사 절차가 지연되고 있다. 이재명 대통령이 이 사안에 대한 인권 침해에 사과하며…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="수업은 2시간, 노동은 하루 종일…어느 대학 강사의 ‘가려진 시간표’[강사법 7년, 남은 ‘시간강사’&amp;#9313;] 지난 12일 강원도의 한 대학교에서 강사 황모씨(58)가 수업을 준비하고 있다. 우혜림 기자 지난 12일 오후 1시 강원도의 한 대학교 강의실로 강사 황모씨(58)가 힘차게 들어섰다. “오늘도 시작해봅시다.” 익숙한 손길로 출석부를 펼친 황씨는 학생들이 채 손을 들기도 전에 얼굴을 알아보고 이름을 친근하게 불렀다. 강의실…" data-card="{&quot;title&quot;: &quot;수업은 2시간, 노동은 하루 종일…어느 대학 강사의 ‘가려진 시간표’[강사법 7년, 남은 ‘시간강사’&amp;#9313;]&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600051&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;지난 12일 강원도의 한 대학교에서 강사 황모씨(58)가 수업을 준비하고 있다. 우혜림 기자 지난 12일 오후 1시 강원도의 한 대학교 강의실로 강사 황모씨(58)가 힘차게 들어섰다. “오늘도 시작해봅시다.” 익숙한 손길로 출석부를 펼친 황씨는 학생들이 채 손을 들기도 전에 얼굴을 알아보고 이름을 친근하게 불렀다. 강의실…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;db4bb1929281b5c8ffb7df82c93d2a1563cbacc0&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600051" target="_blank" rel="noopener">수업은 2시간, 노동은 하루 종일…어느 대학 강사의 ‘가려진 시간표’[강사법 7년, 남은 ‘시간강사’&amp;#9313;]</a></h3>
+          <p>지난 12일 강원도의 한 대학교에서 강사 황모씨(58)가 수업을 준비하고 있다. 우혜림 기자 지난 12일 오후 1시 강원도의 한 대학교 강의실로 강사 황모씨(58)가 힘차게 들어섰다. “오늘도 시작해봅시다.” 익숙한 손길로 출석부를 펼친 황씨는 학생들이 채 손을 들기도 전에 얼굴을 알아보고 이름을 친근하게 불렀다. 강의실…</p>
+          
+        </article>
+        <article class="card hot" data-cat="사회" data-text="[단독]5년간 퇴직 법관 재취업 심사 100% 통과…“전관예우 방지 유명무실” 일러스트 | news image 대법원 공직자윤리위원회가 최근 5년여간 기업·로펌 등으로 재취업하려는 퇴직 법관을 심사하면서 취업을 불허한 사례가 한건도 없었던 것으로 나타났다. 전직 대법관까지 대기업 사외이사 등으로 자리를 옮겼다. 전관예우와 이해충돌을 막기 위한 취업심사 제도가 사실상 유명무실하다는 비판이 나온다.15…" data-card="{&quot;title&quot;: &quot;[단독]5년간 퇴직 법관 재취업 심사 100% 통과…“전관예우 방지 유명무실”&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600041&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;일러스트 | NEWS IMAGE 대법원 공직자윤리위원회가 최근 5년여간 기업·로펌 등으로 재취업하려는 퇴직 법관을 심사하면서 취업을 불허한 사례가 한건도 없었던 것으로 나타났다. 전직 대법관까지 대기업 사외이사 등으로 자리를 옮겼다. 전관예우와 이해충돌을 막기 위한 취업심사 제도가 사실상 유명무실하다는 비판이 나온다.15…&quot;, &quot;why&quot;: &quot;퇴직 법관 재취업 심사 불허 사례 없음이 드러나, 사법부 투명성 문제와 공정성 논의의 중심입니다.&quot;, &quot;hash&quot;: &quot;5461fe25955c2b8def73647068921b279c315a73&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600041" target="_blank" rel="noopener">[단독]5년간 퇴직 법관 재취업 심사 100% 통과…“전관예우 방지 유명무실”</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>일러스트 | NEWS IMAGE 대법원 공직자윤리위원회가 최근 5년여간 기업·로펌 등으로 재취업하려는 퇴직 법관을 심사하면서 취업을 불허한 사례가 한건도 없었던 것으로 나타났다. 전직 대법관까지 대기업 사외이사 등으로 자리를 옮겼다. 전관예우와 이해충돌을 막기 위한 취업심사 제도가 사실상 유명무실하다는 비판이 나온다.15…</p>
+          <div class="why">💡 퇴직 법관 재취업 심사 불허 사례 없음이 드러나, 사법부 투명성 문제와 공정성 논의의 중심입니다.</div>
+        </article>
+        <article class="card" data-cat="사회" data-text="[단독]인증만 해주면 끝? ‘녹색인증제’…탄소감축 효과도 모른다 녹색인증 인증마크정부가 국가 온실가스 감축목표(ndc) 달성을 위해 친환경 기술을 지원하는 ‘녹색인증제도’를 운영하고 있지만, 인증 기술의 실제 온실가스 감축량과 에너지 절감 효과는 파악하지 못하는 것으로 나타났다. 성과 측정을 위해 수천만원의 예산을 투입한 연구에서조차 주먹구구식으로 감축 효과를 추산한 것으로 드러났다.…" data-card="{&quot;title&quot;: &quot;[단독]인증만 해주면 끝? ‘녹색인증제’…탄소감축 효과도 모른다&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600011&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;녹색인증 인증마크정부가 국가 온실가스 감축목표(NDC) 달성을 위해 친환경 기술을 지원하는 ‘녹색인증제도’를 운영하고 있지만, 인증 기술의 실제 온실가스 감축량과 에너지 절감 효과는 파악하지 못하는 것으로 나타났다. 성과 측정을 위해 수천만원의 예산을 투입한 연구에서조차 주먹구구식으로 감축 효과를 추산한 것으로 드러났다.…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;dde715a8b235fac701dfb66061232a01ae520d50&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600011" target="_blank" rel="noopener">[단독]인증만 해주면 끝? ‘녹색인증제’…탄소감축 효과도 모른다</a></h3>
+          <p>녹색인증 인증마크정부가 국가 온실가스 감축목표(NDC) 달성을 위해 친환경 기술을 지원하는 ‘녹색인증제도’를 운영하고 있지만, 인증 기술의 실제 온실가스 감축량과 에너지 절감 효과는 파악하지 못하는 것으로 나타났다. 성과 측정을 위해 수천만원의 예산을 투입한 연구에서조차 주먹구구식으로 감축 효과를 추산한 것으로 드러났다.…</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="검찰미래위 진상조사단, 위례 등 3건 보고···“몇가지 보완 필요” 지난 6월 법무부 검찰인권존중미래위원회 발족식. 법무부 제공법무부 검찰인권존중미래위원회(미래위) 산하 진상조사단이 이재명 대통령이 기소된 위례신도시 개발비리 사건 등 3건에 대한 검찰 수사·기소 과정에 관한 조사 결과를 미래위에 보고했다. 미래위는 조사 결과를 바탕으로 수사·기소가 위법했는지 최종 결정할 방침이다.15일 …" data-card="{&quot;title&quot;: &quot;검찰미래위 진상조사단, 위례 등 3건 보고···“몇가지 보완 필요”&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152336001&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;지난 6월 법무부 검찰인권존중미래위원회 발족식. 법무부 제공법무부 검찰인권존중미래위원회(미래위) 산하 진상조사단이 이재명 대통령이 기소된 위례신도시 개발비리 사건 등 3건에 대한 검찰 수사·기소 과정에 관한 조사 결과를 미래위에 보고했다. 미래위는 조사 결과를 바탕으로 수사·기소가 위법했는지 최종 결정할 방침이다.15일 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;b19e2391e7eb3e24112459ae1d05ba2b2f572d78&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152336001" target="_blank" rel="noopener">검찰미래위 진상조사단, 위례 등 3건 보고···“몇가지 보완 필요”</a></h3>
+          <p>지난 6월 법무부 검찰인권존중미래위원회 발족식. 법무부 제공법무부 검찰인권존중미래위원회(미래위) 산하 진상조사단이 이재명 대통령이 기소된 위례신도시 개발비리 사건 등 3건에 대한 검찰 수사·기소 과정에 관한 조사 결과를 미래위에 보고했다. 미래위는 조사 결과를 바탕으로 수사·기소가 위법했는지 최종 결정할 방침이다.15일 …</p>
+          
+        </article>
+        <article class="card" data-cat="사회" data-text="서울경찰청 국감서 ‘용산경찰서 방송의날 회견 과잉 대응’ 비판…한동훈·김재섭 등 정치인 수사 지적도 고범석 서울경찰청장이 15일 서울 종로구 서울경찰청에서 열린 국회 행정안전위원회의 국정감사에서 질의에 답하고 있다. 연합뉴스여권 국회의원들이 15일 서울경찰청 국정감사에서 방송의날 기념식 기자회견 관련 경찰의 과잉 대응 논란을 지적했다. 각종 정치적 현안 수사를 두고 적극적 진행을 요구하거나 공정성 문제를 거론하는 주장도…" data-card="{&quot;title&quot;: &quot;서울경찰청 국감서 ‘용산경찰서 방송의날 회견 과잉 대응’ 비판…한동훈·김재섭 등 정치인 수사 지적도&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152303001&quot;, &quot;source&quot;: &quot;경향신문 사회&quot;, &quot;cat&quot;: &quot;사회&quot;, &quot;summary&quot;: &quot;고범석 서울경찰청장이 15일 서울 종로구 서울경찰청에서 열린 국회 행정안전위원회의 국정감사에서 질의에 답하고 있다. 연합뉴스여권 국회의원들이 15일 서울경찰청 국정감사에서 방송의날 기념식 기자회견 관련 경찰의 과잉 대응 논란을 지적했다. 각종 정치적 현안 수사를 두고 적극적 진행을 요구하거나 공정성 문제를 거론하는 주장도…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;0e8bdf88214458b2de6220287c01e93d0975c758&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-사회">🏛️ 사회</span><span class="src">경향신문 사회</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152303001" target="_blank" rel="noopener">서울경찰청 국감서 ‘용산경찰서 방송의날 회견 과잉 대응’ 비판…한동훈·김재섭 등 정치인 수사 지적도</a></h3>
+          <p>고범석 서울경찰청장이 15일 서울 종로구 서울경찰청에서 열린 국회 행정안전위원회의 국정감사에서 질의에 답하고 있다. 연합뉴스여권 국회의원들이 15일 서울경찰청 국정감사에서 방송의날 기념식 기자회견 관련 경찰의 과잉 대응 논란을 지적했다. 각종 정치적 현안 수사를 두고 적극적 진행을 요구하거나 공정성 문제를 거론하는 주장도…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[방송소식] 장나라 주연 sbs &#x27;굿파트너2&#x27;…내달 첫 방송 (서울=연합뉴스) 고가혜 기자 = ▲ sbs &#x27;굿파트너2&#x27;, 장나라 새 파트너는 김혜윤 = sbs는 새 금토드라마 &#x27;굿파트너2&#x27;를 다음 달 20..." data-card="{&quot;title&quot;: &quot;[방송소식] 장나라 주연 SBS &#x27;굿파트너2&#x27;…내달 첫 방송&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016051600005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 고가혜 기자 = ▲ SBS &#x27;굿파트너2&#x27;, 장나라 새 파트너는 김혜윤 = SBS는 새 금토드라마 &#x27;굿파트너2&#x27;를 다음 달 20...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;0b6b600677e213d0cc55ec6c0b29175626919cf7&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 10:12</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016051600005" target="_blank" rel="noopener">[방송소식] 장나라 주연 SBS &#x27;굿파트너2&#x27;…내달 첫 방송</a></h3>
+          <p>(서울=연합뉴스) 고가혜 기자 = ▲ SBS &#x27;굿파트너2&#x27;, 장나라 새 파트너는 김혜윤 = SBS는 새 금토드라마 &#x27;굿파트너2&#x27;를 다음 달 20...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="신인 코이, 새 싱글 &#x27;1979 블루&#x27;…현대인의 고독 노래 (서울=연합뉴스) 이태수 기자 = 신인 가수 코이(coii)가 16일 낮 12시 새 싱글&#x27; 1979 블루&#x27;(1979 blue)를 발표한다고 소속..." data-card="{&quot;title&quot;: &quot;신인 코이, 새 싱글 &#x27;1979 블루&#x27;…현대인의 고독 노래&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016051500005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 이태수 기자 = 신인 가수 코이(COII)가 16일 낮 12시 새 싱글&#x27; 1979 블루&#x27;(1979 Blue)를 발표한다고 소속...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;76feeec0e876184965b39edd4d1aa22e8a974e9c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 10:05</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016051500005" target="_blank" rel="noopener">신인 코이, 새 싱글 &#x27;1979 블루&#x27;…현대인의 고독 노래</a></h3>
+          <p>(서울=연합뉴스) 이태수 기자 = 신인 가수 코이(COII)가 16일 낮 12시 새 싱글&#x27; 1979 블루&#x27;(1979 Blue)를 발표한다고 소속...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="밴드 바보, 장기하 소속사 합류…&quot;올해 정규 2집 계획&quot; (서울=연합뉴스) 김선우 기자 = 가면을 쓰고 활동하는 밴드 바보(babo)가 두루두루 아티스트 컴퍼니에 합류했다." data-card="{&quot;title&quot;: &quot;밴드 바보, 장기하 소속사 합류…\&quot;올해 정규 2집 계획\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016046900005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 김선우 기자 = 가면을 쓰고 활동하는 밴드 바보(BABO)가 두루두루 아티스트 컴퍼니에 합류했다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;5f93590bf08941901b1be8964ac52701cb57586e&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 10:02</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016046900005" target="_blank" rel="noopener">밴드 바보, 장기하 소속사 합류…&quot;올해 정규 2집 계획&quot;</a></h3>
+          <p>(서울=연합뉴스) 김선우 기자 = 가면을 쓰고 활동하는 밴드 바보(BABO)가 두루두루 아티스트 컴퍼니에 합류했다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="아일랜드 가수 데미안 라이스, 내년 2년 만에 내한 (서울=연합뉴스) 이태수 기자 = 아일랜드 출신 포크 록 싱어송라이터 데미안 라이스가 내년 2월 27∼28일 서울 gs아트센터에서 내한 공연을 ..." data-card="{&quot;title&quot;: &quot;아일랜드 가수 데미안 라이스, 내년 2년 만에 내한&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016043100005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 이태수 기자 = 아일랜드 출신 포크 록 싱어송라이터 데미안 라이스가 내년 2월 27∼28일 서울 GS아트센터에서 내한 공연을 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;b9b9e3a2bf35dba4c94a8456cf4665b11117a959&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 09:41</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016043100005" target="_blank" rel="noopener">아일랜드 가수 데미안 라이스, 내년 2년 만에 내한</a></h3>
+          <p>(서울=연합뉴스) 이태수 기자 = 아일랜드 출신 포크 록 싱어송라이터 데미안 라이스가 내년 2월 27∼28일 서울 GS아트센터에서 내한 공연을 ...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[주말극장가] &#x27;치이카와&#x27; 박스오피스 선두…예매율도 1위 (서울=연합뉴스) 정래원 기자 = 일본 애니메이션 &#x27;극장판 치이카와: 인어 섬의 비밀&#x27;이 국내 박스오피스 선두를 지키며 이번 주말에도 흥행을 이..." data-card="{&quot;title&quot;: &quot;[주말극장가] &#x27;치이카와&#x27; 박스오피스 선두…예매율도 1위&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016035500005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 정래원 기자 = 일본 애니메이션 &#x27;극장판 치이카와: 인어 섬의 비밀&#x27;이 국내 박스오피스 선두를 지키며 이번 주말에도 흥행을 이...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;8db553c2b8cbfeb9cc02eae477ef67e3c8aa7457&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 09:22</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016035500005" target="_blank" rel="noopener">[주말극장가] &#x27;치이카와&#x27; 박스오피스 선두…예매율도 1위</a></h3>
+          <p>(서울=연합뉴스) 정래원 기자 = 일본 애니메이션 &#x27;극장판 치이카와: 인어 섬의 비밀&#x27;이 국내 박스오피스 선두를 지키며 이번 주말에도 흥행을 이...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="영화·드라마 촬영지로 뜨는 경북…제작사 유치 나섰다 (안동=연합뉴스) 이승형 기자 = 경북도와 경북문화재단 콘텐츠진흥원은 15∼16일 안동, 영주 일원에서 &#x27;2026 경북 로케이션 팸투어 촬영은 ..." data-card="{&quot;title&quot;: &quot;영화·드라마 촬영지로 뜨는 경북…제작사 유치 나섰다&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016034800053&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(안동=연합뉴스) 이승형 기자 = 경북도와 경북문화재단 콘텐츠진흥원은 15∼16일 안동, 영주 일원에서 &#x27;2026 경북 로케이션 팸투어 촬영은 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;c5fe05ba641fe2fd9b9b7fb8661428fbe8d34413&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 09:19</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016034800053" target="_blank" rel="noopener">영화·드라마 촬영지로 뜨는 경북…제작사 유치 나섰다</a></h3>
+          <p>(안동=연합뉴스) 이승형 기자 = 경북도와 경북문화재단 콘텐츠진흥원은 15∼16일 안동, 영주 일원에서 &#x27;2026 경북 로케이션 팸투어 촬영은 ...</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="크러쉬, 21일 신곡 &#x27;삐그덕&#x27;…아이유 피처링 (서울=연합뉴스) 김선우 기자 = 가수 크러쉬가 오는 21일 디지털 싱글 &#x27;삐그덕&#x27;을 발매한다고 소속사 피네이션이 16일 밝혔다." data-card="{&quot;title&quot;: &quot;크러쉬, 21일 신곡 &#x27;삐그덕&#x27;…아이유 피처링&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261016034700005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 김선우 기자 = 가수 크러쉬가 오는 21일 디지털 싱글 &#x27;삐그덕&#x27;을 발매한다고 소속사 피네이션이 16일 밝혔다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;466f2bf264d6d16f661d1f0d5b161377bc5612ce&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 09:14</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261016034700005" target="_blank" rel="noopener">크러쉬, 21일 신곡 &#x27;삐그덕&#x27;…아이유 피처링</a></h3>
+          <p>(서울=연합뉴스) 김선우 기자 = 가수 크러쉬가 오는 21일 디지털 싱글 &#x27;삐그덕&#x27;을 발매한다고 소속사 피네이션이 16일 밝혔다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="&quot;배우 출신 업자가 서류위조 사기&quot;…경찰에 수억원대 피해 고소 (서울=연합뉴스) 이의진 기자 = 배우 출신으로 행사·공연 관련 사업을 하는 인사가 &#x27;유명 연예인이 행사에 출연하기로 했다&#x27;는 내용의 서류를 위..." data-card="{&quot;title&quot;: &quot;\&quot;배우 출신 업자가 서류위조 사기\&quot;…경찰에 수억원대 피해 고소&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261015092800004&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 이의진 기자 = 배우 출신으로 행사·공연 관련 사업을 하는 인사가 &#x27;유명 연예인이 행사에 출연하기로 했다&#x27;는 내용의 서류를 위...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;78bebda6beceed9eb180ce0d6954b000db389ddd&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-16 06:00</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261015092800004" target="_blank" rel="noopener">&quot;배우 출신 업자가 서류위조 사기&quot;…경찰에 수억원대 피해 고소</a></h3>
+          <p>(서울=연합뉴스) 이의진 기자 = 배우 출신으로 행사·공연 관련 사업을 하는 인사가 &#x27;유명 연예인이 행사에 출연하기로 했다&#x27;는 내용의 서류를 위...</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="부산영화제 폐막…대상 수상 이란 감독 &quot;전쟁 없는 세상 오길&quot;(종합) (부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다." data-card="{&quot;title&quot;: &quot;부산영화제 폐막…대상 수상 이란 감독 \&quot;전쟁 없는 세상 오길\&quot;(종합)&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261015177351051&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다.&quot;, &quot;why&quot;: &quot;아시아 최대 영화제 폐막과 수상작 발표로 영화계의 현 방향성을 파악할 수 있는 지표&quot;, &quot;hash&quot;: &quot;1b52ab37f7a00c1ea0ad67550caceb77aa24cba8&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-15 22:26</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261015177351051" target="_blank" rel="noopener">부산영화제 폐막…대상 수상 이란 감독 &quot;전쟁 없는 세상 오길&quot;(종합)</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>(부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다.</p>
+          <div class="why">💡 아시아 최대 영화제 폐막과 수상작 발표로 영화계의 현 방향성을 파악할 수 있는 지표</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="부산국제영화제 폐막…경쟁 부문 대상에 이란 영화 &#x27;빵과 책&#x27; (부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다." data-card="{&quot;title&quot;: &quot;부산국제영화제 폐막…경쟁 부문 대상에 이란 영화 &#x27;빵과 책&#x27;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261015177300051&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;5a67efa10e91e478403bbedd6576e3bff7290343&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-15 21:01</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261015177300051" target="_blank" rel="noopener">부산국제영화제 폐막…경쟁 부문 대상에 이란 영화 &#x27;빵과 책&#x27;</a></h3>
+          <p>(부산=연합뉴스) 이영재 기자 = 아시아 최대 영화 축제 제31회 부산국제영화제가 15일 대단원의 막을 내렸다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="&#x27;여전히 찬란하게&#x27; 김혜자 &quot;두 소녀, 아픈 역사로만 보지 않길&quot; (서울=연합뉴스) 박원희 기자 = 1942년 경상도 산골에 사는 두 소녀 순옥(박서경 분)과 정임(최주은)은 둘도 없는 단짝이다." data-card="{&quot;title&quot;: &quot;&#x27;여전히 찬란하게&#x27; 김혜자 \&quot;두 소녀, 아픈 역사로만 보지 않길\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261015169700005&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 박원희 기자 = 1942년 경상도 산골에 사는 두 소녀 순옥(박서경 분)과 정임(최주은)은 둘도 없는 단짝이다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;8f9542947ddb9668cb3063e100657446279b7e13&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-15 19:05</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261015169700005" target="_blank" rel="noopener">&#x27;여전히 찬란하게&#x27; 김혜자 &quot;두 소녀, 아픈 역사로만 보지 않길&quot;</a></h3>
+          <p>(서울=연합뉴스) 박원희 기자 = 1942년 경상도 산골에 사는 두 소녀 순옥(박서경 분)과 정임(최주은)은 둘도 없는 단짝이다.</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="&#x27;사이버펑크 엣지러너 2&#x27; 제작진 &quot;전작과 다른 새로운 도전&quot; (서울=연합뉴스) 김주환 기자 = &quot;사이버펑크: 엣지러너 2는 전작(시즌 1)의 단순한 후속작이 아닌, 완전히 새로운 관점에서 출발하는 오리지널..." data-card="{&quot;title&quot;: &quot;&#x27;사이버펑크 엣지러너 2&#x27; 제작진 \&quot;전작과 다른 새로운 도전\&quot;&quot;, &quot;link&quot;: &quot;https://www.yna.co.kr/view/AKR20261015169600017&quot;, &quot;source&quot;: &quot;연합뉴스 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;(서울=연합뉴스) 김주환 기자 = \&quot;사이버펑크: 엣지러너 2는 전작(시즌 1)의 단순한 후속작이 아닌, 완전히 새로운 관점에서 출발하는 오리지널...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;98c376aeb06fb5d34514f3d858f247194df35642&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">연합뉴스 연예 · 10-15 19:03</span></div>
+          <h3><a href="https://www.yna.co.kr/view/AKR20261015169600017" target="_blank" rel="noopener">&#x27;사이버펑크 엣지러너 2&#x27; 제작진 &quot;전작과 다른 새로운 도전&quot;</a></h3>
+          <p>(서울=연합뉴스) 김주환 기자 = &quot;사이버펑크: 엣지러너 2는 전작(시즌 1)의 단순한 후속작이 아닌, 완전히 새로운 관점에서 출발하는 오리지널...</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="[딸깍! 누가 만들었나] “ai가 부른 노래에 울컥”···멜론 3위까지 오른 ‘머무르’ 단독 인터뷰 작곡·보컬 등 ai 활용 머무르 프로젝트‘꿈꾸던 어른이 되었나요?’ 멜론 3위 성과글로리웨이브 “발전 속도에 놀라 활용”저작권·정산 문제는 아직 제도적 공백생성형 인공지능(ai)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. ai가 만든 머무르의 ‘꿈꾸던 어른이 되었나요’가 음원차트 3위까지 오르고,…" data-card="{&quot;title&quot;: &quot;[딸깍! 누가 만들었나] “AI가 부른 노래에 울컥”···멜론 3위까지 오른 ‘머무르’ 단독 인터뷰&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160900001&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;작곡·보컬 등 AI 활용 머무르 프로젝트‘꿈꾸던 어른이 되었나요?’ 멜론 3위 성과글로리웨이브 “발전 속도에 놀라 활용”저작권·정산 문제는 아직 제도적 공백생성형 인공지능(AI)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. AI가 만든 머무르의 ‘꿈꾸던 어른이 되었나요’가 음원차트 3위까지 오르고,…&quot;, &quot;why&quot;: &quot;AI 프로젝트 &#x27;머무르&#x27;가 멜론 3위까지 올라가며 AI 음악이 실제 차트 침투를 시작한 현상&quot;, &quot;hash&quot;: &quot;568fbf49b50bd41848e3075d8d61996dcd7d8f94&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160900001" target="_blank" rel="noopener">[딸깍! 누가 만들었나] “AI가 부른 노래에 울컥”···멜론 3위까지 오른 ‘머무르’ 단독 인터뷰</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>작곡·보컬 등 AI 활용 머무르 프로젝트‘꿈꾸던 어른이 되었나요?’ 멜론 3위 성과글로리웨이브 “발전 속도에 놀라 활용”저작권·정산 문제는 아직 제도적 공백생성형 인공지능(AI)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. AI가 만든 머무르의 ‘꿈꾸던 어른이 되었나요’가 음원차트 3위까지 오르고,…</p>
+          <div class="why">💡 AI 프로젝트 &#x27;머무르&#x27;가 멜론 3위까지 올라가며 AI 음악이 실제 차트 침투를 시작한 현상</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="[책과 삶]“수어를 모르면 통역기를 쓰세요”···세상의 기준을 뒤집은 특별한 결혼식 농아의 자녀 ‘코다’ 이길보라, 일본 남성과 결혼식서 시작아들 낳고 편견·‘값싼 동정’에 부딪혀…모유 수유 분투도예술가로 육아하며 글쓰기 병행…‘일하는 감각’ 되살려이길보라와 그의 아들 시우. 이길보라가 눈을 마주치며 수어 동작을 하니 아이가 이를 따라하는 모습이다. ⓒ다나카 켄경계에서 자란다 이길보라 지음 | 문학동네 …" data-card="{&quot;title&quot;: &quot;[책과 삶]“수어를 모르면 통역기를 쓰세요”···세상의 기준을 뒤집은 특별한 결혼식&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600121&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;농아의 자녀 ‘코다’ 이길보라, 일본 남성과 결혼식서 시작아들 낳고 편견·‘값싼 동정’에 부딪혀…모유 수유 분투도예술가로 육아하며 글쓰기 병행…‘일하는 감각’ 되살려이길보라와 그의 아들 시우. 이길보라가 눈을 마주치며 수어 동작을 하니 아이가 이를 따라하는 모습이다. ⓒ다나카 켄경계에서 자란다 이길보라 지음 | 문학동네 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;1549e64ac6089a4c9823bf32e967b6af99e5141a&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600121" target="_blank" rel="noopener">[책과 삶]“수어를 모르면 통역기를 쓰세요”···세상의 기준을 뒤집은 특별한 결혼식</a></h3>
+          <p>농아의 자녀 ‘코다’ 이길보라, 일본 남성과 결혼식서 시작아들 낳고 편견·‘값싼 동정’에 부딪혀…모유 수유 분투도예술가로 육아하며 글쓰기 병행…‘일하는 감각’ 되살려이길보라와 그의 아들 시우. 이길보라가 눈을 마주치며 수어 동작을 하니 아이가 이를 따라하는 모습이다. ⓒ다나카 켄경계에서 자란다 이길보라 지음 | 문학동네 …</p>
+          
+        </article>
+        <article class="card hot" data-cat="연예" data-text="[딸깍! 누가 만들었나] 소지섭 얼굴도, 사극 백미 전투신도 ‘딸깍’···안방극장 파고든 ai, 배우들 설 자리 줄어드나 최고 시청률 sbs ‘김부장’ 회상신 이어다음달 첫방송 kbs ‘문무’도 ai 활용중국선 100% ai 제작물 tv로 방영기술 발전에 위화감 줄고 안전성 강점 단역 타격·연기 데이터 권리 침해 우려생성형 인공지능(ai)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. ai가 만든 머무르의 ‘꿈꾸던 어른…" data-card="{&quot;title&quot;: &quot;[딸깍! 누가 만들었나] 소지섭 얼굴도, 사극 백미 전투신도 ‘딸깍’···안방극장 파고든 AI, 배우들 설 자리 줄어드나&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610160600111&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;최고 시청률 SBS ‘김부장’ 회상신 이어다음달 첫방송 KBS ‘문무’도 AI 활용중국선 100% AI 제작물 TV로 방영기술 발전에 위화감 줄고 안전성 강점 단역 타격·연기 데이터 권리 침해 우려생성형 인공지능(AI)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. AI가 만든 머무르의 ‘꿈꾸던 어른…&quot;, &quot;why&quot;: &quot;AI 배우 얼굴 합성과 사극 배경 생성이 드라마 제작에 광범위하게 쓰이는 산업 현황&quot;, &quot;hash&quot;: &quot;fede3085de46af732f4702c97429d195168b39f5&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610160600111" target="_blank" rel="noopener">[딸깍! 누가 만들었나] 소지섭 얼굴도, 사극 백미 전투신도 ‘딸깍’···안방극장 파고든 AI, 배우들 설 자리 줄어드나</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>최고 시청률 SBS ‘김부장’ 회상신 이어다음달 첫방송 KBS ‘문무’도 AI 활용중국선 100% AI 제작물 TV로 방영기술 발전에 위화감 줄고 안전성 강점 단역 타격·연기 데이터 권리 침해 우려생성형 인공지능(AI)이 기술적 실험을 넘어 대중문화 산업 현장으로 깊숙이 스며들고 있다. AI가 만든 머무르의 ‘꿈꾸던 어른…</p>
+          <div class="why">💡 AI 배우 얼굴 합성과 사극 배경 생성이 드라마 제작에 광범위하게 쓰이는 산업 현황</div>
+        </article>
+        <article class="card" data-cat="연예" data-text="진짜 같은 가짜 만든 지아장커 감독 “막을 수 없다면 관점 고민해야” 영화계는?중국의 거장 지아장커 감독의 단편영화 &lt;지아장커의 댄스&gt;의 한 장면. 부산국제영화제 제공지난 2월 5분짜리 단편 공개해 충격 불러부산영화제에선 “ai, 고유한 미학 가능성”‘필름 아끼던 시대’처럼 콘티 등 고민 중요ai 아티스트 부상…아이디어 구체화 활용중국의 거장 지아장커 감독과 닮은 남자가 지아장커에게 웃으며…" data-card="{&quot;title&quot;: &quot;진짜 같은 가짜 만든 지아장커 감독 “막을 수 없다면 관점 고민해야”&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152138005&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;영화계는?중국의 거장 지아장커 감독의 단편영화 &lt;지아장커의 댄스&gt;의 한 장면. 부산국제영화제 제공지난 2월 5분짜리 단편 공개해 충격 불러부산영화제에선 “AI, 고유한 미학 가능성”‘필름 아끼던 시대’처럼 콘티 등 고민 중요AI 아티스트 부상…아이디어 구체화 활용중국의 거장 지아장커 감독과 닮은 남자가 지아장커에게 웃으며…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;513fd8908cec6b1de4345789b6bdc0814078ba63&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152138005" target="_blank" rel="noopener">진짜 같은 가짜 만든 지아장커 감독 “막을 수 없다면 관점 고민해야”</a></h3>
+          <p>영화계는?중국의 거장 지아장커 감독의 단편영화 &lt;지아장커의 댄스&gt;의 한 장면. 부산국제영화제 제공지난 2월 5분짜리 단편 공개해 충격 불러부산영화제에선 “AI, 고유한 미학 가능성”‘필름 아끼던 시대’처럼 콘티 등 고민 중요AI 아티스트 부상…아이디어 구체화 활용중국의 거장 지아장커 감독과 닮은 남자가 지아장커에게 웃으며…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[이상한 책을 보았다]k영화·드라마 속 다양한 ‘욕설’…영어로 한다면? new 욕홍수경 지음 | 이응지난 7월 개봉한 영화 &lt;호프&gt;에는 ‘씨발’이라는 욕이 100회 넘게 등장한다. 나홍진 감독은 편집 과정에서 200개 정도를 걷어냈음에도 이 정도가 남았다고 밝혔다.감독은 강력하고 거대한 존재에 대한 인간의 원초적 반응을 이 간결한 욕설로 표현했다고 한다.k콘텐츠가 세계적인 인기를 끌면서, 외…" data-card="{&quot;title&quot;: &quot;[이상한 책을 보았다]K영화·드라마 속 다양한 ‘욕설’…영어로 한다면?&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152120035&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;New 욕홍수경 지음 | 이응지난 7월 개봉한 영화 &lt;호프&gt;에는 ‘씨발’이라는 욕이 100회 넘게 등장한다. 나홍진 감독은 편집 과정에서 200개 정도를 걷어냈음에도 이 정도가 남았다고 밝혔다.감독은 강력하고 거대한 존재에 대한 인간의 원초적 반응을 이 간결한 욕설로 표현했다고 한다.K콘텐츠가 세계적인 인기를 끌면서, 외…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;b53d701a7000c5bbe96076dbe8da11179bf8cc94&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152120035" target="_blank" rel="noopener">[이상한 책을 보았다]K영화·드라마 속 다양한 ‘욕설’…영어로 한다면?</a></h3>
+          <p>New 욕홍수경 지음 | 이응지난 7월 개봉한 영화 &lt;호프&gt;에는 ‘씨발’이라는 욕이 100회 넘게 등장한다. 나홍진 감독은 편집 과정에서 200개 정도를 걷어냈음에도 이 정도가 남았다고 밝혔다.감독은 강력하고 거대한 존재에 대한 인간의 원초적 반응을 이 간결한 욕설로 표현했다고 한다.K콘텐츠가 세계적인 인기를 끌면서, 외…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[그림책]숲속 작은 존재들이 만드는 거대한 순환 안녕, 버섯이수 글·그림 | 모든요일그림책 | 40쪽 | 1만7000원모든 건 작은 것에서부터 시작한다. 사람, 동물, 자연의 생이 그렇다. 사소해 보이는 것이 때론 큰 변화를 만들기도 한다. 한 줌의 용기가 세상을 바꾸고, 작은 발견이 인류의 한 걸음이 된다.여기 작은 포자 하나가 바람에 실려 와 다 타버린 숲, 죽은 …" data-card="{&quot;title&quot;: &quot;[그림책]숲속 작은 존재들이 만드는 거대한 순환&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152120025&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;안녕, 버섯이수 글·그림 | 모든요일그림책 | 40쪽 | 1만7000원모든 건 작은 것에서부터 시작한다. 사람, 동물, 자연의 생이 그렇다. 사소해 보이는 것이 때론 큰 변화를 만들기도 한다. 한 줌의 용기가 세상을 바꾸고, 작은 발견이 인류의 한 걸음이 된다.여기 작은 포자 하나가 바람에 실려 와 다 타버린 숲, 죽은 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;11c64d83ed8a2323cb3f942cecc9fd4933335763&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152120025" target="_blank" rel="noopener">[그림책]숲속 작은 존재들이 만드는 거대한 순환</a></h3>
+          <p>안녕, 버섯이수 글·그림 | 모든요일그림책 | 40쪽 | 1만7000원모든 건 작은 것에서부터 시작한다. 사람, 동물, 자연의 생이 그렇다. 사소해 보이는 것이 때론 큰 변화를 만들기도 한다. 한 줌의 용기가 세상을 바꾸고, 작은 발견이 인류의 한 걸음이 된다.여기 작은 포자 하나가 바람에 실려 와 다 타버린 숲, 죽은 …</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[책과 삶]ai 미래에 대한 불안 침착한 사유로 달랜다 서늘한 대화정재승 지음 | 어크로스 | 432쪽 | 2만2000원인공지능(ai)과 함께하는 삶이 세상의 표준이 되고 있는 요즘, 다른 사람들은 어떤 고민을 하며 살아갈까. 하루가 다르게 저명한 연사들이 각자의 비전을 제시하는 가운데 정재승 교수의 &lt;서늘한 대화&gt;는 다른 제안을 한다. ‘정해진 미래를 알 수 없는 인간인 만…" data-card="{&quot;title&quot;: &quot;[책과 삶]AI 미래에 대한 불안 침착한 사유로 달랜다&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152120015&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;서늘한 대화정재승 지음 | 어크로스 | 432쪽 | 2만2000원인공지능(AI)과 함께하는 삶이 세상의 표준이 되고 있는 요즘, 다른 사람들은 어떤 고민을 하며 살아갈까. 하루가 다르게 저명한 연사들이 각자의 비전을 제시하는 가운데 정재승 교수의 &lt;서늘한 대화&gt;는 다른 제안을 한다. ‘정해진 미래를 알 수 없는 인간인 만…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e931d7a7d1bee7dfab68ddeaef6f99a97598bbdd&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152120015" target="_blank" rel="noopener">[책과 삶]AI 미래에 대한 불안 침착한 사유로 달랜다</a></h3>
+          <p>서늘한 대화정재승 지음 | 어크로스 | 432쪽 | 2만2000원인공지능(AI)과 함께하는 삶이 세상의 표준이 되고 있는 요즘, 다른 사람들은 어떤 고민을 하며 살아갈까. 하루가 다르게 저명한 연사들이 각자의 비전을 제시하는 가운데 정재승 교수의 &lt;서늘한 대화&gt;는 다른 제안을 한다. ‘정해진 미래를 알 수 없는 인간인 만…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[새책]죽어도 사라지지 않는 사람들 外 죽어도 사라지지 않는 사람들이제 사람은 사후에도 디지털 세계에 살아남는다. 고인이 생전 사용하던 소셜미디어, 게임, 클라우드에서 그의 흔적을 볼 수 있다. 죽은 자와 산 자가 공존하는 ‘포스트모털’의 시대가 도래한 것이다. 디지털 사후세계의 쟁점을 분석한다. 칼 외만 지음. 이영아 옮김. 현암사. 1만9000원성장이 우리…" data-card="{&quot;title&quot;: &quot;[새책]죽어도 사라지지 않는 사람들 外&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152120005&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;죽어도 사라지지 않는 사람들이제 사람은 사후에도 디지털 세계에 살아남는다. 고인이 생전 사용하던 소셜미디어, 게임, 클라우드에서 그의 흔적을 볼 수 있다. 죽은 자와 산 자가 공존하는 ‘포스트모털’의 시대가 도래한 것이다. 디지털 사후세계의 쟁점을 분석한다. 칼 외만 지음. 이영아 옮김. 현암사. 1만9000원성장이 우리…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;47a2213bad53ac9113d7c221909406ccd2baf1ec&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152120005" target="_blank" rel="noopener">[새책]죽어도 사라지지 않는 사람들 外</a></h3>
+          <p>죽어도 사라지지 않는 사람들이제 사람은 사후에도 디지털 세계에 살아남는다. 고인이 생전 사용하던 소셜미디어, 게임, 클라우드에서 그의 흔적을 볼 수 있다. 죽은 자와 산 자가 공존하는 ‘포스트모털’의 시대가 도래한 것이다. 디지털 사후세계의 쟁점을 분석한다. 칼 외만 지음. 이영아 옮김. 현암사. 1만9000원성장이 우리…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[송섬별의 가장자리 독서]가장자리는 얼마나 찬란한지 환희의 책김멜라 지음 | 현대문학 | 220쪽 | 1만5000원이 서평란에 붙인 ‘가장자리 독서’라는 제목은 썩 마음에 들었다. 내가 시간을 내어 읽고 싶은 것들은 대개 세상의 가장자리에 있다고들 하지만 내 삶에서는 한가운데 우뚝 자리를 잡고 비키지 않는 사람이나 삶에 관한 책들이다. 사람들의 사정에 밀려난 동물들의 눈빛…" data-card="{&quot;title&quot;: &quot;[송섬별의 가장자리 독서]가장자리는 얼마나 찬란한지&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152109045&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;환희의 책김멜라 지음 | 현대문학 | 220쪽 | 1만5000원이 서평란에 붙인 ‘가장자리 독서’라는 제목은 썩 마음에 들었다. 내가 시간을 내어 읽고 싶은 것들은 대개 세상의 가장자리에 있다고들 하지만 내 삶에서는 한가운데 우뚝 자리를 잡고 비키지 않는 사람이나 삶에 관한 책들이다. 사람들의 사정에 밀려난 동물들의 눈빛…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;3647d9a8178402493a810234c3044f21d6ae907e&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152109045" target="_blank" rel="noopener">[송섬별의 가장자리 독서]가장자리는 얼마나 찬란한지</a></h3>
+          <p>환희의 책김멜라 지음 | 현대문학 | 220쪽 | 1만5000원이 서평란에 붙인 ‘가장자리 독서’라는 제목은 썩 마음에 들었다. 내가 시간을 내어 읽고 싶은 것들은 대개 세상의 가장자리에 있다고들 하지만 내 삶에서는 한가운데 우뚝 자리를 잡고 비키지 않는 사람이나 삶에 관한 책들이다. 사람들의 사정에 밀려난 동물들의 눈빛…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[책과 삶]일상을 움직이는 숫자·알고리즘…객관적이라는 건 착각 숫자를 내 편으로 만드는 법노아 지안시라쿠사 지음김성훈 옮김 | 청림출판 | 324쪽 | 2만원sns에서 마음에 들지 않는 게시물에 화가 나서 댓글을 남기면 비슷한 게시물이 자꾸 나타난다. 싫어서 남긴 댓글을 알고리즘은 관심의 표현으로 받아들여서다. 실제로 페이스북은 이용자의 댓글이나 좋아요 같은 반응을 게시물 추천에 활…" data-card="{&quot;title&quot;: &quot;[책과 삶]일상을 움직이는 숫자·알고리즘…객관적이라는 건 착각&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152109035&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;숫자를 내 편으로 만드는 법노아 지안시라쿠사 지음김성훈 옮김 | 청림출판 | 324쪽 | 2만원SNS에서 마음에 들지 않는 게시물에 화가 나서 댓글을 남기면 비슷한 게시물이 자꾸 나타난다. 싫어서 남긴 댓글을 알고리즘은 관심의 표현으로 받아들여서다. 실제로 페이스북은 이용자의 댓글이나 좋아요 같은 반응을 게시물 추천에 활…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e0c9e321992807220acb1b90a4b5e3dee71fd931&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152109035" target="_blank" rel="noopener">[책과 삶]일상을 움직이는 숫자·알고리즘…객관적이라는 건 착각</a></h3>
+          <p>숫자를 내 편으로 만드는 법노아 지안시라쿠사 지음김성훈 옮김 | 청림출판 | 324쪽 | 2만원SNS에서 마음에 들지 않는 게시물에 화가 나서 댓글을 남기면 비슷한 게시물이 자꾸 나타난다. 싫어서 남긴 댓글을 알고리즘은 관심의 표현으로 받아들여서다. 실제로 페이스북은 이용자의 댓글이나 좋아요 같은 반응을 게시물 추천에 활…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[책과 삶]모순적인 인간에 대한 풍자와 애정 예술원에 드리는 보고이기호 지음 | 문학동네 | 264쪽 | 1만8000원표제작 ‘예술원에 드리는 보고’는 저자 이기호가 2021년 쓴 보고서 형식의 단편소설이자 실제 부조리 고발이었다. 예술계 원로들로 구성된 대한민국예술원의 문학 분과 회원 26명이 1년간 받는 수당은 총 4억6800만원, 한국문화예술위원회 청년 예술가…" data-card="{&quot;title&quot;: &quot;[책과 삶]모순적인 인간에 대한 풍자와 애정&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152109025&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;예술원에 드리는 보고이기호 지음 | 문학동네 | 264쪽 | 1만8000원표제작 ‘예술원에 드리는 보고’는 저자 이기호가 2021년 쓴 보고서 형식의 단편소설이자 실제 부조리 고발이었다. 예술계 원로들로 구성된 대한민국예술원의 문학 분과 회원 26명이 1년간 받는 수당은 총 4억6800만원, 한국문화예술위원회 청년 예술가…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;cdaf41834721851120cbe7703853e99149271ad8&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152109025" target="_blank" rel="noopener">[책과 삶]모순적인 인간에 대한 풍자와 애정</a></h3>
+          <p>예술원에 드리는 보고이기호 지음 | 문학동네 | 264쪽 | 1만8000원표제작 ‘예술원에 드리는 보고’는 저자 이기호가 2021년 쓴 보고서 형식의 단편소설이자 실제 부조리 고발이었다. 예술계 원로들로 구성된 대한민국예술원의 문학 분과 회원 26명이 1년간 받는 수당은 총 4억6800만원, 한국문화예술위원회 청년 예술가…</p>
+          
+        </article>
+        <article class="card" data-cat="연예" data-text="[책과 삶]9개 문화권으로 본 미국의 지역구도 분열하는 미국콜린 우다드 지음 | 김주헌 옮김글항아리 | 448쪽 | 2만6000원둘로 갈라진 미국의 모습은 우리에게도 익숙하다. 민주당과 공화당은 이민자·낙태·총기 규제·기후 문제 등 의제에 정반대 목소리를 내며 충돌한다. 양분된 가치관은 어디서 기인하는 걸까.살베레지나대학 펠 국제관계·공공정책센터 내 연구기관 네이션후…" data-card="{&quot;title&quot;: &quot;[책과 삶]9개 문화권으로 본 미국의 지역구도&quot;, &quot;link&quot;: &quot;https://www.khan.co.kr/article/202610152109015&quot;, &quot;source&quot;: &quot;경향신문 연예&quot;, &quot;cat&quot;: &quot;연예&quot;, &quot;summary&quot;: &quot;분열하는 미국콜린 우다드 지음 | 김주헌 옮김글항아리 | 448쪽 | 2만6000원둘로 갈라진 미국의 모습은 우리에게도 익숙하다. 민주당과 공화당은 이민자·낙태·총기 규제·기후 문제 등 의제에 정반대 목소리를 내며 충돌한다. 양분된 가치관은 어디서 기인하는 걸까.살베레지나대학 펠 국제관계·공공정책센터 내 연구기관 네이션후…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d8fba29bce43ae6f6699fe13c00317520686c336&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-연예">🎬 연예</span><span class="src">경향신문 연예</span></div>
+          <h3><a href="https://www.khan.co.kr/article/202610152109015" target="_blank" rel="noopener">[책과 삶]9개 문화권으로 본 미국의 지역구도</a></h3>
+          <p>분열하는 미국콜린 우다드 지음 | 김주헌 옮김글항아리 | 448쪽 | 2만6000원둘로 갈라진 미국의 모습은 우리에게도 익숙하다. 민주당과 공화당은 이민자·낙태·총기 규제·기후 문제 등 의제에 정반대 목소리를 내며 충돌한다. 양분된 가치관은 어디서 기인하는 걸까.살베레지나대학 펠 국제관계·공공정책센터 내 연구기관 네이션후…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="토스뱅크가 패키지를 관리하는 방식 #2: 토스뱅크 패키지의 세 가지 기준 안정성, 예측 가능성, 디버깅 편의성. 패키지가 갖춰야 할 세 가지 기준과, 문법 변환과 번들링을 사용하는 서비스에 맡긴 이유를 소개해요." data-card="{&quot;title&quot;: &quot;토스뱅크가 패키지를 관리하는 방식 #2: 토스뱅크 패키지의 세 가지 기준&quot;, &quot;link&quot;: &quot;https://toss.tech/article/package-management-2&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;안정성, 예측 가능성, 디버깅 편의성. 패키지가 갖춰야 할 세 가지 기준과, 문법 변환과 번들링을 사용하는 서비스에 맡긴 이유를 소개해요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a9c65d3e7cf78eb9f90c5f190942d992711dd064&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-16 10:00</span></div>
+          <h3><a href="https://toss.tech/article/package-management-2" target="_blank" rel="noopener">토스뱅크가 패키지를 관리하는 방식 #2: 토스뱅크 패키지의 세 가지 기준</a></h3>
+          <p>안정성, 예측 가능성, 디버깅 편의성. 패키지가 갖춰야 할 세 가지 기준과, 문법 변환과 번들링을 사용하는 서비스에 맡긴 이유를 소개해요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="토스뱅크가 패키지를 관리하는 방식 #1: 패키지를 esm으로만 제공하기로 했어요 esm과 cjs를 함께 제공할 때 생길 수 있는 상태 분리와 타입 누락 문제를 살펴보고, 패키지를 esm-only로 전환한 이유를 소개해요." data-card="{&quot;title&quot;: &quot;토스뱅크가 패키지를 관리하는 방식 #1: 패키지를 ESM으로만 제공하기로 했어요&quot;, &quot;link&quot;: &quot;https://toss.tech/article/package-management-1&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;ESM과 CJS를 함께 제공할 때 생길 수 있는 상태 분리와 타입 누락 문제를 살펴보고, 패키지를 ESM-only로 전환한 이유를 소개해요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;87c2d5eee826cd1d02c99b25c978936953fe7996&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-15 18:23</span></div>
+          <h3><a href="https://toss.tech/article/package-management-1" target="_blank" rel="noopener">토스뱅크가 패키지를 관리하는 방식 #1: 패키지를 ESM으로만 제공하기로 했어요</a></h3>
+          <p>ESM과 CJS를 함께 제공할 때 생길 수 있는 상태 분리와 타입 누락 문제를 살펴보고, 패키지를 ESM-only로 전환한 이유를 소개해요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="spark connect on kubernetes #2: operator로 만드는 control plane spark 서버 하나의 기동과 복구부터, 여러 서버의 세션을 유지하는 교체까지. kubernetes 위에 spark tenant operator를 만든 과정을 소개합니다." data-card="{&quot;title&quot;: &quot;Spark Connect on Kubernetes #2: Operator로 만드는 Control Plane&quot;, &quot;link&quot;: &quot;https://toss.tech/article/spark-connect-on-kubernetes-2&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;Spark 서버 하나의 기동과 복구부터, 여러 서버의 세션을 유지하는 교체까지. Kubernetes 위에 Spark Tenant Operator를 만든 과정을 소개합니다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;13cd289a7423872aadb3733380364914a1bd5ef7&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-14 14:06</span></div>
+          <h3><a href="https://toss.tech/article/spark-connect-on-kubernetes-2" target="_blank" rel="noopener">Spark Connect on Kubernetes #2: Operator로 만드는 Control Plane</a></h3>
+          <p>Spark 서버 하나의 기동과 복구부터, 여러 서버의 세션을 유지하는 교체까지. Kubernetes 위에 Spark Tenant Operator를 만든 과정을 소개합니다.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="디자이너의 아이디어가 금융상품이 되기까지 요청받지 않은 경험 개선을, 팀이 출시할 이유로 바꾼 과정을 공유해요." data-card="{&quot;title&quot;: &quot;디자이너의 아이디어가 금융상품이 되기까지&quot;, &quot;link&quot;: &quot;https://toss.tech/article/rpg-savings&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;요청받지 않은 경험 개선을, 팀이 출시할 이유로 바꾼 과정을 공유해요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;dffe4280ecb4eada4c084552de20f9024559ac3a&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-13 22:00</span></div>
+          <h3><a href="https://toss.tech/article/rpg-savings" target="_blank" rel="noopener">디자이너의 아이디어가 금융상품이 되기까지</a></h3>
+          <p>요청받지 않은 경험 개선을, 팀이 출시할 이유로 바꾼 과정을 공유해요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="서비스 개발에 집중할 수 있는 ai 플랫폼 만들기 서비스 팀의 반복되는 고민을 줄여주는 토스의 ai 플랫폼을 소개합니다." data-card="{&quot;title&quot;: &quot;서비스 개발에 집중할 수 있는 AI 플랫폼 만들기&quot;, &quot;link&quot;: &quot;https://toss.tech/article/ai-platform-foundation&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;서비스 팀의 반복되는 고민을 줄여주는 토스의 AI 플랫폼을 소개합니다.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;117648aeda5b2233438b955514e9c4a0facbf0ed&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-13 10:34</span></div>
+          <h3><a href="https://toss.tech/article/ai-platform-foundation" target="_blank" rel="noopener">서비스 개발에 집중할 수 있는 AI 플랫폼 만들기</a></h3>
+          <p>서비스 팀의 반복되는 고민을 줄여주는 토스의 AI 플랫폼을 소개합니다.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="cpu 뼛속까지 써먹고, milvus 사이징 기준을 만들기까지 검색 품질을 유지하며 같은 서버에서 처리량을 높인 토스증권의 milvus 최적화 이야기" data-card="{&quot;title&quot;: &quot;CPU 뼛속까지 써먹고, Milvus 사이징 기준을 만들기까지&quot;, &quot;link&quot;: &quot;https://toss.tech/article/milvus-optimization-and-sizing&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;검색 품질을 유지하며 같은 서버에서 처리량을 높인 토스증권의 Milvus 최적화 이야기&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;8c80f949f43107a056040371f7670e4122f51e42&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-12 10:00</span></div>
+          <h3><a href="https://toss.tech/article/milvus-optimization-and-sizing" target="_blank" rel="noopener">CPU 뼛속까지 써먹고, Milvus 사이징 기준을 만들기까지</a></h3>
+          <p>검색 품질을 유지하며 같은 서버에서 처리량을 높인 토스증권의 Milvus 최적화 이야기</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="추천 후보는 많을수록 좋을까? topk를 최적화해 전환율을 높인 방법 topk를 감이 아닌 최적화로 정한 이야기" data-card="{&quot;title&quot;: &quot;추천 후보는 많을수록 좋을까? TopK를 최적화해 전환율을 높인 방법&quot;, &quot;link&quot;: &quot;https://toss.tech/article/53545&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;TopK를 감이 아닌 최적화로 정한 이야기&quot;, &quot;why&quot;: &quot;감이 아닌 데이터 최적화로 전환율을 높인 과정으로, 분석가의 인사이트가 비즈니스 성과로 이어지는 좋은 예시&quot;, &quot;hash&quot;: &quot;6c63c304e58b6e6f3264046afed3de3fa9d1701a&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 10-01 10:26</span></div>
+          <h3><a href="https://toss.tech/article/53545" target="_blank" rel="noopener">추천 후보는 많을수록 좋을까? TopK를 최적화해 전환율을 높인 방법</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>TopK를 감이 아닌 최적화로 정한 이야기</p>
+          <div class="why">💡 감이 아닌 데이터 최적화로 전환율을 높인 과정으로, 분석가의 인사이트가 비즈니스 성과로 이어지는 좋은 예시</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="9인조 다람쥐 아이돌을 데뷔시켰습니다 가입하고 한 번도 열어보지 않던 적금을, 매일 열어보게 만들었어요." data-card="{&quot;title&quot;: &quot;9인조 다람쥐 아이돌을 데뷔시켰습니다&quot;, &quot;link&quot;: &quot;https://toss.tech/article/chipmunk&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;가입하고 한 번도 열어보지 않던 적금을, 매일 열어보게 만들었어요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;efde7f3641cf9117a1cf12c889b4e4121ffab2ca&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-30 10:29</span></div>
+          <h3><a href="https://toss.tech/article/chipmunk" target="_blank" rel="noopener">9인조 다람쥐 아이돌을 데뷔시켰습니다</a></h3>
+          <p>가입하고 한 번도 열어보지 않던 적금을, 매일 열어보게 만들었어요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="연 300시간을 아낀 ai 상담 서비스 전화 문의를 줄이려다 사용자의 경험에서 답을 찾은 이야기예요." data-card="{&quot;title&quot;: &quot;연 300시간을 아낀 AI 상담 서비스&quot;, &quot;link&quot;: &quot;https://toss.tech/article/AI_chatbot&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;전화 문의를 줄이려다 사용자의 경험에서 답을 찾은 이야기예요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d0c99e2157325b5f93e2124748904a219644c57c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-23 15:39</span></div>
+          <h3><a href="https://toss.tech/article/AI_chatbot" target="_blank" rel="noopener">연 300시간을 아낀 AI 상담 서비스</a></h3>
+          <p>전화 문의를 줄이려다 사용자의 경험에서 답을 찾은 이야기예요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="방해하지 않고, 눈에 띌 수 있을까 cvr을 3배 높이면서도 사용자 경험을 놓치지 않기 위해 고민한 과정을 들려드려요." data-card="{&quot;title&quot;: &quot;방해하지 않고, 눈에 띌 수 있을까&quot;, &quot;link&quot;: &quot;https://toss.tech/article/asset_management&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;CVR을 3배 높이면서도 사용자 경험을 놓치지 않기 위해 고민한 과정을 들려드려요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7c4edbf9f9d3a3982f9c5d68574ba4ea6b982737&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-22 17:20</span></div>
+          <h3><a href="https://toss.tech/article/asset_management" target="_blank" rel="noopener">방해하지 않고, 눈에 띌 수 있을까</a></h3>
+          <p>CVR을 3배 높이면서도 사용자 경험을 놓치지 않기 위해 고민한 과정을 들려드려요.</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="쉼 없이 도는 테스트, 사람이 어디까지 돌봐야 할까요? - 토스닥터(toss doctor) 스스로 만들고 고치는 자동화, 토스닥터 v2를 다시 만든 이야기" data-card="{&quot;title&quot;: &quot;쉼 없이 도는 테스트, 사람이 어디까지 돌봐야 할까요? - 토스닥터(Toss Doctor)&quot;, &quot;link&quot;: &quot;https://toss.tech/article/toss-doctor&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;스스로 만들고 고치는 자동화, 토스닥터 V2를 다시 만든 이야기&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;9625147b214fcaeb8b9fc0d14c001df301b2bd16&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-22 12:42</span></div>
+          <h3><a href="https://toss.tech/article/toss-doctor" target="_blank" rel="noopener">쉼 없이 도는 테스트, 사람이 어디까지 돌봐야 할까요? - 토스닥터(Toss Doctor)</a></h3>
+          <p>스스로 만들고 고치는 자동화, 토스닥터 V2를 다시 만든 이야기</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="도메인 지식 없는 디자이너가 팀의 기준을 바꾼 방법 은행 지식이 없던 디자이너가 규제가 가득한 도메인에서 어떻게 팀의 기준을 바꿨는지 이야기해 보려고 해요." data-card="{&quot;title&quot;: &quot;도메인 지식 없는 디자이너가 팀의 기준을 바꾼 방법&quot;, &quot;link&quot;: &quot;https://toss.tech/article/remittance_transfer&quot;, &quot;source&quot;: &quot;토스 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;은행 지식이 없던 디자이너가 규제가 가득한 도메인에서 어떻게 팀의 기준을 바꿨는지 이야기해 보려고 해요.&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;2cab16da861ea2ebacf1af824fcec5d56f6bf474&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">토스 기술블로그 · 09-21 19:15</span></div>
+          <h3><a href="https://toss.tech/article/remittance_transfer" target="_blank" rel="noopener">도메인 지식 없는 디자이너가 팀의 기준을 바꾼 방법</a></h3>
+          <p>은행 지식이 없던 디자이너가 규제가 가득한 도메인에서 어떻게 팀의 기준을 바꿨는지 이야기해 보려고 해요.</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="데이터 분석 에이전트를 만들며 배운 컨텍스트 설계 llm 에이전트는 목표를 받으면 필요한 정보를 찾고 적절한 도구를 선택해 실행하며, 그 결과를 관찰한 뒤 다음 행동을 결정합니다. anthropic은 에이전트를 활용한 여러 실험을 공개했습니다. claude sonnet 4.5로 claude.ai를 재현하는 실험 과 claude opus 4.6 기반 에이전트가 rust로 …" data-card="{&quot;title&quot;: &quot;데이터 분석 에이전트를 만들며 배운 컨텍스트 설계&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/838&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;LLM 에이전트는 목표를 받으면 필요한 정보를 찾고 적절한 도구를 선택해 실행하며, 그 결과를 관찰한 뒤 다음 행동을 결정합니다. Anthropic은 에이전트를 활용한 여러 실험을 공개했습니다. Claude Sonnet 4.5로 Claude.ai를 재현하는 실험 과 Claude Opus 4.6 기반 에이전트가 Rust로 …&quot;, &quot;why&quot;: &quot;LLM 에이전트가 데이터 수집부터 도구 선택까지 분석가의 사고 과정을 어떻게 자동화하는지 배울 수 있는 핵심 사례&quot;, &quot;hash&quot;: &quot;8db383365a7499cf73de4f576557cebe13dba140&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 10-02 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/838" target="_blank" rel="noopener">데이터 분석 에이전트를 만들며 배운 컨텍스트 설계</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>LLM 에이전트는 목표를 받으면 필요한 정보를 찾고 적절한 도구를 선택해 실행하며, 그 결과를 관찰한 뒤 다음 행동을 결정합니다. Anthropic은 에이전트를 활용한 여러 실험을 공개했습니다. Claude Sonnet 4.5로 Claude.ai를 재현하는 실험 과 Claude Opus 4.6 기반 에이전트가 Rust로 …</p>
+          <div class="why">💡 LLM 에이전트가 데이터 수집부터 도구 선택까지 분석가의 사고 과정을 어떻게 자동화하는지 배울 수 있는 핵심 사례</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="개인화 추천을 위한 랭킹 모델 개발기 안녕하세요! 카카오에서 유저 편의성을 높이는 데 관심이 많은 토리입니다. 카카오에는 정말 다양한 서비스와 그 안에 쌓이는 방대한 데이터가 있습니다. 이 많은 콘텐츠와 유저를 잘 이어주는 역할을 하는 것이 바로 추천이고, 그중에서도 &quot;얼마나 이 유저에게 맞는 콘텐츠를 보여주는가&quot;는 서비스 체류시간과 만족도에 직결되는 핵심 …" data-card="{&quot;title&quot;: &quot;개인화 추천을 위한 랭킹 모델 개발기&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/837&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;안녕하세요! 카카오에서 유저 편의성을 높이는 데 관심이 많은 토리입니다. 카카오에는 정말 다양한 서비스와 그 안에 쌓이는 방대한 데이터가 있습니다. 이 많은 콘텐츠와 유저를 잘 이어주는 역할을 하는 것이 바로 추천이고, 그중에서도 \&quot;얼마나 이 유저에게 맞는 콘텐츠를 보여주는가\&quot;는 서비스 체류시간과 만족도에 직결되는 핵심 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;706a52d02339b1f407ba0e045755bc898ed422da&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-23 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/837" target="_blank" rel="noopener">개인화 추천을 위한 랭킹 모델 개발기</a></h3>
+          <p>안녕하세요! 카카오에서 유저 편의성을 높이는 데 관심이 많은 토리입니다. 카카오에는 정말 다양한 서비스와 그 안에 쌓이는 방대한 데이터가 있습니다. 이 많은 콘텐츠와 유저를 잘 이어주는 역할을 하는 것이 바로 추천이고, 그중에서도 &quot;얼마나 이 유저에게 맞는 콘텐츠를 보여주는가&quot;는 서비스 체류시간과 만족도에 직결되는 핵심 …</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="if(kakao)26에서 네트워킹하는 법 흥미로운 발표를 듣다 보면, 더 자세히 묻고 싶은 점이 생길 때가 있습니다. “우리 팀에도 적용할 수 있을까?”, “저 방법 말고 다른 선택지도 고민하셨을까?” 와 같은 질문들이죠. 생각해보면, 우리가 컨퍼런스에 모이는 이유도 여기에 있는 것 같습니다. 같은 공간에서 발표를 듣고, 비슷한 고민을 하는 사람을 만나고, 서로…" data-card="{&quot;title&quot;: &quot;if(kakao)26에서 네트워킹하는 법&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/836&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;흥미로운 발표를 듣다 보면, 더 자세히 묻고 싶은 점이 생길 때가 있습니다. “우리 팀에도 적용할 수 있을까?”, “저 방법 말고 다른 선택지도 고민하셨을까?” 와 같은 질문들이죠. 생각해보면, 우리가 컨퍼런스에 모이는 이유도 여기에 있는 것 같습니다. 같은 공간에서 발표를 듣고, 비슷한 고민을 하는 사람을 만나고, 서로…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;ba30628a10fa7b6eca058a2cb6f414d75a8e50c9&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-17 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/836" target="_blank" rel="noopener">if(kakao)26에서 네트워킹하는 법</a></h3>
+          <p>흥미로운 발표를 듣다 보면, 더 자세히 묻고 싶은 점이 생길 때가 있습니다. “우리 팀에도 적용할 수 있을까?”, “저 방법 말고 다른 선택지도 고민하셨을까?” 와 같은 질문들이죠. 생각해보면, 우리가 컨퍼런스에 모이는 이유도 여기에 있는 것 같습니다. 같은 공간에서 발표를 듣고, 비슷한 고민을 하는 사람을 만나고, 서로…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="if(kakao)26 둘째 날, 기술 세션 소개 if(kakao)26 둘째 날은 안정성과 인프라, 거버넌스, ai-dlc, model &amp; agent에 대해 이야기합니다. 키노트를 제외한 총 30개의 기술 세션들이 아래와 같이 진행됩니다. [안전성과 인프라] 1. 유휴 서버를 찾다가 hybrid cloud까지 갔습니다: 비용 가시화에서 unit economics를 향해가…" data-card="{&quot;title&quot;: &quot;if(kakao)26 둘째 날, 기술 세션 소개&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/835&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;if(kakao)26 둘째 날은 안정성과 인프라, 거버넌스, AI-DLC, Model &amp; Agent에 대해 이야기합니다. 키노트를 제외한 총 30개의 기술 세션들이 아래와 같이 진행됩니다. [안전성과 인프라] 1. 유휴 서버를 찾다가 Hybrid Cloud까지 갔습니다: 비용 가시화에서 Unit Economics를 향해가…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;89b12e4a372c9693122e6de8cb25c198baae3555&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-08 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/835" target="_blank" rel="noopener">if(kakao)26 둘째 날, 기술 세션 소개</a></h3>
+          <p>if(kakao)26 둘째 날은 안정성과 인프라, 거버넌스, AI-DLC, Model &amp; Agent에 대해 이야기합니다. 키노트를 제외한 총 30개의 기술 세션들이 아래와 같이 진행됩니다. [안전성과 인프라] 1. 유휴 서버를 찾다가 Hybrid Cloud까지 갔습니다: 비용 가시화에서 Unit Economics를 향해가…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="if(kakao)26 첫째 날, 기술 세션 소개 if(kakao)26 첫째 날은 신뢰와 안전, ai 방향성, 상생과 성장, model &amp; agent에 대해 이야기합니다. 키노트를 제외한 총 22개의 기술 세션들이 아래와 같이 진행됩니다. [ai 방향성] 1. you only train once: 더 효율적으로 kanana slm 개발하기 (류민호, 한규빈) 단 한 번의…" data-card="{&quot;title&quot;: &quot;if(kakao)26 첫째 날, 기술 세션 소개&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/833&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;if(kakao)26 첫째 날은 신뢰와 안전, AI 방향성, 상생과 성장, Model &amp; Agent에 대해 이야기합니다. 키노트를 제외한 총 22개의 기술 세션들이 아래와 같이 진행됩니다. [AI 방향성] 1. You Only Train Once: 더 효율적으로 Kanana SLM 개발하기 (류민호, 한규빈) 단 한 번의…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;21012913c41bd9e2ca1db24e432aa92512685f61&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-08 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/833" target="_blank" rel="noopener">if(kakao)26 첫째 날, 기술 세션 소개</a></h3>
+          <p>if(kakao)26 첫째 날은 신뢰와 안전, AI 방향성, 상생과 성장, Model &amp; Agent에 대해 이야기합니다. 키노트를 제외한 총 22개의 기술 세션들이 아래와 같이 진행됩니다. [AI 방향성] 1. You Only Train Once: 더 효율적으로 Kanana SLM 개발하기 (류민호, 한규빈) 단 한 번의…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="카카오, if(kakao)26 컨퍼런스 개최... 모든 연결에 지능을 🔗 if(kakao)26 바로가기 - 10월 13일부터 14일까지 이틀간 카카오 ai 캠퍼스에서 온·오프라인 진행 -올해 슬로건 ‘모든 연결에 지능을’… ai가 확장할 연결의 경험과 신뢰할 수 있는 기술 기준 제시 - 50여개 기술 세션서 ai 적용 성과와 개발 경험 공유…파이어사이드 챗·네트워킹 프로그램도 운영 [202…" data-card="{&quot;title&quot;: &quot;카카오, if(kakao)26 컨퍼런스 개최... 모든 연결에 지능을&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/834&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;🔗 if(kakao)26 바로가기 - 10월 13일부터 14일까지 이틀간 카카오 AI 캠퍼스에서 온·오프라인 진행 -올해 슬로건 ‘모든 연결에 지능을’… AI가 확장할 연결의 경험과 신뢰할 수 있는 기술 기준 제시 - 50여개 기술 세션서 AI 적용 성과와 개발 경험 공유…파이어사이드 챗·네트워킹 프로그램도 운영 [202…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7b38891b7816755e90ea8b5f5697bc0660f24bcf&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 09-07 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/834" target="_blank" rel="noopener">카카오, if(kakao)26 컨퍼런스 개최... 모든 연결에 지능을</a></h3>
+          <p>🔗 if(kakao)26 바로가기 - 10월 13일부터 14일까지 이틀간 카카오 AI 캠퍼스에서 온·오프라인 진행 -올해 슬로건 ‘모든 연결에 지능을’… AI가 확장할 연결의 경험과 신뢰할 수 있는 기술 기준 제시 - 50여개 기술 세션서 AI 적용 성과와 개발 경험 공유…파이어사이드 챗·네트워킹 프로그램도 운영 [202…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="곧, if(kakao)26의 이야기가 시작됩니다. “모든 연결에 지능을” if(kakao)26은 이 한 문장에서 시작합니다. 카카오가 기술을 만들며 마주한 고민과 질문, 그 과정에서 얻은 경험과 발견을 나누는 if(kakao)26! 어떤 이야기들이 기다리고 있을지 궁금하신가요? 앞으로 카카오테크 블로그를 통해 if(kakao)26의 다양한 이야기를 하나씩 소개해 드릴 예…" data-card="{&quot;title&quot;: &quot;곧, if(kakao)26의 이야기가 시작됩니다.&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/832&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;“모든 연결에 지능을” if(kakao)26은 이 한 문장에서 시작합니다. 카카오가 기술을 만들며 마주한 고민과 질문, 그 과정에서 얻은 경험과 발견을 나누는 if(kakao)26! 어떤 이야기들이 기다리고 있을지 궁금하신가요? 앞으로 카카오테크 블로그를 통해 if(kakao)26의 다양한 이야기를 하나씩 소개해 드릴 예…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a349d9c3af96a3fa06a32cf3cd1f8c6a8688e223&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-31 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/832" target="_blank" rel="noopener">곧, if(kakao)26의 이야기가 시작됩니다.</a></h3>
+          <p>“모든 연결에 지능을” if(kakao)26은 이 한 문장에서 시작합니다. 카카오가 기술을 만들며 마주한 고민과 질문, 그 과정에서 얻은 경험과 발견을 나누는 if(kakao)26! 어떤 이야기들이 기다리고 있을지 궁금하신가요? 앞으로 카카오테크 블로그를 통해 if(kakao)26의 다양한 이야기를 하나씩 소개해 드릴 예…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="같은 장애를 두 번 겪지 않기 위해, 배포 전에 리뷰합니다 — kris 개발기 들어가며 지난 글 llm as a judge를 활용한 codebuddy 성능 평가에서는 사내 ai 코드 리뷰 서비스 코드버디(codebuddy)의 응답 품질을 어떻게 측정할 것인지를 다뤘습니다. 평가 체계를 세우고 나니 다음 질문이 따라왔습니다. &quot;그래서 이 리뷰가 실제로 무엇을 막아주고 있는가?&quot; 코드버디는 pr을 요약…" data-card="{&quot;title&quot;: &quot;같은 장애를 두 번 겪지 않기 위해, 배포 전에 리뷰합니다 — KRIS 개발기&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/831&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며 지난 글 LLM as a Judge를 활용한 CodeBuddy 성능 평가에서는 사내 AI 코드 리뷰 서비스 코드버디(CodeBuddy)의 응답 품질을 어떻게 측정할 것인지를 다뤘습니다. 평가 체계를 세우고 나니 다음 질문이 따라왔습니다. \&quot;그래서 이 리뷰가 실제로 무엇을 막아주고 있는가?\&quot; 코드버디는 PR을 요약…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d47f2dbe10f89a511ff629ae82a57dc4bb67bc58&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-31 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/831" target="_blank" rel="noopener">같은 장애를 두 번 겪지 않기 위해, 배포 전에 리뷰합니다 — KRIS 개발기</a></h3>
+          <p>들어가며 지난 글 LLM as a Judge를 활용한 CodeBuddy 성능 평가에서는 사내 AI 코드 리뷰 서비스 코드버디(CodeBuddy)의 응답 품질을 어떻게 측정할 것인지를 다뤘습니다. 평가 체계를 세우고 나니 다음 질문이 따라왔습니다. &quot;그래서 이 리뷰가 실제로 무엇을 막아주고 있는가?&quot; 코드버디는 PR을 요약…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="지역 ai 생태계의 새로운 가능성, 카카오 ai 돛 summit 26을 개최합니다! 대한민국 ai 생태계의 새로운 바람이 시작됩니다! ⛵ 카카오가 부산광역시, 카카오임팩트와 함께 지역 ai 생태계 조성과 기술 교류를 위한 &#x27;카카오 ai 돛 summit 26’을 개최합니다! 이번 서밋은 카카오가 4대 과학기술원(kaist, gist, dgist, unist)과 협력하여 비수도권의 인재 양성 및 창업을 지원…" data-card="{&quot;title&quot;: &quot;지역 AI 생태계의 새로운 가능성, 카카오 AI 돛 Summit 26을 개최합니다!&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/830&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;대한민국 AI 생태계의 새로운 바람이 시작됩니다! ⛵ 카카오가 부산광역시, 카카오임팩트와 함께 지역 AI 생태계 조성과 기술 교류를 위한 &#x27;카카오 AI 돛 Summit 26’을 개최합니다! 이번 서밋은 카카오가 4대 과학기술원(KAIST, GIST, DGIST, UNIST)과 협력하여 비수도권의 인재 양성 및 창업을 지원…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;2117e4687c7017e7a0d6aef5c0e19a714707308d&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-27 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/830" target="_blank" rel="noopener">지역 AI 생태계의 새로운 가능성, 카카오 AI 돛 Summit 26을 개최합니다!</a></h3>
+          <p>대한민국 AI 생태계의 새로운 바람이 시작됩니다! ⛵ 카카오가 부산광역시, 카카오임팩트와 함께 지역 AI 생태계 조성과 기술 교류를 위한 &#x27;카카오 AI 돛 Summit 26’을 개최합니다! 이번 서밋은 카카오가 4대 과학기술원(KAIST, GIST, DGIST, UNIST)과 협력하여 비수도권의 인재 양성 및 창업을 지원…</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="개인화된 airflow 테스트 환경 구축 및 운영 경험 안녕하세요! 데이터서비스 조직의 비오, 소나, 테라입니다. 데이터서비스 조직은 다양한 기술로 데이터 생태계를 만들어 가며 모든 크루가 데이터로 문제를 해결할 수 있도록 돕고 있습니다. 그 과정에서 수많은 데이터 파이프라인을 다루고 있으며 이를 위해 수천 개의 airflow dag를 여러 하둡별 에어플로우 클러스터 위에서 …" data-card="{&quot;title&quot;: &quot;개인화된 Airflow 테스트 환경 구축 및 운영 경험&quot;, &quot;link&quot;: &quot;https://tech.kakao.com/posts/829&quot;, &quot;source&quot;: &quot;카카오 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;안녕하세요! 데이터서비스 조직의 비오, 소나, 테라입니다. 데이터서비스 조직은 다양한 기술로 데이터 생태계를 만들어 가며 모든 크루가 데이터로 문제를 해결할 수 있도록 돕고 있습니다. 그 과정에서 수많은 데이터 파이프라인을 다루고 있으며 이를 위해 수천 개의 Airflow DAG를 여러 하둡별 에어플로우 클러스터 위에서 …&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;b18451e0cb60956a6e81c0c0e5247811e401f1b3&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">카카오 기술블로그 · 08-07 00:00</span></div>
+          <h3><a href="https://tech.kakao.com/posts/829" target="_blank" rel="noopener">개인화된 Airflow 테스트 환경 구축 및 운영 경험</a></h3>
+          <p>안녕하세요! 데이터서비스 조직의 비오, 소나, 테라입니다. 데이터서비스 조직은 다양한 기술로 데이터 생태계를 만들어 가며 모든 크루가 데이터로 문제를 해결할 수 있도록 돕고 있습니다. 그 과정에서 수많은 데이터 파이프라인을 다루고 있으며 이를 위해 수천 개의 Airflow DAG를 여러 하둡별 에어플로우 클러스터 위에서 …</p>
+          
+        </article>
+        <article class="card hot" data-cat="실무" data-text="llm이 만든 sql을 믿고 실행하기까지: a2a 기반의 대화형 bi 애플리케이션 개발기 들어가며안녕하세요. game platform실의 이형중, 김민희, 정소영입니다. 저희 조직은 게임 퍼블리싱에 필요한 다양한 기능을 개발하고 운영하는 역할을 맡고 있습니다.저희는 ‘..." data-card="{&quot;title&quot;: &quot;LLM이 만든 SQL을 믿고 실행하기까지: A2A 기반의 대화형 BI 애플리케이션 개발기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/a2a-conversational-bi-app&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. Game Platform실의 이형중, 김민희, 정소영입니다. 저희 조직은 게임 퍼블리싱에 필요한 다양한 기능을 개발하고 운영하는 역할을 맡고 있습니다.저희는 ‘...&quot;, &quot;why&quot;: &quot;SQL 자동 생성부터 실행까지 신뢰하는 방법을 담았으며, 데이터 기반 의사결정을 LLM으로 가속하는 실무 모델&quot;, &quot;hash&quot;: &quot;18a3b67099fc1615e9f8d3412cc151a3cb7fc584&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 10-02 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/a2a-conversational-bi-app" target="_blank" rel="noopener">LLM이 만든 SQL을 믿고 실행하기까지: A2A 기반의 대화형 BI 애플리케이션 개발기</a><span class="pick">★ 읽을 가치</span></h3>
+          <p>들어가며안녕하세요. Game Platform실의 이형중, 김민희, 정소영입니다. 저희 조직은 게임 퍼블리싱에 필요한 다양한 기능을 개발하고 운영하는 역할을 맡고 있습니다.저희는 ‘...</p>
+          <div class="why">💡 SQL 자동 생성부터 실행까지 신뢰하는 방법을 담았으며, 데이터 기반 의사결정을 LLM으로 가속하는 실무 모델</div>
+        </article>
+        <article class="card" data-cat="실무" data-text="ai를 전제로 다시 설계하다, tech-verse 2026 참관기 들어가며안녕하세요. line plus의 line voip service dev 팀에서 서버 개발을 하고 있는 한규범, abc studio에서 서버를 개발하고 있는 황건구입니다.저희..." data-card="{&quot;title&quot;: &quot;AI를 전제로 다시 설계하다, Tech-Verse 2026 참관기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/tech-verse-2026-ai-driven-development-review&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. LINE Plus의 LINE VoIP Service Dev 팀에서 서버 개발을 하고 있는 한규범, ABC Studio에서 서버를 개발하고 있는 황건구입니다.저희...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;06af77addcdd9458b60e1e1bee88dd0aceef1c11&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 09-11 10:50</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/tech-verse-2026-ai-driven-development-review" target="_blank" rel="noopener">AI를 전제로 다시 설계하다, Tech-Verse 2026 참관기</a></h3>
+          <p>들어가며안녕하세요. LINE Plus의 LINE VoIP Service Dev 팀에서 서버 개발을 하고 있는 한규범, ABC Studio에서 서버를 개발하고 있는 황건구입니다.저희...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="장애 alert의 원인을 스스로 찾다: sre observer 개발기 들어가며안녕하세요. line plus에서 home 서비스의 안정성을 책임지고 있는 home sre(site reliability engineering) 팀입니다.sre observ..." data-card="{&quot;title&quot;: &quot;장애 Alert의 원인을 스스로 찾다: SRE Observer 개발기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/building-sre-observer-for-alert-root-cause-analysis&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. LINE Plus에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reliability Engineering) 팀입니다.SRE Observ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;d6a987898e41c45a12e58b2cd17405ad3299d8e8&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 09-04 10:50</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/building-sre-observer-for-alert-root-cause-analysis" target="_blank" rel="noopener">장애 Alert의 원인을 스스로 찾다: SRE Observer 개발기</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reliability Engineering) 팀입니다.SRE Observ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="llm wiki: 코드 기준으로 자동 최신화되는 도메인 지식 ssot 만들기 들어가며안녕하세요. line plus에서 global e-commerce platform 개발을 맡고 있는 윤석범입니다.ai로 개발할 때 결과물의 품질은 ai의 코드 생성 능력보다..." data-card="{&quot;title&quot;: &quot;LLM Wiki: 코드 기준으로 자동 최신화되는 도메인 지식 SSOT 만들기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/llm-wiki-code-driven-knowledge-ssot&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. LINE Plus에서 Global E-Commerce Platform 개발을 맡고 있는 윤석범입니다.AI로 개발할 때 결과물의 품질은 AI의 코드 생성 능력보다...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;062f9a326067a35cdce1ea5ec02b4bbd86bb03c1&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-28 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/llm-wiki-code-driven-knowledge-ssot" target="_blank" rel="noopener">LLM Wiki: 코드 기준으로 자동 최신화되는 도메인 지식 SSOT 만들기</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 Global E-Commerce Platform 개발을 맡고 있는 윤석범입니다.AI로 개발할 때 결과물의 품질은 AI의 코드 생성 능력보다...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="일본어 상품 검색 정확도 높이기: elasticsearch + kuromoji에서 opensearch + sudachi로 들어가며안녕하세요. line plus에서 통합 커머스 개발을 맡고 있는 김진성입니다.2025년 초, 통합 커머스 프로젝트가 시작되었습니다.서비스가 안정되어 가던 중, 일본 담당자로..." data-card="{&quot;title&quot;: &quot;일본어 상품 검색 정확도 높이기: Elasticsearch + Kuromoji에서 OpenSearch + Sudachi로&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/japanese-search-kuromoji-to-sudachi&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. LINE Plus에서 통합 커머스 개발을 맡고 있는 김진성입니다.2025년 초, 통합 커머스 프로젝트가 시작되었습니다.서비스가 안정되어 가던 중, 일본 담당자로...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;02b392917cf89606aa648250629ead1e138a5e45&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-21 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/japanese-search-kuromoji-to-sudachi" target="_blank" rel="noopener">일본어 상품 검색 정확도 높이기: Elasticsearch + Kuromoji에서 OpenSearch + Sudachi로</a></h3>
+          <p>들어가며안녕하세요. LINE Plus에서 통합 커머스 개발을 맡고 있는 김진성입니다.2025년 초, 통합 커머스 프로젝트가 시작되었습니다.서비스가 안정되어 가던 중, 일본 담당자로...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="보안 업무를 위한 ai 에이전트 플랫폼 「sage」 개발기 1편: 판단은 사람에게 남기는 설계 참고: 이 글을 최초 발행한 시점에는 보안 상담 어시스턴트가 파일럿 운영 중이었으나 2026년 9월 1일 정식 릴리스해 실 운영 중입니다. 이에 맞춰 2026년 9월 2일에 본문을..." data-card="{&quot;title&quot;: &quot;보안 업무를 위한 AI 에이전트 플랫폼 「SAGE」 개발기 1편: 판단은 사람에게 남기는 설계&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/ai-agent-platform-sage-dev-log-part-1&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;참고: 이 글을 최초 발행한 시점에는 보안 상담 어시스턴트가 파일럿 운영 중이었으나 2026년 9월 1일 정식 릴리스해 실 운영 중입니다. 이에 맞춰 2026년 9월 2일에 본문을...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;f0ee92757d4a8b6c7f18d8cdbd1b5f9f422492d0&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-18 14:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/ai-agent-platform-sage-dev-log-part-1" target="_blank" rel="noopener">보안 업무를 위한 AI 에이전트 플랫폼 「SAGE」 개발기 1편: 판단은 사람에게 남기는 설계</a></h3>
+          <p>참고: 이 글을 최초 발행한 시점에는 보안 상담 어시스턴트가 파일럿 운영 중이었으나 2026년 9월 1일 정식 릴리스해 실 운영 중입니다. 이에 맞춰 2026년 9월 2일에 본문을...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="개인 ai 활용의 다음 단계는 무엇인가 - ly corporation에서 aidd 워크숍을 통해 살펴본 aidd 조직 도입의 조건 ly corporation에서는 지금까지 ai 활용 역량 향상 워크숍인 orchestration development workshop (odw)를 통해, 개인이 ai를 활용해 개발..." data-card="{&quot;title&quot;: &quot;개인 AI 활용의 다음 단계는 무엇인가 - LY Corporation에서 AIDD 워크숍을 통해 살펴본 AIDD 조직 도입의 조건&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/conditions-for-organizational-aidd-adoption&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;LY Corporation에서는 지금까지 AI 활용 역량 향상 워크숍인 Orchestration Development Workshop (ODW)를 통해, 개인이 AI를 활용해 개발...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;6289a77adcba47b491b6c368a30cec77d1e27355&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 08-07 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/conditions-for-organizational-aidd-adoption" target="_blank" rel="noopener">개인 AI 활용의 다음 단계는 무엇인가 - LY Corporation에서 AIDD 워크숍을 통해 살펴본 AIDD 조직 도입의 조건</a></h3>
+          <p>LY Corporation에서는 지금까지 AI 활용 역량 향상 워크숍인 Orchestration Development Workshop (ODW)를 통해, 개인이 AI를 활용해 개발...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="grafana에서 자연어로 장애 원인을 분석하기: llm 에이전트 기반 srelens 개발기 들어가며: 관측성 데이터는 많아졌지만, 분석은 여전히 어렵습니다안녕하세요. ly corporation에서 home 서비스의 안정성을 책임지고 있는 home sre(site reli..." data-card="{&quot;title&quot;: &quot;Grafana에서 자연어로 장애 원인을 분석하기: LLM 에이전트 기반 SRELens 개발기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/analyzing-incident-root-causes-in-grafana-using-natural-language-with-llm-agent&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며: 관측성 데이터는 많아졌지만, 분석은 여전히 어렵습니다안녕하세요. LY Corporation에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reli...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;17a3ae43d44834fc3643fc7b4808c103be7116cf&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-31 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/analyzing-incident-root-causes-in-grafana-using-natural-language-with-llm-agent" target="_blank" rel="noopener">Grafana에서 자연어로 장애 원인을 분석하기: LLM 에이전트 기반 SRELens 개발기</a></h3>
+          <p>들어가며: 관측성 데이터는 많아졌지만, 분석은 여전히 어렵습니다안녕하세요. LY Corporation에서 Home 서비스의 안정성을 책임지고 있는 Home SRE(Site Reli...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="ai 에이전트를 위한 android cli: 대규모 모바일 개발 환경에 적용하기 line android 앱은 수백 명의 개발자가 하나의 git 저장소에서 함께 만들어 가는, 수백 개의 gradle 모듈로 구성된 대규모 android 앱입니다. line andr..." data-card="{&quot;title&quot;: &quot;AI 에이전트를 위한 Android CLI: 대규모 모바일 개발 환경에 적용하기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/android-cli-for-ai-agents-at-scale&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;LINE Android 앱은 수백 명의 개발자가 하나의 Git 저장소에서 함께 만들어 가는, 수백 개의 Gradle 모듈로 구성된 대규모 Android 앱입니다. LINE Andr...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;4cd12a62647e6ac0dc96f6eda6a26285275e23c4&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-30 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/android-cli-for-ai-agents-at-scale" target="_blank" rel="noopener">AI 에이전트를 위한 Android CLI: 대규모 모바일 개발 환경에 적용하기</a></h3>
+          <p>LINE Android 앱은 수백 명의 개발자가 하나의 Git 저장소에서 함께 만들어 가는, 수백 개의 Gradle 모듈로 구성된 대규모 Android 앱입니다. LINE Andr...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="오픈챗 이름 및 설명 글로 유해성 판단하는 모델 개발하기 들어가며안녕하세요. ai services lab 팀의 ml 엔지니어 이여운입니다. 저희 팀에서는 사용자에게 유해한 오픈챗이 노출되지 않도록 다양한 모델을 개발하고 있습니다. 이번 ..." data-card="{&quot;title&quot;: &quot;오픈챗 이름 및 설명 글로 유해성 판단하는 모델 개발하기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/developing-harmfulness-detection-model-for-open-chat-metadata&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며안녕하세요. AI Services Lab 팀의 ML 엔지니어 이여운입니다. 저희 팀에서는 사용자에게 유해한 오픈챗이 노출되지 않도록 다양한 모델을 개발하고 있습니다. 이번 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;7bd19a6b22b73f942794a2983bfe936ac2c6168e&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-16 17:50</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/developing-harmfulness-detection-model-for-open-chat-metadata" target="_blank" rel="noopener">오픈챗 이름 및 설명 글로 유해성 판단하는 모델 개발하기</a></h3>
+          <p>들어가며안녕하세요. AI Services Lab 팀의 ML 엔지니어 이여운입니다. 저희 팀에서는 사용자에게 유해한 오픈챗이 노출되지 않도록 다양한 모델을 개발하고 있습니다. 이번 ...</p>
+          
+        </article>
+        <article class="card" data-cat="실무" data-text="초당 100만 건, line 앱에 apache kafka 종단 간 암호화 적용기 들어가며: 왜 kafka 종단 간 암호화인가?line 메신저에서는 매일 수십억 건의 메시지가 오갑니다. 이 방대한 데이터는 다양한 시스템으로 전달되며, 그중에는 개인 정보와 같이 ..." data-card="{&quot;title&quot;: &quot;초당 100만 건, LINE 앱에 Apache Kafka 종단 간 암호화 적용기&quot;, &quot;link&quot;: &quot;https://techblog.lycorp.co.jp/ko/applying-e2ee-to-apache-kafka-in-line-app&quot;, &quot;source&quot;: &quot;LINE 기술블로그&quot;, &quot;cat&quot;: &quot;실무&quot;, &quot;summary&quot;: &quot;들어가며: 왜 Kafka 종단 간 암호화인가?LINE 메신저에서는 매일 수십억 건의 메시지가 오갑니다. 이 방대한 데이터는 다양한 시스템으로 전달되며, 그중에는 개인 정보와 같이 ...&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;ae12878adbe4a2bcd803c0478e2850263fb5c6a9&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-실무">🛠️ 실무</span><span class="src">LINE 기술블로그 · 07-10 11:00</span></div>
+          <h3><a href="https://techblog.lycorp.co.jp/ko/applying-e2ee-to-apache-kafka-in-line-app" target="_blank" rel="noopener">초당 100만 건, LINE 앱에 Apache Kafka 종단 간 암호화 적용기</a></h3>
+          <p>들어가며: 왜 Kafka 종단 간 암호화인가?LINE 메신저에서는 매일 수십억 건의 메시지가 오갑니다. 이 방대한 데이터는 다양한 시스템으로 전달되며, 그중에는 개인 정보와 같이 ...</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="이 나이지만 힘들어도 그럭저럭 살아가 걷기 운동이라도 하겠다고 이래 살아가는 내가 우스워. 늙은 영감탱이가 새벽에 일어나서 소 여물 먹듯이 잘 처먹으니 웃겨. 10월 26일은 국립영천호국원에 다녀올래. 날씨가 뭣 같아 이제는 따신 커피를 처먹어. 통돌이 세탁기에 효자손을 넣는 이유도 알렸더니 댓글에 질문이 줄어 정말 다행이라고 생각하잖아. 혼자 당일치기로 부…" data-card="{&quot;title&quot;: &quot;이 나이지만 힘들어도 그럭저럭 살아가&quot;, &quot;link&quot;: &quot;https://blog.naver.com/adcsk/224441475814?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;스머프할배의 만화방&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;걷기 운동이라도 하겠다고 이래 살아가는 내가 우스워. 늙은 영감탱이가 새벽에 일어나서 소 여물 먹듯이 잘 처먹으니 웃겨. 10월 26일은 국립영천호국원에 다녀올래. 날씨가 뭣 같아 이제는 따신 커피를 처먹어. 통돌이 세탁기에 효자손을 넣는 이유도 알렸더니 댓글에 질문이 줄어 정말 다행이라고 생각하잖아. 혼자 당일치기로 부…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;41b06fa4c60ee3f36e12e817191a9b5716fde497&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">스머프할배의 만화방</span></div>
+          <h3><a href="https://blog.naver.com/adcsk/224441475814?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">이 나이지만 힘들어도 그럭저럭 살아가</a></h3>
+          <p>걷기 운동이라도 하겠다고 이래 살아가는 내가 우스워. 늙은 영감탱이가 새벽에 일어나서 소 여물 먹듯이 잘 처먹으니 웃겨. 10월 26일은 국립영천호국원에 다녀올래. 날씨가 뭣 같아 이제는 따신 커피를 처먹어. 통돌이 세탁기에 효자손을 넣는 이유도 알렸더니 댓글에 질문이 줄어 정말 다행이라고 생각하잖아. 혼자 당일치기로 부…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="악착같이 더 살겠다고 떠들지만 무서워 아직도 삶에 미련이 남았는지 일어나 움직이는 놈이라 웃어. 혼자서도 새벽에 눈을 뜨면 잡곡쌀을 안 치는 놈이잖아. 나보다 골골거리는 중전이 문제야. 누워서 피검사를 하면서도 더 살겠다고 설치니 웃겨. 그런 놈이 매일 샤인머스켓과 아이스라떼를 무지 처먹잖아. 혈당이 높아도 단것을 찾으니 문제야. 이러니 내가 미치겠다고 그러…" data-card="{&quot;title&quot;: &quot;악착같이 더 살겠다고 떠들지만 무서워&quot;, &quot;link&quot;: &quot;https://blog.naver.com/adcsk/224439965946?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;스머프할배의 만화방&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;아직도 삶에 미련이 남았는지 일어나 움직이는 놈이라 웃어. 혼자서도 새벽에 눈을 뜨면 잡곡쌀을 안 치는 놈이잖아. 나보다 골골거리는 중전이 문제야. 누워서 피검사를 하면서도 더 살겠다고 설치니 웃겨. 그런 놈이 매일 샤인머스켓과 아이스라떼를 무지 처먹잖아. 혈당이 높아도 단것을 찾으니 문제야. 이러니 내가 미치겠다고 그러…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;0ffb0cb25020d4ae3adb31b8f7e35fe96d72d62c&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">스머프할배의 만화방</span></div>
+          <h3><a href="https://blog.naver.com/adcsk/224439965946?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">악착같이 더 살겠다고 떠들지만 무서워</a></h3>
+          <p>아직도 삶에 미련이 남았는지 일어나 움직이는 놈이라 웃어. 혼자서도 새벽에 눈을 뜨면 잡곡쌀을 안 치는 놈이잖아. 나보다 골골거리는 중전이 문제야. 누워서 피검사를 하면서도 더 살겠다고 설치니 웃겨. 그런 놈이 매일 샤인머스켓과 아이스라떼를 무지 처먹잖아. 혈당이 높아도 단것을 찾으니 문제야. 이러니 내가 미치겠다고 그러…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="이 영감탱이가 아직 더 살겠다고 난리야 궁상맞게 과거를 묻지 마세요 노래 흥얼거리며 하루를 열어. 이 몸으로 새벽에 눈을 뜨고 바로 잡곡쌀 안 치니 신기해. 소여물 같은 비빔밥을 매일 처먹으니 살잖아. 오늘은 인천 자유공원에 가서 혼자 열심히 운동을 하다가 맥아더 장군 동상 앞에 주저앉았어. 그런 후에 마시는 이이스라떼 맛을 알까? 정말 내가 돌대가리지만 스스…" data-card="{&quot;title&quot;: &quot;이 영감탱이가 아직 더 살겠다고 난리야&quot;, &quot;link&quot;: &quot;https://blog.naver.com/adcsk/224439038484?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;스머프할배의 만화방&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;궁상맞게 과거를 묻지 마세요 노래 흥얼거리며 하루를 열어. 이 몸으로 새벽에 눈을 뜨고 바로 잡곡쌀 안 치니 신기해. 소여물 같은 비빔밥을 매일 처먹으니 살잖아. 오늘은 인천 자유공원에 가서 혼자 열심히 운동을 하다가 맥아더 장군 동상 앞에 주저앉았어. 그런 후에 마시는 이이스라떼 맛을 알까? 정말 내가 돌대가리지만 스스…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;85af3ed2e35bf0864802a14129f3409909772577&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">스머프할배의 만화방</span></div>
+          <h3><a href="https://blog.naver.com/adcsk/224439038484?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">이 영감탱이가 아직 더 살겠다고 난리야</a></h3>
+          <p>궁상맞게 과거를 묻지 마세요 노래 흥얼거리며 하루를 열어. 이 몸으로 새벽에 눈을 뜨고 바로 잡곡쌀 안 치니 신기해. 소여물 같은 비빔밥을 매일 처먹으니 살잖아. 오늘은 인천 자유공원에 가서 혼자 열심히 운동을 하다가 맥아더 장군 동상 앞에 주저앉았어. 그런 후에 마시는 이이스라떼 맛을 알까? 정말 내가 돌대가리지만 스스…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="어렵고 힘들었지만 내 새 책을 마쳤어 고관절이 아파서 기어다니다시피 살면서도 내 신간 서적을 마무리했으니 여한이 없지. 새벽에 일어나자마자 살겠다고 밥을 하잖아. 눈을 뜨면 용감하게 처먹으니 살지. 지팡이를 짚고 걷기 운동한 후에 마시는 아이스라떼가 너무도 고마운 생명수야. 다시 2017년 6월 5일 일기를 보며 웃어. 내가 10년 전에만 해도 자전거로 이렇…" data-card="{&quot;title&quot;: &quot;어렵고 힘들었지만 내 새 책을 마쳤어&quot;, &quot;link&quot;: &quot;https://blog.naver.com/adcsk/224437126168?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;스머프할배의 만화방&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;고관절이 아파서 기어다니다시피 살면서도 내 신간 서적을 마무리했으니 여한이 없지. 새벽에 일어나자마자 살겠다고 밥을 하잖아. 눈을 뜨면 용감하게 처먹으니 살지. 지팡이를 짚고 걷기 운동한 후에 마시는 아이스라떼가 너무도 고마운 생명수야. 다시 2017년 6월 5일 일기를 보며 웃어. 내가 10년 전에만 해도 자전거로 이렇…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;eb36c480a34d51ffe5381b26a073384abb8c49ca&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">스머프할배의 만화방</span></div>
+          <h3><a href="https://blog.naver.com/adcsk/224437126168?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">어렵고 힘들었지만 내 새 책을 마쳤어</a></h3>
+          <p>고관절이 아파서 기어다니다시피 살면서도 내 신간 서적을 마무리했으니 여한이 없지. 새벽에 일어나자마자 살겠다고 밥을 하잖아. 눈을 뜨면 용감하게 처먹으니 살지. 지팡이를 짚고 걷기 운동한 후에 마시는 아이스라떼가 너무도 고마운 생명수야. 다시 2017년 6월 5일 일기를 보며 웃어. 내가 10년 전에만 해도 자전거로 이렇…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="신당역 데이트하기 좋은 전통주 칵테일바 이숩우화 안녕하세요! 오늘은 분위기좋은 신당역 칵테일 바에 다녀왔답니다! 이숩우화 서울시 중구 퇴계로86길 15-8 0507-1382-4528 매주 화요일 정기휴무 월,수,목,금 08:00 - 24:00 브레이크타임 14:00 - 18:00 토 - 일요일 11:00 - 24:00 브레이크타임 17:55 - 18:00 신당동 시그니…" data-card="{&quot;title&quot;: &quot;신당역 데이트하기 좋은 전통주 칵테일바 이숩우화&quot;, &quot;link&quot;: &quot;https://blog.naver.com/clef93/224286784358?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;달행&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;안녕하세요! 오늘은 분위기좋은 신당역 칵테일 바에 다녀왔답니다! 이숩우화 서울시 중구 퇴계로86길 15-8 0507-1382-4528 매주 화요일 정기휴무 월,수,목,금 08:00 - 24:00 브레이크타임 14:00 - 18:00 토 - 일요일 11:00 - 24:00 브레이크타임 17:55 - 18:00 신당동 시그니…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a9b57260c822181b6891096f5be3c9b93cc54ec0&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">달행</span></div>
+          <h3><a href="https://blog.naver.com/clef93/224286784358?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">신당역 데이트하기 좋은 전통주 칵테일바 이숩우화</a></h3>
+          <p>안녕하세요! 오늘은 분위기좋은 신당역 칵테일 바에 다녀왔답니다! 이숩우화 서울시 중구 퇴계로86길 15-8 0507-1382-4528 매주 화요일 정기휴무 월,수,목,금 08:00 - 24:00 브레이크타임 14:00 - 18:00 토 - 일요일 11:00 - 24:00 브레이크타임 17:55 - 18:00 신당동 시그니…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="[제기동횟집] 신선한 활어회 맛집 심도횟집 심도횟집 안녕하세요! 제기동역에 신선한 활어회 맛집에서 광어 도미 먹고왔답니다! 심도횟집 서울시 동대문구 정릉천동로 58 0507-1430-5352 매주 월요일 정기휴무 화 - 금요일 : 15:00 - 24:00 라스트오더 23:00 토 - 일요일 : 12:00 - 24:00 라스트오더 23:00 제기동역 3번출구 앞에있…" data-card="{&quot;title&quot;: &quot;[제기동횟집] 신선한 활어회 맛집 심도횟집&quot;, &quot;link&quot;: &quot;https://blog.naver.com/clef93/224239303722?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;달행&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;심도횟집 안녕하세요! 제기동역에 신선한 활어회 맛집에서 광어 도미 먹고왔답니다! 심도횟집 서울시 동대문구 정릉천동로 58 0507-1430-5352 매주 월요일 정기휴무 화 - 금요일 : 15:00 - 24:00 라스트오더 23:00 토 - 일요일 : 12:00 - 24:00 라스트오더 23:00 제기동역 3번출구 앞에있…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;41485ecd1c06142e5299cbdb224f2a92bb8c17d5&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">달행</span></div>
+          <h3><a href="https://blog.naver.com/clef93/224239303722?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">[제기동횟집] 신선한 활어회 맛집 심도횟집</a></h3>
+          <p>심도횟집 안녕하세요! 제기동역에 신선한 활어회 맛집에서 광어 도미 먹고왔답니다! 심도횟집 서울시 동대문구 정릉천동로 58 0507-1430-5352 매주 월요일 정기휴무 화 - 금요일 : 15:00 - 24:00 라스트오더 23:00 토 - 일요일 : 12:00 - 24:00 라스트오더 23:00 제기동역 3번출구 앞에있…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="[흥인동맛집] 흥인동 태국음식 추천! 타이누들앤쿡 타이누들앤쿡 안녕하세요! 흥인동 태국음식 맛집다녀왔답니다! 타이누들앤쿡 서울시 중구 다산로 46길 0507-1323-9044 매주 주말 휴무 월 - 목 : 10:30 - 22:00 라스트오더 0:30 금요일 10:30 - 21:30 브레이크타임 16:00 - 17:00 라스트오더 20:00 배달, 포장, 무선인터넷, 남/…" data-card="{&quot;title&quot;: &quot;[흥인동맛집] 흥인동 태국음식 추천! 타이누들앤쿡&quot;, &quot;link&quot;: &quot;https://blog.naver.com/clef93/224238028484?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;달행&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;타이누들앤쿡 안녕하세요! 흥인동 태국음식 맛집다녀왔답니다! 타이누들앤쿡 서울시 중구 다산로 46길 0507-1323-9044 매주 주말 휴무 월 - 목 : 10:30 - 22:00 라스트오더 0:30 금요일 10:30 - 21:30 브레이크타임 16:00 - 17:00 라스트오더 20:00 배달, 포장, 무선인터넷, 남/…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;a90db6e8fbd22272827e33b4b4e5dec02adb502b&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">달행</span></div>
+          <h3><a href="https://blog.naver.com/clef93/224238028484?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">[흥인동맛집] 흥인동 태국음식 추천! 타이누들앤쿡</a></h3>
+          <p>타이누들앤쿡 안녕하세요! 흥인동 태국음식 맛집다녀왔답니다! 타이누들앤쿡 서울시 중구 다산로 46길 0507-1323-9044 매주 주말 휴무 월 - 목 : 10:30 - 22:00 라스트오더 0:30 금요일 10:30 - 21:30 브레이크타임 16:00 - 17:00 라스트오더 20:00 배달, 포장, 무선인터넷, 남/…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="왕십리 맛집, 주차가능한 냉상 맛집 장흥집 본점 장흥집 본점 안녕하세요~ 냉삼 좋아해서 왕십리냉삼 맛집 다녀왔답니다! 장흥집 본점 서울시 성동구 마장로 137 0507-1339-3521 토 - 일요일 13:00 - 23:00 라스트오더 22:20 월 - 금요일 14:00 - 23:00 라스트오더 22:20 유아의자, 단체이용가능, 예약, 남/녀화장실 구분, 무선 인터넷…" data-card="{&quot;title&quot;: &quot;왕십리 맛집, 주차가능한 냉상 맛집 장흥집 본점&quot;, &quot;link&quot;: &quot;https://blog.naver.com/clef93/224216049689?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;달행&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;장흥집 본점 안녕하세요~ 냉삼 좋아해서 왕십리냉삼 맛집 다녀왔답니다! 장흥집 본점 서울시 성동구 마장로 137 0507-1339-3521 토 - 일요일 13:00 - 23:00 라스트오더 22:20 월 - 금요일 14:00 - 23:00 라스트오더 22:20 유아의자, 단체이용가능, 예약, 남/녀화장실 구분, 무선 인터넷…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;e96205178a174dfbe7b296e36256e868c2809f73&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">달행</span></div>
+          <h3><a href="https://blog.naver.com/clef93/224216049689?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">왕십리 맛집, 주차가능한 냉상 맛집 장흥집 본점</a></h3>
+          <p>장흥집 본점 안녕하세요~ 냉삼 좋아해서 왕십리냉삼 맛집 다녀왔답니다! 장흥집 본점 서울시 성동구 마장로 137 0507-1339-3521 토 - 일요일 13:00 - 23:00 라스트오더 22:20 월 - 금요일 14:00 - 23:00 라스트오더 22:20 유아의자, 단체이용가능, 예약, 남/녀화장실 구분, 무선 인터넷…</p>
+          
+        </article>
+        <article class="card" data-cat="내소스" data-text="[신당동 돈까스] 24시간 영업하는 돈까스 맛집 긴자료코 신당점 긴자료코 신당점 안녕하세요! 24시간 영업하는 신당 맛집 긴자료코 신당점! 다녀왔습니다! 긴자료코 신당점 서울시 중구 다산로39길 1층 0507-1350-9548 매일 24시간 영업 무선 인터넷, 포장, 배달, 남/녀 화장실 구분, 간편결제, 야장 신당역 7번출구 도보 3분거리에 위치한 24시간 영업 신당 돈까스 맛집 긴…" data-card="{&quot;title&quot;: &quot;[신당동 돈까스] 24시간 영업하는 돈까스 맛집 긴자료코 신당점&quot;, &quot;link&quot;: &quot;https://blog.naver.com/clef93/224210548793?fromRss=true&amp;trackingCode=rss&quot;, &quot;source&quot;: &quot;달행&quot;, &quot;cat&quot;: &quot;내소스&quot;, &quot;summary&quot;: &quot;긴자료코 신당점 안녕하세요! 24시간 영업하는 신당 맛집 긴자료코 신당점! 다녀왔습니다! 긴자료코 신당점 서울시 중구 다산로39길 1층 0507-1350-9548 매일 24시간 영업 무선 인터넷, 포장, 배달, 남/녀 화장실 구분, 간편결제, 야장 신당역 7번출구 도보 3분거리에 위치한 24시간 영업 신당 돈까스 맛집 긴…&quot;, &quot;why&quot;: &quot;&quot;, &quot;hash&quot;: &quot;db6b3bf91900571ccc197980925e2228d3970571&quot;, &quot;date&quot;: &quot;2026-10-16&quot;}">
+          <button class="savecard" type="button">☁️ Notion 저장</button>
+          <div class="card-top"><span class="badge b-내소스">📌 내소스</span><span class="src">달행</span></div>
+          <h3><a href="https://blog.naver.com/clef93/224210548793?fromRss=true&amp;trackingCode=rss" target="_blank" rel="noopener">[신당동 돈까스] 24시간 영업하는 돈까스 맛집 긴자료코 신당점</a></h3>
+          <p>긴자료코 신당점 안녕하세요! 24시간 영업하는 신당 맛집 긴자료코 신당점! 다녀왔습니다! 긴자료코 신당점 서울시 중구 다산로39길 1층 0507-1350-9548 매일 24시간 영업 무선 인터넷, 포장, 배달, 남/녀 화장실 구분, 간편결제, 야장 신당역 7번출구 도보 3분거리에 위치한 24시간 영업 신당 돈까스 맛집 긴…</p>
+          
+        </article></div>
+
+
+<details class="cost" style="cursor:pointer">
+  <summary style="font-weight:600">✅ 품질 검증 기록 (V3 결정론적 체크리스트) · 수집 2026-10-16 10:33:13</summary>
+  <ul style="margin:10px 0 0;padding-left:20px;line-height:1.9;text-align:left"><li><b>① 수집 소스</b> · 11/12 성공</li><li><b>② 총 수집 건수</b> · 136건</li><li><b>③ 홍보 제거</b> · 2건</li><li><b>④ 중복 제거</b> · 2건</li><li><b>⑤ 오래된 뉴스 제외</b> · 0건</li><li><b>카테고리 분포</b> · 경제 36 · 사회 34 · 연예 24 · 실무 33 · 내소스 9</li><li><b>품질 게이트</b> · PASS</li></ul>
+  <div style="margin-top:8px;opacity:.75">규칙 기반 결정론적 지표라 같은 입력이면 실행마다 같은 결과가 재현됩니다. 6번(AI 호출·비용)은 아래 로그 참고. 전체 이력은 <code>data/quality_2026-10-16.json</code> 에 커밋됩니다.</div>
+</details>
+<div class="cost">
+  🧠 AI 비용 로그 (V3 6번) · 모델 <b>claude-haiku-4-5</b> ·
+  호출 <b>4회</b> · 입력 <b>40 tok</b> · 출력 <b>8,433 tok</b> ·
+  추정 비용 <b>$0.11391</b>
+  <br>규칙 필터가 137건을 먼저 정제했기에 AI 호출은 카테고리당 1회로 묶여 비용이 최소화됩니다 (항목별 호출 대비 약 1/34).
+</div>
+
+<footer>
+  Daily Brief 자동화 파이프라인 · 규칙 우선 필터(기계) + AI 보조 판정 · 데이터 분석가 포트폴리오
+</footer>
+</div>
+<script>
+const q=document.getElementById('q'), grid=document.getElementById('grid'), flows=document.getElementById('flows');
+let curF='all';
+const DEFAULT_KW=["AI", "금리", "반도체", "데이터"];
+let kws=loadKw();
+function loadKw(){ try{const v=localStorage.getItem('db_keywords'); if(v) return JSON.parse(v);}catch(e){} return DEFAULT_KW.slice(); }
+function saveKw(){ try{localStorage.setItem('db_keywords', JSON.stringify(kws));}catch(e){} }
+function escg(s){ return (s||'').replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+function renderChips(){
+  const c=document.getElementById('kwchips'); if(!c) return;
+  c.innerHTML=kws.map((k,i)=>'<span class="chip">'+escg(k)+'<b data-i="'+i+'">×</b></span>').join('');
+  c.querySelectorAll('b').forEach(b=>b.onclick=()=>{ kws.splice(+b.dataset.i,1); saveKw(); renderChips(); updateCount(); apply(); });
+}
+function matchesKw(c){ if(!kws.length) return false; const t=c.dataset.text; return kws.some(k=>t.includes(k.toLowerCase())); }
+function updateCount(){ let n=0; grid.querySelectorAll('.card').forEach(c=>{ if(matchesKw(c)) n++; }); const el=document.getElementById('kwcount'); if(el) el.textContent='('+n+')'; }
+function apply(){
+  const t=q.value.trim().toLowerCase();
+  grid.querySelectorAll('.card').forEach(c=>{
+    const okCat = curF==='all' ? true : (curF==='interest' ? matchesKw(c) : c.dataset.cat===curF);
+    const okTxt = !t || c.dataset.text.includes(t);
+    c.style.display=(okCat&&okTxt)?'':'none';
+  });
+  flows.querySelectorAll('.flow').forEach(f=>{
+    if(!f.dataset.cat) return;
+    f.style.display=(curF==='all'||f.dataset.cat===curF)?'':'none';
+  });
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelector('.tab.active').classList.remove('active');
+  b.classList.add('active'); curF=b.dataset.f; apply();
+});
+q.oninput=apply;
+const kwadd=document.getElementById('kwadd');
+if(kwadd) kwadd.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){ const v=kwadd.value.trim(); if(v && !kws.includes(v)){ kws.push(v); saveKw(); renderChips(); updateCount(); apply(); } kwadd.value=''; }
+});
+renderChips(); updateCount();
+const msg=document.getElementById('saveMsg');
+function getCfg(){ return {url:localStorage.getItem('db_fnurl')||'', key:localStorage.getItem('db_appkey')||''}; }
+function openCfg(){ const c=getCfg(); const u=document.getElementById('cfgUrl'), k=document.getElementById('cfgKey'); if(u)u.value=c.url; if(k)k.value=c.key; const m=document.getElementById('cfgModal'); if(m)m.style.display='flex'; }
+function closeCfg(){ const m=document.getElementById('cfgModal'); if(m)m.style.display='none'; }
+const cfgBtn=document.getElementById('cfgBtn');
+if(cfgBtn) cfgBtn.onclick=openCfg;
+const cfgSave=document.getElementById('cfgSave');
+if(cfgSave) cfgSave.onclick=()=>{ localStorage.setItem('db_fnurl',(document.getElementById('cfgUrl').value||'').trim()); localStorage.setItem('db_appkey',(document.getElementById('cfgKey').value||'').trim()); closeCfg(); if(msg) msg.textContent='연결 설정 저장됨'; };
+const cfgCancel=document.getElementById('cfgCancel');
+if(cfgCancel) cfgCancel.onclick=closeCfg;
+async function saveCard(btn){
+  let cfg=getCfg(); if(!cfg.url||!cfg.key){ openCfg(); if(msg) msg.textContent='먼저 연결 설정을 하세요'; return; }
+  const card=JSON.parse(btn.closest('.card').dataset.card);
+  const old=btn.textContent; btn.textContent='저장 중…'; btn.disabled=true;
+  try{
+    const r=await fetch(cfg.url,{method:'POST',headers:{'Content-Type':'application/json','x-app-key':cfg.key},body:JSON.stringify({cards:[card]})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok){ btn.textContent=j.created? '✓ 저장됨' : '이미 있음'; btn.classList.add('done'); }
+    else { btn.textContent=old; btn.disabled=false; if(msg) msg.textContent='오류: '+(j.error||r.status); }
+  }catch(e){ btn.textContent=old; btn.disabled=false; if(msg) msg.textContent='요청 실패: '+e; }
+}
+document.querySelectorAll('.savecard').forEach(b=>b.onclick=()=>saveCard(b));
+
+// 내 소스 관리 (add-source 엔드포인트)
+const srcMsg=document.getElementById('srcMsg');
+function srcEndpoint(){ const u=getCfg().url; return u? u.replace('publish-notion','add-source') : ''; }
+async function srcCall(action, url){
+  const ep=srcEndpoint(), key=getCfg().key;
+  if(!ep||!key){ openCfg(); if(srcMsg) srcMsg.textContent='먼저 연결 설정을 하세요'; return null; }
+  try{
+    const r=await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json','x-app-key':key},body:JSON.stringify({action,url})});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok){ if(srcMsg) srcMsg.textContent='오류: '+(j.error||r.status); return null; }
+    return j;
+  }catch(e){ if(srcMsg) srcMsg.textContent='요청 실패: '+e; return null; }
+}
+function renderSrc(list){
+  const c=document.getElementById('srcchips'); if(!c) return;
+  c.innerHTML=(list&&list.length)? list.map(s=>'<span class="chip">'+escg(s)+'<b data-u="'+encodeURIComponent(s)+'">×</b></span>').join('') : '<span class="kwbar-hint">등록된 소스 없음</span>';
+  c.querySelectorAll('b').forEach(b=>b.onclick=async()=>{ const j=await srcCall('remove',decodeURIComponent(b.dataset.u)); if(j){ renderSrc(j.sources); if(srcMsg) srcMsg.textContent='삭제됨'; } });
+}
+const srcadd=document.getElementById('srcadd');
+if(srcadd) srcadd.addEventListener('keydown',async e=>{ if(e.key==='Enter'){ const v=srcadd.value.trim(); if(v){ const j=await srcCall('add',v); if(j){ renderSrc(j.sources); if(srcMsg) srcMsg.textContent='추가됨 · [지금 수집]을 눌러 반영'; } } srcadd.value=''; } });
+const srcRefresh=document.getElementById('srcRefresh');
+if(srcRefresh) srcRefresh.onclick=async()=>{ const j=await srcCall('refresh'); if(j&&srcMsg) srcMsg.textContent='수집 실행됨 · 1~2분 뒤 새로고침'; };
+if(getCfg().url&&getCfg().key) srcCall('list').then(j=>{ if(j) renderSrc(j.sources); });
+</script>
+</body></html>
